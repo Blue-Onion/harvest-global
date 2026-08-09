@@ -15,8 +15,8 @@ export default function About() {
   return (
     <section id="about" className="relative bg-black text-white w-full border-t border-white/10">
       <ScrollExpand
-        src="/videos/earth-observation.mp4"
-        mediaType="video"
+        src="/images/aboutbg.png"
+        mediaType="image"
         useWindowScroll={true}
         title="Intelligence for a Changing Earth."
         scrollHint="SCROLL TO UNCOVER"
