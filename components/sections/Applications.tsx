@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import AccordionGallery from "../ui/AccordinGallery";
+import ScrollStack, { ScrollStackItem } from "../ui/ScrollStack";
 
 interface ApplicationItem {
   id: string;
@@ -31,7 +29,7 @@ const applications: ApplicationItem[] = [
   {
     id: "bfsi",
     image:
-      "https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?q=80&w=1200&auto=format&fit=crop",
+      "/images/aboutbg.png",
     label: "BFSI",
     shortLabel: "BFSI",
     alt: "Aerial view of urban infrastructure",
@@ -91,16 +89,13 @@ const applications: ApplicationItem[] = [
 ];
 
 export default function Applications() {
-  // Default active panel (e.g. FORESTRY or AGRI)
-  const [activeIndex, setActiveIndex] = useState<number>(2);
-
   return (
     <section
       id="applications"
-      className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28"
+      className="relative w-full border-t border-white/10 bg-black text-white"
     >
       {/* Section Header */}
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10 pt-20 md:pt-28">
         <div className="max-w-3xl">
           <div className="flex items-center gap-3">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
@@ -122,39 +117,86 @@ export default function Applications() {
         </div>
       </div>
 
-      {/* Accordion Gallery */}
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10 mt-12 md:mt-16">
-        <AccordionGallery
-          items={applications.map((app) => {
-            return {
-              id: app.id,
-              image: app.image,
-              label: app.label,
-              shortLabel: app.shortLabel,
-              alt: app.alt,
-              description: app.description,
-              tag: app.tag,
-              coords: app.coords,
-            };
-          })}
-          defaultIndex={1}
-          expandRatio={0.52}
-          trigger="hover"
-          accentColor="#ffffff"
-          overlayColor="#060010"
-          textColor="#ffffff"
-          grayscale
-          showLabels
-          duration={0.6}
-          ease="power3.out"
-          parallax={0.5}
-          tilt={8}
-          stagger={0.06}
-          height={480}
-          gap={10}
-          radius={16}
-          orientation="horizontal"
+      {/* ScrollStack Cards */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8 md:px-10">
+ <ScrollStack
+  useWindowScroll
+  itemDistance={40}
+  itemStackDistance={18}
+  stackPosition="10%"
+>
+  {applications.map((app, i) => (
+    <ScrollStackItem
+      key={app.id}
+      itemClassName="
+        !my-0
+        !h-[520px]
+        md:!h-[620px]
+        !w-full
+        !rounded-[28px]
+        !p-0
+        overflow-hidden
+        border
+        border-white/10
+        bg-neutral-950
+      "
+    >
+      <div className="relative h-full w-full">
+        {/* Image */}
+        <img
+          src={app.image}
+          alt={app.alt}
+          draggable={false}
+          className="absolute inset-0 h-full w-full select-none object-cover"
         />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/20" />
+
+        {/* Content */}
+        <div className="relative z-10 flex h-full flex-col justify-between p-7 sm:p-10 md:p-12">
+          {/* Top */}
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <span className="font-mono text-sm font-semibold uppercase tracking-[0.25em] text-orange-400">
+                {String(i + 1).padStart(2, "0")} / 06
+              </span>
+
+              <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+                {app.shortLabel}
+              </p>
+            </div>
+
+            <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-neutral-300 backdrop-blur-sm">
+              {app.tag}
+            </span>
+          </div>
+
+          {/* Bottom */}
+          <div>
+            <h3 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+              {app.label}
+            </h3>
+
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base md:text-lg">
+              {app.description}
+            </p>
+
+            <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-4">
+              <span className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 sm:text-[10px]">
+                {app.coords}
+              </span>
+
+              <span className="font-mono text-[9px] uppercase tracking-wider text-white/30">
+                SYSTEM // NODE
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ScrollStackItem>
+  ))}
+</ScrollStack>
       </div>
     </section>
   );

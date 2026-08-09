@@ -3,7 +3,6 @@
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "./ui/button";
 
 function Navbar() {
   return (
@@ -45,12 +44,12 @@ function Navbar() {
         </Link>
 
         <Link
-          href="#services"
+          href="#applications"
           className="px-4 py-1 rounded-xl text-lg text-white/80
           hover:text-white hover:bg-white/10
           transition-all duration-200"
         >
-          Services
+          Application
         </Link>
 
         <Link

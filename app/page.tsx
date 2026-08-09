@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/sections/About";
 import Technology from "@/components/sections/Technology";
 import Applications from "@/components/sections/Applications";
+import Recognition from "@/components/sections/Recognition";
 import Footer from "@/components/footer/Footer";
 import FinalCta from "@/components/sections/FinalCta";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <About />
       <Technology />
       <Applications />
+      <Recognition />
       <FinalCta />
       <Footer />
     </main>
