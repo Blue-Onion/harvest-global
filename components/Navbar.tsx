@@ -68,12 +68,12 @@ function Navbar() {
         </button>
       </div>
       <div className="button md:flex hidden">
-        <Button>
+        <button>
             Contact us
-        </Button>
-        <Button>
+        </button>
+        <button>
             Explore Now
-        </Button>
+        </button>
       </div>
     </nav>
   );
