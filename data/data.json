@@ -97,68 +97,74 @@
     "eyebrow": "APPLICATIONS",
     "title": ["Specialized GeoAI Solutions", "Across Global Sectors."],
     "description": "Empowering critical industries with sovereign, high-resolution spatio-temporal intelligence.",
-    "items": [
-      {
-        "id": "app-1",
-        "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
-        "label": "Agriculture & PMFBY",
-        "shortLabel": "AGRI",
-        "alt": "Agriculture and PMFBY crop insurance analytics",
-        "description": "AgriStack alignment, automated crop boundary identification, yield estimation, and fast PMFBY insurance claim validation.",
-        "tag": "AGRICULTURE & PMFBY",
-        "coords": "AGRI-STACK // PMFBY-ENGINE"
-      },
-      {
-        "id": "app-2",
-        "image": "/images/aboutbg.png",
-        "label": "Infrastructure & Urban",
-        "shortLabel": "URBAN",
-        "alt": "Infrastructure and urban planning analytics",
-        "description": "Asset monitoring, land cover classification, and structural encroachment tracking across urban developments.",
-        "tag": "INFRA & URBAN",
-        "coords": "URBAN-SPATIAL // INFRA-MON"
-      },
-      {
-        "id": "app-3",
-        "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
-        "label": "Forestry & Natural Capital",
-        "shortLabel": "FOREST",
-        "alt": "Forestry and carbon assessment analytics",
-        "description": "Canopy health analysis, automated biomass estimation, and precise carbon sequestration verification.",
-        "tag": "NATURAL CAPITAL",
-        "coords": "CANOPY-AI // CARBON-CAPITAL"
-      },
-      {
-        "id": "app-4",
-        "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop",
-        "label": "Climate Resilience",
-        "shortLabel": "CLIMATE",
-        "alt": "Climate risk modeling and adaptation",
-        "description": "Multi-hazard threat assessment, surface temperature profiling, and long-term climate risk forecasting.",
-        "tag": "CLIMATE RESILIENCE",
-        "coords": "CLIMATE-RISK // HAZARD-MAP"
-      },
-      {
-        "id": "app-5",
-        "image": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1200&auto=format&fit=crop",
-        "label": "Atmospheric & Weather AI",
-        "shortLabel": "ATMOS",
-        "alt": "Atmospheric condition monitoring",
-        "description": "Localized meteorological forecasting, particulate tracking, and extreme weather impact analysis.",
-        "tag": "ATMOSPHERIC AI",
-        "coords": "WEATHER-AI // CLOUD-DYN"
-      },
-      {
-        "id": "app-6",
-        "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop",
-        "label": "Water Security",
-        "shortLabel": "WATER",
-        "alt": "Water body and hydrological analytics",
-        "description": "Surface water reservoir mapping, drought severity tracking, and flood emergency response modeling.",
-        "tag": "WATER SECURITY",
-        "coords": "HYDRO-MON // FLOOD-MAP"
-      }
-    ]
+ "items": [
+    {
+      "id": "app-1",
+      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
+      "search_suggestion": "Combine harvester working in golden farmland field aerial top view",
+      "label": "Agriculture",
+      "shortLabel": "AGRI",
+      "alt": "Precision farming, crop monitoring, yield forecasting",
+      "description": "Precision farming, automated crop boundary identification, yield forecasting, and crop health monitoring.",
+      "tag": "AGRICULTURE",
+      "coords": "AGRI-STACK // CROP-HEALTH"
+    },
+    {
+      "id": "app-2",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+      "search_suggestion": "Lush green farm field with an umbrella or crop loss insurance protection concept",
+      "label": "PMFBY & Insurance",
+      "shortLabel": "INSURANCE",
+      "alt": "Smart risk assessment, fraud detection, loss estimation",
+      "description": "AgriStack alignment, smart risk assessment, fraud detection, and fast PMFBY insurance claim validation.",
+      "tag": "PMFBY & INSURANCE",
+      "coords": "PMFBY-ENGINE // RISK-ASSESS"
+    },
+    {
+      "id": "app-3",
+      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+      "search_suggestion": "Dramatic stormy sky over dark flood waters or wildfire landscape dramatic weather",
+      "label": "Climate Resilience",
+      "shortLabel": "CLIMATE",
+      "alt": "Floods, droughts, wildfires, and extreme event modeling",
+      "description": "Multi-hazard threat assessment, floods, droughts, wildfires, extreme weather impact modeling, and long-term risk forecasting.",
+      "tag": "CLIMATE RESILIENCE",
+      "coords": "CLIMATE-RISK // HAZARD-MAP"
+    },
+    {
+      "id": "app-4",
+      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
+      "search_suggestion": "Aerial view of a winding river reservoir lake water body surrounded by green mountains",
+      "label": "Water Security",
+      "shortLabel": "WATER",
+      "alt": "Watershed monitoring, groundwater & water quality",
+      "description": "Surface water reservoir mapping, watershed monitoring, groundwater quality tracking, and flood response modeling.",
+      "tag": "WATER SECURITY",
+      "coords": "HYDRO-MON // WATER-QUAL"
+    },
+    {
+      "id": "app-5",
+      "image": "/images/urban.jpg",
+      "search_suggestion": "Aerial view of modern urban city skyline infrastructure with roads and buildings",
+      "label": "Infrastructure & Urban",
+      "shortLabel": "URBAN",
+      "alt": "Asset monitoring, smart cities, land use & change detection",
+      "description": "Asset monitoring, smart city developments, land use classification, and structural encroachment tracking.",
+      "tag": "INFRASTRUCTURE & URBAN",
+      "coords": "URBAN-SPATIAL // INFRA-MON"
+    },
+    {
+      "id": "app-6",
+      "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
+      "search_suggestion": "Dense forest canopy top view vibrant green trees wilderness background",
+      "label": "Natural Capital",
+      "shortLabel": "FOREST",
+      "alt": "Forests, biodiversity, ecosystem monitoring",
+      "description": "Canopy health analysis, biodiversity tracking, automated biomass estimation, and carbon sequestration verification.",
+      "tag": "NATURAL CAPITAL",
+      "coords": "CANOPY-AI // CARBON-CAPITAL"
+    }
+  ]
   },
   "credentials": {
     "hero": {
