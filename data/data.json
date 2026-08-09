@@ -16,8 +16,8 @@
       { "label": "Credentials", "href": "/credentials" }
     ],
     "actions": [
-      { "label": "Contact us", "href": "#contact" },
-      { "label": "Explore Platform", "href": "/credentials" }
+      { "label": "Contact Us", "href": "#contact" },
+      { "label": "Learn More", "href": "/credentials" }
     ]
   },
   "hero": {

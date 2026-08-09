@@ -64,21 +64,21 @@ function Navbar() {
       <header className="fixed inset-x-0 top-4 z-50 px-4">
         <nav
           aria-label="Main navigation"
-          className={`mx-auto flex w-full h-20 items-center justify-between gap-4 rounded-full border border-white/10 bg-black/25 py-2 pl-4 pr-2 backdrop-blur-md transition-[background-color,box-shadow] duration-300 sm:pl-5 ${
+          className={`mx-auto flex w-full h-24 items-center justify-between gap-4 rounded-full border border-white/10 bg-black/25 py-2 pl-4 pr-2 backdrop-blur-md transition-[background-color,box-shadow] duration-300 sm:pl-5 ${
             scrolled
               ? "bg-black/45 shadow-[0_8px_40px_rgba(0,0,0,0.5)]"
               : "shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
           }`}
         >
           {/* Brand */}
-          <Link href="#home" onClick={close} className="shrink-0">
+          <Link href="#home" onClick={close} className="">
             <Image
               src="/logo.png"
               alt={data.site.name}
               width={460}
               height={164}
               priority
-              className="h-24 w-auto sm:h-12"
+              className="h-20 w-auto"
             />
           </Link>
 
