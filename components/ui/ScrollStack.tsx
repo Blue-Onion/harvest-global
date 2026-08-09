@@ -18,11 +18,12 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
     style={{
       backfaceVisibility: "hidden",
       WebkitBackfaceVisibility: "hidden",
+      transform: "translateZ(0)",
     }}
   >
     {children}
   </div>
-  );
+);
 
 interface ScrollStackProps {
   className?: string;
@@ -48,8 +49,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const lenisRef = useRef<Lenis | null>(null);
 
   const cardsRef = useRef<HTMLElement[]>([]);
-  const lastScrollRef = useRef(0);
-  const tickingRef = useRef(false);
   const stackCompletedRef = useRef(false);
 
   const parsePercentage = useCallback(
@@ -63,90 +62,33 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     []
   );
 
-  const getScrollTop = useCallback(() => {
-    return useWindowScroll
-      ? window.scrollY
-      : scrollerRef.current?.scrollTop ?? 0;
-  }, [useWindowScroll]);
-
-  const updateCards = useCallback(() => {
+  /*
+   * Cards are pinned purely by native `position: sticky`, so the only
+   * thing left for JS is to report when the last card has landed.
+   */
+  const checkStackComplete = useCallback(() => {
     const cards = cardsRef.current;
-
-    if (!cards.length) return;
-
-    const scrollTop = getScrollTop();
-
-    if (Math.abs(scrollTop - lastScrollRef.current) < 0.5) {
-      tickingRef.current = false;
-      return;
-    }
-
-    lastScrollRef.current = scrollTop;
+    const lastCard = cards[cards.length - 1];
+    if (!lastCard) return;
 
     const viewportHeight = useWindowScroll
       ? window.innerHeight
       : scrollerRef.current?.clientHeight ?? window.innerHeight;
 
     const stackTop = parsePercentage(stackPosition, viewportHeight);
+    const lastPinTop = stackTop + (cards.length - 1) * itemStackDistance;
 
-    cards.forEach((card, index) => {
-      const rect = card.getBoundingClientRect();
+    const reached = lastCard.getBoundingClientRect().top <= lastPinTop;
 
-      const cardTop = useWindowScroll
-        ? rect.top + window.scrollY
-        : card.offsetTop;
-
-      /*
-       * Once the card reaches the stack position,
-       * keep it there.
-       */
-      const pinPoint = cardTop - stackTop;
-
-      const passed = scrollTop - pinPoint;
-
-      if (passed <= 0) {
-        card.style.transform = "translate3d(0, 0, 0)";
-        return;
-      }
-
-      /*
-       * Each previous card sits slightly lower.
-       *
-       * Card 01 -> 0px
-       * Card 02 -> 18px
-       * Card 03 -> 36px
-       */
-      const stackOffset = index * itemStackDistance;
-
-      const translateY = Math.min(
-        passed + stackOffset,
-        stackOffset
-      );
-
-      card.style.transform = `translate3d(0, ${translateY}px, 0)`;
-    });
-
-    /*
-     * Last card reached the stack.
-     */
-    const lastCard = cards[cards.length - 1];
-
-    if (lastCard) {
-      const rect = lastCard.getBoundingClientRect();
-
-      if (rect.top <= stackTop && !stackCompletedRef.current) {
-        stackCompletedRef.current = true;
-        onStackComplete?.();
-      }
-
-      if (rect.top > stackTop) {
-        stackCompletedRef.current = false;
-      }
+    if (reached && !stackCompletedRef.current) {
+      stackCompletedRef.current = true;
+      onStackComplete?.();
     }
 
-    tickingRef.current = false;
+    if (!reached) {
+      stackCompletedRef.current = false;
+    }
   }, [
-    getScrollTop,
     itemStackDistance,
     onStackComplete,
     parsePercentage,
@@ -155,12 +97,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   ]);
 
   const handleScroll = useCallback(() => {
-    if (tickingRef.current) return;
-
-    tickingRef.current = true;
-
-    requestAnimationFrame(updateCards);
-  }, [updateCards]);
+    checkStackComplete();
+  }, [checkStackComplete]);
 
   const setupLenis = useCallback(() => {
     const lenis = new Lenis({
@@ -207,37 +145,42 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       }
 
       card.style.willChange = "transform";
-      card.style.transform = "translate3d(0, 0, 0)";
       card.style.backfaceVisibility = "hidden";
       card.style.webkitBackfaceVisibility = "hidden";
-    });
 
-    /*
-     * Make cards sticky.
-     *
-     * This is the important part:
-     * the browser handles the pinning instead of us
-     * continuously calculating large translateY values.
-     */
-    cards.forEach((card) => {
+      /*
+       * Native sticky does the pinning - no JS transform that fights
+       * the browser on every scroll frame (the source of the flicker).
+       *
+       * Each card pins at its own stack level:
+       *   Card 01 -> top: 10%
+       *   Card 02 -> top: calc(10% + 18px)
+       *   Card 03 -> top: calc(10% + 36px)
+       */
       card.style.position = "sticky";
-      card.style.top = stackPosition;
+      card.style.top =
+        index === 0
+          ? stackPosition
+          : `calc(${stackPosition} + ${index * itemStackDistance}px)`;
+      card.style.zIndex = String(index + 1);
     });
 
     const lenis = setupLenis();
 
-    updateCards();
+    checkStackComplete();
 
     const resizeObserver = new ResizeObserver(() => {
-      updateCards();
+      checkStackComplete();
     });
 
     cards.forEach((card) => resizeObserver.observe(card));
 
-    window.addEventListener("resize", updateCards);
+    window.addEventListener("resize", checkStackComplete);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("resize", updateCards);
+      window.removeEventListener("resize", checkStackComplete);
+      window.removeEventListener("scroll", handleScroll);
 
       resizeObserver.disconnect();
 
@@ -256,7 +199,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     itemStackDistance,
     stackPosition,
     setupLenis,
-    updateCards,
+    checkStackComplete,
     useWindowScroll,
   ]);
 
