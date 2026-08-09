@@ -96,7 +96,7 @@ export default function Applications() {
 
   return (
     <section
-      id="application"
+      id="applications"
       className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28"
     >
       {/* Section Header */}
@@ -137,7 +137,7 @@ export default function Applications() {
               coords: app.coords,
             };
           })}
-          defaultIndex={2}
+          defaultIndex={1}
           expandRatio={0.52}
           trigger="hover"
           accentColor="#ffffff"
