@@ -38,26 +38,29 @@ const Hero = () => {
         </p>
 
         <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
-          <AnimateButton
-            size="lg"
-            radius={18}
-            tint="#F97316"
-            tintOpacity={0}
-            blur={0}
-            textColor="#f5f5f5"
-            lineColor="#F97316"
-            baseColor="#F97316"
-            intensity={1}
-            shineSize={10}
-            shineFade={40}
-            thickness={1}
-            speed={0.35}
-            followMouse
-            proximity={250}
-            autoAnimate={false}
-          >
-            Get Started
-          </AnimateButton>
+          <Link href={"/credentials"}>
+            <AnimateButton
+              size="lg"
+              radius={18}
+              tint="#F97316"
+              tintOpacity={0}
+              blur={0}
+              textColor="#f5f5f5"
+              lineColor="#F97316"
+              baseColor="#F97316"
+              intensity={1}
+              shineSize={10}
+              shineFade={40}
+              thickness={1}
+              speed={0.35}
+              followMouse
+              proximity={250}
+              autoAnimate={false}
+            >
+             Learn More
+            </AnimateButton>
+          </Link>
+          <Link href={"/#contact"}>
           <AnimateButton
             size="lg"
             radius={18}
@@ -75,9 +78,10 @@ const Hero = () => {
             followMouse
             proximity={250}
             autoAnimate={false}
-          >
+            >
             Contact Us
           </AnimateButton>
+            </Link>
         </div>
       </div>
     </section>

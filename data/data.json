@@ -13,8 +13,7 @@
       { "label": "About", "href": "#about" },
       { "label": "Technology", "href": "#technology" },
       { "label": "Applications", "href": "#applications" },
-      { "label": "Credentials", "href": "/credentials" },
-      { "label": "Contact", "href": "#contact" }
+      { "label": "Credentials", "href": "/credentials" }
     ],
     "actions": [
       { "label": "Contact us", "href": "#contact" },

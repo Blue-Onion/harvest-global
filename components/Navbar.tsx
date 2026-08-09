@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { data } from "@/data";
+import { Button } from "./ui/button";
 
 function Navbar() {
   const { links, actions } = data.navigation;
@@ -45,12 +46,21 @@ function Navbar() {
           <Menu size={26} />
         </button>
       </div>
-      <div className="button md:flex hidden">
-        {actions.map((action) => (
-          <button key={action.label}>
-            {action.label}
-          </button>
-        ))}
+      <div className="button flex items-center gap-2 text-white md:flex hidden">
+        <Link href={"/#contact"}>
+       <button className="px-4 py-2 rounded-lg font-bold text-lg text-white/80
+          hover:text-white hover:bg-white/10
+          transition-all duration-200">
+        Contact Us
+       </button>
+        </Link>
+        <Link href={"/credentials"}>
+       <button className="px-4 py-2 rounded-lg font-bold text-lg text-white/80
+          hover:text-white hover:bg-white/10
+          transition-all duration-200">
+Learn More
+       </button>
+        </Link>
       </div>
     </nav>
   );
