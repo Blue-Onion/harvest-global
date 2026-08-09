@@ -1,6 +1,7 @@
 "use client";
 
-import { MapPin, CalendarDays } from "lucide-react";
+import { CalendarDays, MapPin } from "lucide-react";
+import Image from "next/image";
 import { useInView } from "@/lib/useInView";
 import { cn } from "@/lib/utils";
 import { data } from "@/data";
@@ -30,19 +31,38 @@ export default function ForumsSection() {
           {forums.map((item) => (
             <article
               key={item.id}
-              className="group relative overflow-hidden rounded-xl border border-white/10 bg-neutral-950/70 p-6 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50 sm:p-8"
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50"
             >
-              <div className="absolute left-0 top-6 bottom-6 w-px bg-linear-to-b from-emerald-500/30 via-emerald-500/10 to-transparent" />
+              {item.image && (
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-black/20" />
+                  <div className="absolute inset-0 bg-emerald-950/10 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-0" />
 
-              <div className="ml-4">
-                {item.year && (
+                  {item.year && (
+                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300/90 backdrop-blur-sm">
+                      <CalendarDays size={12} />
+                      {item.year}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                {!item.image && item.year && (
                   <span className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-400/90">
                     <CalendarDays size={12} />
                     {item.year}
                   </span>
                 )}
 
-                <h3 className="mt-3 text-lg font-bold tracking-tight text-white leading-snug sm:text-xl">
+                <h3 className="mt-2 text-lg font-bold tracking-tight text-white leading-snug sm:text-xl">
                   {item.title}
                 </h3>
 

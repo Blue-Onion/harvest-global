@@ -1,15 +1,20 @@
-import CredentialsHero from "@/components/credentials/CredentialsHero";
-import RecognitionSection from "@/components/credentials/RecognitionSection";
-import MediaSection from "@/components/credentials/MediaSection";
-import ForumsSection from "@/components/credentials/ForumsSection";
-import EcosystemSection from "@/components/credentials/EcosystemSection";
-import AffiliationsSection from "@/components/credentials/AffiliationsSection";
 import FinalCta from "@/components/sections/FinalCta";
+import AffiliationsSection from "./_components/AffiliationsSection";
+import CredentialsHero from "./_components/CredentialsHero";
+import EcosystemSection from "./_components/EcosystemSection";
+import ForumsSection from "./_components/ForumsSection";
+import MediaSection from "./_components/MediaSection";
+import RecognitionSection from "./_components/RecognitionSection";
 import Footer from "@/components/footer/Footer";
+
+
+
+
 
 export default function CredentialsPage() {
   return (
     <main className="text-white">
+
       <CredentialsHero />
       <RecognitionSection />
       <MediaSection />

@@ -9,11 +9,11 @@
   },
   "navigation": {
     "links": [
-      { "label": "Home", "href": "#hero" },
-      { "label": "About", "href": "#about" },
-      { "label": "Technology", "href": "#technology" },
-      { "label": "Applications", "href": "#applications" },
-      { "label": "Credentials", "href": "/credentials" }
+      { "label": "Home", "href": "/#hero" },
+      { "label": "About", "href": "/#about" },
+      { "label": "Technology", "href": "/#technology" },
+      { "label": "Applications", "href": "/#applications" },
+      { "label": "Credentials", "href": "/#credentials" }
     ],
     "actions": [
       { "label": "Contact Us", "href": "#contact" },
@@ -240,7 +240,8 @@
         "title": "Building Tech Sovereignty: How HG Systems is Redefining GeoAI",
         "description": "An in-depth feature on the Unified GeoAI stack and sovereign private cloud infrastructure.",
         "year": "2025",
-        "link": "#"
+        "link": "#",
+        "image": "/images/aboutbg.png"
       },
       {
         "id": "media-2",
@@ -248,7 +249,8 @@
         "title": "Earth Intelligence for Sustainable Development",
         "description": "Exploring how foundational AI models drive agricultural safety and climate resilience.",
         "year": "2025",
-        "link": "#"
+        "link": "#",
+        "image": "/images/urban.jpg"
       },
       {
         "id": "media-3",
@@ -256,7 +258,8 @@
         "title": "The Next Frontier: Satellite Edge AI in Developing Nations",
         "description": "Highlighting low-latency Earth Observation analytics at satellite ground stations.",
         "year": "2024",
-        "link": "#"
+        "link": "#",
+        "image": "/images/founder5.png"
       }
     ],
     "forums": [
@@ -266,7 +269,8 @@
         "venue": "House of Commons",
         "location": "London, UK",
         "description": "Address on sovereign AI infrastructure for global environmental governance.",
-        "year": "2024"
+        "year": "2024",
+        "image": "/images/founder3.png"
       },
       {
         "id": "forum-2",
@@ -274,7 +278,8 @@
         "venue": "International Convention Center",
         "location": "Global Forum",
         "description": "Panel discussion on democratizing satellite intelligence for agriculture and water security.",
-        "year": "2024"
+        "year": "2024",
+        "image": "/images/founder2.png"
       },
       {
         "id": "forum-3",
@@ -282,7 +287,8 @@
         "venue": "Tokyo Technology Pavilion",
         "location": "Tokyo, Japan",
         "description": "Strategic partnership talks on joint Earth observation data frameworks.",
-        "year": "2023"
+        "year": "2023",
+        "image": "/images/founder5.png"
       }
     ],
     "ecosystem": [
@@ -291,21 +297,24 @@
         "phase": "PHASE 01",
         "title": "Foundation & GeoAI Stack",
         "description": "Core architecture design for multi-modal Earth Observation models.",
-        "status": "Completed"
+        "status": "Completed",
+        "image": "/images/urban.jpg"
       },
       {
         "id": "ecosystem-2",
         "phase": "PHASE 02",
         "title": "Sovereign Private AI Cloud",
         "description": "Localized infrastructure deployment for government and high-security enterprise data.",
-        "status": "Deployed"
+        "status": "Deployed",
+        "image": "/images/aboutbg.png"
       },
       {
         "id": "ecosystem-3",
         "phase": "PHASE 03",
         "title": "Ground-Station Edge AI",
         "description": "Integration of on-device model processing for real-time risk alerts.",
-        "status": "Active"
+        "status": "Active",
+        "image": "/images/founder1.png"
       }
     ],
     "affiliations": [
@@ -314,14 +323,16 @@
         "name": "FICCI",
         "type": "INDUSTRY BODY",
         "description": "Active member contributing to Space, Defense, and Infrastructure task forces.",
-        "year": "2023"
+        "year": "2023",
+        "image": "/images/founder4.png"
       },
       {
         "id": "affiliation-2",
         "name": "AI for Developing Countries Forum",
         "type": "GLOBAL FORUM",
         "description": "Collaborative member advancing AI accessibility and Earth intelligence.",
-        "year": "2023"
+        "year": "2023",
+        "image": "/images/founder5.png"
       }
     ]
   },

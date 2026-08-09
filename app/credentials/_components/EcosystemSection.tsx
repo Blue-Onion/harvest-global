@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useInView } from "@/lib/useInView";
 import { cn } from "@/lib/utils";
 import { data } from "@/data";
@@ -51,18 +52,33 @@ export default function EcosystemSection() {
                   )}
                 </div>
 
-                <div className="rounded-xl border border-white/10 bg-neutral-950/70 p-6 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50 sm:p-7">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-lg font-bold tracking-tight text-neutral-600">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="text-lg font-bold tracking-tight text-white leading-snug sm:text-xl">
-                      {item.title}
-                    </h3>
+                <div className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50 sm:flex-row">
+                  {item.image && (
+                    <div className="relative aspect-[16/9] overflow-hidden sm:aspect-auto sm:w-44 sm:shrink-0">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                        sizes="(min-width: 640px) 176px, 100vw"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-r from-neutral-950/40 to-transparent sm:bg-linear-to-l sm:from-neutral-950/60 sm:to-transparent" />
+                    </div>
+                  )}
+
+                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-lg font-bold tracking-tight text-neutral-600">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="text-lg font-bold tracking-tight text-white leading-snug sm:text-xl">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-neutral-500">
+                      {item.description}
+                    </p>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-500">
-                    {item.description}
-                  </p>
                 </div>
               </div>
             ))}

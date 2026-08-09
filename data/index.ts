@@ -85,6 +85,7 @@ export interface CredentialMedia {
   description: string;
   year?: string;
   link?: string;
+  image?: string;
 }
 
 export interface CredentialForum {
@@ -94,6 +95,7 @@ export interface CredentialForum {
   location: string;
   description: string;
   year?: string;
+  image?: string;
 }
 
 export interface CredentialEcosystem {
@@ -102,6 +104,7 @@ export interface CredentialEcosystem {
   title: string;
   description: string;
   status?: string;
+  image?: string;
 }
 
 export interface CredentialAffiliation {
@@ -110,6 +113,7 @@ export interface CredentialAffiliation {
   type: string;
   description: string;
   year?: string;
+  image?: string;
 }
 
 export interface CredentialSectionHeader {

@@ -71,7 +71,7 @@ function Navbar() {
           }`}
         >
           {/* Brand */}
-          <Link href="#home" onClick={close} className="">
+          <Link href="/#hero" onClick={close} className="">
             <Image
               src="/logo.png"
               alt={data.site.name}
