@@ -1,16 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const NAV = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Technology", href: "#technology" },
-  { label: "Applications", href: "#applications" },
-  { label: "Ecosystem", href: "#ecosystem" },
-  { label: "Contact", href: "#contact" },
-];
+import { data } from "@/data";
 
 export default function Footer() {
+  const { navigation, site, footer } = data;
+
   return (
     <footer
       id="contact"
@@ -25,19 +19,18 @@ export default function Footer() {
                 src="/logo.png"
                 width={56}
                 height={56}
-                alt="Harvest Global SSP Pvt Ltd logo"
+                alt={`${site.name} logo`}
                 className="h-14 w-14 object-contain"
               />
               <span className="text-base font-semibold leading-tight text-white">
-                Harvest Global
+                {site.name}
                 <span className="block text-xs font-medium uppercase tracking-[0.2em] text-neutral-500">
-                  HG Systems
+                  {site.shortName}
                 </span>
               </span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-neutral-500">
-              Foundational AI for Earth Observation — customized intelligence
-              for real-world applications.
+              {footer.brandDescription}
             </p>
           </div>
 
@@ -47,8 +40,8 @@ export default function Footer() {
               Navigate
             </p>
             <ul className="mt-5 space-y-3">
-              {NAV.map((item) => (
-                <li key={item.label}>
+              {navigation.links.map((item) => (
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     className="text-sm text-neutral-400 transition-colors hover:text-white"
@@ -67,25 +60,26 @@ export default function Footer() {
             </p>
             <ul className="mt-5 space-y-3 text-sm leading-relaxed text-neutral-400">
               <li>
-                <a href="tel:+919821206807" className="transition-colors hover:text-white">
-                  +91 9821206807
+                <a href={`tel:${footer.contact.phone}`} className="transition-colors hover:text-white">
+                  {footer.contact.phone}
                 </a>
               </li>
               <li className="text-neutral-500">
-                Plot No. 1, Udyog Vihar Phase 1,
-                <br />
-                Udyog Vihar, Sector 20,
-                <br />
-                Gurugram, Haryana 122022
+                {footer.contact.addressLines.map((line) => (
+                  <span key={line}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
               </li>
               <li>
                 <a
-                  href="https://hgsystems.in"
+                  href={footer.contact.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-emerald-400 transition-colors hover:text-emerald-300"
                 >
-                  hgsystems.in
+                  {footer.contact.website}
                 </a>
               </li>
             </ul>
@@ -94,10 +88,10 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
           <p className="text-xs text-neutral-500">
-            © {new Date().getFullYear()} Harvest Global SSP Pvt Ltd
+            © {new Date().getFullYear()} {footer.copyright}
           </p>
           <p className="text-xs uppercase tracking-[0.18em] text-neutral-600">
-            AI for Earth · Built for Scale
+            {footer.tagline}
           </p>
         </div>
       </div>

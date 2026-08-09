@@ -3,8 +3,11 @@
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { data } from "@/data";
 
 function Navbar() {
+  const { links, actions } = data.navigation;
+
   return (
     <nav
       className="fixed top-5 left-1/2 -translate-x-1/2 z-50
@@ -25,41 +28,17 @@ function Navbar() {
 
       {/* Navigation */}
       <div className="items-center hidden md:flex gap-1">
-        <Link
-          href="#home"
-          className="px-4 py-2 rounded-xl text-lg text-white/80
+        {links.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="px-4 py-2 rounded-xl text-lg text-white/80
           hover:text-white hover:bg-white/10
           transition-all duration-200"
-        >
-          Home
-        </Link>
-
-        <Link
-          href="#about"
-          className="px-4 py-1 rounded-xl text-lg text-white/80
-          hover:text-white hover:bg-white/10
-          transition-all duration-200"
-        >
-          About
-        </Link>
-
-        <Link
-          href="#applications"
-          className="px-4 py-1 rounded-xl text-lg text-white/80
-          hover:text-white hover:bg-white/10
-          transition-all duration-200"
-        >
-          Application
-        </Link>
-
-        <Link
-          href="#contact"
-          className="px-4 py-1 rounded-xl text-lg text-white/80
-          hover:text-white hover:bg-white/10
-          transition-all duration-200"
-        >
-          Contact
-        </Link>
+          >
+            {item.label}
+          </Link>
+        ))}
       </div>
       <div className="md:hidden text-white">
         <button className="">
@@ -67,12 +46,11 @@ function Navbar() {
         </button>
       </div>
       <div className="button md:flex hidden">
-        <button>
-            Contact us
-        </button>
-        <button>
-            Explore Now
-        </button>
+        {actions.map((action) => (
+          <button key={action.label}>
+            {action.label}
+          </button>
+        ))}
       </div>
     </nav>
   );

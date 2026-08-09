@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { data } from "@/data";
 
 interface TechStage {
   number: string;
@@ -13,53 +14,7 @@ interface TechStage {
   coords: string;
 }
 
-const TECH_STAGES: TechStage[] = [
-  {
-    number: "01",
-    label: "FOUNDATION DATA",
-    title: "Earth Observation",
-    description:
-      "Satellite and Earth Observation data forms the physical foundation of our intelligence pipeline.",
-    accent: "neutral",
-    coords: "LAT 28.61° N / LON 77.20° E",
-  },
-  {
-    number: "02",
-    label: "CORE ARCHITECTURE",
-    title: "Foundational AI",
-    description:
-      "Domain-specific AI models engineered around massive Earth Observation datasets and regional parameters.",
-    accent: "orange",
-    coords: "EO-MODEL-V2 / TRANSFORMER",
-  },
-  {
-    number: "03",
-    label: "SPECIALIZED MODELS",
-    title: "Customized Intelligence",
-    description:
-      "Highly customized AI models adapted for precise operational requirements and downstream decision systems.",
-    accent: "emerald",
-    coords: "DOWNSTREAM-INFERENCE / OPT",
-  },
-  {
-    number: "04",
-    label: "ORBITAL COMPUTING",
-    title: "Edge AI",
-    description:
-      "Processing intelligence closer to data sources through ground stations and satellite orbital environments.",
-    accent: "orange",
-    coords: "EDGE-NODE / GROUND-STATION",
-  },
-  {
-    number: "05",
-    label: "SCALE & ANALYTICS",
-    title: "Deployment Infrastructure",
-    description:
-      "Customized GPU-centric infrastructure engineered for real-time analytics, data sovereignty, and global scale.",
-    accent: "emerald",
-    coords: "GPU-CLUSTER / LOW-LATENCY",
-  },
-];
+const TECH_STAGES: TechStage[] = data.technology.stages;
 
 export default function Technology() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -206,19 +161,25 @@ export default function Technology() {
           <div className="flex items-center gap-3">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
-              THE TECHNOLOGY
+              {data.technology.eyebrow}
             </p>
           </div>
 
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]">
-            From Earth Observation <br className="hidden sm:inline" />
-            to <span className="text-emerald-500">Intelligence.</span>
+            {data.technology.title.map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br className="hidden sm:inline" />}
+                {i === data.technology.title.length - 1 ? (
+                  <span className="text-emerald-500">{line}</span>
+                ) : (
+                  line
+                )}
+              </span>
+            ))}
           </h2>
 
           <p className="mt-6 text-base leading-relaxed text-neutral-400 sm:text-lg max-w-2xl">
-            HG Systems develops foundational AI and customized models around Earth
-            Observation data, while building the infrastructure required to deploy
-            intelligence closer to where that data is generated.
+            {data.technology.description}
           </p>
         </div>
 
@@ -435,23 +396,22 @@ export default function Technology() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-1">
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">
-                INFRASTRUCTURE & GOVERNANCE
+                {data.technology.infrastructureNote.eyebrow}
               </span>
               <p className="text-sm text-neutral-300 font-medium max-w-2xl">
-                Engineered with customized GPU-centric datacenters, ground-station co-location,
-                and sovereign data governance models across regional deployments.
+                {data.technology.infrastructureNote.description}
               </p>
             </div>
             <div className="flex items-center gap-6 shrink-0 font-mono text-xs text-neutral-400 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6">
-              <div>
-                <span className="block text-white font-bold text-sm">REAL-TIME</span>
-                <span className="text-[10px] text-neutral-500 uppercase tracking-wider">Predictive Analytics</span>
-              </div>
-              <div className="h-8 w-px bg-white/10" />
-              <div>
-                <span className="block text-emerald-400 font-bold text-sm">SOVEREIGN</span>
-                <span className="text-[10px] text-neutral-500 uppercase tracking-wider">Regional Data Control</span>
-              </div>
+              {data.technology.infrastructureNote.metrics.map((metric, i) => (
+                <div key={metric.label} className="flex items-center gap-6">
+                  {i > 0 && <div className="h-8 w-px bg-white/10" />}
+                  <div>
+                    <span className="block text-white font-bold text-sm">{metric.label}</span>
+                    <span className="text-[10px] text-neutral-500 uppercase tracking-wider">{metric.caption}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

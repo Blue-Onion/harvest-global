@@ -1,0 +1,342 @@
+{
+  "site": {
+    "name": "Harvest Global SSP Pvt Ltd",
+    "shortName": "HG Systems",
+    "tagline": "Earth Intelligence for a Sustainable Future",
+    "websiteUrl": "https://hgsystems.in",
+    "website": "hgsystems.in",
+    "phone": "+91 9821206807"
+  },
+  "navigation": {
+    "links": [
+      { "label": "Home", "href": "#hero" },
+      { "label": "About", "href": "#about" },
+      { "label": "Technology", "href": "#technology" },
+      { "label": "Applications", "href": "#applications" },
+      { "label": "Credentials", "href": "/credentials" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "actions": [
+      { "label": "Contact us", "href": "#contact" },
+      { "label": "Explore Platform", "href": "/credentials" }
+    ]
+  },
+  "hero": {
+    "titleLine1": "Beyond Geo Foundation Models:",
+    "titleLine2": "Next-Generation Earth Intelligence",
+    "subtitle": ["Sovereign GeoAI Stack.", "Sovereign Private AI Cloud.", "Edge Ground-Stations."],
+    "primaryCta": "Explore Platform",
+    "secondaryCta": "Contact Us"
+  },
+  "about": {
+    "eyebrow": "EARTH INTELLIGENCE",
+    "scrollTitle": "Building Earth Intelligence. Enabling Tech Sovereignty.",
+    "scrollHint": "SCROLL TO UNCOVER",
+    "title": "Unifying Multi-Modal Earth Data",
+    "highlight": "for Sovereign Decision Making.",
+    "paragraph1": "Harvest Global SSP Pvt Ltd (HG Systems) is pioneering Earth Intelligence by integrating multi-spectral satellite imagery, weather streams, and ground-truth sensor networks into an enterprise-grade GeoAI stack.",
+    "paragraph2": "We build foundational AI models and sovereign cloud infrastructure empowering governments, insurance providers, and global enterprises to address climate resilience, agriculture risk, and spatial governance.",
+    "domainsEyebrow": "CORE DOMAINS & CAPABILITIES",
+    "domains": ["GEOAI STACK", "SOVEREIGN CLOUD", "AGRISTACK & PMFBY", "CLIMATE RESILIENCE", "WATER SECURITY", "EDGE AI"]
+  },
+  "technology": {
+    "eyebrow": "THE PLATFORM",
+    "title": ["Unified GeoAI Stack &", "Sovereign Infrastructure."],
+    "description": "An end-to-end Earth Intelligence architecture bridging satellite data ingestion, foundation model training, real-time edge processing, and strategic decision delivery.",
+    "stages": [
+      {
+        "number": "01",
+        "label": "STAGE 01",
+        "title": "L0 Multi-Sensor Ingestion",
+        "description": "Continuous streams of optical, Synthetic Aperture Radar (SAR), thermal, and meteorological earth observation data.",
+        "accent": "neutral",
+        "coords": "RAW-STREAM // OPTICAL-SAR"
+      },
+      {
+        "number": "02",
+        "label": "STAGE 02",
+        "title": "Geo Foundation Models",
+        "description": "Proprietary multi-modal AI transformers optimized for spatio-temporal dynamics and environmental analysis.",
+        "accent": "orange",
+        "coords": "GEO-FOUNDATION / TRANSFORMER"
+      },
+      {
+        "number": "03",
+        "label": "STAGE 03",
+        "title": "Sovereign Private Cloud",
+        "description": "Isolated, privacy-compliant AI compute clusters ensuring localized processing for strategic and defense datasets.",
+        "accent": "emerald",
+        "coords": "PRIVATE-CLOUD / SOVEREIGN-NODE"
+      },
+      {
+        "number": "04",
+        "label": "STAGE 04",
+        "title": "Edge Ground-Station Processing",
+        "description": "Ultra-low latency inference directly deployed at satellite ground station datacenters for time-critical alerts.",
+        "accent": "orange",
+        "coords": "EDGE-NODE / GROUND-STATION"
+      },
+      {
+        "number": "05",
+        "label": "STAGE 05",
+        "title": "Downstream Risk & Yield Engines",
+        "description": "Actionable risk modeling, automated yield forecasting, and damage detection for enterprise workflows.",
+        "accent": "emerald",
+        "coords": "DOWNSTREAM-INFERENCE / OPT"
+      }
+    ],
+    "infrastructureNote": {
+      "eyebrow": "INFRASTRUCTURE & GOVERNANCE",
+      "description": "Built for scale with strict tech sovereignty, high availability, and institutional-grade data privacy.",
+      "metrics": [
+        { "label": "REAL-TIME", "caption": "Edge Ground Processing" },
+        { "label": "SOVEREIGN", "caption": "Private AI Cloud Stack" }
+      ]
+    }
+  },
+  "applications": {
+    "eyebrow": "APPLICATIONS",
+    "title": ["Specialized GeoAI Solutions", "Across Global Sectors."],
+    "description": "Empowering critical industries with sovereign, high-resolution spatio-temporal intelligence.",
+    "items": [
+      {
+        "id": "app-1",
+        "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
+        "label": "Agriculture & PMFBY",
+        "shortLabel": "AGRI",
+        "alt": "Agriculture and PMFBY crop insurance analytics",
+        "description": "AgriStack alignment, automated crop boundary identification, yield estimation, and fast PMFBY insurance claim validation.",
+        "tag": "AGRICULTURE & PMFBY",
+        "coords": "AGRI-STACK // PMFBY-ENGINE"
+      },
+      {
+        "id": "app-2",
+        "image": "/images/aboutbg.png",
+        "label": "Infrastructure & Urban",
+        "shortLabel": "URBAN",
+        "alt": "Infrastructure and urban planning analytics",
+        "description": "Asset monitoring, land cover classification, and structural encroachment tracking across urban developments.",
+        "tag": "INFRA & URBAN",
+        "coords": "URBAN-SPATIAL // INFRA-MON"
+      },
+      {
+        "id": "app-3",
+        "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
+        "label": "Forestry & Natural Capital",
+        "shortLabel": "FOREST",
+        "alt": "Forestry and carbon assessment analytics",
+        "description": "Canopy health analysis, automated biomass estimation, and precise carbon sequestration verification.",
+        "tag": "NATURAL CAPITAL",
+        "coords": "CANOPY-AI // CARBON-CAPITAL"
+      },
+      {
+        "id": "app-4",
+        "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop",
+        "label": "Climate Resilience",
+        "shortLabel": "CLIMATE",
+        "alt": "Climate risk modeling and adaptation",
+        "description": "Multi-hazard threat assessment, surface temperature profiling, and long-term climate risk forecasting.",
+        "tag": "CLIMATE RESILIENCE",
+        "coords": "CLIMATE-RISK // HAZARD-MAP"
+      },
+      {
+        "id": "app-5",
+        "image": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1200&auto=format&fit=crop",
+        "label": "Atmospheric & Weather AI",
+        "shortLabel": "ATMOS",
+        "alt": "Atmospheric condition monitoring",
+        "description": "Localized meteorological forecasting, particulate tracking, and extreme weather impact analysis.",
+        "tag": "ATMOSPHERIC AI",
+        "coords": "WEATHER-AI // CLOUD-DYN"
+      },
+      {
+        "id": "app-6",
+        "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop",
+        "label": "Water Security",
+        "shortLabel": "WATER",
+        "alt": "Water body and hydrological analytics",
+        "description": "Surface water reservoir mapping, drought severity tracking, and flood emergency response modeling.",
+        "tag": "WATER SECURITY",
+        "coords": "HYDRO-MON // FLOOD-MAP"
+      }
+    ]
+  },
+  "credentials": {
+    "hero": {
+      "eyebrow": "CREDENTIALS",
+      "title": "Credentials & Recognition",
+      "description": "A proven record of global recognition, policy participation, and leadership in Earth Intelligence and Space Technology."
+    },
+    "sections": {
+      "recognition": {
+        "eyebrow": "Recognition & Awards",
+        "title": "Global honors and strategic accolades.",
+        "description": "Acknowledging our pioneering work in Tech Sovereignty and Earth Intelligence."
+      },
+      "media": {
+        "eyebrow": "Media & Press",
+        "title": "In the press.",
+        "description": "Featured across leading global and national business publications."
+      },
+      "forums": {
+        "eyebrow": "Global Forums",
+        "title": "On the world stage.",
+        "description": "Leading conversations on SpaceTech, Climate Action, and Private AI Clouds."
+      },
+      "ecosystem": {
+        "eyebrow": "Ecosystem",
+        "title": "Strategic milestones.",
+        "description": "Key development phases driving space technology innovation."
+      },
+      "affiliations": {
+        "eyebrow": "Affiliations",
+        "title": "Institutional partnerships.",
+        "description": "Collaborating with industry bodies, defense networks, and space forums."
+      }
+    },
+    "recognition": [
+      {
+        "id": "recognition-1",
+        "category": "HONOR",
+        "title": "Bharat Vibhushan Samman 2026",
+        "description": "Awarded to Founder & CEO Preeti Chaudhary for pioneering contributions to Space Technology and Earth Intelligence.",
+        "year": "2026",
+        "image": "/images/founder1.png"
+      },
+      {
+        "id": "recognition-2",
+        "category": "RECOGNITION",
+        "title": "Economic Times Global Pioneers",
+        "description": "Featured among top visionary leaders driving global technological advancement and tech sovereignty.",
+        "year": "2025",
+        "image": "/images/founder2.png"
+      },
+      {
+        "id": "recognition-3",
+        "category": "GLOBAL FORUM",
+        "title": "British Parliament Innovation Keynote",
+        "description": "Invited speaker addressing cross-border space technological collaboration and climate AI solutions.",
+        "year": "2024",
+        "image": "/images/founder3.png"
+      },
+      {
+        "id": "recognition-4",
+        "category": "DELEGATION",
+        "title": "Indo-Japanese Space Synergies",
+        "description": "Key contributor to bilateral space technology dialogue and Earth Observation framework alignment.",
+        "year": "2024",
+        "image": "/images/founder4.png"
+      }
+    ],
+    "media": [
+      {
+        "id": "media-1",
+        "publication": "The Economic Times",
+        "title": "Building Tech Sovereignty: How HG Systems is Redefining GeoAI",
+        "description": "An in-depth feature on the Unified GeoAI stack and sovereign private cloud infrastructure.",
+        "year": "2025",
+        "link": "#"
+      },
+      {
+        "id": "media-2",
+        "publication": "Outlook India",
+        "title": "Earth Intelligence for Sustainable Development",
+        "description": "Exploring how foundational AI models drive agricultural safety and climate resilience.",
+        "year": "2025",
+        "link": "#"
+      },
+      {
+        "id": "media-3",
+        "publication": "Forbes",
+        "title": "The Next Frontier: Satellite Edge AI in Developing Nations",
+        "description": "Highlighting low-latency Earth Observation analytics at satellite ground stations.",
+        "year": "2024",
+        "link": "#"
+      }
+    ],
+    "forums": [
+      {
+        "id": "forum-1",
+        "title": "British Parliament Space & Climate Summit",
+        "venue": "House of Commons",
+        "location": "London, UK",
+        "description": "Address on sovereign AI infrastructure for global environmental governance.",
+        "year": "2024"
+      },
+      {
+        "id": "forum-2",
+        "title": "AI for Developing Countries Forum",
+        "venue": "International Convention Center",
+        "location": "Global Forum",
+        "description": "Panel discussion on democratizing satellite intelligence for agriculture and water security.",
+        "year": "2024"
+      },
+      {
+        "id": "forum-3",
+        "title": "Indo-Japanese Bilateral Space Dialogue",
+        "venue": "Tokyo Technology Pavilion",
+        "location": "Tokyo, Japan",
+        "description": "Strategic partnership talks on joint Earth observation data frameworks.",
+        "year": "2023"
+      }
+    ],
+    "ecosystem": [
+      {
+        "id": "ecosystem-1",
+        "phase": "PHASE 01",
+        "title": "Foundation & GeoAI Stack",
+        "description": "Core architecture design for multi-modal Earth Observation models.",
+        "status": "Completed"
+      },
+      {
+        "id": "ecosystem-2",
+        "phase": "PHASE 02",
+        "title": "Sovereign Private AI Cloud",
+        "description": "Localized infrastructure deployment for government and high-security enterprise data.",
+        "status": "Deployed"
+      },
+      {
+        "id": "ecosystem-3",
+        "phase": "PHASE 03",
+        "title": "Ground-Station Edge AI",
+        "description": "Integration of on-device model processing for real-time risk alerts.",
+        "status": "Active"
+      }
+    ],
+    "affiliations": [
+      {
+        "id": "affiliation-1",
+        "name": "FICCI",
+        "type": "INDUSTRY BODY",
+        "description": "Active member contributing to Space, Defense, and Infrastructure task forces.",
+        "year": "2023"
+      },
+      {
+        "id": "affiliation-2",
+        "name": "AI for Developing Countries Forum",
+        "type": "GLOBAL FORUM",
+        "description": "Collaborative member advancing AI accessibility and Earth intelligence.",
+        "year": "2023"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to build tech sovereignty with Earth Intelligence?",
+    "buttonLabel": "Contact Our Team"
+  },
+  "footer": {
+    "brandDescription": "Harvest Global SSP Pvt Ltd (HG Systems) is a leader in Earth Intelligence, Sovereign Private Cloud, and GeoAI solutions.",
+    "contact": {
+      "phone": "+91 9821206807",
+      "addressLines": [
+        "Plot No. 1, Udyog Vihar Phase 1",
+        "Sector 20, Gurugram",
+        "Haryana 122022, India"
+      ],
+      "website": "hgsystems.in",
+      "websiteUrl": "https://hgsystems.in"
+    },
+    "copyright": "Harvest Global SSP Pvt Ltd",
+    "tagline": "Earth Intelligence · Tech Sovereignty"
+  }
+}
