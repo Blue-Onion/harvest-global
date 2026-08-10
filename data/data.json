@@ -206,7 +206,7 @@
         "title": "Bharat Vibhushan Samman 2026",
         "description": "Awarded to Founder & CEO Preeti Chaudhary for pioneering contributions to Space Technology and Earth Intelligence.",
         "year": "2026",
-        "image": "/images/founder1.png"
+        "image": "/images/global-reco/bharat-vibhusham.png"
       },
       {
         "id": "recognition-2",
@@ -214,7 +214,7 @@
         "title": "Economic Times Global Pioneers",
         "description": "Featured among top visionary leaders driving global technological advancement and tech sovereignty.",
         "year": "2025",
-        "image": "/images/founder2.png"
+        "image": "/images/global-reco/eco-times.png"
       },
       {
         "id": "recognition-3",
@@ -222,7 +222,7 @@
         "title": "British Parliament Innovation Keynote",
         "description": "Invited speaker addressing cross-border space technological collaboration and climate AI solutions.",
         "year": "2024",
-        "image": "/images/founder3.png"
+        "image": "/images/global-reco/british-parliment-forum.png"
       },
       {
         "id": "recognition-4",
@@ -230,7 +230,7 @@
         "title": "Indo-Japanese Space Synergies",
         "description": "Key contributor to bilateral space technology dialogue and Earth Observation framework alignment.",
         "year": "2024",
-        "image": "/images/founder4.png"
+        "image": "/images/narional-global-ecostyem/japan-space.png"
       }
     ],
     "media": [
@@ -241,7 +241,7 @@
         "description": "An in-depth feature on the Unified GeoAI stack and sovereign private cloud infrastructure.",
         "year": "2025",
         "link": "#",
-        "image": "/images/aboutbg.png"
+        "image": "/images/global-reco/eco-times.png"
       },
       {
         "id": "media-2",
@@ -250,7 +250,7 @@
         "description": "Exploring how foundational AI models drive agricultural safety and climate resilience.",
         "year": "2025",
         "link": "#",
-        "image": "/images/urban.jpg"
+        "image": "/images/global-reco/outlook.png"
       },
       {
         "id": "media-3",
@@ -258,8 +258,7 @@
         "title": "The Next Frontier: Satellite Edge AI in Developing Nations",
         "description": "Highlighting low-latency Earth Observation analytics at satellite ground stations.",
         "year": "2024",
-        "link": "#",
-        "image": "/images/founder5.png"
+        "link": "#"
       }
     ],
     "forums": [
@@ -270,7 +269,7 @@
         "location": "London, UK",
         "description": "Address on sovereign AI infrastructure for global environmental governance.",
         "year": "2024",
-        "image": "/images/founder3.png"
+        "image": "/images/global-reco/british-parliment-forum.png"
       },
       {
         "id": "forum-2",
@@ -279,7 +278,7 @@
         "location": "Global Forum",
         "description": "Panel discussion on democratizing satellite intelligence for agriculture and water security.",
         "year": "2024",
-        "image": "/images/founder2.png"
+        "image": "/images/global-reco/member-of-ai-deveper-forums.png"
       },
       {
         "id": "forum-3",
@@ -288,7 +287,7 @@
         "location": "Tokyo, Japan",
         "description": "Strategic partnership talks on joint Earth observation data frameworks.",
         "year": "2023",
-        "image": "/images/founder5.png"
+        "image": "/images/narional-global-ecostyem/japan-space.png"
       }
     ],
     "ecosystem": [
@@ -298,7 +297,7 @@
         "title": "Foundation & GeoAI Stack",
         "description": "Core architecture design for multi-modal Earth Observation models.",
         "status": "Completed",
-        "image": "/images/urban.jpg"
+        "image": "/images/narional-global-ecostyem/IIRS-and-Assam-space.png"
       },
       {
         "id": "ecosystem-2",
@@ -306,7 +305,7 @@
         "title": "Sovereign Private AI Cloud",
         "description": "Localized infrastructure deployment for government and high-security enterprise data.",
         "status": "Deployed",
-        "image": "/images/aboutbg.png"
+        "image": "/images/narional-global-ecostyem/spacetide-and-cic.png"
       },
       {
         "id": "ecosystem-3",
@@ -314,7 +313,7 @@
         "title": "Ground-Station Edge AI",
         "description": "Integration of on-device model processing for real-time risk alerts.",
         "status": "Active",
-        "image": "/images/founder1.png"
+        "image": "/images/narional-global-ecostyem/nrsc-state-space.png"
       }
     ],
     "affiliations": [
@@ -324,7 +323,7 @@
         "type": "INDUSTRY BODY",
         "description": "Active member contributing to Space, Defense, and Infrastructure task forces.",
         "year": "2023",
-        "image": "/images/founder4.png"
+        "image": "/images/global-reco/Member-Federation-of-Indian-Chambers-of-Commerce-and-Industry.png"
       },
       {
         "id": "affiliation-2",
@@ -332,7 +331,7 @@
         "type": "GLOBAL FORUM",
         "description": "Collaborative member advancing AI accessibility and Earth intelligence.",
         "year": "2023",
-        "image": "/images/founder5.png"
+        "image": "/images/global-reco/member-of-ai-deveper-forums.png"
       }
     ]
   },
