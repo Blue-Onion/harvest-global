@@ -200,6 +200,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     stackPosition,
     setupLenis,
     checkStackComplete,
+    handleScroll,
     useWindowScroll,
   ]);
 

@@ -1,5 +1,11 @@
 import raw from "./data.json";
 
+const STAGE_ACCENTS = new Set<TechStage["accent"]>([
+  "neutral",
+  "orange",
+  "emerald",
+]);
+
 export interface NavigationLink {
   label: string;
   href: string;
@@ -179,4 +185,18 @@ export interface SiteData {
   };
 }
 
-export const data = raw as SiteData;
+// Strict annotation (not a cast): shape drift in data.json now fails the build.
+// JSON imports widen `accent` to string, so stages are mapped through a typed,
+// runtime-guarded narrowing of the accent union.
+export const data: SiteData = {
+  ...raw,
+  technology: {
+    ...raw.technology,
+    stages: raw.technology.stages.map((stage) => {
+      if (!STAGE_ACCENTS.has(stage.accent as TechStage["accent"])) {
+        throw new Error(`Unknown technology stage accent: ${stage.accent}`);
+      }
+      return { ...stage, accent: stage.accent as TechStage["accent"] };
+    }),
+  },
+};

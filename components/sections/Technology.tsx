@@ -4,17 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { data } from "@/data";
+import TechnologyStageCard from "./TechnologyStageCard";
 
-interface TechStage {
-  number: string;
-  label: string;
-  title: string;
-  description: string;
-  accent: "neutral" | "orange" | "emerald";
-  coords: string;
-}
-
-const TECH_STAGES: TechStage[] = data.technology.stages;
+const TECH_STAGES = data.technology.stages;
 
 export default function Technology() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -35,7 +27,9 @@ export default function Technology() {
     ).matches;
 
     if (prefersReducedMotion) {
-      setLineProgress(1);
+      // Render the fully completed pipeline without animation. Deferred to a
+      // microtask so we never call setState synchronously inside the effect.
+      queueMicrotask(() => setLineProgress(1));
       return;
     }
 
@@ -215,19 +209,7 @@ export default function Technology() {
               const threshold = idx / (TECH_STAGES.length - 1); // 0.0, 0.25, 0.5, 0.75, 1.0
               const isPassed = lineProgress >= threshold * 0.85;
 
-              // Color mappings
-              const numberColor = isOrange
-                ? "text-orange-500"
-                : isEmerald
-                ? "text-emerald-500"
-                : "text-neutral-400";
-
-              const badgeStyle = isOrange
-                ? "border-orange-500/40 bg-orange-500/10 text-orange-400"
-                : isEmerald
-                ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
-                : "border-white/20 bg-white/5 text-neutral-400";
-
+              // Color mappings (card-specific colors live in TechnologyStageCard)
               const connectorGlow = isOrange
                 ? "bg-orange-500/70 shadow-[0_0_8px_rgba(249,115,22,0.5)]"
                 : isEmerald
@@ -302,39 +284,10 @@ export default function Technology() {
                   >
                     {isLeft && (
                       <div className="pl-14 lg:pl-0 lg:pr-12">
-                        <div
-                          className={`group relative rounded-xl border p-6 md:p-8 backdrop-blur-xs transition-all duration-500 ${
-                            isPassed
-                              ? "border-white/20 bg-neutral-900/60 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
-                              : "border-white/10 bg-neutral-950/60 hover:border-white/20"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-4 mb-4">
-                            <span
-                              className={`font-mono text-3xl font-bold tracking-tight ${numberColor}`}
-                            >
-                              {stage.number}
-                            </span>
-                            <span
-                              className={`text-[9px] font-mono tracking-widest px-2.5 py-1 rounded border uppercase ${badgeStyle}`}
-                            >
-                              {stage.label}
-                            </span>
-                          </div>
-
-                          <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
-                            {stage.title}
-                          </h3>
-
-                          <p className="mt-2 text-sm leading-relaxed text-neutral-400 font-sans">
-                            {stage.description}
-                          </p>
-
-                          <div className="mt-6 pt-3 border-t border-white/10 flex items-center justify-between text-[9px] font-mono text-neutral-500 tracking-wider">
-                            <span>{stage.coords}</span>
-                            <span className="text-white/20">SYSTEM // NODE</span>
-                          </div>
-                        </div>
+                        <TechnologyStageCard
+                          stage={stage}
+                          isPassed={isPassed}
+                        />
                       </div>
                     )}
                   </div>
@@ -343,45 +296,16 @@ export default function Technology() {
                   <div
                     className={`${
                       !isLeft
-                        ? "lg:col-start-2 pl-14 lg:pl-12 lg:pr-0"
+                        ? "lg:col-start-2"
                         : "hidden lg:block lg:col-start-2"
                     }`}
                   >
                     {!isLeft && (
                       <div className="pl-14 lg:pl-12 lg:pr-0">
-                        <div
-                          className={`group relative rounded-xl border p-6 md:p-8 backdrop-blur-xs transition-all duration-500 ${
-                            isPassed
-                              ? "border-white/20 bg-neutral-900/60 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
-                              : "border-white/10 bg-neutral-950/60 hover:border-white/20"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-4 mb-4">
-                            <span
-                              className={`font-mono text-3xl font-bold tracking-tight ${numberColor}`}
-                            >
-                              {stage.number}
-                            </span>
-                            <span
-                              className={`text-[9px] font-mono tracking-widest px-2.5 py-1 rounded border uppercase ${badgeStyle}`}
-                            >
-                              {stage.label}
-                            </span>
-                          </div>
-
-                          <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
-                            {stage.title}
-                          </h3>
-
-                          <p className="mt-2 text-sm leading-relaxed text-neutral-400 font-sans">
-                            {stage.description}
-                          </p>
-
-                          <div className="mt-6 pt-3 border-t border-white/10 flex items-center justify-between text-[9px] font-mono text-neutral-500 tracking-wider">
-                            <span>{stage.coords}</span>
-                            <span className="text-white/20">SYSTEM // NODE</span>
-                          </div>
-                        </div>
+                        <TechnologyStageCard
+                          stage={stage}
+                          isPassed={isPassed}
+                        />
                       </div>
                     )}
                   </div>
