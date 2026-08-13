@@ -2,15 +2,27 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import HeroReveal from "@/components/ui/HeroReveal";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Audiowide, Inter } from "next/font/google";
+
+
+const audiowide = Audiowide({
+
+  variable: "--font-display",
+
+  weight: "400",
+
   subsets: ["latin"],
+
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+
+  variable: "--font-body",
+
   subsets: ["latin"],
+
 });
 
 export const metadata: Metadata = {
@@ -22,9 +34,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} max-w-screen h-full antialiased`}
+      className={`${audiowide.variable} ${inter.variable} max-w-screen h-full antialiased`}
     >
       <body className="min-h-full bg-black w-full overflow-x-hidden">
+        <HeroReveal />
         <Navbar />
         {children}
 
