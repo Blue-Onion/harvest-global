@@ -29,7 +29,7 @@ export default function Intro() {
     gsap.set(splitTitle.chars, {
       opacity: 0,
       y: 35,
-      filter: "blur(8px)",
+    //   filter: "blur(8px)",
     });
 
     // Title reveal
@@ -41,7 +41,7 @@ export default function Intro() {
       ease: "power3.out",
       stagger: {
         each: 0.06,
-        from: "center",
+        // from: "center",
       },
     });
 
@@ -55,7 +55,7 @@ export default function Intro() {
       splitTitle.chars,
       {
         opacity: 0,
-        y: -20,
+        // y: -20,
         filter: "blur(5px)",
         duration: 0.4,
         stagger: 0.015,
