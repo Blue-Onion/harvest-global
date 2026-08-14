@@ -1,7 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+body {
+  font-family: var(--font-body);
+}
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+
+  font-weight: 400;
+
+  letter-spacing: 0.04em;
+}
 @custom-variant dark (&:is(.dark *));
 @theme inline {
   --color-background: var(--background);

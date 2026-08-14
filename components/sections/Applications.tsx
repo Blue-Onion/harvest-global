@@ -2,19 +2,9 @@
 
 import ScrollStack, { ScrollStackItem } from "../ui/ScrollStack";
 import { data } from "@/data";
+import Image from "next/image";
 
-interface ApplicationItem {
-  id: string;
-  image: string;
-  label: string;
-  shortLabel: string;
-  alt: string;
-  description: string;
-  tag: string;
-  coords: string;
-}
-
-const applications: ApplicationItem[] = data.applications.items;
+const applications = data.applications.items;
 
 export default function Applications() {
   return (
@@ -77,10 +67,13 @@ export default function Applications() {
     >
       <div className="relative h-full w-full">
         {/* Image */}
-        <img
+        {/* Image */}
+        <Image
           src={app.image}
           alt={app.alt}
+          fill
           draggable={false}
+          sizes="(min-width: 1024px) 1152px, 100vw"
           className="absolute inset-0 h-full w-full select-none object-cover"
         />
 
@@ -93,7 +86,8 @@ export default function Applications() {
           <div className="flex items-start justify-between gap-4">
             <div>
               <span className="font-mono text-sm font-semibold uppercase tracking-[0.25em] text-orange-400">
-                {String(i + 1).padStart(2, "0")} / 06
+                {String(i + 1).padStart(2, "0")} /{" "}
+                {String(applications.length).padStart(2, "0")}
               </span>
 
               <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">

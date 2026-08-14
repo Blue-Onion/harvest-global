@@ -101,7 +101,6 @@
     {
       "id": "app-1",
       "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
-      "search_suggestion": "Combine harvester working in golden farmland field aerial top view",
       "label": "Agriculture",
       "shortLabel": "AGRI",
       "alt": "Precision farming, crop monitoring, yield forecasting",
@@ -112,7 +111,6 @@
     {
       "id": "app-2",
       "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
-      "search_suggestion": "Lush green farm field with an umbrella or crop loss insurance protection concept",
       "label": "PMFBY & Insurance",
       "shortLabel": "INSURANCE",
       "alt": "Smart risk assessment, fraud detection, loss estimation",
@@ -123,7 +121,6 @@
     {
       "id": "app-3",
       "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-      "search_suggestion": "Dramatic stormy sky over dark flood waters or wildfire landscape dramatic weather",
       "label": "Climate Resilience",
       "shortLabel": "CLIMATE",
       "alt": "Floods, droughts, wildfires, and extreme event modeling",
@@ -134,7 +131,6 @@
     {
       "id": "app-4",
       "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
-      "search_suggestion": "Aerial view of a winding river reservoir lake water body surrounded by green mountains",
       "label": "Water Security",
       "shortLabel": "WATER",
       "alt": "Watershed monitoring, groundwater & water quality",
@@ -145,7 +141,6 @@
     {
       "id": "app-5",
       "image": "/images/urban.jpg",
-      "search_suggestion": "Aerial view of modern urban city skyline infrastructure with roads and buildings",
       "label": "Infrastructure & Urban",
       "shortLabel": "URBAN",
       "alt": "Asset monitoring, smart cities, land use & change detection",
@@ -156,7 +151,6 @@
     {
       "id": "app-6",
       "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
-      "search_suggestion": "Dense forest canopy top view vibrant green trees wilderness background",
       "label": "Natural Capital",
       "shortLabel": "FOREST",
       "alt": "Forests, biodiversity, ecosystem monitoring",
@@ -240,7 +234,6 @@
         "title": "Building Tech Sovereignty: How HG Systems is Redefining GeoAI",
         "description": "An in-depth feature on the Unified GeoAI stack and sovereign private cloud infrastructure.",
         "year": "2025",
-        "link": "#",
         "image": "/images/global-reco/eco-times.png"
       },
       {
@@ -249,7 +242,6 @@
         "title": "Earth Intelligence for Sustainable Development",
         "description": "Exploring how foundational AI models drive agricultural safety and climate resilience.",
         "year": "2025",
-        "link": "#",
         "image": "/images/global-reco/outlook.png"
       },
       {
@@ -257,8 +249,7 @@
         "publication": "Forbes",
         "title": "The Next Frontier: Satellite Edge AI in Developing Nations",
         "description": "Highlighting low-latency Earth Observation analytics at satellite ground stations.",
-        "year": "2024",
-        "link": "#"
+        "year": "2024"
       }
     ],
     "forums": [
