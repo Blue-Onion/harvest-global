@@ -25,11 +25,16 @@ export default function Intro() {
 
     const tl = gsap.timeline();
 
-    // Character initial state
+    gsap.set(text, {
+      visibility: "visible",
+    });
+
     gsap.set(splitTitle.chars, {
       opacity: 0,
-      y: 35,
-    //   filter: "blur(8px)",
+
+      // y: 35,
+
+      // filter: "blur(8px)",
     });
 
     // Title reveal
@@ -46,9 +51,12 @@ export default function Intro() {
     });
 
     // Let the title breathe
-    tl.to({}, {
-      duration: 0.8,
-    });
+    tl.to(
+      {},
+      {
+        duration: 0.8,
+      },
+    );
 
     // Split the black screen
     tl.to(
@@ -61,7 +69,7 @@ export default function Intro() {
         stagger: 0.015,
         ease: "power2.in",
       },
-      "<"
+      "<",
     );
 
     tl.to(
@@ -71,7 +79,7 @@ export default function Intro() {
         duration: 1.2,
         ease: "power4.inOut",
       },
-      "<0.15"
+      "<0.15",
     );
 
     tl.to(
@@ -81,7 +89,7 @@ export default function Intro() {
         duration: 1.2,
         ease: "power4.inOut",
       },
-      "<"
+      "<",
     );
 
     // Remove intro after animation
@@ -96,15 +104,9 @@ export default function Intro() {
   });
 
   return (
-    <div
-      ref={introRef}
-      className="fixed inset-0 z-[9999] pointer-events-none"
-    >
+    <div ref={introRef} className="fixed inset-0 z-[9999] pointer-events-none">
       {/* Top black panel */}
-      <div
-        ref={topRef}
-        className="absolute inset-x-0 top-0 h-1/2 bg-black"
-      />
+      <div ref={topRef} className="absolute inset-x-0 top-0 h-1/2 bg-black" />
 
       {/* Bottom black panel */}
       <div
@@ -117,6 +119,7 @@ export default function Intro() {
         <h1
           ref={textRef}
           className="font-display title text-3xl font-normal uppercase md:text-6xl lg:text-7xl text-white"
+          style={{ visibility: "hidden" }}
         >
           Harvest Global
         </h1>
