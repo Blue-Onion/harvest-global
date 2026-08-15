@@ -69,15 +69,14 @@ function Navbar() {
       }`}
     >
       {/* Brand */}
-      <Link href="/#hero" onClick={close} className="shrink-0">
-        <Image
-          src="/logo.png"
-          alt={data.site.name}
-          width={460}
-          height={164}
-          priority
-          className="h-16 w-auto object-contain"
-        />
+      <Link href="/#hero"  className="shrink-0">
+
+    <h1
+      data-title="harvest-nav"
+      className="font-display text-lg font-normal uppercase tracking-tight text-white md:text-xl"
+    >
+      Harvest Global
+    </h1>
       </Link>
 
       {/* Desktop links */}
