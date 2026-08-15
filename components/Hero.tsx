@@ -29,7 +29,20 @@ const Hero = () => {
           <source src="/videos/bg.mp4" type="video/mp4" />
         </video>
       </div>
-      <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center sm:px-8">
+
+      {/* Destination reference for the traveling "Harvest Global" title.
+          Hidden — it only defines the position/size the intro title lands on. */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <h1
+          data-title="harvest-hero"
+          className="font-display text-4xl font-normal uppercase tracking-tight text-white md:text-6xl lg:text-7xl"
+          style={{ visibility: "hidden" }}
+        >
+          Harvest Global
+        </h1>
+      </div>
+
+      <div className="hero-content relative mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center opacity-0 sm:px-8">
         <h2 className="text-4xl font-bold leading-[1.05] text-orange-600 tracking-tight  sm:text-5xl md:text-7xl">
           {titleLine1}
           <span className="mt-3 block text-emerald-600">{titleLine2}</span>
