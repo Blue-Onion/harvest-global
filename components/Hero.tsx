@@ -122,27 +122,27 @@ const Hero = () => {
       </div>
 
    <div className="hero-content space-y-5 mx-auto text-center w-[80%]">
-  <h1 className="text-6xl font-bold flex items-center justify-center gap-2 tracking-wider text-white">
-    <span className="highlight-tag text-emerald-600 scale-y-125">
+  <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold flex items-center justify-center gap-2 tracking-wider text-white">
+    <span className="highlight-tag text-emerald-600 scale-y-200 md:scale-y-150 lg:scale-y-125">
       Foundational
     </span>
 
-    <span className="hero-line scale-y-125">
+    <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
       Intelligence
     </span>
   </h1>
 
-  <h1 className="text-6xl font-bold flex items-center justify-center gap-2 tracking-wider text-white">
-    <span className="hero-line scale-y-125">
+  <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold flex items-center justify-center gap-2 tracking-wider text-white">
+    <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
       For Earth
     </span>
 
-    <span className="highlight-tag text-orange-600 scale-y-125">
+    <span className="highlight-tag text-orange-600 scale-y-200 md:scale-y-150 lg:scale-y-125">
       Observation
     </span>
   </h1>
 
-  <p className="text-xl mt-10 subtitle text-muted-foreground">
+  <p className="text-md md:text-xl mt-10 subtitle text-muted-foreground">
     Sovereign GeoAI. Private AI Cloud. Edge Intelligence.
   </p>
 </div>
