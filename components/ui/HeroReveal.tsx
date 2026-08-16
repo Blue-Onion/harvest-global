@@ -59,13 +59,8 @@ export default function Intro() {
       opacity: 0,
     });
 
-    gsap.set(".hero-content", {
-      opacity: 0,
-      y: 30,
-    });
 
-    // Returns the absolute target transform that places `text` exactly over
-    // `dest`, accounting for whatever transform `text` already has.
+
     const toDestination = (dest: HTMLElement) => {
       const cur = text.getBoundingClientRect();
 
