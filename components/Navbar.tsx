@@ -12,6 +12,7 @@ function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
     { title: "Team", href: "/team" },
+    { title: "Media", href: "/credentials" },
     { title: "Services", href: "/services" },
   ];
 

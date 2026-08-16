@@ -7,14 +7,9 @@ import MediaSection from "./_components/MediaSection";
 import RecognitionSection from "./_components/RecognitionSection";
 import Footer from "@/components/footer/Footer";
 
-
-
-
-
 export default function CredentialsPage() {
   return (
     <main className="text-white">
-
       <CredentialsHero />
       <RecognitionSection />
       <MediaSection />
