@@ -86,7 +86,7 @@ function Navbar() {
             stagger: 0.08,
             ease: "power3.out",
             delay: 0.2,
-          }
+          },
         );
       } else {
         // Animate X back to hamburger
@@ -117,7 +117,7 @@ function Navbar() {
         });
       }
     },
-    { dependencies: [isOpen] }
+    { dependencies: [isOpen] },
   );
 
   const { contextSafe } = useGSAP(
@@ -232,7 +232,10 @@ function Navbar() {
 
   return (
     <>
-      <header ref={navRef} className="fixed inset-x-0 top-4 z-50 py-4 text-white">
+      <header
+        ref={navRef}
+        className="fixed inset-x-0 top-4 z-50 py-4 text-white"
+      >
         <nav className="mx-auto grid w-full max-w-7xl grid-cols-3 items-center px-6 md:px-10">
           <div className="flex items-center gap-6 font-bold text-base">
             {/* Desktop Links */}
@@ -250,7 +253,10 @@ function Navbar() {
                     ref={(el) => {
                       underlineRefs.current[i] = el;
                     }}
-                    style={{ transform: pathname === link.href ? "scaleX(1)" : "scaleX(0)" }}
+                    style={{
+                      transform:
+                        pathname === link.href ? "scaleX(1)" : "scaleX(0)",
+                    }}
                     className="absolute bottom-0 left-0 h-px w-full origin-left bg-white"
                   />
                 </Link>
@@ -326,10 +332,7 @@ function Navbar() {
             </Link>
 
             <Link href="/" className="hidden md:block no-underline">
-              <div
-                ref={buttonRef}
-                className="button button--stroke"
-              >
+              <div ref={buttonRef} className="button button--stroke">
                 <span className="button__label">Connect</span>
                 <div ref={flairRef} className="button__flair"></div>
               </div>
@@ -353,7 +356,9 @@ function Navbar() {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`mobile-nav-link text-4xl font-display uppercase tracking-tight transition-colors ${
-                  isActive ? "text-white underline decoration-2 underline-offset-8" : "text-neutral-400 hover:text-white"
+                  isActive
+                    ? "text-white underline decoration-2 underline-offset-8"
+                    : "text-neutral-400 hover:text-white"
                 }`}
               >
                 {link.title}

@@ -4,7 +4,7 @@ import { useInView } from "@/lib/useInView";
 import { cn } from "@/lib/utils";
 import { data } from "@/data";
 import SectionHeader from "./SectionHeader";
-import RecognitionCard from "../../../components/credentials/RecognitionCard";
+import RecognitionCard from "@/components/credentials/RecognitionCard";
 
 export default function RecognitionSection() {
   const { recognition, sections } = data.credentials;

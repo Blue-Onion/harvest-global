@@ -38,9 +38,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${audiowide.variable} ${inter.variable} max-w-screen h-full antialiased`}
     >
       <body className="min-h-full bg-black w-full overflow-x-hidden">
-        <HeroReveal />
+
         <SmoothScroll>
-        <Navbar />
+
         {children}
         </SmoothScroll>
 
