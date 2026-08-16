@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(useGSAP);
 
@@ -21,6 +22,7 @@ function Navbar() {
   const marqueeRef = useRef<HTMLDivElement | null>(null);
   const marqueeTween = useRef<gsap.core.Tween | null>(null);
 
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const lineTopRef = useRef<HTMLSpanElement | null>(null);
   const lineMiddleRef = useRef<HTMLSpanElement | null>(null);
@@ -199,6 +201,7 @@ function Navbar() {
   );
 
   const handleEnter = (index: number) => {
+    if (pathname === navLinks[index].href) return;
     contextSafe(() => {
       const underline = underlineRefs.current[index];
       if (!underline) return;
@@ -212,6 +215,7 @@ function Navbar() {
   };
 
   const handleLeave = (index: number) => {
+    if (pathname === navLinks[index].href) return;
     contextSafe(() => {
       const underline = underlineRefs.current[index];
       if (!underline) return;
@@ -245,7 +249,8 @@ function Navbar() {
                     ref={(el) => {
                       underlineRefs.current[i] = el;
                     }}
-                    className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-white"
+                    style={{ transform: pathname === link.href ? "scaleX(1)" : "scaleX(0)" }}
+                    className="absolute bottom-0 left-0 h-px w-full origin-left bg-white"
                   />
                 </Link>
               ))}
@@ -339,16 +344,21 @@ function Navbar() {
         className="fixed inset-0 bg-neutral-950 flex flex-col justify-between px-8 py-28 z-45 md:hidden pointer-events-auto"
       >
         <div className="flex flex-col gap-8 mt-12">
-          {navLinks.map((link) => (
-            <Link
-              key={link.title}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="mobile-nav-link text-4xl font-display uppercase tracking-tight text-white hover:text-neutral-400 transition-colors"
-            >
-              {link.title}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.title}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`mobile-nav-link text-4xl font-display uppercase tracking-tight transition-colors ${
+                  isActive ? "text-white underline decoration-2 underline-offset-8" : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                {link.title}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="flex flex-col gap-8">
