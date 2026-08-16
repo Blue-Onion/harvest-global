@@ -13,7 +13,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     <ReactLenis 
       root 
       options={{ 
-        lerp: 0.1,         // Scroll intensity (lower = smoother)
+        lerp: 0.01,         // Scroll intensity (lower = smoother)
         duration: 1.5,     // Animation duration in seconds
         smoothWheel: true  // Smooth mouse wheel scrolling
       }}

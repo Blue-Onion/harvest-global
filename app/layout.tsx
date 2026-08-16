@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import HeroReveal from "@/components/ui/HeroReveal";
 
 import { Audiowide, Inter } from "next/font/google";
+import SmoothScroll from "@/components/SmoothScroll";
 
 
 const audiowide = Audiowide({
@@ -38,8 +39,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full bg-black w-full overflow-x-hidden">
         <HeroReveal />
+        <SmoothScroll>
         <Navbar />
         {children}
+        </SmoothScroll>
 
       </body>
     </html>
