@@ -5,6 +5,8 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 
+gsap.registerPlugin(SplitText);
+
 export default function Intro() {
   const introRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
@@ -37,6 +39,7 @@ export default function Intro() {
     const splitTitle = SplitText.create(text, {
       type: "chars",
     });
+
     const tl = gsap.timeline();
     gsap.set(text, {
       visibility: "visible",
@@ -57,6 +60,13 @@ export default function Intro() {
     gsap.set(navTitle, {
       visibility: "hidden",
       opacity: 0,
+    });
+
+    // Hero section content stays hidden until the reveal overlay finishes.
+    gsap.set(".hero-content", {
+      visibility: "hidden",
+      opacity: 0,
+      y: 30,
     });
 
 
@@ -131,44 +141,37 @@ export default function Intro() {
 
     tl.to(text, moveTo(heroTitle), ">");
 
-    tl.to(
-      text,
-      {
-        ...moveTo(navTitle),
-        onComplete: () => {
-          gsap.set(text, {
-            visibility: "hidden",
-          });
+ tl.to(
+  text,
+  {
+    ...moveTo(navTitle),
+    onComplete: () => {
+      gsap.set(text, {
+        visibility: "hidden",
+      });
 
-          gsap.set(navTitle, {
-            visibility: "visible",
-            opacity: 1,
-          });
-
-          if (navRoot) {
-            gsap.set(navRoot, {
-              visibility: "visible",
-            });
-          }
-
-          gsap.set(intro, {
-            display: "none",
-          });
-        },
-      },
-      "-=1",
-    );
-
-    tl.to(
-      ".hero-content",
-      {
+      gsap.set(navTitle, {
+        visibility: "visible",
         opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-      },
-      "+=0.3",
-    );
+      });
+
+      if (navRoot) {
+        gsap.set(navRoot, {
+          visibility: "visible",
+        });
+      }
+
+      gsap.set(intro, {
+        display: "none",
+      });
+    },
+  },
+  "-=1",
+);
+
+tl.call(() => {
+  window.dispatchEvent(new CustomEvent("intro-complete"));
+});
 
     return () => {
       splitTitle.revert();
