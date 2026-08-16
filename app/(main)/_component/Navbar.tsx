@@ -1,0 +1,419 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+gsap.registerPlugin(useGSAP);
+
+function Navbar() {
+  const navLinks = [
+    { title: "Home", href: "/" },
+    { title: "Team", href: "/team" },
+    { title: "Services", href: "/services" },
+  ];
+
+  const underlineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const navRef = useRef<HTMLElement | null>(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
+  const flairRef = useRef<HTMLDivElement | null>(null);
+  const marqueeRef = useRef<HTMLDivElement | null>(null);
+  const marqueeTween = useRef<gsap.core.Tween | null>(null);
+
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const lineTopRef = useRef<HTMLSpanElement | null>(null);
+  const lineMiddleRef = useRef<HTMLSpanElement | null>(null);
+  const lineBottomRef = useRef<HTMLSpanElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // GSAP animation for mobile menu open/close
+  useGSAP(
+    () => {
+      if (!menuRef.current) return;
+
+      if (isOpen) {
+        // Animate hamburger to X
+        gsap.to(lineTopRef.current, {
+          y: 8,
+          rotate: 45,
+          duration: 0.35,
+          ease: "power2.inOut",
+        });
+        gsap.to(lineMiddleRef.current, {
+          opacity: 0,
+          scaleX: 0,
+          duration: 0.25,
+          ease: "power2.inOut",
+        });
+        gsap.to(lineBottomRef.current, {
+          y: -8,
+          rotate: -45,
+          duration: 0.35,
+          ease: "power2.inOut",
+        });
+
+        // Circle overlay reveal from top left
+        gsap.to(menuRef.current, {
+          clipPath: "circle(150% at 2.5rem 2.5rem)",
+          duration: 0.8,
+          ease: "power3.inOut",
+        });
+
+        // Stagger links entrance
+        gsap.fromTo(
+          menuRef.current.querySelectorAll(".mobile-nav-link"),
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: "power3.out",
+            delay: 0.2,
+          }
+        );
+      } else {
+        // Animate X back to hamburger
+        gsap.to(lineTopRef.current, {
+          y: 0,
+          rotate: 0,
+          duration: 0.35,
+          ease: "power2.inOut",
+        });
+        gsap.to(lineMiddleRef.current, {
+          opacity: 1,
+          scaleX: 1,
+          duration: 0.35,
+          ease: "power2.inOut",
+        });
+        gsap.to(lineBottomRef.current, {
+          y: 0,
+          rotate: 0,
+          duration: 0.35,
+          ease: "power2.inOut",
+        });
+
+        // Close circle overlay
+        gsap.to(menuRef.current, {
+          clipPath: "circle(0% at 2.5rem 2.5rem)",
+          duration: 0.6,
+          ease: "power3.inOut",
+        });
+      }
+    },
+    { dependencies: [isOpen] }
+  );
+
+  const { contextSafe } = useGSAP(
+    () => {
+      gsap.fromTo(
+        navRef.current,
+        { y: -24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+      );
+
+      marqueeTween.current = gsap.to(marqueeRef.current, {
+        xPercent: -50,
+        duration: 3,
+        ease: "none",
+        repeat: -1,
+        paused: true,
+      });
+
+      // --- magnetic flair effect ---
+      const button = buttonRef.current;
+      const flair = flairRef.current;
+      if (!button || !flair) return;
+
+      const xSet = gsap.quickSetter(flair, "xPercent");
+      const ySet = gsap.quickSetter(flair, "yPercent");
+
+      const getXY = (e: MouseEvent) => {
+        const { left, top, width, height } = button.getBoundingClientRect();
+        const x = ((e.clientX - left) / width) * 100;
+        const y = ((e.clientY - top) / height) * 100;
+        return { x, y };
+      };
+
+      const handleMouseEnter = (e: MouseEvent) => {
+        const { x, y } = getXY(e);
+        xSet(x);
+        ySet(y);
+        gsap.to(flair, { scale: 1, duration: 0.4, ease: "power2.out" });
+        marqueeTween.current?.play();
+      };
+
+      const handleMouseLeave = (e: MouseEvent) => {
+        const { x, y } = getXY(e);
+        gsap.killTweensOf(flair);
+        gsap.to(flair, {
+          xPercent: x > 90 ? x + 20 : x < 10 ? x - 20 : x,
+          yPercent: y > 90 ? y + 20 : y < 10 ? y - 20 : y,
+          scale: 0,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+        marqueeTween.current?.pause();
+        gsap.to(marqueeRef.current, {
+          xPercent: 0,
+          duration: 0.3,
+          ease: "power2.out",
+          onComplete: () => marqueeTween.current?.pause(0),
+        });
+      };
+
+      const handleMouseMove = (e: MouseEvent) => {
+        const { x, y } = getXY(e);
+        gsap.to(flair, {
+          xPercent: x,
+          yPercent: y,
+          duration: 0.4,
+          ease: "power2",
+        });
+      };
+
+      button.addEventListener("mouseenter", handleMouseEnter);
+      button.addEventListener("mouseleave", handleMouseLeave);
+      button.addEventListener("mousemove", handleMouseMove);
+
+      return () => {
+        button.removeEventListener("mouseenter", handleMouseEnter);
+        button.removeEventListener("mouseleave", handleMouseLeave);
+        button.removeEventListener("mousemove", handleMouseMove);
+      };
+    },
+    { scope: navRef },
+  );
+
+  const handleEnter = (index: number) => {
+    if (pathname === navLinks[index].href) return;
+    contextSafe(() => {
+      const underline = underlineRefs.current[index];
+      if (!underline) return;
+      gsap.killTweensOf(underline);
+      gsap.fromTo(
+        underline,
+        { scaleX: 0, transformOrigin: "left center" },
+        { scaleX: 1, duration: 0.45, ease: "power4.out" },
+      );
+    })();
+  };
+
+  const handleLeave = (index: number) => {
+    if (pathname === navLinks[index].href) return;
+    contextSafe(() => {
+      const underline = underlineRefs.current[index];
+      if (!underline) return;
+      gsap.killTweensOf(underline);
+      gsap.to(underline, {
+        scaleX: 0,
+        transformOrigin: "right center",
+        duration: 0.35,
+        ease: "power3.inOut",
+      });
+    })();
+  };
+
+  return (
+    <>
+      <header ref={navRef} className="fixed inset-x-0 top-4 z-50 py-4 text-white">
+        <nav className="mx-auto grid w-full max-w-7xl grid-cols-3 items-center px-6 md:px-10">
+          <div className="flex items-center gap-6 font-bold text-base">
+            {/* Desktop Links */}
+            <div className="hidden md:flex items-center gap-6">
+              {navLinks.map((link, i) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className="group relative py-1 transition-opacity hover:opacity-90"
+                  onMouseEnter={() => handleEnter(i)}
+                  onMouseLeave={() => handleLeave(i)}
+                >
+                  {link.title}
+                  <span
+                    ref={(el) => {
+                      underlineRefs.current[i] = el;
+                    }}
+                    style={{ transform: pathname === link.href ? "scaleX(1)" : "scaleX(0)" }}
+                    className="absolute bottom-0 left-0 h-px w-full origin-left bg-white"
+                  />
+                </Link>
+              ))}
+            </div>
+
+            {/* Hamburger Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close Menu" : "Open Menu"}
+              className="flex md:hidden flex-col justify-center items-start w-8 h-8 gap-1.5 focus:outline-none z-50 cursor-pointer pointer-events-auto"
+            >
+              <span
+                ref={lineTopRef}
+                className="w-6 h-0.5 bg-white rounded-full origin-center"
+              />
+              <span
+                ref={lineMiddleRef}
+                className="w-4 h-0.5 bg-white rounded-full origin-center"
+              />
+              <span
+                ref={lineBottomRef}
+                className="w-6 h-0.5 bg-white rounded-full origin-center"
+              />
+            </button>
+          </div>
+
+          <div className="flex justify-center">
+            <h3
+              data-title="harvest-nav"
+              className="font-display text-md  font-extrabold uppercase tracking-tight text-white md:text-xl"
+            >
+              Harvest Global
+            </h3>
+          </div>
+
+          <div className="flex items-center justify-end gap-6">
+            <Link
+              href="#"
+              aria-label="LinkedIn"
+              className="hidden md:block transition-opacity hover:opacity-70"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-[18px] w-[18px] fill-current"
+                aria-hidden="true"
+              >
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.26ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 20.45h3.57V9H3.56v11.45ZM22.22 0H1.78C.8 0 0 .8 0 1.78v20.44C0 23.2.8 24 1.78 24h20.44c.98 0 1.78-.8 1.78-1.78V1.78C24 .8 23.2 0 22.22 0Z" />
+              </svg>
+            </Link>
+
+            <Link
+              href="#"
+              aria-label="Instagram"
+              className="hidden md:block transition-opacity hover:opacity-70"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-[18px] w-[18px] fill-none stroke-current"
+                strokeWidth="1.8"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </Link>
+
+            <Link href="/" className="hidden md:block no-underline">
+              <div
+                ref={buttonRef}
+                className="button button--stroke"
+              >
+                <span className="button__label">Connect</span>
+                <div ref={flairRef} className="button__flair"></div>
+              </div>
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        ref={menuRef}
+        style={{ clipPath: "circle(0% at 2.5rem 2.5rem)" }}
+        className="fixed inset-0 bg-neutral-950 flex flex-col justify-between px-8 py-28 z-45 md:hidden pointer-events-auto"
+      >
+        <div className="flex flex-col gap-8 mt-12">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.title}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`mobile-nav-link text-4xl font-display uppercase tracking-tight transition-colors ${
+                  isActive ? "text-white underline decoration-2 underline-offset-8" : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                {link.title}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-col gap-8">
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+            className="no-underline mobile-nav-link self-start"
+          >
+            <div className="button button--stroke">
+              <span className="button__label">Connect</span>
+            </div>
+          </Link>
+
+          <div className="flex gap-6 mobile-nav-link mt-2">
+            <Link
+              href="#"
+              aria-label="LinkedIn"
+              className="text-white opacity-70 hover:opacity-100 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5.5 w-5.5 fill-current"
+                aria-hidden="true"
+              >
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.26ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 20.45h-3.57V9H3.56v11.45ZM22.22 0H1.78C.8 0 0 .8 0 1.78v20.44C0 23.2.8 24 1.78 24h20.44c.98 0 1.78-.8 1.78-1.78V1.78C24 .8 23.2 0 22.22 0Z" />
+              </svg>
+            </Link>
+
+            <Link
+              href="#"
+              aria-label="Instagram"
+              className="text-white opacity-70 hover:opacity-100 transition-opacity"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5.5 w-5.5 fill-none stroke-current"
+                strokeWidth="1.8"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Navbar;
