@@ -5,6 +5,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
+import StarBackground from "@/components/ui/Starbackground";
 import { data } from "@/data";
 import RecognitionCard from "@/components/credentials/RecognitionCard";
 
@@ -58,6 +59,7 @@ export default function CredentialsTeaser() {
       ref={sectionRef}
       className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28"
     >
+      <StarBackground />
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-150 w-200 rounded-full bg-emerald-600/4 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">

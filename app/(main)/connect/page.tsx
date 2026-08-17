@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import StarBackground from "@/components/ui/Starbackground";
 
 const ConnectPage = () => {
   return (
-    <section id="connect" className="container mx-auto">
-      <div className="space-y-10 p-4 text-white">
+    <section id="connect" className="relative container mx-auto">
+      <StarBackground />
+      <div className="relative z-10 space-y-10 p-4 text-white">
         <h3 className="w-3/4 text-left text-2xl tracking-wider md:text-5xl">
           Your move. Whether you’ve got a wild idea, a tight deadline or just
           want to explore what’s possible we’re all ears.
@@ -14,7 +16,7 @@ const ConnectPage = () => {
           Drop us a line. Or better yet: let’s meet.
         </h3>
       </div>
-      <div className="grid grid-cols-1 gap-16 text-white md:grid-cols-2 md:gap-24">
+      <div className="relative z-10 grid grid-cols-1 gap-16 text-white md:grid-cols-2 md:gap-24">
         {/* Left */}
         <div className="socials flex flex-col">
           <div className="flex gap-8">
@@ -26,7 +28,7 @@ const ConnectPage = () => {
 
                 <div className="mt-12 space-y-1 text-sm text-white/60">
                   <p>info@harvest-global.com</p>
-                  <p>+91 XX XXXX XXXX</p>
+                  <p>+91 9821206807</p>
                 </div>
               </div>
 

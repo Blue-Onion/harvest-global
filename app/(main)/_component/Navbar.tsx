@@ -128,13 +128,15 @@ function Navbar() {
         { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
       );
 
-      marqueeTween.current = gsap.to(marqueeRef.current, {
-        xPercent: -50,
-        duration: 3,
-        ease: "none",
-        repeat: -1,
-        paused: true,
-      });
+      if (marqueeRef.current) {
+        marqueeTween.current = gsap.to(marqueeRef.current, {
+          xPercent: -50,
+          duration: 3,
+          ease: "none",
+          repeat: -1,
+          paused: true,
+        });
+      }
 
       // --- magnetic flair effect ---
       const button = buttonRef.current;
@@ -170,12 +172,14 @@ function Navbar() {
           ease: "power2.out",
         });
         marqueeTween.current?.pause();
-        gsap.to(marqueeRef.current, {
-          xPercent: 0,
-          duration: 0.3,
-          ease: "power2.out",
-          onComplete: () => marqueeTween.current?.pause(0),
-        });
+        if (marqueeRef.current) {
+          gsap.to(marqueeRef.current, {
+            xPercent: 0,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => marqueeTween.current?.pause(0),
+          });
+        }
       };
 
       const handleMouseMove = (e: MouseEvent) => {
@@ -331,7 +335,7 @@ function Navbar() {
               </svg>
             </Link>
 
-            <Link href="/" className="hidden md:block no-underline">
+            <Link href="/connect" className="hidden md:block no-underline">
               <div ref={buttonRef} className="button button--stroke">
                 <span className="button__label">Connect</span>
                 <div ref={flairRef} className="button__flair"></div>
@@ -369,7 +373,7 @@ function Navbar() {
 
         <div className="flex flex-col gap-8">
           <Link
-            href="/"
+            href="/connect"
             onClick={() => setIsOpen(false)}
             className="no-underline mobile-nav-link self-start"
           >

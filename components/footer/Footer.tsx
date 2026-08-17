@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import StarBackground from "@/components/ui/Starbackground";
 import { data } from "@/data";
 
 export default function Footer() {
@@ -10,7 +11,8 @@ export default function Footer() {
       id="contact"
       className="relative border-t border-white/10 bg-black py-16 md:py-20"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 md:px-10">
+      <StarBackground />
+      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 md:px-10">
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr] lg:gap-20">
           {/* Brand */}
           <div>

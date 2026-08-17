@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import StarBackground from "@/components/ui/Starbackground";
 import { data } from "@/data";
 
 function FinalCta() {
@@ -7,6 +9,7 @@ function FinalCta() {
 
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden border-t border-white/10 bg-black px-5 py-24 text-white sm:px-8 md:px-10">
+      <StarBackground />
       <div
         className="
     relative flex min-h-[650px] w-full max-w-350
@@ -20,7 +23,10 @@ function FinalCta() {
         <h3 className="text-6xl font-bold tracking-wider leading-[0.88] mb-2">
           {title}
         </h3>
-        <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-green-500/30 bg-green-500/10 px-8 py-4 text-lg font-medium backdrop-blur-sm hover:bg-green-500/20 hover:border-green-500/50 transition-colors">
+        <Link
+          href="/connect"
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-green-500/30 bg-green-500/10 px-8 py-4 text-lg font-medium backdrop-blur-sm hover:bg-green-500/20 hover:border-green-500/50 transition-colors"
+        >
           <span>{buttonLabel}</span>
           <svg
             className="size-5"
@@ -35,7 +41,7 @@ function FinalCta() {
               d="M17.5 8l5 5m0 0l-5 5m5-5H0"
             ></path>
           </svg>
-        </button>
+        </Link>
       </div>
     </section>
   );
