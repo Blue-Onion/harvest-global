@@ -9,17 +9,41 @@ gsap.registerPlugin(SplitText);
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useGSAP(
     () => {
       const hero = heroRef.current;
-      if (!hero) return;
+      const video = videoRef.current;
 
-      const heroLine = SplitText.create(".hero-line", { type: "chars" });
+      if (!hero || !video) return;
+
+      const handleMouseMove = (e: MouseEvent) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+        gsap.to(video, {
+          x: x * 8,
+          y: y * 5,
+          duration: 1.2,
+          ease: "power3.out",
+          overwrite: true,
+        });
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+
+      const heroLine = SplitText.create(".hero-line", {
+        type: "chars",
+      });
+
       const heroHighlight = SplitText.create(".highlight-tag", {
         type: "chars",
       });
-      const subtitle = SplitText.create(".subtitle", { type: "chars" });
+
+      const subtitle = SplitText.create(".subtitle", {
+        type: "chars",
+      });
 
       gsap.set(".hero-content", {
         visibility: "hidden",
@@ -43,7 +67,9 @@ const Hero = () => {
       const startHeroAnimation = () => {
         const tl = gsap.timeline();
 
-        tl.set(".hero-content", { visibility: "visible" });
+        tl.set(".hero-content", {
+          visibility: "visible",
+        });
 
         tl.to(".hero-content", {
           opacity: 1,
@@ -51,7 +77,6 @@ const Hero = () => {
           ease: "power2.out",
         });
 
-        // Highlight: pop in (scale + y), distinct from the typing effect
         tl.to(heroHighlight.chars, {
           opacity: 1,
           y: 0,
@@ -61,7 +86,6 @@ const Hero = () => {
           ease: "back.out(1.7)",
         });
 
-        // hero-line and subtitle type in together
         tl.to(heroLine.chars, {
           opacity: 1,
           duration: 0.05,
@@ -77,37 +101,45 @@ const Hero = () => {
             stagger: 0.05,
             ease: "none",
           },
-          "<", // start with heroLine.chars
+          "<",
         );
       };
 
       window.addEventListener("intro-complete", startHeroAnimation);
 
       return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("intro-complete", startHeroAnimation);
+
         heroLine.revert();
         heroHighlight.revert();
         subtitle.revert();
       };
     },
-    { scope: heroRef },
+    {
+      scope: heroRef,
+    },
   );
 
   return (
     <section
       ref={heroRef}
       id="hero"
-      className="relative isolate w-screen h-screen flex flex-col justify-center items-center"
+      className="relative isolate flex h-screen w-screen flex-col items-center justify-center"
     >
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="h-full w-full object-cover"
+          className="h-full w-full scale-[1.08] object-cover"
         >
-          <source src="/videos/earth-observation.mp4" type="video/mp4" />
+          <source
+            src="/videos/heroBg.mp4"
+            type="video/mp4"
+          />
         </video>
       </div>
 
@@ -115,37 +147,39 @@ const Hero = () => {
         <h1
           data-title="harvest-hero"
           className="font-display text-4xl font-normal uppercase tracking-tight text-white md:text-6xl lg:text-7xl"
-          style={{ visibility: "hidden" }}
+          style={{
+            visibility: "hidden",
+          }}
         >
           Harvest Global
         </h1>
       </div>
 
-   <div className="hero-content space-y-5 mx-auto text-center w-[80%]">
-  <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold flex items-center justify-center gap-2 tracking-wider text-white">
-    <span className="highlight-tag text-emerald-600 scale-y-200 md:scale-y-150 lg:scale-y-125">
-      Foundational
-    </span>
+      <div className="hero-content mx-auto w-[80%] space-y-5 text-center">
+        <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-6xl">
+          <span className="highlight-tag scale-y-200 text-emerald-600 md:scale-y-150 lg:scale-y-125">
+            Foundational
+          </span>
 
-    <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
-      Intelligence
-    </span>
-  </h1>
+          <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
+            Intelligence
+          </span>
+        </h1>
 
-  <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold flex items-center justify-center gap-2 tracking-wider text-white">
-    <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
-      For Earth
-    </span>
+        <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-6xl">
+          <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
+            For Earth
+          </span>
 
-    <span className="highlight-tag text-orange-600 scale-y-200 md:scale-y-150 lg:scale-y-125">
-      Observation
-    </span>
-  </h1>
+          <span className="highlight-tag scale-y-200 text-orange-600 md:scale-y-150 lg:scale-y-125">
+            Observation
+          </span>
+        </h1>
 
-  <p className="text-md md:text-xl mt-10 subtitle text-muted-foreground">
-    Sovereign GeoAI. Private AI Cloud. Edge Intelligence.
-  </p>
-</div>
+        <p className="subtitle mt-10 text-md text-muted-foreground md:text-xl">
+          Sovereign GeoAI. Private AI Cloud. Edge Intelligence.
+        </p>
+      </div>
     </section>
   );
 };
