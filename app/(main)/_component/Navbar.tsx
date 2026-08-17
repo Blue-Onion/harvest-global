@@ -128,13 +128,15 @@ function Navbar() {
         { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
       );
 
-      marqueeTween.current = gsap.to(marqueeRef.current, {
-        xPercent: -50,
-        duration: 3,
-        ease: "none",
-        repeat: -1,
-        paused: true,
-      });
+      if (marqueeRef.current) {
+        marqueeTween.current = gsap.to(marqueeRef.current, {
+          xPercent: -50,
+          duration: 3,
+          ease: "none",
+          repeat: -1,
+          paused: true,
+        });
+      }
 
       // --- magnetic flair effect ---
       const button = buttonRef.current;
@@ -170,12 +172,14 @@ function Navbar() {
           ease: "power2.out",
         });
         marqueeTween.current?.pause();
-        gsap.to(marqueeRef.current, {
-          xPercent: 0,
-          duration: 0.3,
-          ease: "power2.out",
-          onComplete: () => marqueeTween.current?.pause(0),
-        });
+        if (marqueeRef.current) {
+          gsap.to(marqueeRef.current, {
+            xPercent: 0,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => marqueeTween.current?.pause(0),
+          });
+        }
       };
 
       const handleMouseMove = (e: MouseEvent) => {
