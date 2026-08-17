@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { data } from "@/data";
 import SectionHeader from "./SectionHeader";
 import RecognitionCard from "@/components/credentials/RecognitionCard";
+import StarBackground from "@/components/ui/Starbackground";
 
 export default function RecognitionSection() {
   const { recognition, sections } = data.credentials;
@@ -12,6 +13,7 @@ export default function RecognitionSection() {
 
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28">
+      <StarBackground />
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
         <SectionHeader
           eyebrow={sections.recognition.eyebrow}

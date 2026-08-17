@@ -331,7 +331,7 @@ function Navbar() {
               </svg>
             </Link>
 
-            <Link href="/" className="hidden md:block no-underline">
+            <Link href="/connect" className="hidden md:block no-underline">
               <div ref={buttonRef} className="button button--stroke">
                 <span className="button__label">Connect</span>
                 <div ref={flairRef} className="button__flair"></div>
@@ -369,7 +369,7 @@ function Navbar() {
 
         <div className="flex flex-col gap-8">
           <Link
-            href="/"
+            href="/connect"
             onClick={() => setIsOpen(false)}
             className="no-underline mobile-nav-link self-start"
           >

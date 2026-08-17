@@ -1,6 +1,7 @@
 "use client";
 
 import ScrollStack, { ScrollStackItem } from "../ui/ScrollStack";
+import StarBackground from "@/components/ui/Starbackground";
 import { data } from "@/data";
 import Image from "next/image";
 
@@ -12,6 +13,7 @@ export default function Applications() {
       id="applications"
       className="relative w-full border-t border-white/10 bg-black text-white"
     >
+      <StarBackground />
       {/* Section Header */}
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10 pt-20 md:pt-28">
         <div className="max-w-3xl">
