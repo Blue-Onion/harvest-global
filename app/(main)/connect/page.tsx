@@ -1,18 +1,49 @@
-import React from "react";
-import Image from "next/image";
+"use client";
 import StarBackground from "@/components/ui/Starbackground";
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/all";
+gsap.registerPlugin(SplitText);
 const ConnectPage = () => {
+  useGSAP(() => {
+    const headings = gsap.utils.toArray<HTMLElement>(".connect-headline");
+
+    const tl = gsap.timeline();
+
+    headings.forEach((heading) => {
+      const split = SplitText.create(heading, {
+        type: "words",
+        wordsClass: "connect-word",
+      });
+
+      gsap.set(split.words, {
+        opacity: 0,
+        y: 40,
+      });
+
+      tl.to(
+        split.words,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.06,
+          ease: "power3.out",
+        },
+        "-=0.35",
+      );
+    });
+  });
   return (
-    <section id="connect" className="relative container mx-auto">
+    <section id="connect" className="relative space-y-20 container mx-auto">
       <StarBackground />
       <div className="relative z-10 space-y-10 p-4 text-white">
-        <h3 className="w-3/4 text-left text-2xl tracking-wider md:text-5xl">
+        <h3 className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl">
           Have a challenge worth solving, an idea worth exploring, or a frontier
           worth building?
         </h3>
 
-        <h3 className="w-3/4 text-left text-2xl tracking-wider md:text-5xl">
+        <h3 className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl">
           Let’s build what comes next.
         </h3>
       </div>
