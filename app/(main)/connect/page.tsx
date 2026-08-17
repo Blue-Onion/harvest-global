@@ -8,12 +8,12 @@ const ConnectPage = () => {
       <StarBackground />
       <div className="relative z-10 space-y-10 p-4 text-white">
         <h3 className="w-3/4 text-left text-2xl tracking-wider md:text-5xl">
-          Your move. Whether you’ve got a wild idea, a tight deadline or just
-          want to explore what’s possible we’re all ears.
+          Have a challenge worth solving, an idea worth exploring, or a frontier
+          worth building?
         </h3>
 
         <h3 className="w-3/4 text-left text-2xl tracking-wider md:text-5xl">
-          Drop us a line. Or better yet: let’s meet.
+          Let’s build what comes next.
         </h3>
       </div>
       <div className="relative z-10 grid grid-cols-1 gap-16 text-white md:grid-cols-2 md:gap-24">
@@ -40,7 +40,7 @@ const ConnectPage = () => {
                   <img
                     src="/images/linkedIn.svg"
                     alt="LinkedIn"
-       className="h-5 w-5 invert hover:invert-0"
+                    className="h-5 w-5 invert hover:invert-0"
                   />
                 </a>
 
@@ -51,7 +51,7 @@ const ConnectPage = () => {
                   <img
                     src="/images/insta.svg"
                     alt="Instagram"
-          className="h-5 w-5 invert hover:invert-0"
+                    className="h-5 w-5 invert hover:invert-0"
                   />
                 </a>
               </div>
