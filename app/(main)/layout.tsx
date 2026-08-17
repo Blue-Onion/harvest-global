@@ -1,13 +1,13 @@
 import Navbar from './_component/Navbar'
 import React from 'react'
 
-const layout = ({children }: {children:React.ReactNode}) => {
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-        <Navbar/>
-        {children}
+      <Navbar />
+      <div className="text-white mt-35">{children}</div>
     </>
-  )
+  );
 }
 
 export default layout

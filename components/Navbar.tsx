@@ -325,7 +325,7 @@ function Navbar() {
               </svg>
             </Link>
 
-            <Link href="/" className="hidden md:block no-underline">
+            <Link href="/connect" className="hidden md:block no-underline">
               <div
                 ref={buttonRef}
                 className="button button--stroke"
