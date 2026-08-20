@@ -146,7 +146,7 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <h1
           data-title="harvest-hero"
-          className="font-display text-4xl font-normal uppercase tracking-tight text-white md:text-6xl lg:text-7xl"
+          className="text-4xl font-normal uppercase tracking-tight text-white md:text-6xl lg:text-7xl"
           style={{
             visibility: "hidden",
           }}

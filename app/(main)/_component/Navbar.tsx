@@ -291,7 +291,7 @@ function Navbar() {
           <div className="flex justify-center">
             <h3
               data-title="harvest-nav"
-              className="font-display text-md  font-extrabold uppercase tracking-tight text-white md:text-xl"
+              className="text-md  font-extrabold uppercase tracking-tight text-white md:text-xl"
             >
               Harvest Global
             </h3>
