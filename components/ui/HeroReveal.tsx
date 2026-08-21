@@ -194,7 +194,7 @@ tl.call(() => {
         <h1
           ref={textRef}
           data-title="harvest-intro"
-          className="font-display text-3xl font-normal uppercase text-white md:text-6xl lg:text-7xl"
+          className="text-3xl font-normal uppercase text-white md:text-6xl lg:text-7xl"
           style={{
             visibility: "hidden",
           }}
