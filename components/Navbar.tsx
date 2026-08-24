@@ -236,8 +236,8 @@ function Navbar() {
 
   return (
     <>
-      <header ref={navRef} className="fixed inset-x-0 top-4 z-50 py-4 text-white">
-        <nav className="mx-auto grid w-full max-w-7xl grid-cols-3 items-center px-6 md:px-10">
+      <header ref={navRef} className="inset-x-0 top-4 container mx-auto fixed z-50 py-4  text-white">
+        <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
           <div className="flex items-center gap-6 font-bold text-base">
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-6">

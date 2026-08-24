@@ -157,21 +157,21 @@ const Hero = () => {
 
       <div className="hero-content mx-auto w-[80%] space-y-5 text-center">
         <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-[3.3rem]">
-          <span className="highlight-tag  text-emerald-600 md:scale-y-150 lg:scale-y-125">
+          <span className="highlight-tag  text-emerald-600 ">
             Foundational
           </span>
 
-          <span className="hero-line  md:scale-y-150 lg:scale-y-125">
+          <span className="hero-line  ">
             Intelligence
           </span>
         </h1>
 
         <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-[3.5rem]">
-          <span className="hero-line  md:scale-y-150 lg:scale-y-125">
+          <span className="hero-line  ">
             For Earth
           </span>
 
-          <span className="highlight-tag  text-orange-600 md:scale-y-150 lg:scale-y-125">
+          <span className="highlight-tag  text-orange-600 ">
             Observation
           </span>
         </h1>
