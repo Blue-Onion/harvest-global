@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP);
 
@@ -86,7 +87,7 @@ function Navbar() {
             stagger: 0.08,
             ease: "power3.out",
             delay: 0.2,
-          },
+          }
         );
       } else {
         // Animate X back to hamburger
@@ -117,7 +118,7 @@ function Navbar() {
         });
       }
     },
-    { dependencies: [isOpen] },
+    { dependencies: [isOpen] }
   );
 
   const { contextSafe } = useGSAP(
@@ -236,11 +237,8 @@ function Navbar() {
 
   return (
     <>
-      <header
-        ref={navRef}
-        className="fixed inset-x-0 top-4 z-50 py-4 text-white"
-      >
-        <nav className="mx-auto grid w-full max-w-7xl grid-cols-3 items-center px-6 md:px-10">
+      <header ref={navRef} className="inset-x-0 top-4 container mx-auto fixed z-50 py-4  text-white">
+        <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
           <div className="flex items-center gap-6 font-bold text-base">
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-6">
@@ -257,10 +255,7 @@ function Navbar() {
                     ref={(el) => {
                       underlineRefs.current[i] = el;
                     }}
-                    style={{
-                      transform:
-                        pathname === link.href ? "scaleX(1)" : "scaleX(0)",
-                    }}
+                    style={{ transform: pathname === link.href ? "scaleX(1)" : "scaleX(0)" }}
                     className="absolute bottom-0 left-0 h-px w-full origin-left bg-white"
                   />
                 </Link>
@@ -288,7 +283,10 @@ function Navbar() {
             </button>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex items-center justify-center">
+            <div className="">
+              <Image width={40} height={40} src="/icon.png" alt="icon" />
+            </div>
             <h3
               data-title="harvest-nav"
               className="text-md  font-extrabold uppercase tracking-tight text-white md:text-xl"
@@ -298,45 +296,13 @@ function Navbar() {
           </div>
 
           <div className="flex items-center justify-end gap-6">
-            <Link
-              href="#"
-              aria-label="LinkedIn"
-              className="hidden md:block transition-opacity hover:opacity-70"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-[18px] w-[18px] fill-current"
-                aria-hidden="true"
-              >
-                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.26ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 20.45h3.57V9H3.56v11.45ZM22.22 0H1.78C.8 0 0 .8 0 1.78v20.44C0 23.2.8 24 1.78 24h20.44c.98 0 1.78-.8 1.78-1.78V1.78C24 .8 23.2 0 22.22 0Z" />
-              </svg>
-            </Link>
-
-            <Link
-              href="#"
-              aria-label="Instagram"
-              className="hidden md:block transition-opacity hover:opacity-70"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-[18px] w-[18px] fill-none stroke-current"
-                strokeWidth="1.8"
-                aria-hidden="true"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle
-                  cx="17.5"
-                  cy="6.5"
-                  r="1"
-                  fill="currentColor"
-                  stroke="none"
-                />
-              </svg>
-            </Link>
+       
 
             <Link href="/connect" className="hidden md:block no-underline">
-              <div ref={buttonRef} className="button button--stroke">
+              <div
+                ref={buttonRef}
+                className="button button--stroke"
+              >
                 <span className="button__label">Connect</span>
                 <div ref={flairRef} className="button__flair"></div>
               </div>
@@ -360,9 +326,7 @@ function Navbar() {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`mobile-nav-link text-4xl font-display uppercase tracking-tight transition-colors ${
-                  isActive
-                    ? "text-white underline decoration-2 underline-offset-8"
-                    : "text-neutral-400 hover:text-white"
+                  isActive ? "text-white underline decoration-2 underline-offset-8" : "text-neutral-400 hover:text-white"
                 }`}
               >
                 {link.title}
@@ -381,45 +345,6 @@ function Navbar() {
               <span className="button__label">Connect</span>
             </div>
           </Link>
-
-          <div className="flex gap-6 mobile-nav-link mt-2">
-            <Link
-              href="#"
-              aria-label="LinkedIn"
-              className="text-white opacity-70 hover:opacity-100 transition-opacity"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-5.5 w-5.5 fill-current"
-                aria-hidden="true"
-              >
-                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.26ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 20.45h-3.57V9H3.56v11.45ZM22.22 0H1.78C.8 0 0 .8 0 1.78v20.44C0 23.2.8 24 1.78 24h20.44c.98 0 1.78-.8 1.78-1.78V1.78C24 .8 23.2 0 22.22 0Z" />
-              </svg>
-            </Link>
-
-            <Link
-              href="#"
-              aria-label="Instagram"
-              className="text-white opacity-70 hover:opacity-100 transition-opacity"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-5.5 w-5.5 fill-none stroke-current"
-                strokeWidth="1.8"
-                aria-hidden="true"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle
-                  cx="17.5"
-                  cy="6.5"
-                  r="1"
-                  fill="currentColor"
-                  stroke="none"
-                />
-              </svg>
-            </Link>
-          </div>
         </div>
       </div>
     </>

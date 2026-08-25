@@ -20,7 +20,6 @@ export default function Home() {
       <Applications />
       <CredentialsTeaser />
       <FinalCta />
-<Connect/>
       <Footer />
     </main>
   );

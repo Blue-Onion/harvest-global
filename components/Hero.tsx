@@ -157,7 +157,7 @@ const Hero = () => {
 
       <div className="hero-content mx-auto w-[80%] space-y-5 text-center">
         <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-[3.3rem]">
-          <span className="highlight-tag  text-emerald-600 ">
+          <span className="highlight-tag  ">
             Foundational
           </span>
 
@@ -171,7 +171,7 @@ const Hero = () => {
             For Earth
           </span>
 
-          <span className="highlight-tag  text-orange-600 ">
+          <span className="highlight-tag">
             Observation
           </span>
         </h1>

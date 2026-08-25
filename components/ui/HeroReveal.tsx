@@ -6,7 +6,25 @@ import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 
 gsap.registerPlugin(SplitText);
+function mulberry32(seed: number) {
+  return () => {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
 
+const random = mulberry32(2024);
+
+const stars = Array.from({ length: 120 }, (_, i) => ({
+  id: i,
+  left: random() * 100,
+  top: random() * 100,
+  size: random() * 2 + 0.5,
+  opacity: random() * 0.5 + 0.2,
+}));
 export default function Intro() {
   const introRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
@@ -69,8 +87,6 @@ export default function Intro() {
       y: 30,
     });
 
-
-
     const toDestination = (dest: HTMLElement) => {
       const cur = text.getBoundingClientRect();
 
@@ -109,15 +125,12 @@ export default function Intro() {
       stagger: 0.06,
     });
 
-
-
     tl.to(
       {},
       {
         duration: 0.8,
       },
     );
-
 
     tl.to(
       top,
@@ -141,37 +154,37 @@ export default function Intro() {
 
     tl.to(text, moveTo(heroTitle), ">");
 
- tl.to(
-  text,
-  {
-    ...moveTo(navTitle),
-    onComplete: () => {
-      gsap.set(text, {
-        visibility: "hidden",
-      });
+    tl.to(
+      text,
+      {
+        ...moveTo(navTitle),
+        onComplete: () => {
+          gsap.set(text, {
+            visibility: "hidden",
+          });
 
-      gsap.set(navTitle, {
-        visibility: "visible",
-        opacity: 1,
-      });
+          gsap.set(navTitle, {
+            visibility: "visible",
+            opacity: 1,
+          });
 
-      if (navRoot) {
-        gsap.set(navRoot, {
-          visibility: "visible",
-        });
-      }
+          if (navRoot) {
+            gsap.set(navRoot, {
+              visibility: "visible",
+            });
+          }
 
-      gsap.set(intro, {
-        display: "none",
-      });
-    },
-  },
-  "-=1",
-);
+          gsap.set(intro, {
+            display: "none",
+          });
+        },
+      },
+      "-=1",
+    );
 
-tl.call(() => {
-  window.dispatchEvent(new CustomEvent("intro-complete"));
-});
+    tl.call(() => {
+      window.dispatchEvent(new CustomEvent("intro-complete"));
+    });
 
     return () => {
       splitTitle.revert();
@@ -181,14 +194,26 @@ tl.call(() => {
 
   return (
     <div ref={introRef} className="pointer-events-none fixed inset-0 z-9999">
-
-      <div ref={topRef} className="absolute inset-x-0 top-0 h-1/2 bg-black" />
+      <div ref={topRef} className="pointer-events-none absolute inset-0 overflow-hidden bg-black">
+        {stars.map((star) => (
+          <span
+            key={star.id}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+            }}
+          />
+        ))}
+      </div>
 
       <div
         ref={bottomRef}
         className="absolute inset-x-0 bottom-0 h-1/2 bg-black"
       />
-
 
       <div className="absolute inset-0 flex items-center justify-center">
         <h1

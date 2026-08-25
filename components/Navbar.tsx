@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP);
 
@@ -282,7 +283,8 @@ function Navbar() {
             </button>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex items-center justify-center">
+           
             <h3
               data-title="harvest-nav"
               className="text-md  font-extrabold uppercase tracking-tight text-white md:text-xl"
