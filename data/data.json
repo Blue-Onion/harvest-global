@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "Harvest Global SSP Pvt Ltd",
+    "name": "Harvest Global SSP Pvt Ltd (HG Systems)",
     "shortName": "HG Systems",
     "tagline": "Earth Intelligence for a Sustainable Future",
     "websiteUrl": "https://hgsystems.in",
@@ -21,33 +21,33 @@
     ]
   },
   "hero": {
-    "titleLine1": "Beyond Geo Foundation Models:",
-    "titleLine2": "Next-Generation Earth Intelligence",
-    "subtitle": ["Sovereign GeoAI Stack.", "Sovereign Private AI Cloud.", "Edge Ground-Stations."],
+    "titleLine1": "HARVEST GLOBAL",
+    "titleLine2": "GeoAI Foundational Intelligence for Earth Observation",
+    "subtitle": ["Sovereign GeoAI.", "Private AI Cloud.", "Edge Intelligence."],
     "primaryCta": "Explore Platform",
     "secondaryCta": "Contact Us"
   },
   "about": {
     "eyebrow": "EARTH INTELLIGENCE",
-    "scrollTitle": "Building Earth Intelligence. Enabling Tech Sovereignty.",
+    "scrollTitle": "Building Earth's Intelligence Layer",
     "scrollHint": "SCROLL TO UNCOVER",
     "title": "Unifying Multi-Modal Earth Data",
     "highlight": "for Sovereign Decision Making.",
-    "paragraph1": "Harvest Global SSP Pvt Ltd (HG Systems) is pioneering Earth Intelligence by integrating multi-spectral satellite imagery, weather streams, and ground-truth sensor networks into an enterprise-grade GeoAI stack.",
-    "paragraph2": "We build foundational AI models and sovereign cloud infrastructure empowering governments, insurance providers, and global enterprises to address climate resilience, agriculture risk, and spatial governance.",
+    "paragraph1": "Harvest Global SSP Pvt Ltd (HG Systems) pioneering Earth Intelligence integrates satellite imagery, climate and weather data, ground observations and geospatial intelligence into an enterprise-grade GeoAI stack, enabling governments and industries to move from fragmented data to predictive, actionable intelligence.",
+    "paragraph2": "We build Geofoundational AI models and sovereign cloud infrastructure empowering governments, insurance providers, and global enterprises to address climate resilience, agriculture risk, and spatial governance.",
     "domainsEyebrow": "CORE DOMAINS & CAPABILITIES",
     "domains": ["GEOAI STACK", "SOVEREIGN CLOUD", "AGRISTACK & PMFBY", "CLIMATE RESILIENCE", "WATER SECURITY", "EDGE AI"]
   },
   "technology": {
-    "eyebrow": "THE PLATFORM",
-    "title": ["Unified GeoAI Stack &", "Sovereign Infrastructure."],
-    "description": "An end-to-end Earth Intelligence architecture bridging satellite data ingestion, foundation model training, real-time edge processing, and strategic decision delivery.",
+    "eyebrow": "TECHNOLOGY",
+    "title": ["From Earth Data to", "Earth Intelligence"],
+    "description": "Our Unified GeoAI Stack combines data infrastructure, foundation models, GeoAnalytics, AI compute and edge intelligence to move from observation to prediction and decision support.",
     "stages": [
       {
         "number": "01",
         "label": "STAGE 01",
         "title": "L0 Multi-Sensor Ingestion",
-        "description": "Continuous streams of optical, Synthetic Aperture Radar (SAR), thermal, and meteorological earth observation data.",
+        "description": "Continuous streams of optical, SAR, thermal, and meteorological Earth Observation data from satellites, sensors, and ground networks.",
         "accent": "neutral",
         "coords": "RAW-STREAM // OPTICAL-SAR"
       },
@@ -55,7 +55,7 @@
         "number": "02",
         "label": "STAGE 02",
         "title": "Geo Foundation Models",
-        "description": "Proprietary multi-modal AI transformers optimized for spatio-temporal dynamics and environmental analysis.",
+        "description": "Proprietary GeoFM models and domain-specific AI for agriculture, forestry, hydrology, land-use and land-cover mapping, change detection, and other Earth applications.",
         "accent": "orange",
         "coords": "GEO-FOUNDATION / TRANSFORMER"
       },
@@ -63,7 +63,7 @@
         "number": "03",
         "label": "STAGE 03",
         "title": "Sovereign Private Cloud",
-        "description": "Isolated, privacy-compliant AI compute clusters ensuring localized processing for strategic and defense datasets.",
+        "description": "Isolated, privacy-compliant AI compute clusters ensuring localized processing for strategic and sovereign datasets.",
         "accent": "emerald",
         "coords": "PRIVATE-CLOUD / SOVEREIGN-NODE"
       },
@@ -71,7 +71,7 @@
         "number": "04",
         "label": "STAGE 04",
         "title": "Edge Ground-Station Processing",
-        "description": "Ultra-low latency inference directly deployed at satellite ground station datacenters for time-critical alerts.",
+        "description": "On-demand Earth Observation AI at satellites, ground stations and edge nodes, reducing dependence on cloud latency.",
         "accent": "orange",
         "coords": "EDGE-NODE / GROUND-STATION"
       },
@@ -79,7 +79,7 @@
         "number": "05",
         "label": "STAGE 05",
         "title": "Downstream Risk & Yield Engines",
-        "description": "Actionable risk modeling, automated yield forecasting, and damage detection for enterprise workflows.",
+        "description": "GeoAnalytics and decision-support solutions across agriculture, crop insurance, climate resilience, water security and infrastructure.",
         "accent": "emerald",
         "coords": "DOWNSTREAM-INFERENCE / OPT"
       }
@@ -97,35 +97,35 @@
     "eyebrow": "APPLICATIONS",
     "title": ["Specialized GeoAI Solutions", "Across Global Sectors."],
     "description": "Empowering critical industries with sovereign, high-resolution spatio-temporal intelligence.",
- "items": [
+  "items": [
     {
       "id": "app-1",
       "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
       "label": "Agriculture",
       "shortLabel": "AGRI",
       "alt": "Precision farming, crop monitoring, yield forecasting",
-      "description": "Precision farming, automated crop boundary identification, yield forecasting, and crop health monitoring.",
+      "description": "AI-powered intelligence across the agricultural lifecycle — crop planning, crop monitoring, yield estimation, NPK intelligence, harvest monitoring, crop insurance and agri-credit.",
       "tag": "AGRICULTURE",
       "coords": "AGRI-STACK // CROP-HEALTH"
     },
     {
       "id": "app-2",
       "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
-      "label": "PMFBY & Insurance",
+      "label": "Insurance",
       "shortLabel": "INSURANCE",
       "alt": "Smart risk assessment, fraud detection, loss estimation",
-      "description": "AgriStack alignment, smart risk assessment, fraud detection, and fast PMFBY insurance claim validation.",
-      "tag": "PMFBY & INSURANCE",
+      "description": "Making risk measurable — GeoAI transforms spatial and environmental data into actionable intelligence for insurance and risk assessment: crop insurance, damage assessment, risk analytics, yield estimation and farm credit.",
+      "tag": "INSURANCE",
       "coords": "PMFBY-ENGINE // RISK-ASSESS"
     },
     {
       "id": "app-3",
       "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-      "label": "Climate Resilience",
+      "label": "Climate Intelligence",
       "shortLabel": "CLIMATE",
       "alt": "Floods, droughts, wildfires, and extreme event modeling",
-      "description": "Multi-hazard threat assessment, floods, droughts, wildfires, extreme weather impact modeling, and long-term risk forecasting.",
-      "tag": "CLIMATE RESILIENCE",
+      "description": "Understanding a changing planet — climate modelling, environmental monitoring and spatial risk intelligence to identify changing patterns and support resilient decision-making.",
+      "tag": "CLIMATE INTELLIGENCE",
       "coords": "CLIMATE-RISK // HAZARD-MAP"
     },
     {
@@ -141,21 +141,21 @@
     {
       "id": "app-5",
       "image": "/images/urban.jpg",
-      "label": "Infrastructure & Urban",
+      "label": "Urban Planning",
       "shortLabel": "URBAN",
       "alt": "Asset monitoring, smart cities, land use & change detection",
-      "description": "Asset monitoring, smart city developments, land use classification, and structural encroachment tracking.",
-      "tag": "INFRASTRUCTURE & URBAN",
+      "description": "Intelligence for cities that are constantly changing — spatial intelligence for understanding urban growth, infrastructure, land use and climate vulnerability.",
+      "tag": "URBAN PLANNING",
       "coords": "URBAN-SPATIAL // INFRA-MON"
     },
     {
       "id": "app-6",
       "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
-      "label": "Natural Capital",
-      "shortLabel": "FOREST",
+      "label": "Forestry",
+      "shortLabel": "FORESTRY",
       "alt": "Forests, biodiversity, ecosystem monitoring",
-      "description": "Canopy health analysis, biodiversity tracking, automated biomass estimation, and carbon sequestration verification.",
-      "tag": "NATURAL CAPITAL",
+      "description": "Monitoring forests at scale — GeoAI-powered intelligence for understanding forest change, land-use dynamics and environmental conditions.",
+      "tag": "FORESTRY",
       "coords": "CANOPY-AI // CARBON-CAPITAL"
     }
   ]
@@ -164,7 +164,7 @@
     "hero": {
       "eyebrow": "CREDENTIALS",
       "title": "Credentials & Recognition",
-      "description": "A proven record of global recognition, policy participation, and leadership in Earth Intelligence and Space Technology."
+      "description": "HG's work spans national and international forums across Earth Observation, SpaceTech, AI and climate technology."
     },
     "sections": {
       "recognition": {
@@ -198,7 +198,7 @@
         "id": "recognition-1",
         "category": "HONOR",
         "title": "Bharat Vibhushan Samman 2026",
-        "description": "Awarded to Founder & CEO Preeti Chaudhary for pioneering contributions to Space Technology and Earth Intelligence.",
+        "description": "National honor recognising pioneering contributions to Space Technology and Earth Intelligence.",
         "year": "2026",
         "image": "/images/global-reco/bharat-vibhusham.png"
       },
@@ -213,52 +213,54 @@
       {
         "id": "recognition-3",
         "category": "GLOBAL FORUM",
-        "title": "British Parliament Innovation Keynote",
-        "description": "Invited speaker addressing cross-border space technological collaboration and climate AI solutions.",
+        "title": "British Parliament / Next Economy Forum",
+        "description": "Represented at the British Parliament Next Economy Forum on SpaceTech, AI and climate technology.",
         "year": "2024",
         "image": "/images/global-reco/british-parliment-forum.png"
       },
       {
         "id": "recognition-4",
-        "category": "DELEGATION",
-        "title": "Indo-Japanese Space Synergies",
-        "description": "Key contributor to bilateral space technology dialogue and Earth Observation framework alignment.",
-        "year": "2024",
-        "image": "/images/narional-global-ecostyem/japan-space.png"
+        "category": "INDUSTRY BODY",
+        "title": "FICCI",
+        "description": "Active engagement with FICCI across Space, Defense, and Infrastructure initiatives.",
+        "year": "2023",
+        "image": "/images/global-reco/Member-Federation-of-Indian-Chambers-of-Commerce-and-Industry.png"
       }
     ],
     "media": [
       {
         "id": "media-1",
+        "publication": "CIO Prime",
+        "title": "India's Most Iconic Women Leaders to Watch in 2026 — Preeti Chaudhary",
+        "description": "Featured by CIO Prime among India's most iconic women leaders to watch in 2026.",
+        "year": "2026",
+        "link": "https://cioprime.com/indias-most-iconic-women-leaders-to-watch-in-2026-preeti-chaudhary/",
+        "image": "/images/global-reco/eco-times.png"
+      },
+      {
+        "id": "media-2",
+        "publication": "YouTube",
+        "title": "Panel Discussion: NISAR — Joint NASA & ISRO Initiative",
+        "description": "Panel discussion with eminent dignitaries from across departments on NISAR, the joint initiative by NASA and ISRO.",
+        "year": "2025",
+        "link": "https://www.youtube.com/watch?v=1_ut9zfL6Js"
+      },
+      {
+        "id": "media-3",
         "publication": "The Economic Times",
         "title": "Building Tech Sovereignty: How HG Systems is Redefining GeoAI",
         "description": "An in-depth feature on the Unified GeoAI stack and sovereign private cloud infrastructure.",
         "year": "2025",
         "image": "/images/global-reco/eco-times.png"
-      },
-      {
-        "id": "media-2",
-        "publication": "Outlook India",
-        "title": "Earth Intelligence for Sustainable Development",
-        "description": "Exploring how foundational AI models drive agricultural safety and climate resilience.",
-        "year": "2025",
-        "image": "/images/global-reco/outlook.png"
-      },
-      {
-        "id": "media-3",
-        "publication": "Forbes",
-        "title": "The Next Frontier: Satellite Edge AI in Developing Nations",
-        "description": "Highlighting low-latency Earth Observation analytics at satellite ground stations.",
-        "year": "2024"
       }
     ],
     "forums": [
       {
         "id": "forum-1",
-        "title": "British Parliament Space & Climate Summit",
-        "venue": "House of Commons",
+        "title": "British Parliament / Next Economy Forum",
+        "venue": "British Parliament",
         "location": "London, UK",
-        "description": "Address on sovereign AI infrastructure for global environmental governance.",
+        "description": "Forum on SpaceTech, AI and climate technology on the global stage.",
         "year": "2024",
         "image": "/images/global-reco/british-parliment-forum.png"
       },
@@ -273,12 +275,12 @@
       },
       {
         "id": "forum-3",
-        "title": "Indo-Japanese Bilateral Space Dialogue",
-        "venue": "Tokyo Technology Pavilion",
-        "location": "Tokyo, Japan",
-        "description": "Strategic partnership talks on joint Earth observation data frameworks.",
+        "title": "FICCI",
+        "venue": "FICCI",
+        "location": "India",
+        "description": "Engagement across Space, Defense, and Infrastructure task forces.",
         "year": "2023",
-        "image": "/images/narional-global-ecostyem/japan-space.png"
+        "image": "/images/global-reco/Member-Federation-of-Indian-Chambers-of-Commerce-and-Industry.png"
       }
     ],
     "ecosystem": [
@@ -327,8 +329,8 @@
     ]
   },
   "cta": {
-    "title": "Ready to build tech sovereignty with Earth Intelligence?",
-    "buttonLabel": "Contact Our Team"
+    "title": "Build the intelligence infrastructure for a changing planet.",
+    "buttonLabel": "Partner with Harvest Global"
   },
   "footer": {
     "brandDescription": "Harvest Global SSP Pvt Ltd (HG Systems) is a leader in Earth Intelligence, Sovereign Private Cloud, and GeoAI solutions.",
