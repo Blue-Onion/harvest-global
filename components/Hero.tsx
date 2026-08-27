@@ -125,7 +125,7 @@ const Hero = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative isolate flex h-screen w-screen flex-col items-center justify-center"
+      className="relative isolate h-screen w mx-auto containerflex-col"
     >
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <video
@@ -134,10 +134,10 @@ const Hero = () => {
           muted
 
           playsInline
-          className="h-full w-full scale-[1.08] object-cover"
+          className="h-full w-full ro scale-[1.08] object-cover"
         >
           <source
-            src="/videos/heroBg.mp4"
+            src="/videos/earth-hori.mp4"
             type="video/mp4"
           />
         </video>
@@ -146,7 +146,7 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <h1
           data-title="harvest-hero"
-          className="font-display text-4xl font-normal uppercase tracking-tight text-white md:text-6xl lg:text-7xl"
+          className="text-4xl font-normal uppercase tracking-tight text-white md:text-6xl lg:text-7xl"
           style={{
             visibility: "hidden",
           }}
@@ -155,28 +155,24 @@ const Hero = () => {
         </h1>
       </div>
 
-      <div className="hero-content mx-auto w-[80%] space-y-5 text-center">
-        <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-[3.3rem]">
-          <span className="highlight-tag scale-y-200 text-emerald-600 md:scale-y-150 lg:scale-y-125">
-            Foundational
+      <div className="hero-content flex flex-col  container mx-auto py-30  justify-end h-full  space-y-2 ">
+        <h1 className=" gap-2 tracking-wider text-white text-8xl">
+          <span className="highlight-tag  font-extrabold">
+            Amplify
           </span>
 
-          <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
-            Intelligence
-          </span>
+          
         </h1>
 
-        <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-[3.5rem]">
-          <span className="hero-line scale-y-200 md:scale-y-150 lg:scale-y-125">
-            For Earth
-          </span>
+        <h1 className=" gap-2 text-2xl  tracking-wider text-white md:text-4xl lg:text-[3.5rem]">
+         
 
-          <span className="highlight-tag scale-y-200 text-orange-600 md:scale-y-150 lg:scale-y-125">
+          <span className="highlight-tag  text-8xl font-extrabold">
             Observation
           </span>
         </h1>
 
-        <p className="subtitle mt-10 text-md text-muted-foreground md:text-xl">
+        <p className="subtitle mt-6 text-md text-muted-foreground md:text-xl">
           Sovereign GeoAI. Private AI Cloud. Edge Intelligence.
         </p>
       </div>

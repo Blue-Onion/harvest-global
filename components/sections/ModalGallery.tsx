@@ -1,0 +1,91 @@
+"use client";
+
+import ModalCards from "@/components/ui/ModalCards";
+import { data } from "@/data";
+
+const galleryCards = [
+  {
+    id: "urban",
+    imageUrl: "/images/urban.jpg",
+    title: "Urban Intelligence",
+    description:
+      "How Harvest Global's sensing fabric turns dense cityscapes into living, decision-ready systems.",
+    gradientColor: "#f97316",
+  },
+  {
+    id: "about",
+    imageUrl: "/images/aboutbg.png",
+    title: "Our Origins",
+    description:
+      "The mission and the people building a globally connected Earth observation ecosystem.",
+    gradientColor: "#6366f1",
+  },
+  {
+    id: "eco-times",
+    imageUrl: "/images/global-reco/eco-times.png",
+    title: "Eco Times Feature",
+    description:
+      "Recognition from leading publications on our climate and sustainability work.",
+    gradientColor: "#0ea5e9",
+  },
+  {
+    id: "british-forum",
+    imageUrl: "/images/global-reco/british-parliment-forum.png",
+    title: "British Parliament Forum",
+    description:
+      "Invited dialogue on global policy, space economics, and responsible AI.",
+    gradientColor: "#22c55e",
+  },
+  {
+    id: "japan-space",
+    imageUrl: "/images/narional-global-ecostyem/japan-space.png",
+    title: "Japan Space Partnership",
+    description:
+      "Cross-border collaboration advancing next-generation orbital and ground infrastructure.",
+    gradientColor: "#a855f7",
+  },
+  {
+    id: "iirs-assam",
+    imageUrl: "/images/narional-global-ecostyem/IIRS-and-Assam-space.png",
+    title: "IIRS & Assam Space",
+    description:
+      "Regional capacity-building programs bringing space-tech to state-level governance.",
+    gradientColor: "#eab308",
+  },
+];
+
+export default function ModalGallery() {
+  return (
+    <section
+      id="gallery"
+      className="relative w-full border-t border-white/10 bg-black text-white"
+    >
+      <div className="relative z-10 mx-auto max-w-6xl px-5 py-20 sm:px-8 md:px-10 md:py-28">
+        <div className="max-w-3xl">
+          <div className="flex items-center gap-3">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
+              Gallery
+            </p>
+          </div>
+
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]">
+            Explore the <span className="text-orange-500">ecosystem</span>
+          </h2>
+
+          <p className="mt-6 text-base leading-relaxed text-neutral-400 sm:text-lg max-w-2xl">
+            {data.applications.description}
+          </p>
+        </div>
+
+        <div className="mt-12">
+          <ModalCards
+            cards={galleryCards}
+            animationVariant="scale"
+            gradientColor="#f97316"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

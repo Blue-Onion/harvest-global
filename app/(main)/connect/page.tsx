@@ -3,6 +3,7 @@ import StarBackground from "@/components/ui/Starbackground";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
+import Image from "next/image";
 gsap.registerPlugin(SplitText);
 const ConnectPage = () => {
   useGSAP(() => {
@@ -58,31 +59,47 @@ const ConnectPage = () => {
                 <p className="text-sm">How to connect</p>
 
                 <div className="mt-12 space-y-1 text-sm text-white/60">
-                  <p>info@harvest-global.com</p>
-                  <p>+91 9821206807</p>
+                  <p>harvestglobal@hgsystems.in</p>
                 </div>
               </div>
 
               <div className="flex gap-3">
                 <a
-                  href="#"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                  href="https://www.linkedin.com/in/harvest-global-3bba22220/?skipRedirect=true"
+                  className="flex invert hover:invert-0 h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
-                  <img
+                  <Image
+                    height={22}
+                    width={22}
                     src="/images/linkedIn.svg"
                     alt="LinkedIn"
-                    className="h-5 w-5 invert hover:invert-0"
+
                   />
                 </a>
 
                 <a
-                  href="#"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                  href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
+                  className="flex invert hover:invert-0 h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
-                  <img
+                    <Image
+                    height={22}
+                    width={22}
                     src="/images/insta.svg"
-                    alt="Instagram"
-                    className="h-5 w-5 invert hover:invert-0"
+                    alt="LinkedIn"
+
+                  />
+                </a>
+                <a
+                  href="https://x.com/HarvestG_Ssp"
+                  className="flex invert hover:invert-0 h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                >
+                 
+                    <Image
+                    height={22}
+                    width={22}
+                    src="/images/insta.svg"
+                    alt="LinkedIn"
+
                   />
                 </a>
               </div>
@@ -115,7 +132,7 @@ const ConnectPage = () => {
 
             <button
               type="submit"
-              className="mt-7 w-fit rounded-full bg-white px-7 py-4 text-xs uppercase tracking-wide text-black transition-all hover:scale-105"
+              className="mt-7 cursor-pointer w-fit rounded-full bg-white px-7 py-4 text-xs uppercase tracking-wide text-black transition-all hover:scale-105"
             >
               Submit message
             </button>

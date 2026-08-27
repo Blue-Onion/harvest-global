@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import HeroReveal from "@/components/ui/HeroReveal";
 
-import { Audiowide, Inter } from "next/font/google";
+import { Michroma, Inter } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 
 
-const audiowide = Audiowide({
+const michroma = Michroma({
 
   variable: "--font-display",
 
@@ -35,7 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${audiowide.variable} ${inter.variable} max-w-screen h-full antialiased`}
+      className={`${michroma.variable} ${inter.variable} max-w-screen h-full antialiased`}
     >
       <body className="min-h-full bg-black w-full overflow-x-hidden">
 
