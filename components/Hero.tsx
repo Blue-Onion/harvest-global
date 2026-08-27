@@ -125,7 +125,7 @@ const Hero = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative isolate flex h-screen w-screen flex-col items-center justify-center"
+      className="relative isolate h-screen w mx-auto containerflex-col"
     >
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <video
@@ -134,10 +134,10 @@ const Hero = () => {
           muted
 
           playsInline
-          className="h-full w-full scale-[1.08] object-cover"
+          className="h-full w-full ro scale-[1.08] object-cover"
         >
           <source
-            src="/videos/heroBg.mp4"
+            src="/videos/earth-hori.mp4"
             type="video/mp4"
           />
         </video>
@@ -155,28 +155,24 @@ const Hero = () => {
         </h1>
       </div>
 
-      <div className="hero-content mx-auto w-[80%] space-y-5 text-center">
-        <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-[3.3rem]">
-          <span className="highlight-tag  ">
-            Foundational
+      <div className="hero-content flex flex-col  container mx-auto py-30  justify-end h-full  space-y-2 ">
+        <h1 className=" gap-2 tracking-wider text-white text-8xl">
+          <span className="highlight-tag  font-extrabold">
+            Amplify
           </span>
 
-          <span className="hero-line  ">
-            Intelligence
-          </span>
+          
         </h1>
 
-        <h1 className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wider text-white md:text-4xl lg:text-[3.5rem]">
-          <span className="hero-line  ">
-            For Earth
-          </span>
+        <h1 className=" gap-2 text-2xl  tracking-wider text-white md:text-4xl lg:text-[3.5rem]">
+         
 
-          <span className="highlight-tag">
+          <span className="highlight-tag  text-8xl font-extrabold">
             Observation
           </span>
         </h1>
 
-        <p className="subtitle mt-10 text-md text-muted-foreground md:text-xl">
+        <p className="subtitle mt-6 text-md text-muted-foreground md:text-xl">
           Sovereign GeoAI. Private AI Cloud. Edge Intelligence.
         </p>
       </div>

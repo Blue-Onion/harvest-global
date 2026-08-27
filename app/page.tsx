@@ -3,6 +3,7 @@ import About from "@/components/sections/About";
 import Technology from "@/components/sections/Technology";
 import Applications from "@/components/sections/Applications";
 import CredentialsTeaser from "@/components/sections/CredentialsTeaser";
+import ModalGallery from "@/components/sections/ModalGallery";
 import Footer from "@/components/footer/Footer";
 import FinalCta from "@/components/sections/FinalCta";
 import Navbar from "@/components/Navbar";
@@ -19,6 +20,7 @@ export default function Home() {
       <Technology />
       <Applications />
       <CredentialsTeaser />
+      <ModalGallery />
       <FinalCta />
       <Footer />
     </main>
