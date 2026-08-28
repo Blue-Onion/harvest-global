@@ -9,6 +9,7 @@ import FinalCta from "@/components/sections/FinalCta";
 import Navbar from "@/components/Navbar";
 import HeroReveal from "@/components/ui/HeroReveal";
 import Connect from "@/components/sections/Connect";
+import Challenge from "@/components/sections/Challenge";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <HeroReveal/>
       <About />
+      <Challenge/>
       <Technology />
       <Applications />
       <CredentialsTeaser />

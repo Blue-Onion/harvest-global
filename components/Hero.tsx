@@ -33,10 +33,6 @@ const Hero = () => {
 
       window.addEventListener("mousemove", handleMouseMove);
 
-      const heroLine = SplitText.create(".hero-line", {
-        type: "chars",
-      });
-
       const heroHighlight = SplitText.create(".highlight-tag", {
         type: "chars",
       });
@@ -54,10 +50,6 @@ const Hero = () => {
         opacity: 0,
         y: 20,
         scale: 0.8,
-      });
-
-      gsap.set(heroLine.chars, {
-        opacity: 0,
       });
 
       gsap.set(subtitle.words, {
@@ -86,13 +78,6 @@ const Hero = () => {
           ease: "back.out(1.7)",
         });
 
-        tl.to(heroLine.chars, {
-          opacity: 1,
-          duration: 0.05,
-          stagger: 0.05,
-          ease: "none",
-        });
-
         tl.to(
           subtitle.words,
           {
@@ -111,7 +96,6 @@ const Hero = () => {
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("intro-complete", startHeroAnimation);
 
-        heroLine.revert();
         heroHighlight.revert();
         subtitle.revert();
       };

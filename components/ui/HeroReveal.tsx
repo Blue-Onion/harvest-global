@@ -187,19 +187,7 @@ export default function Intro() {
   return (
     <div ref={introRef} className="pointer-events-none fixed inset-0 z-9999">
       <div ref={topRef} className="pointer-events-none absolute inset-0 overflow-hidden bg-black">
-        {stars.map((star) => (
-          <span
-            key={star.id}
-            className="absolute rounded-full bg-white"
-            style={{
-              left: `${star.left}%`,
-              top: `${star.top}%`,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              opacity: star.opacity,
-            }}
-          />
-        ))}
+        
       </div>
 
       <div

@@ -30,11 +30,11 @@ export default function About() {
   } = data.about;
 
   // ScrollExpand config
-  const startWidth = 48;
+  const startWidth = 75;
   const startHeight = 58;
   const startRadius = 24;
   const endRadius = 0;
-  const mediaZoom = 1.3;
+  const mediaZoom = 2;
   const scrollDistance = 1.2; // viewport-heights of scroll that drive expansion
   const holdDistance = 0.4; // extra pinned scroll after expansion completes
   const smoothing = 0.1; // scrub lag (seconds) — matches the old RAF smoothing
