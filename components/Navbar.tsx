@@ -284,13 +284,12 @@ function Navbar() {
           </div>
 
           <div className="flex items-center justify-center">
-           
-            <h3
+            <img
               data-title="harvest-nav"
-              className="text-md  font-extrabold uppercase tracking-tight text-white md:text-xl"
-            >
-              Harvest Global
-            </h3>
+              src="/svg/logo.svg"
+              alt="Harvest Global"
+              className="w-44 md:w-56"
+            />
           </div>
 
           <div className="flex items-center justify-end gap-6">
