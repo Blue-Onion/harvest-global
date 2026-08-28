@@ -10,7 +10,7 @@ function mulberry32(seed: number) {
 
 const random = mulberry32(2024);
 
-const stars = Array.from({ length: 120 }, (_, i) => ({
+const stars = Array.from({ length: 220 }, (_, i) => ({
   id: i,
   left: random() * 100,
   top: random() * 100,
@@ -21,6 +21,10 @@ const stars = Array.from({ length: 120 }, (_, i) => ({
 export default function StarBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden bg-black">
+      <div
+        className="absolute inset-0 bg-[url('/images/noise.png')] bg-repeat opacity-60 mix-blend-screen"
+        aria-hidden="true"
+      />
       {stars.map((star) => (
         <span
           key={star.id}

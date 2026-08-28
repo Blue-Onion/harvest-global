@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function Navbar() {
   const navLinks = [
@@ -129,6 +130,34 @@ function Navbar() {
         { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
       );
 
+      // Backdrop blur + tint once the user starts scrolling.
+      const nav = navRef.current;
+      if (nav) {
+        gsap.set(nav, {
+          "--nav-blur": "0px",
+          backgroundColor: "rgba(0,0,0,0)",
+          borderColor: "rgba(255,255,255,0)",
+        });
+
+        ScrollTrigger.create({
+          start: 80,
+          end: "max",
+          onToggle: (self) => {
+            gsap.to(nav, {
+              "--nav-blur": self.isActive ? "12px" : "0px",
+              backgroundColor: self.isActive
+                ? "rgba(8,8,8,0.55)"
+                : "rgba(0,0,0,0)",
+              borderColor: self.isActive
+                ? "rgba(255,255,255,0.1)"
+                : "rgba(255,255,255,0)",
+              duration: 0.35,
+              ease: "power2.out",
+            });
+          },
+        });
+      }
+
       if (marqueeRef.current) {
         marqueeTween.current = gsap.to(marqueeRef.current, {
           xPercent: -50,
@@ -237,7 +266,14 @@ function Navbar() {
 
   return (
     <>
-      <header ref={navRef} className="inset-x-0 top-4 container mx-auto fixed z-50 py-4  text-white">
+      <header
+        ref={navRef}
+        style={{
+          backdropFilter: "blur(var(--nav-blur, 0px))",
+          WebkitBackdropFilter: "blur(var(--nav-blur, 0px))",
+        }}
+        className="inset-x-0 top-4 container mx-auto fixed z-50 rounded-2xl border border-transparent px-4 text-white"
+      >
         <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
           <div className="flex items-center gap-6 font-bold text-base">
             {/* Desktop Links */}
@@ -284,13 +320,12 @@ function Navbar() {
           </div>
 
           <div className="flex items-center justify-center">
-           
-            <h3
+            <img
               data-title="harvest-nav"
-              className="text-md  font-extrabold uppercase tracking-tight text-white md:text-xl"
-            >
-              Harvest Global
-            </h3>
+              src="/svg/logo.svg"
+              alt="Harvest Global"
+              className="w-44 md:w-56"
+            />
           </div>
 
           <div className="flex items-center justify-end gap-6">

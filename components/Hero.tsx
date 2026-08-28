@@ -33,16 +33,12 @@ const Hero = () => {
 
       window.addEventListener("mousemove", handleMouseMove);
 
-      const heroLine = SplitText.create(".hero-line", {
-        type: "chars",
-      });
-
       const heroHighlight = SplitText.create(".highlight-tag", {
         type: "chars",
       });
 
       const subtitle = SplitText.create(".subtitle", {
-        type: "chars",
+        type: "words",
       });
 
       gsap.set(".hero-content", {
@@ -56,11 +52,7 @@ const Hero = () => {
         scale: 0.8,
       });
 
-      gsap.set(heroLine.chars, {
-        opacity: 0,
-      });
-
-      gsap.set(subtitle.chars, {
+      gsap.set(subtitle.words, {
         opacity: 0,
       });
 
@@ -86,19 +78,12 @@ const Hero = () => {
           ease: "back.out(1.7)",
         });
 
-        tl.to(heroLine.chars, {
-          opacity: 1,
-          duration: 0.05,
-          stagger: 0.05,
-          ease: "none",
-        });
-
         tl.to(
-          subtitle.chars,
+          subtitle.words,
           {
             opacity: 1,
-            duration: 0.05,
-            stagger: 0.05,
+            duration: 1,
+            stagger: 0.1,
             ease: "none",
           },
           "<",
@@ -111,7 +96,6 @@ const Hero = () => {
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("intro-complete", startHeroAnimation);
 
-        heroLine.revert();
         heroHighlight.revert();
         subtitle.revert();
       };
@@ -144,15 +128,15 @@ const Hero = () => {
       </div>
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <h1
+        <img
           data-title="harvest-hero"
-          className="text-4xl font-normal uppercase tracking-tight text-white md:text-6xl lg:text-7xl"
+          src="/svg/logo.svg"
+          alt="Harvest Global"
+          className="w-48 md:w-60 lg:w-72"
           style={{
             visibility: "hidden",
           }}
-        >
-          Harvest Global
-        </h1>
+        />
       </div>
 
       <div className="hero-content flex flex-col  container mx-auto py-30  justify-end h-full  space-y-2 ">

@@ -3,9 +3,7 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { SplitText } from "gsap/all";
 
-gsap.registerPlugin(SplitText);
 function mulberry32(seed: number) {
   return () => {
     seed |= 0;
@@ -29,7 +27,7 @@ export default function Intro() {
   const introRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const textRef = useRef<HTMLImageElement>(null);
 
   useGSAP(() => {
     const intro = introRef.current;
@@ -54,20 +52,14 @@ export default function Intro() {
     const navRoot = navTitle.closest("header");
     if (navRoot) gsap.set(navRoot, { visibility: "hidden" });
 
-    const splitTitle = SplitText.create(text, {
-      type: "chars",
-    });
-
     const tl = gsap.timeline();
     gsap.set(text, {
       visibility: "visible",
       transformOrigin: "0 0",
-    });
-
-    gsap.set(splitTitle.chars, {
-      opacity: 0,
-      y: 20,
-      filter: "blur(8px)",
+      opacity: 1,
+      filter: "blur(10px)",
+      scale: 0.96,
+      clipPath: "inset(0 100% 0 0)",
     });
 
     gsap.set(heroTitle, {
@@ -116,19 +108,20 @@ export default function Intro() {
       ease: "power1.inOut",
     });
 
-    tl.to(splitTitle.chars, {
+    // Left-to-right typewriter reveal of the SVG wordmark.
+    tl.to(text, {
+      clipPath: "inset(0 0% 0 0)",
       opacity: 1,
-      y: 0,
       filter: "blur(0px)",
-      duration: 0.8,
-      ease: "power1.inOut",
-      stagger: 0.06,
+      scale: 1,
+      duration: 1.6,
+      ease: "none",
     });
 
     tl.to(
       {},
       {
-        duration: 0.8,
+        duration: 0.6,
       },
     );
 
@@ -187,7 +180,6 @@ export default function Intro() {
     });
 
     return () => {
-      splitTitle.revert();
       tl.kill();
     };
   });
@@ -195,19 +187,7 @@ export default function Intro() {
   return (
     <div ref={introRef} className="pointer-events-none fixed inset-0 z-9999">
       <div ref={topRef} className="pointer-events-none absolute inset-0 overflow-hidden bg-black">
-        {stars.map((star) => (
-          <span
-            key={star.id}
-            className="absolute rounded-full bg-white"
-            style={{
-              left: `${star.left}%`,
-              top: `${star.top}%`,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              opacity: star.opacity,
-            }}
-          />
-        ))}
+        
       </div>
 
       <div
@@ -216,16 +196,16 @@ export default function Intro() {
       />
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <h1
+        <img
           ref={textRef}
           data-title="harvest-intro"
-          className="text-3xl font-normal uppercase text-white md:text-6xl lg:text-7xl"
+          src="/svg/logo.svg"
+          alt="Harvest Global"
+          className="w-80 md:w-[32rem] lg:w-[44rem]"
           style={{
             visibility: "hidden",
           }}
-        >
-          Harvest Global
-        </h1>
+        />
       </div>
     </div>
   );
