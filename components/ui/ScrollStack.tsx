@@ -59,7 +59,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
       return Number(value);
     },
-    []
+    [],
   );
 
   /*
@@ -73,7 +73,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     const viewportHeight = useWindowScroll
       ? window.innerHeight
-      : scrollerRef.current?.clientHeight ?? window.innerHeight;
+      : (scrollerRef.current?.clientHeight ?? window.innerHeight);
 
     const stackTop = parsePercentage(stackPosition, viewportHeight);
     const lastPinTop = stackTop + (cards.length - 1) * itemStackDistance;
@@ -129,7 +129,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const cards = Array.from(
       useWindowScroll
         ? document.querySelectorAll(".scroll-stack-card")
-        : (scrollerRef.current?.querySelectorAll(".scroll-stack-card") ?? [])
+        : (scrollerRef.current?.querySelectorAll(".scroll-stack-card") ?? []),
     ) as HTMLElement[];
 
     cardsRef.current = cards;

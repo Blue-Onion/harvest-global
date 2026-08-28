@@ -45,16 +45,16 @@ export default function Applications() {
 
       {/* ScrollStack Cards */}
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8 md:px-10">
- <ScrollStack
-  useWindowScroll
-  itemDistance={40}
-  itemStackDistance={18}
-  stackPosition="10%"
->
-  {applications.map((app, i) => (
-    <ScrollStackItem
-      key={app.id}
-      itemClassName="
+        <ScrollStack
+          useWindowScroll
+          itemDistance={40}
+          itemStackDistance={18}
+          stackPosition="10%"
+        >
+          {applications.map((app, i) => (
+            <ScrollStackItem
+              key={app.id}
+              itemClassName="
         !my-0
         !h-[520px]
         md:!h-[620px]
@@ -66,67 +66,67 @@ export default function Applications() {
         border-white/10
         bg-neutral-950
       "
-    >
-      <div className="relative h-full w-full">
-        {/* Image */}
-        {/* Image */}
-        <Image
-          src={app.image}
-          alt={app.alt}
-          fill
-          draggable={false}
-          sizes="(min-width: 1024px) 1152px, 100vw"
-          className="absolute inset-0 h-full w-full select-none object-cover"
-        />
+            >
+              <div className="relative h-full w-full">
+                {/* Image */}
+                {/* Image */}
+                <Image
+                  src={app.image}
+                  alt={app.alt}
+                  fill
+                  draggable={false}
+                  sizes="(min-width: 1024px) 1152px, 100vw"
+                  className="absolute inset-0 h-full w-full select-none object-cover"
+                />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/20" />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/20" />
 
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-between p-7 sm:p-10 md:p-12">
-          {/* Top */}
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <span className="font-mono text-sm font-semibold uppercase tracking-[0.25em] text-orange-400">
-                {String(i + 1).padStart(2, "0")} /{" "}
-                {String(applications.length).padStart(2, "0")}
-              </span>
+                {/* Content */}
+                <div className="relative z-10 flex h-full flex-col justify-between p-7 sm:p-10 md:p-12">
+                  {/* Top */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <span className="font-mono text-sm font-semibold uppercase tracking-[0.25em] text-orange-400">
+                        {String(i + 1).padStart(2, "0")} /{" "}
+                        {String(applications.length).padStart(2, "0")}
+                      </span>
 
-              <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
-                {app.shortLabel}
-              </p>
-            </div>
+                      <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
+                        {app.shortLabel}
+                      </p>
+                    </div>
 
-            <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-neutral-300 backdrop-blur-sm">
-              {app.tag}
-            </span>
-          </div>
+                    <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-neutral-300 backdrop-blur-sm">
+                      {app.tag}
+                    </span>
+                  </div>
 
-          {/* Bottom */}
-          <div>
-            <h3 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-              {app.label}
-            </h3>
+                  {/* Bottom */}
+                  <div>
+                    <h3 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+                      {app.label}
+                    </h3>
 
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base md:text-lg">
-              {app.description}
-            </p>
+                    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base md:text-lg">
+                      {app.description}
+                    </p>
 
-            <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-4">
-              <span className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 sm:text-[10px]">
-                {app.coords}
-              </span>
+                    <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-4">
+                      <span className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 sm:text-[10px]">
+                        {app.coords}
+                      </span>
 
-              <span className="font-mono text-[9px] uppercase tracking-wider text-white/30">
-                SYSTEM // NODE
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ScrollStackItem>
-  ))}
-</ScrollStack>
+                      <span className="font-mono text-[9px] uppercase tracking-wider text-white/30">
+                        SYSTEM // NODE
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollStackItem>
+          ))}
+        </ScrollStack>
       </div>
     </section>
   );
