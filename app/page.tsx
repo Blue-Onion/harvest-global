@@ -1,6 +1,5 @@
 import Hero from "@/components/Hero";
 import About from "@/components/sections/About";
-import Technology from "@/components/sections/Technology";
 import Applications from "@/components/sections/Applications";
 import CredentialsTeaser from "@/components/sections/CredentialsTeaser";
 import ModalGallery from "@/components/sections/ModalGallery";
@@ -8,18 +7,14 @@ import Footer from "@/components/footer/Footer";
 import FinalCta from "@/components/sections/FinalCta";
 import Navbar from "@/components/Navbar";
 import HeroReveal from "@/components/ui/HeroReveal";
-import Connect from "@/components/sections/Connect";
-import Challenge from "@/components/sections/Challenge";
 
 export default function Home() {
   return (
     <main className="text-white">
-      <Navbar/>
+      <Navbar />
       <Hero />
-      <HeroReveal/>
+      <HeroReveal />
       <About />
-      <Challenge/>
-      <Technology />
       <Applications />
       <CredentialsTeaser />
       <ModalGallery />
@@ -28,5 +23,3 @@ export default function Home() {
     </main>
   );
 }
-
-
