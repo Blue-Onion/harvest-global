@@ -22,9 +22,12 @@ type AnimationSpeed = "slow" | "normal" | "fast" | "none";
 type AnimationVariant = "scale" | "fade" | "slide";
 
 interface ModalCardsProps {
-  cards?: ModalCardData[];
-  className?: string;
+  id: string;
+  imageUrl: string | null;
+  title: string;
+  description?: string;
   gradientColor?: string;
+  className?: string;
   animationSpeed?: AnimationSpeed;
   springStiffness?: number;
   springDamping?: number;
@@ -38,36 +41,6 @@ interface ModalCardsProps {
   backdropClassName?: string;
 }
 
-const defaultCards: ModalCardData[] = [
-  {
-    id: "mountain-vista",
-    imageUrl:
-      "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop",
-    title: "Mountain Vista",
-    description:
-      "Soaring peaks wrapped in morning haze, where the first light paints the ridgeline in gold.",
-    gradientColor: "#6366f1",
-  },
-  {
-    id: "ocean-waves",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-    title: "Ocean Waves",
-    description:
-      "Endless horizons of rolling surf, a rhythm older than memory and calm as breath.",
-    gradientColor: "#0ea5e9",
-  },
-  {
-    id: "forest-path",
-    imageUrl:
-      "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=800&h=600&fit=crop",
-    title: "Forest Path",
-    description:
-      "A quiet trail through ancient trees, where dappled light leads deeper into the green.",
-    gradientColor: "#22c55e",
-  },
-];
-
 const speedToDuration: Record<AnimationSpeed, number> = {
   slow: 0.7,
   normal: 0.45,
@@ -76,9 +49,12 @@ const speedToDuration: Record<AnimationSpeed, number> = {
 };
 
 export const ModalCards: React.FC<ModalCardsProps> = ({
-  cards = defaultCards,
-  className = "",
+  id,
+  imageUrl,
+  title,
+  description,
   gradientColor = "#6366f1",
+  className = "",
   animationSpeed = "normal",
   springStiffness,
   springDamping,
@@ -92,9 +68,8 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
   backdropClassName = "",
 }) => {
   const reduceMotion = useReducedMotion();
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
 
-  const activeCard = cards.find((card) => card.id === activeId) ?? null;
   const duration = speedToDuration[animationSpeed] ?? 0.45;
 
   const baseTransition: Transition =
@@ -108,10 +83,10 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
           }
         : { type: "spring", stiffness: 260, damping: 30, duration };
 
-  const close = useCallback(() => setActiveId(null), []);
+  const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
-    if (!activeId) return;
+    if (!open) return;
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && closeOnEscape) close();
@@ -125,7 +100,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
     };
-  }, [activeId, close, closeOnEscape]);
+  }, [open, close, closeOnEscape]);
 
   const entryVariants =
     animationVariant === "fade"
@@ -138,63 +113,58 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
           }
         : null;
 
+  const useMorph = animationVariant === "scale";
+
   return (
-    <div className={cn("w-full", className)}>
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {cards.map((card) => {
-          const color = card.gradientColor ?? gradientColor;
-          const useMorph = animationVariant === "scale";
+    <>
+      <motion.button
+        type="button"
+        onClick={() => setOpen(true)}
+        className={cn(
+          "group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+          className,
+        )}
+        style={{ background: gradientColor }}
+        layoutId={useMorph ? `card-${id}` : undefined}
+        whileHover={reduceMotion ? undefined : { y: -4 }}
+        transition={baseTransition}
+        aria-label={`Open ${title}`}
+      >
+        {imageUrl && (
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            unoptimized
+          />
+        )}
 
-          return (
-            <motion.button
-              key={card.id}
-              type="button"
-              onClick={() => setActiveId(card.id)}
-              className="group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-              style={{ background: color }}
-              layoutId={useMorph ? `card-${card.id}` : undefined}
-              whileHover={reduceMotion ? undefined : { y: -4 }}
-              transition={baseTransition}
-              aria-label={`Open ${card.title}`}
-            >
-              {card.imageUrl && (
-                <Image
-                  src={card.imageUrl}
-                  alt={card.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  unoptimized
-                />
-              )}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(to top, ${gradientColor}cc 0%, ${gradientColor}33 45%, transparent 75%)`,
+          }}
+        />
 
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `linear-gradient(to top, ${color}cc 0%, ${color}33 45%, transparent 75%)`,
-                }}
-              />
-
-              <motion.div
-                layoutId={useMorph ? `title-${card.id}` : undefined}
-                className="absolute inset-x-0 bottom-0 p-5"
-              >
-                <h3 className="text-xl font-semibold text-white drop-shadow">
-                  {card.title}
-                </h3>
-                {card.description && (
-                  <p className="mt-1 line-clamp-2 text-sm text-white/80">
-                    {card.description}
-                  </p>
-                )}
-              </motion.div>
-            </motion.button>
-          );
-        })}
-      </div>
+        <motion.div
+          layoutId={useMorph ? `title-${id}` : undefined}
+          className="absolute inset-x-0 bottom-0 p-5"
+        >
+          <h3 className="text-xl font-semibold text-white drop-shadow">
+            {title}
+          </h3>
+          {description && (
+            <p className="mt-1 line-clamp-2 text-sm text-white/80">
+              {description}
+            </p>
+          )}
+        </motion.div>
+      </motion.button>
 
       <AnimatePresence>
-        {activeCard && (
+        {open && (
           <motion.div
             key="backdrop"
             className={cn(
@@ -202,7 +172,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
               backdropClassName,
             )}
             style={{
-              background: `radial-gradient(circle at ${backdropGradientPosition}, ${activeCard.gradientColor ?? gradientColor}66 0%, rgba(0,0,0,0.85) 60%)`,
+              background: `radial-gradient(circle at ${backdropGradientPosition}, ${gradientColor}66 0%, rgba(0,0,0,0.85) 60%)`,
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -224,11 +194,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
             aria-label={ariaLabel}
           >
             <motion.div
-              layoutId={
-                animationVariant === "scale"
-                  ? `card-${activeCard.id}`
-                  : undefined
-              }
+              layoutId={useMorph ? `card-${id}` : undefined}
               className={cn(
                 "relative flex max-h-full w-full max-w-4xl flex-col overflow-hidden rounded-3xl bg-neutral-900 shadow-2xl",
                 modalClassName,
@@ -242,18 +208,14 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
                 : {})}
               transition={baseTransition}
             >
-              {activeCard.imageUrl && (
+              {imageUrl && (
                 <motion.div
-                  layoutId={
-                    animationVariant === "scale"
-                      ? `media-${activeCard.id}`
-                      : undefined
-                  }
+                  layoutId={useMorph ? `media-${id}` : undefined}
                   className="relative aspect-[16/9] w-full shrink-0 overflow-hidden"
                 >
                   <Image
-                    src={activeCard.imageUrl}
-                    alt={activeCard.title}
+                    src={imageUrl}
+                    alt={title}
                     fill
                     sizes="(max-width: 1024px) 90vw, 56rem"
                     className="object-cover"
@@ -262,7 +224,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(to top, ${activeCard.gradientColor ?? gradientColor}cc 0%, transparent 55%)`,
+                      background: `linear-gradient(to top, ${gradientColor}cc 0%, transparent 55%)`,
                     }}
                   />
                 </motion.div>
@@ -270,18 +232,14 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
 
               <div className="overflow-y-auto p-6 sm:p-8">
                 <motion.h2
-                  layoutId={
-                    animationVariant === "scale"
-                      ? `title-${activeCard.id}`
-                      : undefined
-                  }
+                  layoutId={useMorph ? `title-${id}` : undefined}
                   className="text-2xl font-bold text-white sm:text-3xl"
                 >
-                  {activeCard.title}
+                  {title}
                 </motion.h2>
-                {activeCard.description && (
+                {description && (
                   <p className="mt-3 max-w-prose text-base leading-relaxed text-white/75">
-                    {activeCard.description}
+                    {description}
                   </p>
                 )}
               </div>
@@ -300,7 +258,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 
