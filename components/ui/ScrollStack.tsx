@@ -35,6 +35,16 @@ interface ScrollStackProps {
   onStackComplete?: () => void;
 }
 
+const MAX_BLUR = 16;
+
+const clamp = (v: number, a: number, b: number): number =>
+  v < a ? a : v > b ? b : v;
+
+const smoothstep = (edge0: number, edge1: number, x: number): number => {
+  const t = clamp((x - edge0) / (edge1 - edge0 || 1e-6), 0, 1);
+  return t * t * (3 - 2 * t);
+};
+
 const ScrollStack: React.FC<ScrollStackProps> = ({
   children,
   className = "",
@@ -96,9 +106,55 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     useWindowScroll,
   ]);
 
+  /*
+   * Smooth blur + fade for the underlying (covered) card.
+   *
+   * For every card `i` (except the last), we measure the next card's
+   * viewport position (`getBoundingClientRect().top`) and derive a
+   * normalized progress in [0, 1]:
+   *   0 = next card hasn't started covering the current card
+   *   1 = next card has reached the current card's stack position
+   * The current card is then blurred and faded accordingly. No transforms
+   * are applied here, so it never fights the native sticky pinning.
+   */
+  const updateCardEffects = useCallback(() => {
+    const cards = cardsRef.current;
+    if (cards.length < 2) return;
+
+    const viewportHeight = useWindowScroll
+      ? window.innerHeight
+      : (scrollerRef.current?.clientHeight ?? window.innerHeight);
+
+    for (let i = 0; i < cards.length - 1; i++) {
+      const card = cards[i];
+      const nextCard = cards[i + 1];
+
+      const currentTop = card.getBoundingClientRect().top;
+      const nextTop = nextCard.getBoundingClientRect().top;
+
+      const cardHeight = card.offsetHeight || 1;
+      // Distance the next card travels from "just touching the current
+      // card's bottom" to its own pinned position (current card's stack).
+      const range = Math.max(1, cardHeight - itemStackDistance);
+
+      // progress = 0 when nextTop is at (currentTop + cardHeight), i.e. the
+      // next card has not yet overlapped the current one; progress = 1 once
+      // the next card is pinned at the current card's stack position.
+      const raw = (currentTop + cardHeight - nextTop) / range;
+      const progress = smoothstep(0, 1, raw);
+
+      const blur = progress * MAX_BLUR;
+      const opacity = 1 - progress;
+
+      card.style.filter = blur > 0.01 ? `blur(${blur.toFixed(2)}px)` : "none";
+      card.style.opacity = opacity.toFixed(3);
+    }
+  }, [itemStackDistance, useWindowScroll]);
+
   const handleScroll = useCallback(() => {
     checkStackComplete();
-  }, [checkStackComplete]);
+    updateCardEffects();
+  }, [checkStackComplete, updateCardEffects]);
 
   const setupLenis = useCallback(() => {
     const lenis = new Lenis({
@@ -115,6 +171,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     const raf = (time: number) => {
       lenis.raf(time);
+      // Drive effects from the existing Lenis loop so they stay in sync with
+      // smooth-scroll momentum without spawning an extra animation frame.
+      updateCardEffects();
       animationFrameRef.current = requestAnimationFrame(raf);
     };
 
@@ -123,7 +182,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     lenisRef.current = lenis;
 
     return lenis;
-  }, [handleScroll]);
+  }, [handleScroll, updateCardEffects]);
 
   useLayoutEffect(() => {
     const cards = Array.from(
@@ -144,7 +203,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         card.style.marginBottom = `${itemDistance}px`;
       }
 
-      card.style.willChange = "transform";
+      card.style.willChange = "transform, filter, opacity";
       card.style.backfaceVisibility = "hidden";
       card.style.webkitBackfaceVisibility = "hidden";
 
@@ -168,18 +227,20 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const lenis = setupLenis();
 
     checkStackComplete();
+    updateCardEffects();
 
     const resizeObserver = new ResizeObserver(() => {
       checkStackComplete();
+      updateCardEffects();
     });
 
     cards.forEach((card) => resizeObserver.observe(card));
 
-    window.addEventListener("resize", checkStackComplete);
+    window.addEventListener("resize", handleScroll);
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("resize", checkStackComplete);
+      window.removeEventListener("resize", handleScroll);
       window.removeEventListener("scroll", handleScroll);
 
       resizeObserver.disconnect();
@@ -201,6 +262,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     setupLenis,
     checkStackComplete,
     handleScroll,
+    updateCardEffects,
     useWindowScroll,
   ]);
 
