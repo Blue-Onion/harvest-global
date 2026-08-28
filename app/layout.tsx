@@ -36,10 +36,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full bg-black w-full overflow-x-hidden">
 
-        <SmoothScroll>
+        {/* <SmoothScroll> */}
 
         {children}
-        </SmoothScroll>
+        {/* </SmoothScroll> */}
 
       </body>
     </html>
