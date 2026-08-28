@@ -1,7 +1,12 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { data } from "@/data";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const clamp = (v: number, a: number, b: number): number =>
   v < a ? a : v > b ? b : v;
@@ -24,23 +29,19 @@ export default function About() {
     domains,
   } = data.about;
 
-  // ScrollExpand config (inlined from the component)
+  // ScrollExpand config
   const startWidth = 48;
   const startHeight = 58;
   const startRadius = 24;
   const endRadius = 0;
   const mediaZoom = 1.3;
-  const scrollDistance = 1.2;
-  const holdDistance = 0.4;
-  const smoothing = 0.1;
+  const scrollDistance = 1.2; // viewport-heights of scroll that drive expansion
+  const holdDistance = 0.4; // extra pinned scroll after expansion completes
+  const smoothing = 0.1; // scrub lag (seconds) — matches the old RAF smoothing
   const overlayScrim = 0.65;
-  const useWindowScroll = true;
-  const enabled = true;
   const src = "/images/aboutbg.png";
 
-  const rootRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const stageRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
   const mediaRef = useRef<HTMLImageElement>(null);
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -48,7 +49,8 @@ export default function About() {
   const scrimRef = useRef<HTMLDivElement | null>(null);
   const hintRef = useRef<HTMLDivElement | null>(null);
 
-  const applyProgress = useCallback((p: number) => {
+  // Pure visual mapping: progress p (0..1) -> DOM styles.
+  const applyProgress = (p: number) => {
     const frame = frameRef.current;
     const media = mediaRef.current;
     if (!frame || !media) return;
@@ -84,113 +86,45 @@ export default function About() {
       overlayRef.current.style.opacity = `${inn}`;
       overlayRef.current.style.transform = `translate3d(0, ${18 * (1 - inn)}px, 0)`;
     }
-  }, []);
+  };
 
-  useEffect(() => {
-    const root = rootRef.current;
-    const track = trackRef.current;
-    const stage = stageRef.current;
-    if (!root || !track || !stage) return;
+  useGSAP(
+    () => {
+      const track = trackRef.current;
+      if (!track) return;
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
-    let raf = 0;
-    let current = 0;
-    let target = 0;
-    let stageH = 0;
-    let running = false;
-
-    const measure = () => {
-      stageH = useWindowScroll ? window.innerHeight : root.clientHeight;
-      if (stageH <= 0) return;
-      stage.style.height = `${stageH}px`;
-      track.style.height = `${
-        stageH * (1 + Math.max(0, scrollDistance) + Math.max(0, holdDistance))
-      }px`;
-
-      const w = root.clientWidth || stageH;
-      stage.style.setProperty("--se-title-size", `${clamp(w * 0.075, 20, 84)}px`);
-    };
-
-    const readProgress = () => {
-      if (!enabled) return 1;
-      const span = stageH * Math.max(0.01, scrollDistance);
-      if (useWindowScroll) {
-        const top = track.getBoundingClientRect().top;
-        return clamp(-top / span, 0, 1);
-      }
-      return clamp(root.scrollTop / span, 0, 1);
-    };
-
-    const tick = () => {
-      const k = smoothing <= 0 ? 1 : 1 - Math.exp(-1 / (60 * smoothing));
-      current += (target - current) * k;
-      if (Math.abs(target - current) < 0.0004) {
-        current = target;
-        running = false;
-      }
-      applyProgress(current);
-      raf = running ? requestAnimationFrame(tick) : 0;
-    };
-
-    const kick = () => {
-      if (running) return;
-      running = true;
-      if (!raf) raf = requestAnimationFrame(tick);
-    };
-
-    const onScroll = () => {
-      target = readProgress();
-      if (smoothing <= 0 || reduceMotion) {
-        current = target;
-        applyProgress(current);
+      if (reduceMotion) {
+        applyProgress(1);
         return;
       }
-      kick();
-    };
 
-    const onResize = () => {
-      measure();
-      target = readProgress();
-      current = target;
-      applyProgress(current);
-    };
-
-    measure();
-    target = readProgress();
-    current = target;
-    applyProgress(current);
-
-    const scroller = useWindowScroll ? window : root;
-    scroller.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-    const ro = new ResizeObserver(onResize);
-    ro.observe(root);
-
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      scroller.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      ro.disconnect();
-    };
-  }, [applyProgress, useWindowScroll]);
+      // Expansion completes after `scrollDistance` viewport-heights of scroll;
+      // the native sticky stage then stays pinned for the remaining `holdDistance`.
+      ScrollTrigger.create({
+        trigger: track,
+        start: "top top",
+        end: () => `+=${(scrollDistance * window.innerHeight).toFixed(0)}`,
+        scrub: smoothing,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => applyProgress(self.progress),
+        onRefresh: (self) => applyProgress(self.progress),
+      });
+    },
+    { scope: trackRef },
+  );
 
   return (
     <section
       id="about"
       className="relative bg-black text-white w-full border-t border-white/10"
     >
-      <div
-        ref={rootRef}
-        className="relative w-full min-h-screen"
-      >
-        <div ref={trackRef} className="relative w-full">
-          <div
-            ref={stageRef}
-            className="sticky top-0 w-full overflow-hidden [--se-title-size:4rem]"
-          >
+      <div className="relative w-full min-h-screen">
+        <div ref={trackRef} className="relative w-full h-[260vh]">
+          <div className="sticky top-0 w-full h-screen overflow-hidden">
             <div
               ref={frameRef}
               className="absolute inset-0 [clip-path:inset(21%_29%_21%_29%_round_24px)] [will-change:clip-path]"
@@ -198,6 +132,7 @@ export default function About() {
               <img
                 ref={mediaRef}
                 className="absolute inset-0 w-full h-full object-cover origin-center select-none [will-change:transform]"
+                style={{ transform: `scale(${mediaZoom})` }}
                 src={src}
                 alt={scrollTitle}
                 draggable={false}
@@ -254,7 +189,7 @@ export default function About() {
             {scrollTitle ? (
               <div
                 ref={titleRef}
-                className="absolute inset-0 flex items-center justify-center m-0 px-[6%] text-center font-bold leading-none tracking-[-0.03em] text-white [font-size:var(--se-title-size)] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] pointer-events-none [will-change:opacity,transform]"
+                className="absolute inset-0 flex items-center justify-center m-0 px-[6%] text-center font-bold leading-none tracking-[-0.03em] text-white [font-size:clamp(20px,7.5vw,84px)] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] pointer-events-none [will-change:opacity,transform]"
               >
                 {scrollTitle}
               </div>
