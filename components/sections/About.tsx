@@ -5,8 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { data } from "@/data";
-import Challenge from "./Challenge";
-import Technology from "./Technology";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -31,7 +29,7 @@ export default function About() {
     domains,
   } = data.about;
 
-  // ScrollExpand config — drives the persistent background card.
+  // ScrollExpand config
   const startWidth = 75;
   const startHeight = 58;
   const startRadius = 24;
@@ -39,18 +37,17 @@ export default function About() {
   const mediaZoom = 2;
   const scrollDistance = 1.2; // viewport-heights of scroll that drive expansion
   const holdDistance = 0.4; // extra pinned scroll after expansion completes
-  const smoothing = 0.1; // scrub lag (seconds)
+  const smoothing = 0.1; // scrub lag (seconds) — matches the old RAF smoothing
   const overlayScrim = 0.65;
   const src = "/images/aboutbg.png";
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
   const mediaRef = useRef<HTMLImageElement>(null);
   const titleRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const scrimRef = useRef<HTMLDivElement | null>(null);
   const hintRef = useRef<HTMLDivElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
 
   // Pure visual mapping: progress p (0..1) -> DOM styles.
   const applyProgress = (p: number) => {
@@ -105,7 +102,8 @@ export default function About() {
         return;
       }
 
-      // ScrollTrigger 1: Card Expansion & About Text Fade-in (as original)
+      // Expansion completes after `scrollDistance` viewport-heights of scroll;
+      // the native sticky stage then stays pinned for the remaining `holdDistance`.
       ScrollTrigger.create({
         trigger: track,
         start: "top top",
@@ -115,93 +113,75 @@ export default function About() {
         onUpdate: (self) => applyProgress(self.progress),
         onRefresh: (self) => applyProgress(self.progress),
       });
-
-      // ScrollTrigger 2: About Text Fade-out during hold phase
-      ScrollTrigger.create({
-        trigger: track,
-        start: () => `top+=${(scrollDistance * window.innerHeight).toFixed(0)} top`,
-        end: "bottom bottom",
-        scrub: smoothing,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          if (overlayRef.current) {
-            overlayRef.current.style.opacity = `${1 - self.progress}`;
-          }
-        },
-        onRefresh: (self) => {
-          if (overlayRef.current) {
-            overlayRef.current.style.opacity = `${1 - self.progress}`;
-          }
-        },
-      });
     },
-    { scope: containerRef },
+    { scope: trackRef },
   );
 
   return (
-    <section id="about" ref={containerRef} className="relative w-full bg-black">
-      {/* 1. Sticky, persistent background image + scrim (z-0) */}
-      <div className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-black">
-        <div
-          ref={frameRef}
-          className="absolute inset-0 [clip-path:inset(21%_29%_21%_29%_round_24px)] [will-change:clip-path]"
-        >
-          <img
-            ref={mediaRef}
-            className="absolute inset-0 h-full w-full select-none object-cover [will-change:transform]"
-            style={{ transform: `scale(${mediaZoom})` }}
-            src={src}
-            alt={scrollTitle}
-            draggable={false}
-          />
-          <div
-            ref={scrimRef}
-            className="absolute inset-0 opacity-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),rgba(0,0,0,0.1)_45%,rgba(0,0,0,0.35))]"
-          />
-        </div>
-      </div>
-
-      {/* 2. Scrollable content layer (z-10) */}
-      <div className="relative z-10 w-full mt-[-100vh]">
-        {/* Phase 1: About scroll track — expansion + copy fade in/out */}
-        <div ref={trackRef} className="relative h-[240vh] w-full">
-          <div className="pointer-events-none sticky top-0 flex h-screen w-full items-center justify-center">
+    <section
+      id="about"
+      className="relative bg-black text-white w-full border-t border-white/10"
+    >
+      <div className="relative w-full min-h-screen">
+        <div ref={trackRef} className="relative w-full h-[260vh]">
+          <div className="sticky top-0 w-full h-screen overflow-hidden">
             <div
-              ref={overlayRef}
-              className="absolute inset-0 flex flex-col items-center justify-center p-[6%] text-center opacity-0 [will-change:opacity,transform]"
+              ref={frameRef}
+              className="absolute inset-0 [clip-path:inset(21%_29%_21%_29%_round_24px)] [will-change:clip-path]"
             >
-              <div className="mx-auto flex max-w-4xl flex-col items-center justify-center px-4 text-center sm:px-6">
-                <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400">
-                  {eyebrow}
-                </p>
-
-                <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl leading-tight">
-                  {title} <span className="text-emerald-500">{highlight}</span>
-                </h2>
-
-                <div className="mt-5 space-y-3 text-sm leading-relaxed text-neutral-200 sm:text-base md:text-lg max-w-3xl">
-                  <p>{paragraph1}</p>
-                  <p className="text-xs text-neutral-400 sm:text-sm">
-                    {paragraph2}
+              <img
+                ref={mediaRef}
+                className="absolute inset-0 w-full h-full object-cover origin-center select-none [will-change:transform]"
+                style={{ transform: `scale(${mediaZoom})` }}
+                src={src}
+                alt={scrollTitle}
+                draggable={false}
+              />
+              <div
+                ref={scrimRef}
+                className="absolute inset-0 opacity-0 pointer-events-none bg-[linear-gradient(to_top,rgba(0,0,0,0.75),rgba(0,0,0,0.1)_45%,rgba(0,0,0,0.35))]"
+              />
+              <div
+                ref={overlayRef}
+                className="absolute inset-0 flex flex-col items-center justify-center text-center p-[6%] opacity-0 [will-change:opacity,transform]"
+              >
+                <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center px-4 sm:px-6">
+                  {/* Eyebrow */}
+                  <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400">
+                    {eyebrow}
                   </p>
-                </div>
 
-                <div className="mt-8 w-full max-w-3xl border-t border-white/15 pt-6">
-                  <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400">
-                    {domainsEyebrow}
-                  </p>
+                  {/* Heading */}
+                  <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl leading-tight">
+                    {title} <span className="text-emerald-500">{highlight}</span>
+                  </h2>
 
-                  <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-3 text-[10px] sm:gap-x-5 sm:text-[11px] font-mono uppercase tracking-[0.18em] text-neutral-300">
-                    {domains.map((domain, index) => (
-                      <div key={domain} className="flex items-center gap-3 sm:gap-5">
-                        <span className="transition-colors hover:text-white">
-                          {domain}
-                        </span>
-                        {index < domains.length - 1 && (
-                          <span className="select-none text-white/30">·</span>
-                        )}
-                      </div>
-                    ))}
+                  {/* Core Positioning Paragraphs */}
+                  <div className="mt-5 space-y-3 text-sm leading-relaxed text-neutral-200 sm:text-base md:text-lg max-w-3xl">
+                    <p>{paragraph1}</p>
+                    <p className="text-xs text-neutral-400 sm:text-sm">
+                      {paragraph2}
+                    </p>
+                  </div>
+
+                  {/* Application Domains Row */}
+                  <div className="mt-8 border-t border-white/15 pt-6 w-full max-w-3xl">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400 mb-3">
+                      {domainsEyebrow}
+                    </p>
+
+                    <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-3 sm:gap-x-5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] text-neutral-300">
+                      {domains.map((domain, index) => (
+                        <div key={domain} className="flex items-center gap-3 sm:gap-5">
+                          <span className="transition-colors hover:text-white">
+                            {domain}
+                          </span>
+                          {index < domains.length - 1 && (
+                            <span className="text-white/30 select-none">·</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -209,7 +189,7 @@ export default function About() {
             {scrollTitle ? (
               <div
                 ref={titleRef}
-                className="pointer-events-none absolute inset-0 m-0 flex items-center justify-center px-[6%] text-center font-bold leading-none tracking-[-0.03em] text-white [font-size:clamp(20px,7.5vw,84px)] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] [will-change:opacity,transform]"
+                className="absolute inset-0 flex items-center justify-center m-0 px-[6%] text-center font-bold leading-none tracking-[-0.03em] text-white [font-size:clamp(20px,7.5vw,84px)] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] pointer-events-none [will-change:opacity,transform]"
               >
                 {scrollTitle}
               </div>
@@ -217,19 +197,13 @@ export default function About() {
             {scrollHint ? (
               <div
                 ref={hintRef}
-                className="pointer-events-none absolute inset-x-0 bottom-5 text-center text-[0.8125rem] tracking-[0.02em] text-white/55 [will-change:opacity,transform]"
+                className="absolute inset-x-0 bottom-5 text-center text-[0.8125rem] tracking-[0.02em] text-white/55 pointer-events-none [will-change:opacity,transform]"
               >
                 {scrollHint}
               </div>
             ) : null}
           </div>
         </div>
-
-        {/* Phase 2: Challenge — scrolls over the persistent background */}
-        <Challenge />
-
-        {/* Phase 3: Technology — scrolls over the persistent background */}
-        <Technology />
       </div>
     </section>
   );
