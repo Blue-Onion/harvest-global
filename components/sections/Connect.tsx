@@ -1,10 +1,11 @@
 "use client";
-import StarBackground from "@/components/ui/Starbackground";
+
 import Reveal from "@/components/ui/reveal/Reveal";
+import Image from "next/image";
 const Connect = () => {
   return (
     <section id="connect" className="relative space-y-20 container mx-auto">
-      <StarBackground />
+
       <div className="relative z-10 space-y-10 p-4 text-white">
         <Reveal
           variant="heading"
@@ -49,10 +50,12 @@ const Connect = () => {
                   href="#"
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
-                  <img
-                    src="/images/linkedIn.svg"
+                  <Image
+                    src="/svg/linkedIn.svg"
                     alt="LinkedIn"
-                    className="h-5 w-5 invert hover:invert-0"
+                    height={20}
+                    width={20}
+                    className="invert hover:invert-0"
                   />
                 </a>
 
@@ -60,10 +63,12 @@ const Connect = () => {
                   href="#"
                   className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
-                  <img
-                    src="/images/insta.svg"
+                  <Image
+                    src="/svg/insta.svg"
                     alt="Instagram"
-                    className="h-5 w-5 invert hover:invert-0"
+                    height={20}
+                    width={20}
+                    className="invert hover:invert-0"
                   />
                 </a>
               </div>
