@@ -124,7 +124,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
           "group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-white/70",
           className,
         )}
-        style={{ background: gradientColor }}
+        style={{ background: "#000" }}
         layoutId={useMorph ? `card-${id}` : undefined}
         whileHover={reduceMotion ? undefined : { y: -4 }}
         transition={baseTransition}
@@ -144,7 +144,8 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(to top, ${gradientColor}cc 0%, ${gradientColor}33 45%, transparent 75%)`,
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 70%)",
           }}
         />
 
@@ -168,7 +169,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
           <motion.div
             key="backdrop"
             className={cn(
-              "fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8",
+              "fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8",
               backdropClassName,
             )}
             style={{
@@ -224,7 +225,8 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(to top, ${gradientColor}cc 0%, transparent 55%)`,
+                      background:
+                        "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 55%)",
                     }}
                   />
                 </motion.div>

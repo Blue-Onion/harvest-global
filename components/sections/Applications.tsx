@@ -2,6 +2,7 @@
 
 import ScrollStack, { ScrollStackItem } from "../ui/ScrollStack";
 import StarBackground from "@/components/ui/Starbackground";
+import Reveal from "@/components/ui/reveal/Reveal";
 import { data } from "@/data";
 import Image from "next/image";
 
@@ -16,15 +17,21 @@ export default function Applications() {
       <StarBackground />
       {/* Section Header */}
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10 pt-20 md:pt-28">
-        <div className="max-w-3xl">
+        <Reveal variant="group" className="max-w-3xl" duration={1}>
           <div className="flex items-center gap-3">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
+            <p
+              data-reveal="eyebrow"
+              className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400"
+            >
               {data.applications.eyebrow}
             </p>
           </div>
 
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]">
+          <h2
+            data-reveal="heading"
+            className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]"
+          >
             {data.applications.title.map((line, i) => (
               <span key={i}>
                 {i > 0 && <br className="hidden sm:inline" />}
@@ -37,10 +44,13 @@ export default function Applications() {
             ))}
           </h2>
 
-          <p className="mt-6 text-base leading-relaxed text-neutral-400 sm:text-lg max-w-2xl">
+          <p
+            data-reveal="text"
+            className="mt-6 text-base leading-relaxed text-neutral-400 sm:text-lg max-w-2xl"
+          >
             {data.applications.description}
           </p>
-        </div>
+        </Reveal>
       </div>
 
       {/* ScrollStack Cards */}

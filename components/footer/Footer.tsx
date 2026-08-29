@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import StarBackground from "@/components/ui/Starbackground";
+import Reveal from "@/components/ui/reveal/Reveal";
 import { data } from "@/data";
 
 export default function Footer() {
@@ -13,9 +14,14 @@ export default function Footer() {
     >
       <StarBackground />
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 md:px-10">
-        <div className="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr] lg:gap-20">
+        <Reveal
+          variant="stagger"
+          itemSelector="[data-footer-col]"
+          className="grid gap-12 md:grid-cols-[1.2fr_1fr_1fr] lg:gap-20"
+          stagger={0.12}
+        >
           {/* Brand */}
-          <div>
+          <div data-footer-col>
             <Link href="#hero" className="inline-flex items-center gap-3">
               <Image
                 src="/logo.png"
@@ -37,7 +43,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <nav aria-label="Footer">
+          <nav aria-label="Footer" data-footer-col>
             <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-neutral-500">
               Navigate
             </p>
@@ -56,7 +62,7 @@ export default function Footer() {
           </nav>
 
           {/* Contact */}
-          <div>
+          <div data-footer-col>
             <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-neutral-500">
               Contact
             </p>
@@ -86,16 +92,16 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+        <Reveal variant="fade-up" className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center" y={20}>
           <p className="text-xs text-neutral-500">
             © {new Date().getFullYear()} {footer.copyright}
           </p>
           <p className="text-xs uppercase tracking-[0.18em] text-neutral-600">
             {footer.tagline}
           </p>
-        </div>
+        </Reveal>
       </div>
     </footer>
   );

@@ -1,56 +1,39 @@
 "use client";
 import StarBackground from "@/components/ui/Starbackground";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { SplitText } from "gsap/all";
+import Reveal from "@/components/ui/reveal/Reveal";
 import Image from "next/image";
-gsap.registerPlugin(SplitText);
+
 const ConnectPage = () => {
-  useGSAP(() => {
-    const headings = gsap.utils.toArray<HTMLElement>(".connect-headline");
-
-    const tl = gsap.timeline();
-
-    headings.forEach((heading) => {
-      const split = SplitText.create(heading, {
-        type: "words",
-        wordsClass: "connect-word",
-      });
-
-      gsap.set(split.words, {
-        opacity: 0,
-        y: 40,
-      });
-
-      tl.to(
-        split.words,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.06,
-          ease: "power3.out",
-        },
-        "-=0.35",
-      );
-    });
-  });
   return (
     <section id="connect" className="relative space-y-20 container mx-auto">
       <StarBackground />
-      <div className="relative z-10 space-y-10 p-4 text-white">
-        <h3 className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl">
+      <div className="relative z-10 max-w-3xl space-y-10 p-4 text-white">
+        <Reveal
+          variant="heading"
+          as="h3"
+          className="w-3/4 text-left text-2xl tracking-wider md:text-5xl"
+        >
           Have a challenge worth solving, an idea worth exploring, or a frontier
           worth building?
-        </h3>
+        </Reveal>
 
-        <h3 className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl">
+        <Reveal
+          variant="heading"
+          as="h3"
+          className="w-3/4 text-left text-2xl tracking-wider md:text-5xl"
+        >
           Let’s build what comes next.
-        </h3>
+        </Reveal>
       </div>
-      <div className="relative z-10 grid grid-cols-1 gap-16 text-white md:grid-cols-2 md:gap-24">
+
+      <Reveal
+        variant="stagger"
+        itemSelector=".connect-block"
+        className="relative z-10 grid grid-cols-1 gap-16 text-white md:grid-cols-2 md:gap-24"
+        stagger={0.14}
+      >
         {/* Left */}
-        <div className="socials flex flex-col">
+        <div className="socials connect-block flex flex-col">
           <div className="flex gap-8">
             <span className="text-sm text-white/50">[ 01 ]</span>
 
@@ -73,7 +56,6 @@ const ConnectPage = () => {
                     width={22}
                     src="/images/linkedIn.svg"
                     alt="LinkedIn"
-
                   />
                 </a>
 
@@ -81,25 +63,22 @@ const ConnectPage = () => {
                   href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
                   className="flex invert hover:invert-0 h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
-                    <Image
+                  <Image
                     height={22}
                     width={22}
                     src="/images/insta.svg"
                     alt="LinkedIn"
-
                   />
                 </a>
                 <a
                   href="https://x.com/HarvestG_Ssp"
                   className="flex invert hover:invert-0 h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
-                 
-                    <Image
+                  <Image
                     height={22}
                     width={22}
                     src="/images/insta.svg"
                     alt="LinkedIn"
-
                   />
                 </a>
               </div>
@@ -108,7 +87,7 @@ const ConnectPage = () => {
         </div>
 
         {/* Right */}
-        <div className="form">
+        <div className="form connect-block">
           <p className="mb-8 text-sm">Fill in our form:</p>
 
           <form className="flex flex-col">
@@ -138,7 +117,7 @@ const ConnectPage = () => {
             </button>
           </form>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 };

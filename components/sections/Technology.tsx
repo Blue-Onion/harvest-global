@@ -141,9 +141,6 @@ export default function Technology() {
         const getScroll = () =>
           Math.max(0, track.scrollWidth - window.innerWidth);
 
-        const cardEls = gsap.utils.toArray<HTMLElement>(".tech-card", track);
-        const total = cardEls.length || 1;
-
         gsap.to(track, {
           x: () => -getScroll(),
           ease: "none",
@@ -156,27 +153,9 @@ export default function Technology() {
             anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-              const p = self.progress;
-
               if (progressRef.current) {
-                progressRef.current.style.width = `${p * 100}%`;
+                progressRef.current.style.width = `${self.progress * 100}%`;
               }
-
-              cardEls.forEach((card, i) => {
-                const start = i / total;
-                const end = (i + 1) / total;
-                const cp = clamp((p - start) / (end - start), 0, 1);
-                const dist = Math.abs(cp - 0.5) * 2; // 0 centered, 1 edge
-                const blur = dist * 4;
-                const scale = 1 + dist * 0.08;
-                const opacity = 1 - dist * 0.4;
-
-                gsap.set(card, {
-                  filter: blur > 0.01 ? `blur(${blur.toFixed(2)}px)` : "none",
-                  scale,
-                  opacity,
-                });
-              });
             },
           },
         });

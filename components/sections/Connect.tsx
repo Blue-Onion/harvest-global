@@ -1,55 +1,36 @@
 "use client";
 import StarBackground from "@/components/ui/Starbackground";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { SplitText } from "gsap/all";
-gsap.registerPlugin(SplitText);
+import Reveal from "@/components/ui/reveal/Reveal";
 const Connect = () => {
-  useGSAP(() => {
-    const headings = gsap.utils.toArray<HTMLElement>(".connect-headline");
-
-    const tl = gsap.timeline();
-
-    headings.forEach((heading) => {
-      const split = SplitText.create(heading, {
-        type: "words",
-        wordsClass: "connect-word",
-      });
-
-      gsap.set(split.words, {
-        opacity: 0,
-        y: 40,
-      });
-
-      tl.to(
-        split.words,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.06,
-          ease: "power3.out",
-        },
-        "-=0.35",
-      );
-    });
-  });
   return (
     <section id="connect" className="relative space-y-20 container mx-auto">
       <StarBackground />
       <div className="relative z-10 space-y-10 p-4 text-white">
-        <h3 className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl">
+        <Reveal
+          variant="heading"
+          as="h3"
+          className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl"
+        >
           Have a challenge worth solving, an idea worth exploring, or a frontier
           worth building?
-        </h3>
+        </Reveal>
 
-        <h3 className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl">
+        <Reveal
+          variant="heading"
+          as="h3"
+          className="w-3/4 connect-headline text-left text-2xl tracking-wider md:text-5xl"
+        >
           Let’s build what comes next.
-        </h3>
+        </Reveal>
       </div>
-      <div className="relative z-10 grid grid-cols-1 gap-16 text-white md:grid-cols-2 md:gap-24">
+      <Reveal
+        variant="stagger"
+        itemSelector=".connect-block"
+        className="relative z-10 grid grid-cols-1 gap-16 text-white md:grid-cols-2 md:gap-24"
+        stagger={0.14}
+      >
         {/* Left */}
-        <div className="socials flex flex-col">
+        <div className="socials connect-block flex flex-col">
           <div className="flex gap-8">
             <span className="text-sm text-white/50">[ 01 ]</span>
 
@@ -91,7 +72,7 @@ const Connect = () => {
         </div>
 
         {/* Right */}
-        <div className="form">
+        <div className="form connect-block">
           <p className="mb-8 text-sm">Fill in our form:</p>
 
           <form className="flex flex-col">
@@ -121,7 +102,7 @@ const Connect = () => {
             </button>
           </form>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 };
