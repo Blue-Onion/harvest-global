@@ -55,6 +55,18 @@ export interface TechnologyData {
     description: string;
     metrics: InfrastructureMetric[];
   };
+  cards: TechCard[];
+}
+
+export interface TechCard {
+  number: string;
+  title: string;
+  description: string;
+  items: string[];
+  accent: "neutral" | "orange" | "emerald";
+  visual: "image" | "grid" | "none";
+  image?: string;
+  coords?: string;
 }
 
 export interface ApplicationItem {
@@ -197,6 +209,19 @@ export const data: SiteData = {
         throw new Error(`Unknown technology stage accent: ${stage.accent}`);
       }
       return { ...stage, accent: stage.accent as TechStage["accent"] };
+    }),
+    cards: raw.technology.cards.map((card) => {
+      if (!STAGE_ACCENTS.has(card.accent as TechCard["accent"])) {
+        throw new Error(`Unknown technology card accent: ${card.accent}`);
+      }
+      if (!["image", "grid", "none"].includes(card.visual)) {
+        throw new Error(`Unknown technology card visual: ${card.visual}`);
+      }
+      return {
+        ...card,
+        accent: card.accent as TechCard["accent"],
+        visual: card.visual as TechCard["visual"],
+      };
     }),
   },
 };

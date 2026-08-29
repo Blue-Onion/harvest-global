@@ -91,7 +91,75 @@
         { "label": "REAL-TIME", "caption": "Edge Ground Processing" },
         { "label": "SOVEREIGN", "caption": "Private AI Cloud Stack" }
       ]
-    }
+    },
+    "cards": [
+      {
+        "number": "01",
+        "title": "Earth Data",
+        "description": "The raw observation layer from which Earth intelligence begins — continuous streams from orbit and the ground.",
+        "items": ["Satellite", "Weather", "Ground", "Geospatial"],
+        "accent": "neutral",
+        "visual": "image",
+        "image": "/images/scroll-expansion.png",
+        "coords": "RAW-STREAM // OPTICAL-SAR"
+      },
+      {
+        "number": "02",
+        "title": "Unified GeoAI Stack",
+        "description": "The connective substrate — data infrastructure, GeoAnalytics, AI compute and platforms unified into one operational stack.",
+        "items": ["Data Infrastructure", "GeoAnalytics", "AI Compute", "Platforms"],
+        "accent": "orange",
+        "visual": "grid",
+        "coords": "UNIFIED-STACK // CORE-LAYER"
+      },
+      {
+        "number": "03",
+        "title": "Foundation Models",
+        "description": "Proprietary GeoFM and foundational AI that turn raw observation into geospatial understanding.",
+        "items": ["GeoFM", "Foundational AI"],
+        "accent": "emerald",
+        "visual": "grid",
+        "coords": "GEO-FM // FOUNDATION"
+      },
+      {
+        "number": "04",
+        "title": "Sovereign Private AI Cloud",
+        "description": "Isolated, compliant compute for strategic datasets — privacy and governance by design.",
+        "items": ["Private AI", "Secure Compute", "Data Governance"],
+        "accent": "orange",
+        "visual": "grid",
+        "coords": "PRIVATE-CLOUD // SOVEREIGN-NODE"
+      },
+      {
+        "number": "05",
+        "title": "Edge AI",
+        "description": "Intelligence at the point of decision — on satellites, ground stations and edge nodes, free of cloud latency.",
+        "items": ["Satellites", "Ground Stations", "Edge Nodes"],
+        "accent": "emerald",
+        "visual": "image",
+        "image": "/images/aboutbg.png",
+        "coords": "EDGE-NODE // GROUND-STATION"
+      },
+      {
+        "number": "06",
+        "title": "Earth Intelligence",
+        "description": "The outcome layer — predict, understand, decide and act on the physical world, securely and at scale.",
+        "items": ["Predict", "Understand", "Decide", "Act"],
+        "accent": "orange",
+        "visual": "image",
+        "image": "/images/urban.jpg",
+        "coords": "EARTH-INTEL // DECISION"
+      },
+      {
+        "number": "07",
+        "title": "Government + Industry Applications",
+        "description": "Earth intelligence delivered where it matters — across climate, agriculture, infrastructure and beyond.",
+        "items": ["Climate", "Agriculture", "Infrastructure", "Disaster Management", "Urban Planning", "Resource Management"],
+        "accent": "emerald",
+        "visual": "none",
+        "coords": "DEPLOY // GOV-INDUSTRY"
+      }
+    ]
   },
   "applications": {
     "eyebrow": "APPLICATIONS",
