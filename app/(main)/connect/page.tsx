@@ -7,12 +7,12 @@ const ConnectPage = () => {
     <section id="connect" className="relative space-y-20 container mx-auto">
       <div className="grid grid-cols-1  md:grid-cols-2">
         <div className="relative z-10 space-y-10 p-4 text-white">
-          <h3 className="text-left text-2xl tracking-wider md:text-5xl">
+          <h3 className="text-left text-2xl tracking-wider md:text-4xl">
             Have a challenge worth solving, an idea worth exploring, or a
             frontier worth building?
           </h3>
 
-          <h3 className="text-left text-2xl tracking-wider md:text-5xl">
+          <h3 className="text-left text-2xl tracking-wider md:text-4xl">
             Let’s build what comes next.
           </h3>
         </div>
