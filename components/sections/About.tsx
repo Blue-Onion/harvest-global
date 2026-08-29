@@ -30,16 +30,16 @@ export default function About() {
   } = data.about;
 
   // ScrollExpand config
-  const startWidth = 75;
+  const startWidth = 48;
   const startHeight = 58;
   const startRadius = 24;
   const endRadius = 0;
-  const mediaZoom = 2;
+  const mediaZoom = 1;
   const scrollDistance = 1.2; // viewport-heights of scroll that drive expansion
   const holdDistance = 0.4; // extra pinned scroll after expansion completes
   const smoothing = 0.1; // scrub lag (seconds) — matches the old RAF smoothing
   const overlayScrim = 0.65;
-  const src = "/images/aboutbg.png";
+  const src = "/images/scroll-expansion.png";
 
   const trackRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);

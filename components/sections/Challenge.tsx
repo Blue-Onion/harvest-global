@@ -10,33 +10,33 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const challenges = [
   {
     number: "01",
-    title: "Building intelligence for a changing planet.",
+    title: "Fragmented Earth Data",
     description:
-      "Traditional AI systems struggle to understand the complexity and scale of Earth observation data. Harvest Global needed a foundation capable of turning massive geospatial datasets into actionable intelligence.",
+      "Satellite, weather, ground and geospatial datasets remain disconnected.",
     image: "/images/urban.jpg",
     reversed: false,
   },
   {
     number: "02",
-    title: "Making massive datasets actionable.",
+    title: "Limited Predictive Intelligence",
     description:
-      "The challenge was not simply collecting more data, but creating intelligence that could understand, connect, and extract meaning from enormous volumes of geospatial information.",
+      "Observation often stops at monitoring, leaving critical decisions reactive.",
     image: "/images/urban.jpg",
     reversed: true,
   },
   {
     number: "03",
-    title: "Intelligence that works beyond the cloud.",
+    title: "Infrastructure Constraints",
     description:
-      "Critical decisions cannot always depend on a constant connection to centralized infrastructure. Intelligence needed to move closer to where decisions are actually made.",
+      "Conventional cloud environments can create challenges around scale, latency, security and data governance.",
     image: "/images/urban.jpg",
     reversed: false,
   },
   {
     number: "04",
-    title: "Building for a sovereign future.",
+    title: "Data & Technology Sovereignty",
     description:
-      "The next generation of AI infrastructure requires control over data, models, and intelligence. Harvest Global set out to build technology designed for that future.",
+      "Critical Earth intelligence requires greater control over data, compute and AI capabilities.",
     image: "/images/urban.jpg",
     reversed: true,
   },
