@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${manrope.variable} max-w-screen h-full antialiased`}
     >
-      <body className="min-h-full bg-black w-full overflow-x-hidden">
+      <body className="min-h-full  w-full overflow-x-hidden">
 
         {/* <SmoothScroll> */}
 

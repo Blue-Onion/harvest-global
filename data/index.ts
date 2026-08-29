@@ -165,6 +165,14 @@ export interface CtaData {
   buttonLabel: string;
 }
 
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  focus: string;
+  linkedin?: string;
+}
+
 export interface SiteData {
   site: {
     name: string;
@@ -184,6 +192,7 @@ export interface SiteData {
   applications: ApplicationsData;
   credentials: CredentialsData;
   cta: CtaData;
+  team: TeamMember[];
   footer: {
     brandDescription: string;
     contact: {

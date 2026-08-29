@@ -10,18 +10,20 @@ import Navbar from "@/components/Navbar";
 import HeroReveal from "@/components/ui/HeroReveal";
 import Connect from "@/components/sections/Connect";
 import Challenge from "@/components/sections/Challenge";
+import ParternerdLogo from "@/components/sections/ParternerdLogo";
 
 export default function Home() {
   return (
-    <main className="text-white">
+    <main className="text-white bg-black">
       <Navbar/>
       <Hero />
       <HeroReveal/>
       <About />
+      <ParternerdLogo/>
       <Challenge/>
       <Technology />
       <Applications />
-      <ModalGallery />
+
       <FinalCta />
       <Footer />
     </main>
