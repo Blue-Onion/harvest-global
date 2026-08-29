@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const ConnectPage = () => {
   return (
-    <section id="connect" className="relative mx-auto h-screen overflow-hidden">
+    <section id="connect" className="relative bg-black mx-auto h-screen overflow-hidden">
       {/* Background */}
       <Image
         src="/images/connect.png"
@@ -61,7 +61,7 @@ const ConnectPage = () => {
 
                   <a
                     href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                    className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                   >
                     <Image
                       height={20}
@@ -74,7 +74,7 @@ const ConnectPage = () => {
 
                   <a
                     href="https://x.com/HarvestG_Ssp"
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                    className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
                   >
                     <Image height={20} width={20} src="/svg/X.svg"    className="invert transition-all group-hover:invert-0" alt="X" />
                   </a>
