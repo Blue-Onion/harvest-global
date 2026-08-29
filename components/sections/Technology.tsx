@@ -29,7 +29,7 @@ function TechCardView({ card }: { card: TechCard }) {
   return (
     <article
       className={cn(
-        "tech-card tech-card-mobile relative flex h-auto w-full shrink-0 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.03] p-8 md:h-[60vh] md:w-[50vw] lg:w-[42vw] md:p-10",
+        "tech-card tech-card-mobile relative flex h-auto w-full shrink-0 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.03] p-8 md:h-[80vh] md:w-[70vw] lg:w-[58vw] md:p-14",
       )}
     >
       {card.visual === "image" && card.image && (
@@ -161,6 +161,22 @@ export default function Technology() {
               if (progressRef.current) {
                 progressRef.current.style.width = `${p * 100}%`;
               }
+
+              cardEls.forEach((card, i) => {
+                const start = i / total;
+                const end = (i + 1) / total;
+                const cp = clamp((p - start) / (end - start), 0, 1);
+                const dist = Math.abs(cp - 0.5) * 2; // 0 centered, 1 edge
+                const blur = dist * 4;
+                const scale = 1 + dist * 0.08;
+                const opacity = 1 - dist * 0.4;
+
+                gsap.set(card, {
+                  filter: blur > 0.01 ? `blur(${blur.toFixed(2)}px)` : "none",
+                  scale,
+                  opacity,
+                });
+              });
             },
           },
         });
