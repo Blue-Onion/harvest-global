@@ -139,27 +139,23 @@ const Hero = () => {
         />
       </div>
 
-      <div className="hero-content flex flex-col  container mx-auto py-30  justify-end h-full  space-y-2 ">
-        <h1 className=" gap-2 tracking-wider text-white text-8xl">
-          <span className="highlight-tag  font-extrabold">
-            Amplify
-          </span>
+<div className="hero-content container mx-auto flex h-full flex-col items-center justify-center px-5 text-center md:items-start md:justify-end md:text-left md:px-8 md:pb-20">
+  <h1 className="tracking-wider text-white text-5xl leading-[0.9] sm:text-6xl md:text-8xl">
+    <span className="highlight-tag font-extrabold">
+      Amplify
+    </span>
+  </h1>
 
-          
-        </h1>
+  <h1 className="tracking-wider text-white text-5xl leading-[0.9] sm:text-6xl md:text-8xl">
+    <span className="highlight-tag font-extrabold">
+      Observation
+    </span>
+  </h1>
 
-        <h1 className=" gap-2 text-2xl  tracking-wider text-white md:text-4xl lg:text-[3.5rem]">
-         
-
-          <span className="highlight-tag  text-8xl font-extrabold">
-            Observation
-          </span>
-        </h1>
-
-        <p className="subtitle mt-6 text-md text-muted-foreground md:text-xl">
-          Sovereign GeoAI. Private AI Cloud. Edge Intelligence.
-        </p>
-      </div>
+  <p className="subtitle mt-5 max-w-[320px] text-sm leading-relaxed text-white/70 sm:text-base md:mt-6 md:max-w-none md:text-xl">
+    Sovereign GeoAI. Private AI Cloud. Edge Intelligence.
+  </p>
+</div>
     </section>
   );
 };

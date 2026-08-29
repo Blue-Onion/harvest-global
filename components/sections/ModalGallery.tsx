@@ -1,6 +1,7 @@
 "use client";
 
 import ModalCards from "@/components/ui/ModalCards";
+import Reveal from "@/components/ui/reveal/Reveal";
 import { data } from "@/data";
 
 const galleryCards = [
@@ -61,36 +62,51 @@ export default function ModalGallery() {
       className="relative w-full border-t border-white/10 bg-black text-white"
     >
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-20 sm:px-8 md:px-10 md:py-28">
-        <div className="max-w-3xl">
+        <Reveal variant="group" className="max-w-3xl" duration={1}>
           <div className="flex items-center gap-3">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
+            <p
+              data-reveal="eyebrow"
+              className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400"
+            >
               Gallery
             </p>
           </div>
 
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]">
+          <h2
+            data-reveal="heading"
+            className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]"
+          >
             Explore the <span className="text-orange-500">ecosystem</span>
           </h2>
 
-          <p className="mt-6 text-base leading-relaxed text-neutral-400 sm:text-lg max-w-2xl">
+          <p
+            data-reveal="text"
+            className="mt-6 text-base leading-relaxed text-neutral-400 sm:text-lg max-w-2xl"
+          >
             {data.applications.description}
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal
+          variant="stagger"
+          itemSelector=".gallery-card"
+          className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          stagger={0.1}
+        >
           {galleryCards.map((card) => (
-            <ModalCards
-              key={card.id}
-              id={card.id}
-              imageUrl={card.imageUrl}
-              title={card.title}
-              description={card.description}
-              gradientColor={card.gradientColor}
-              animationVariant="scale"
-            />
+            <div key={card.id} className="gallery-card">
+              <ModalCards
+                id={card.id}
+                imageUrl={card.imageUrl}
+                title={card.title}
+                description={card.description}
+                gradientColor={card.gradientColor}
+                animationVariant="scale"
+              />
+            </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

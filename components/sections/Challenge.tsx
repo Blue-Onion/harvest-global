@@ -4,6 +4,8 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Reveal from "@/components/ui/reveal/Reveal";
+import { images } from "@/data/images";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -13,7 +15,8 @@ const challenges = [
     title: "Fragmented Earth Data",
     description:
       "Satellite, weather, ground and geospatial datasets remain disconnected.",
-    image: "/images/urban.jpg",
+    image: images.earthObservation.src,
+    fallback: images.earthObservation.fallback,
     reversed: false,
   },
   {
@@ -21,7 +24,8 @@ const challenges = [
     title: "Limited Predictive Intelligence",
     description:
       "Observation often stops at monitoring, leaving critical decisions reactive.",
-    image: "/images/urban.jpg",
+    image: images.artificialIntelligence.src,
+    fallback: images.artificialIntelligence.fallback,
     reversed: true,
   },
   {
@@ -29,7 +33,8 @@ const challenges = [
     title: "Infrastructure Constraints",
     description:
       "Conventional cloud environments can create challenges around scale, latency, security and data governance.",
-    image: "/images/urban.jpg",
+    image: images.technology.src,
+    fallback: images.technology.fallback,
     reversed: false,
   },
   {
@@ -37,7 +42,8 @@ const challenges = [
     title: "Data & Technology Sovereignty",
     description:
       "Critical Earth intelligence requires greater control over data, compute and AI capabilities.",
-    image: "/images/urban.jpg",
+    image: images.satellite.src,
+    fallback: images.satellite.fallback,
     reversed: true,
   },
 ];
@@ -358,6 +364,12 @@ const Challenge = () => {
                 <img
                   src={challenge.image}
                   alt={challenge.title}
+                  onError={(e) => {
+                    const t = e.currentTarget;
+                    if (challenge.fallback && t.src !== challenge.fallback) {
+                      t.src = challenge.fallback;
+                    }
+                  }}
                   className="challenge-image absolute inset-0 w-full h-full object-cover"
                 />
 
@@ -376,7 +388,13 @@ const Challenge = () => {
         {/* =========================
             MOBILE NORMAL CARDS
             ========================= */}
-        <div className="md:hidden space-y-6">
+        <Reveal
+          variant="stagger"
+          match="(max-width: 767px)"
+          itemSelector="article"
+          className="md:hidden space-y-6"
+          stagger={0.12}
+        >
           {challenges.map((challenge) => (
             <article
               key={challenge.number}
@@ -387,6 +405,12 @@ const Challenge = () => {
                 <img
                   src={challenge.image}
                   alt={challenge.title}
+                  onError={(e) => {
+                    const t = e.currentTarget;
+                    if (challenge.fallback && t.src !== challenge.fallback) {
+                      t.src = challenge.fallback;
+                    }
+                  }}
                   className="w-full h-full object-cover"
                 />
 
@@ -409,7 +433,7 @@ const Challenge = () => {
               </div>
             </article>
           ))}
-        </div>
+        </Reveal>
 
         {/* Desktop scroll indicator */}
         <div className="hidden md:flex mt-8 items-center gap-4 text-white/30">

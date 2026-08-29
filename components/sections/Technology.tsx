@@ -29,7 +29,7 @@ function TechCardView({ card }: { card: TechCard }) {
   return (
     <article
       className={cn(
-        "tech-card tech-card-mobile relative flex h-auto w-full shrink-0 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.03] p-8 md:h-[60vh] md:w-[50vw] lg:w-[42vw] md:p-10",
+        "tech-card tech-card-mobile relative flex h-auto w-full shrink-0 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.03] p-8 md:h-[80vh] md:w-[70vw] lg:w-[58vw] md:p-14",
       )}
     >
       {card.visual === "image" && card.image && (
@@ -141,9 +141,6 @@ export default function Technology() {
         const getScroll = () =>
           Math.max(0, track.scrollWidth - window.innerWidth);
 
-        const cardEls = gsap.utils.toArray<HTMLElement>(".tech-card", track);
-        const total = cardEls.length || 1;
-
         gsap.to(track, {
           x: () => -getScroll(),
           ease: "none",
@@ -156,10 +153,8 @@ export default function Technology() {
             anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-              const p = self.progress;
-
               if (progressRef.current) {
-                progressRef.current.style.width = `${p * 100}%`;
+                progressRef.current.style.width = `${self.progress * 100}%`;
               }
             },
           },

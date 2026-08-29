@@ -1,23 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Michroma, Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 
 
-const michroma = Michroma({
+const manrope = Manrope({
 
   variable: "--font-display",
 
-  weight: "400",
-
-  subsets: ["latin"],
-
-});
-
-const inter = Inter({
-
-  variable: "--font-body",
+  weight: ["400", "500", "600", "700", "800"],
 
   subsets: ["latin"],
 
@@ -32,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${michroma.variable} ${inter.variable} max-w-screen h-full antialiased`}
+      className={`${manrope.variable} max-w-screen h-full antialiased`}
     >
       <body className="min-h-full bg-black w-full overflow-x-hidden">
 
