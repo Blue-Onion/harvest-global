@@ -1,28 +1,144 @@
 "use client";
 
-import ScrollStack, { ScrollStackItem } from "../ui/ScrollStack";
-import StarBackground from "@/components/ui/Starbackground";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import gsap from "gsap";
 import Reveal from "@/components/ui/reveal/Reveal";
 import { data } from "@/data";
-import Image from "next/image";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 
 const applications = data.applications.items;
+type App = (typeof applications)[number];
 
 export default function Applications() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  // Holds the OUTGOING app while a transition is in flight.
+  // While set, the base layer shows the old app and the wipe layer shows the new one.
+  const [prevApp, setPrevApp] = useState<App | null>(null);
+
+  const imageNextRef = useRef<HTMLDivElement>(null);
+  const textCurrentRef = useRef<HTMLDivElement>(null);
+  const textNextRef = useRef<HTMLDivElement>(null);
+
+  const active = applications[activeIndex];
+  const currentApp = prevApp ?? active;
+
+  const handleTabChange = (value: string) => {
+    const nextIndex = applications.findIndex((app) => app.id === value);
+
+    if (
+      nextIndex === -1 ||
+      nextIndex === activeIndex ||
+      isAnimating
+    ) {
+      return;
+    }
+
+    const imageNext = imageNextRef.current;
+    const currentText = textCurrentRef.current;
+    const nextText = textNextRef.current;
+
+    const outgoing = applications[activeIndex];
+
+    if (!imageNext || !currentText || !nextText) {
+      setActiveIndex(nextIndex);
+      return;
+    }
+
+    setIsAnimating(true);
+
+    // Freeze the outgoing app so the base layer doesn't jump ahead,
+    // then move activeIndex so the wipe layer picks up the new app.
+    setPrevApp(outgoing);
+    setActiveIndex(nextIndex);
+
+    requestAnimationFrame(() => {
+      // Reset starting states in case a previous timeline left things mid-animation.
+      gsap.set(imageNext, { clipPath: "inset(0 0 100% 0)" });
+      gsap.set(currentText, { x: 0, opacity: 1 });
+      gsap.set(nextText, { x: 60, opacity: 0 });
+
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power3.inOut",
+        },
+        onComplete: () => {
+          setIsAnimating(false);
+          // Collapse back to a single source of truth once the animation settles.
+          setPrevApp(null);
+        },
+      });
+
+      /*
+       * OLD TEXT
+       * Moves toward the right and fades out.
+       */
+      tl.to(
+        currentText,
+        {
+          x: 60,
+          opacity: 0,
+          duration: 0.4,
+          ease: "power2.in",
+        },
+        0,
+      );
+
+      /*
+       * NEW IMAGE
+       * Vertical wipe from top to bottom.
+       */
+      tl.to(
+        imageNext,
+        {
+          clipPath: "inset(0 0 0% 0)",
+          duration: 0.8,
+          ease: "power2.inOut",
+        },
+        0,
+      );
+
+      /*
+       * NEW TEXT
+       * Comes from the right.
+       */
+      tl.to(
+        nextText,
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+        0.3,
+      );
+    });
+  };
+
   return (
     <section
       id="applications"
-      className="relative w-full border-t border-white/10 bg-black text-white"
+      className="w-full bg-[#F7FAF8] px-5 py-24 text-[#173B32] sm:px-8 md:px-10 md:py-32"
     >
-      <StarBackground />
-      {/* Section Header */}
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10 pt-20 md:pt-28">
-        <Reveal variant="group" className="max-w-3xl" duration={1}>
+      <div className="mx-auto max-w-6xl">
+
+        {/* HEADER */}
+        <Reveal
+          variant="group"
+          className="max-w-3xl"
+          duration={1}
+        >
           <div className="flex items-center gap-3">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2E7657]" />
+
             <p
               data-reveal="eyebrow"
-              className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400"
+              className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-[#2E7657]"
             >
               {data.applications.eyebrow}
             </p>
@@ -30,13 +146,18 @@ export default function Applications() {
 
           <h2
             data-reveal="heading"
-            className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-[1.1]"
+            className="text-3xl font-bold leading-[1.1] tracking-tight text-[#123C2B] sm:text-5xl md:text-6xl"
           >
             {data.applications.title.map((line, i) => (
               <span key={i}>
-                {i > 0 && <br className="hidden sm:inline" />}
+                {i > 0 && (
+                  <br className="hidden sm:inline" />
+                )}
+
                 {i === data.applications.title.length - 1 ? (
-                  <span className="text-orange-500">{line}</span>
+                  <span className="text-[#2E7657]">
+                    {line}
+                  </span>
                 ) : (
                   line
                 )}
@@ -46,98 +167,171 @@ export default function Applications() {
 
           <p
             data-reveal="text"
-            className="mt-6 text-base leading-relaxed text-neutral-400 sm:text-lg max-w-2xl"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-[#60766E] sm:text-lg"
           >
             {data.applications.description}
           </p>
         </Reveal>
-      </div>
 
-      {/* ScrollStack Cards */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8 md:px-10">
-        <ScrollStack
-          useWindowScroll
-          itemDistance={40}
-          itemStackDistance={18}
-          stackPosition="10%"
+        {/* TABS */}
+        <Tabs
+          value={active.id}
+          onValueChange={handleTabChange}
+          className="mt-14 w-full"
         >
-          {applications.map((app, i) => (
-            <ScrollStackItem
-              key={app.id}
-              itemClassName="
-        !my-0
-        !h-[520px]
-        md:!h-[620px]
-        !w-full
-        !rounded-[28px]
-        !p-0
-        overflow-hidden
-        border
-        border-white/10
-        bg-neutral-950
-      "
+          <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-none border-b border-[#D5E3DC] bg-transparent p-0">
+            {applications.map((app, i) => (
+              <TabsTrigger
+                key={app.id}
+                value={app.id}
+                disabled={isAnimating}
+                className="
+                  relative h-auto shrink-0
+                  rounded-none
+                  border-0
+                  bg-transparent
+                  px-5 py-4
+                  font-mono text-xs uppercase
+                  tracking-[0.16em]
+                  text-[#60766E]
+                  shadow-none
+
+                  transition-colors duration-200
+
+                  hover:text-[#235738]
+
+                  data-[state=active]:bg-transparent
+                  data-[state=active]:text-[#235738]
+                  data-[state=active]:shadow-none
+
+                  after:absolute
+                  after:bottom-0
+                  after:left-0
+                  after:h-0.5
+                  after:w-full
+                  after:origin-left
+                  after:scale-x-0
+                  after:bg-[#2E7657]
+                  after:transition-transform
+                  after:duration-300
+
+                  data-[state=active]:after:scale-x-100
+                "
+              >
+                <span className="mr-2 text-[10px] opacity-50">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {app.shortLabel}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+
+        {/* APPLICATION DISPLAY */}
+        <div className="mt-8 grid overflow-hidden rounded-[28px] border border-[#D5E3DC] bg-[#E7F1EB] md:grid-cols-2">
+
+          {/* IMAGE */}
+          <div className="relative min-h-[320px] overflow-hidden md:min-h-[560px]">
+
+            {/* Base layer = OUTGOING image */}
+            <Image
+              key={`base-${currentApp.id}`}
+              src={currentApp.image}
+              alt={currentApp.alt}
+              fill
+              draggable={false}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+
+            {/* Wipe layer = INCOMING image, revealed top -> bottom */}
+            <div
+              ref={imageNextRef}
+              className="absolute inset-0 z-10 overflow-hidden"
+              style={{
+                clipPath: "inset(0 0 100% 0)",
+              }}
             >
-              <div className="relative h-full w-full">
-                {/* Image */}
-                {/* Image */}
-                <Image
-                  src={app.image}
-                  alt={app.alt}
-                  fill
-                  draggable={false}
-                  sizes="(min-width: 1024px) 1152px, 100vw"
-                  className="absolute inset-0 h-full w-full select-none object-cover"
-                />
+              <Image
+                key={`next-${active.id}`}
+                src={active.image}
+                alt={active.alt}
+                fill
+                draggable={false}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/20" />
+            {/* Green overlay */}
+            <div className="pointer-events-none absolute inset-0 z-20 bg-[#123C2B]/10" />
 
-                {/* Content */}
-                <div className="relative z-10 flex h-full flex-col justify-between p-7 sm:p-10 md:p-12">
-                  {/* Top */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <span className="font-mono text-sm font-semibold uppercase tracking-[0.25em] text-orange-400">
-                        {String(i + 1).padStart(2, "0")} /{" "}
-                        {String(applications.length).padStart(2, "0")}
-                      </span>
+            {/* Number */}
+            <div className="absolute left-6 top-6 z-30 rounded-full bg-[#123C2B] px-4 py-2 font-mono text-xs tracking-[0.2em] text-[#F7FAF8]">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(applications.length).padStart(2, "0")}
+            </div>
+          </div>
 
-                      <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">
-                        {app.shortLabel}
-                      </p>
-                    </div>
+          {/* CONTENT */}
+          <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
 
-                    <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-neutral-300 backdrop-blur-sm">
-                      {app.tag}
-                    </span>
-                  </div>
+            {/* Current (outgoing) text */}
+            <div
+              ref={textCurrentRef}
+              className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
+            >
+              <ApplicationText app={currentApp} />
+            </div>
 
-                  {/* Bottom */}
-                  <div>
-                    <h3 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-                      {app.label}
-                    </h3>
+            {/* Next (incoming) text */}
+            <div
+              ref={textNextRef}
+              className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
+            >
+              <ApplicationText app={active} />
+            </div>
 
-                    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base md:text-lg">
-                      {app.description}
-                    </p>
-
-                    <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-4">
-                      <span className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 sm:text-[10px]">
-                        {app.coords}
-                      </span>
-
-                      <span className="font-mono text-[9px] uppercase tracking-wider text-white/30">
-                        SYSTEM // NODE
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ScrollStackItem>
-          ))}
-        </ScrollStack>
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+function ApplicationText({
+  app,
+}: {
+  app: App;
+}) {
+  return (
+    <>
+      <div>
+        <div className="flex items-center justify-between gap-4">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#2E7657]">
+            {app.shortLabel}
+          </span>
+
+          <span className="rounded-full border border-[#2E7657]/20 bg-[#F7FAF8] px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-[#60766E]">
+            {app.tag}
+          </span>
+        </div>
+
+        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-[#123C2B] sm:text-5xl">
+          {app.label}
+        </h3>
+
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-[#60766E] md:text-lg">
+          {app.description}
+        </p>
+      </div>
+
+      <div className="border-t border-[#D5E3DC] pt-5">
+        <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-[#60766E]/70 sm:text-[10px]">
+          {app.coords}
+        </span>
+      </div>
+    </>
   );
 }

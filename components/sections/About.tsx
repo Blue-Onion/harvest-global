@@ -35,9 +35,6 @@ export default function About() {
   const startRadius = 24;
   const endRadius = 0;
   const mediaZoom = 1;
-  const scrollDistance = 1.2; // viewport-heights of scroll that drive expansion
-  const holdDistance = 0.4; // extra pinned scroll after expansion completes
-  const smoothing = 0.1; // scrub lag (seconds) — matches the old RAF smoothing
   const overlayScrim = 0.65;
   const src = "/images/scroll-expansion.png";
 
@@ -102,16 +99,18 @@ export default function About() {
         return;
       }
 
-      // Expansion completes after `scrollDistance` viewport-heights of scroll;
-      // the native sticky stage then stays pinned for the remaining `holdDistance`.
-      ScrollTrigger.create({
-        trigger: track,
-        start: "top top",
-        end: () => `+=${(scrollDistance * window.innerHeight).toFixed(0)}`,
-        scrub: smoothing,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => applyProgress(self.progress),
-        onRefresh: (self) => applyProgress(self.progress),
+      const proxy = { p: 0 };
+
+      gsap.to(proxy, {
+        p: 1,
+        duration: 2.4,
+        ease: "power2.out",
+        onUpdate: () => applyProgress(proxy.p),
+        scrollTrigger: {
+          trigger: track,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
       });
     },
     { scope: trackRef },
@@ -122,88 +121,80 @@ export default function About() {
       id="about"
       className="relative bg-black text-white w-full border-t border-white/10"
     >
-      <div className="relative w-full min-h-screen">
-        <div ref={trackRef} className="relative w-full h-[260vh]">
-          <div className="sticky top-0 w-full h-screen overflow-hidden">
-            <div
-              ref={frameRef}
-              className="absolute inset-0 [clip-path:inset(21%_29%_21%_29%_round_24px)] [will-change:clip-path]"
-            >
-              <img
-                ref={mediaRef}
-                className="absolute inset-0 w-full h-full object-cover origin-center select-none [will-change:transform]"
-                style={{ transform: `scale(${mediaZoom})` }}
-                src={src}
-                alt={scrollTitle}
-                draggable={false}
-              />
-              <div
-                ref={scrimRef}
-                className="absolute inset-0 opacity-0 pointer-events-none bg-[linear-gradient(to_top,rgba(0,0,0,0.75),rgba(0,0,0,0.1)_45%,rgba(0,0,0,0.35))]"
-              />
-              <div
-                ref={overlayRef}
-                className="absolute inset-0 flex flex-col items-center justify-center text-center p-[6%] opacity-0 [will-change:opacity,transform]"
-              >
-                <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center px-4 sm:px-6">
-                  {/* Eyebrow */}
-                  <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400">
-                    {eyebrow}
-                  </p>
+      <div ref={trackRef} className="relative w-full h-screen overflow-hidden">
+        <div
+          ref={frameRef}
+          className="absolute inset-0 [clip-path:inset(58%_26%_58%_26%_round_24px)] [will-change:clip-path]"
+        >
+          <img
+            ref={mediaRef}
+            className="absolute inset-0 w-full h-full object-cover origin-center select-none [will-change:transform]"
+            style={{ transform: `scale(${mediaZoom})` }}
+            src={src}
+            alt={scrollTitle}
+            draggable={false}
+          />
+          <div
+            ref={scrimRef}
+            className="absolute inset-0 opacity-0 pointer-events-none bg-[linear-gradient(to_top,rgba(0,0,0,0.75),rgba(0,0,0,0.1)_45%,rgba(0,0,0,0.35))]"
+          />
+          <div
+            ref={overlayRef}
+            className="absolute inset-0 flex flex-col items-center justify-center text-center p-[6%] opacity-0 [will-change:opacity,transform]"
+          >
+            <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center px-4 sm:px-6">
+              <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-400">
+                {eyebrow}
+              </p>
 
-                  {/* Heading */}
-                  <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl leading-tight">
-                    {title} <span className="text-emerald-500">{highlight}</span>
-                  </h2>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl leading-tight">
+                {title} <span className="text-emerald-500">{highlight}</span>
+              </h2>
 
-                  {/* Core Positioning Paragraphs */}
-                  <div className="mt-5 space-y-3 text-sm leading-relaxed text-neutral-200 sm:text-base md:text-lg max-w-3xl">
-                    <p>{paragraph1}</p>
-                    <p className="text-xs text-neutral-400 sm:text-sm">
-                      {paragraph2}
-                    </p>
-                  </div>
+              <div className="mt-5 space-y-3 text-sm leading-relaxed text-neutral-200 sm:text-base md:text-lg max-w-3xl">
+                <p>{paragraph1}</p>
+                <p className="text-xs text-neutral-400 sm:text-sm">
+                  {paragraph2}
+                </p>
+              </div>
 
-                  {/* Application Domains Row */}
-                  <div className="mt-8 border-t border-white/15 pt-6 w-full max-w-3xl">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400 mb-3">
-                      {domainsEyebrow}
-                    </p>
+              <div className="mt-8 border-t border-white/15 pt-6 w-full max-w-3xl">
+                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-400 mb-3">
+                  {domainsEyebrow}
+                </p>
 
-                    <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-3 sm:gap-x-5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] text-neutral-300">
-                      {domains.map((domain, index) => (
-                        <div key={domain} className="flex items-center gap-3 sm:gap-5">
-                          <span className="transition-colors hover:text-white">
-                            {domain}
-                          </span>
-                          {index < domains.length - 1 && (
-                            <span className="text-white/30 select-none">·</span>
-                          )}
-                        </div>
-                      ))}
+                <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-3 sm:gap-x-5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] text-neutral-300">
+                  {domains.map((domain, index) => (
+                    <div key={domain} className="flex items-center gap-3 sm:gap-5">
+                      <span className="transition-colors hover:text-white">
+                        {domain}
+                      </span>
+                      {index < domains.length - 1 && (
+                        <span className="text-white/30 select-none">·</span>
+                      )}
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
-            {scrollTitle ? (
-              <div
-                ref={titleRef}
-                className="absolute inset-0 flex items-center justify-center m-0 px-[6%] text-center font-bold leading-none tracking-[-0.03em] text-white [font-size:clamp(20px,7.5vw,84px)] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] pointer-events-none [will-change:opacity,transform]"
-              >
-                {scrollTitle}
-              </div>
-            ) : null}
-            {scrollHint ? (
-              <div
-                ref={hintRef}
-                className="absolute inset-x-0 bottom-5 text-center text-[0.8125rem] tracking-[0.02em] text-white/55 pointer-events-none [will-change:opacity,transform]"
-              >
-                {scrollHint}
-              </div>
-            ) : null}
           </div>
         </div>
+        {scrollTitle ? (
+          <div
+            ref={titleRef}
+            className="absolute inset-0 flex items-center justify-center m-0 px-[6%] text-center font-bold leading-none tracking-[-0.03em] text-white [font-size:clamp(20px,7.5vw,84px)] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] pointer-events-none [will-change:opacity,transform]"
+          >
+            {scrollTitle}
+          </div>
+        ) : null}
+        {scrollHint ? (
+          <div
+            ref={hintRef}
+            className="absolute inset-x-0 bottom-5 text-center text-[0.8125rem] tracking-[0.02em] text-white/55 pointer-events-none [will-change:opacity,transform]"
+          >
+            {scrollHint}
+          </div>
+        ) : null}
       </div>
     </section>
   );
