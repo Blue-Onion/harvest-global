@@ -46,22 +46,31 @@ const Challenge = () => {
       className="bg-[#F7FAF8] px-6 py-24 md:px-10 lg:px-16"
     >
       <div className="mx-auto max-w-7xl">
-
         {/* Header */}
         <Reveal>
-          <div className="mb-16 max-w-3xl">
-            <span className="mb-4 block text-sm font-semibold tracking-[0.2em] text-[#2E7657]">
-              03 — CHALLENGES
-            </span>
+          <div className="mb-16 max-w-4xl">
+  
 
             <h2 className="text-4xl font-semibold tracking-tight text-[#123C2B] md:text-6xl">
-              The Earth is generating more data than ever.
+              The Challenge
             </h2>
 
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#60766E]">
-              Yet critical Earth intelligence remains fragmented across data,
-              infrastructure and technology.
-            </p>
+            <div className="mt-6 max-w-3xl space-y-4">
+              <p className="text-lg leading-relaxed text-[#60766E]">
+                Every day, satellites, sensors, weather systems and ground
+                networks generate enormous volumes of Earth data.
+              </p>
+
+              <p className="text-lg leading-relaxed text-[#60766E]">
+                Yet much of this data remains fragmented, difficult to process
+                and disconnected from real-world decision-making.
+              </p>
+
+              <p className="text-lg font-medium leading-relaxed text-[#123C2B]">
+                We need the ability to observe, understand, predict and act,
+                securely and at scale.
+              </p>
+            </div>
           </div>
         </Reveal>
 
@@ -70,7 +79,6 @@ const Challenge = () => {
           {challenges.map((challenge, index) => (
             <Reveal key={challenge.number} delay={index * 0.08}>
               <article className="group overflow-hidden rounded-3xl border border-[#D5E3DC] bg-[#E7F1EB]">
-
                 {/* Image */}
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img
@@ -82,7 +90,6 @@ const Challenge = () => {
                     className="h-full w-full object-cover"
                   />
 
-                  {/* subtle overlay */}
                   <div className="absolute inset-0 bg-[#123C2B]/10" />
 
                   {/* Number */}
