@@ -140,13 +140,13 @@ const Hero = () => {
       </div>
 
 <div className="hero-content container mx-auto flex h-full flex-col items-center justify-center px-5 text-center md:items-start md:justify-end md:text-left md:px-8 md:pb-20">
-  <h1 className="tracking-wider text-white text-5xl leading-[0.9] md:text-6xl lg:text-7xl">
+  <h1 className="tracking-wider text-white text-3xl leading-[0.9] md:text-6xl lg:text-7xl">
     <span className="highlight-tag font-extrabold">
     GeoAI  Intelligence
     </span>
   </h1>
 
-  <h1 className="tracking-wider text-white text-5xl leading-[0.9] md:text-6xl lg:text-7xl">
+  <h1 className="tracking-wider text-white text-3xl leading-[0.9] md:text-6xl lg:text-7xl">
     <span className="highlight-tag font-extrabold">
       for Earth Observation
     </span>
