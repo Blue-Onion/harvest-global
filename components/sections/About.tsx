@@ -36,7 +36,7 @@ export default function About() {
   const endRadius = 0;
   const mediaZoom = 1;
   const overlayScrim = 0.65;
-  const src = "/images/scroll-expansion.png";
+  const src = "/images/us3.png";
 
   const trackRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);

@@ -170,6 +170,7 @@ export interface TeamMember {
   name: string;
   role: string;
   focus: string;
+  image: string;
   linkedin?: string;
 }
 

@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
+
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -15,7 +15,7 @@ function Navbar() {
     { title: "Home", href: "/" },
     { title: "Team", href: "/team" },
     { title: "Media", href: "/credentials" },
-    { title: "Services", href: "/services" },
+
   ];
 
   const underlineRefs = useRef<(HTMLSpanElement | null)[]>([]);

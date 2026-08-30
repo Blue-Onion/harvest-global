@@ -14,7 +14,6 @@ function Navbar() {
     { title: "Home", href: "/" },
     { title: "Team", href: "/team" },
     { title: "Media", href: "/credentials" },
-    { title: "Services", href: "/services" },
   ];
 
   const underlineRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -237,7 +236,7 @@ function Navbar() {
 
   return (
     <>
-      <header ref={navRef} className="inset-x-0 top-4 container mx-auto fixed z-50 py-4  text-white">
+      <header ref={navRef} className="inset-x-0 top-4 container mx-auto absolute z-50 py-4  text-white">
         <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
           <div className="flex items-center gap-6 font-bold text-base">
             {/* Desktop Links */}
