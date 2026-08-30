@@ -108,7 +108,7 @@ export default function About() {
         onUpdate: () => applyProgress(proxy.p),
         scrollTrigger: {
           trigger: track,
-          start: "top 75%",
+          start: "top 30%",
           toggleActions: "play none none reverse",
         },
       });

@@ -133,16 +133,7 @@ export default function Applications() {
           className="max-w-3xl"
           duration={1}
         >
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#2E7657]" />
-
-            <p
-              data-reveal="eyebrow"
-              className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-[#2E7657]"
-            >
-              {data.applications.eyebrow}
-            </p>
-          </div>
+ 
 
           <h2
             data-reveal="heading"
