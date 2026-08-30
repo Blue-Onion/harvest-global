@@ -14,7 +14,7 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
   itemClassName = "",
 }) => (
   <div
-    className={`scroll-stack-card relative w-full h-[620px] my-0 rounded-[28px] overflow-hidden box-border ${itemClassName}`.trim()}
+    className={`scroll-stack-card relative w-full h-[620px] my-0 rounded-md overflow-hidden box-border ${itemClassName}`.trim()}
     style={{
       backfaceVisibility: "hidden",
       WebkitBackfaceVisibility: "hidden",

@@ -8,7 +8,7 @@ const notFound = () => {
         <h3 className="text-white text-6xl">404</h3>
         <h3 className="text-white text-6xl">Page Not found</h3>
         <Link href={"/"}>
-          <button className="border px-3 py-3 rounded-2xl pointer">
+          <button className="border px-3 py-3 rounded-md2xl pointer">
             Go Home
           </button>
         </Link>

@@ -42,21 +42,21 @@ function FinalCta() {
   };
 
   return (
-    <section className="w-full rounded-b-3xl bg-[#FFF6EF] px-5 py-20 text-[#173B32] sm:px-8 md:px-10 md:py-24">
+    <section className="w-full rounded-md-3xl bg-[#FFF6EF] px-5 py-20 text-[#173B32] sm:px-8 md:px-10 md:py-24">
       <div
         className="
           relative flex min-h-[600px] w-full max-w-[1400px]
           flex-col items-center justify-center
-          overflow-hidden rounded-[2rem]
+          overflow-hidden rounded-md
           bg-[#B94D1F]
           px-6 py-24 text-center
           md:px-10
         "
       >
         {/* Subtle orange accents */}
-        <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#E46A2A]/40 blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-md bg-[#E46A2A]/40 blur-3xl" />
 
-        <div className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-[#E46A2A]/30 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-md bg-[#E46A2A]/30 blur-3xl" />
 
         {/* Content */}
         <Reveal
@@ -80,7 +80,7 @@ function FinalCta() {
           <Link
             data-reveal="cta"
             href="/connect"
-            className="group inline-flex items-center justify-center gap-3 rounded-full border border-[#FFF6EF]/30 bg-[#FFF6EF] px-8 py-4 text-base font-medium text-[#B94D1F] transition-all duration-300 hover:bg-[#FBEDE5] hover:border-[#FFF6EF]/60 sm:text-lg"
+            className="group inline-flex items-center justify-center gap-3 rounded-md border border-[#FFF6EF]/30 bg-[#FFF6EF] px-8 py-4 text-base font-medium text-[#B94D1F] transition-all duration-300 hover:bg-[#FBEDE5] hover:border-[#FFF6EF]/60 sm:text-lg"
           >
             <span>{buttonLabel}</span>
 
@@ -107,7 +107,7 @@ function FinalCta() {
             onMouseLeave={handleLeave}
             className="
               relative overflow-hidden
-              rounded-full
+              rounded-md
               border border-[#FFF6EF]/70
               px-7 py-3.5
               font-mono text-xs font-semibold

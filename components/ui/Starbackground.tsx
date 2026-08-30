@@ -28,7 +28,7 @@ export default function StarBackground() {
       {stars.map((star) => (
         <span
           key={star.id}
-          className="absolute rounded-full bg-white"
+          className="absolute rounded-md bg-white"
           style={{
             left: `${star.left}%`,
             top: `${star.top}%`,

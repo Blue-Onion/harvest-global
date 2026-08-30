@@ -48,7 +48,7 @@ const Connect = () => {
               <div className="flex gap-3">
                 <a
                   href="#"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                  className="flex h-12 w-12 items-center justify-center rounded-md bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
                   <Image
                     src="/svg/linkedIn.svg"
@@ -61,7 +61,7 @@ const Connect = () => {
 
                 <a
                   href="#"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                  className="flex h-12 w-12 items-center justify-center rounded-md bg-white/10 transition-all hover:scale-105 hover:bg-white"
                 >
                   <Image
                     src="/svg/insta.svg"
@@ -101,7 +101,7 @@ const Connect = () => {
 
             <button
               type="submit"
-              className="mt-7 w-fit rounded-full bg-white px-7 py-4 text-xs uppercase tracking-wide text-black transition-all hover:scale-105"
+              className="mt-7 w-fit rounded-md bg-white px-7 py-4 text-xs uppercase tracking-wide text-black transition-all hover:scale-105"
             >
               Submit message
             </button>

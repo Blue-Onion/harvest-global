@@ -19,12 +19,12 @@ export default function CredentialsTeaser() {
       className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28"
     >
       <StarBackground />
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-150 w-200 rounded-full bg-emerald-600/4 blur-[120px]" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-150 w-200 rounded-md bg-emerald-600/4 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
         <Reveal variant="group" className="max-w-3xl" duration={1}>
           <div className="flex items-center gap-3">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="inline-block h-1.5 w-1.5 rounded-md bg-emerald-500" />
             <p
               data-reveal="eyebrow"
               className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400"
@@ -64,7 +64,7 @@ export default function CredentialsTeaser() {
         <div className="mt-14 flex justify-center">
           <Link
             href="/credentials"
-            className="group inline-flex items-center gap-3 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-7 py-3.5 text-sm font-medium text-emerald-300 backdrop-blur-sm transition-colors hover:border-emerald-500/50 hover:bg-emerald-500/20"
+            className="group inline-flex items-center gap-3 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-7 py-3.5 text-sm font-medium text-emerald-300 backdrop-blur-sm transition-colors hover:border-emerald-500/50 hover:bg-emerald-500/20"
           >
             Explore Credentials
             <ArrowRight

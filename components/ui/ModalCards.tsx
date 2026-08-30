@@ -121,7 +121,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          "group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+          "group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-md2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-white/70",
           className,
         )}
         style={{ background: "#000" }}
@@ -197,7 +197,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
             <motion.div
               layoutId={useMorph ? `card-${id}` : undefined}
               className={cn(
-                "relative flex max-h-full w-full max-w-4xl flex-col overflow-hidden rounded-3xl bg-neutral-900 shadow-2xl",
+                "relative flex max-h-full w-full max-w-4xl flex-col overflow-hidden rounded-md3xl bg-neutral-900 shadow-2xl",
                 modalClassName,
               )}
               {...(animationVariant !== "scale" && entryVariants
@@ -251,7 +251,7 @@ export const ModalCards: React.FC<ModalCardsProps> = ({
                   type="button"
                   onClick={close}
                   aria-label="Close"
-                  className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-2xl leading-none text-white backdrop-blur transition-colors hover:bg-black/70 focus-visible:ring-2 focus-visible:ring-white/70"
+                  className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-md bg-black/40 text-2xl leading-none text-white backdrop-blur transition-colors hover:bg-black/70 focus-visible:ring-2 focus-visible:ring-white/70"
                 >
                   &times;
                 </button>
