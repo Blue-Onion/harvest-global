@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import Reveal from "@/components/ui/reveal/Reveal";
@@ -14,6 +14,11 @@ import {
 const applications = data.applications.items;
 type App = (typeof applications)[number];
 
+// Number of tabs visible at once in the mobile sliding window.
+// The 7-tab array is walked like a viewport; exactly this many tabs are
+// shown on small screens while the rest stay clipped by the track.
+const MOBILE_TAB_COUNT = 4;
+
 export default function Applications() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -21,9 +26,17 @@ export default function Applications() {
   // While set, the base layer shows the old app and the wipe layer shows the new one.
   const [prevApp, setPrevApp] = useState<App | null>(null);
 
+  // First index of the 4-tab mobile window over the 7-item array.
+  const [mobileStartIndex, setMobileStartIndex] = useState(0);
+  const mobileEndIndex = Math.min(
+    mobileStartIndex + MOBILE_TAB_COUNT - 1,
+    applications.length - 1
+  );
+
   const imageNextRef = useRef<HTMLDivElement>(null);
   const textCurrentRef = useRef<HTMLDivElement>(null);
   const textNextRef = useRef<HTMLDivElement>(null);
+  const tabsTrackRef = useRef<HTMLDivElement>(null);
 
   const active = applications[activeIndex];
   const currentApp = prevApp ?? active;
@@ -38,6 +51,16 @@ export default function Applications() {
     ) {
       return;
     }
+
+    // Keep the mobile window pinned to the active tab, clamped to the
+    // array boundaries (window always contains the active tab, 4 wide).
+    const maxWindowStart = Math.max(
+      0,
+      applications.length - MOBILE_TAB_COUNT
+    );
+    setMobileStartIndex(
+      Math.min(Math.max(nextIndex, 0), maxWindowStart)
+    );
 
     const imageNext = imageNextRef.current;
     const currentText = textCurrentRef.current;
