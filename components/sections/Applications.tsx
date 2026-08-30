@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import Reveal from "@/components/ui/reveal/Reveal";
@@ -143,43 +143,6 @@ export default function Applications() {
     });
   };
 
-  /*
-   * MOBILE TAB WINDOW
-   * Slides the tab track so that exactly 4 tabs stay visible below md.
-   * On desktop the track rests at 0 and all 7 tabs share the width.
-   */
-  useEffect(() => {
-    const track = tabsTrackRef.current;
-    if (!track) return;
-
-    const isMobile = window.innerWidth < 768;
-    const target =
-      isMobile
-        ? -mobileStartIndex * (100 / MOBILE_TAB_COUNT)
-        : 0;
-
-    gsap.to(track, {
-      xPercent: target,
-      duration: 0.5,
-      ease: "power3.out",
-      overwrite: "auto",
-    });
-  }, [mobileStartIndex]);
-
-  // If the viewport crosses into desktop while a mobile offset is applied,
-  // snap the track back so all 7 tabs are visible without a lingering shift.
-  useEffect(() => {
-    const handleResize = () => {
-      const track = tabsTrackRef.current;
-      if (track && window.innerWidth >= 768) {
-        gsap.set(track, { xPercent: 0 });
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <section
       id="applications"
@@ -230,66 +193,53 @@ export default function Applications() {
           onValueChange={handleTabChange}
           className="mt-14 w-full"
         >
-          {/* Clips the 7-tab track so only the mobile window is visible.
-              On desktop the track is untranslated and all tabs fit. */}
-          <div
-            className="w-full overflow-hidden"
-            data-mobile-window-end={mobileEndIndex}
-          >
-            <TabsList
-              ref={tabsTrackRef}
-              className="h-auto w-full flex justify-start overflow-hidden rounded-none border-b border-[#D5E3DC] bg-transparent p-0"
-            >
-              {applications.map((app, i) => (
-                <TabsTrigger
-                  key={app.id}
-                  value={app.id}
-                  disabled={isAnimating}
-                  className="
-                    relative h-auto
-                    rounded-none
-                    border-0
-                    bg-transparent
-                    px-5 py-4
-                    font-mono text-xs uppercase
-                    tracking-[0.16em]
-                    text-[#60766E]
-                    shadow-none
+          <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-none border-b border-[#D5E3DC] bg-transparent p-0">
+            {applications.map((app, i) => (
+              <TabsTrigger
+                key={app.id}
+                value={app.id}
+                disabled={isAnimating}
+                className="
+                  relative h-auto shrink-0
+                  rounded-none
+                  border-0
+                  bg-transparent
+                  px-5 py-4
+                  font-mono text-xs uppercase
+                  tracking-[0.16em]
+                  text-[#60766E]
+                  shadow-none
 
-                    flex-[0_0_25%]!
-                    md:flex-[0_0_14.2857%]!
+                  transition-colors duration-200
 
-                    transition-colors duration-200
+                  hover:text-[#235738]
 
-                    hover:text-[#235738]
+                  data-[state=active]:bg-transparent
+                  data-[state=active]:text-[#235738]
+                  data-[state=active]:shadow-none
 
-                    data-[state=active]:bg-transparent
-                    data-[state=active]:text-[#235738]
-                    data-[state=active]:shadow-none
+                  after:absolute
+                  after:bottom-0
+                  after:left-0
+                  after:h-0.5
+                  after:w-full
+                  after:origin-left
+                  after:scale-x-0
+                  after:bg-[#2E7657]
+                  after:transition-transform
+                  after:duration-300
 
-                    after:absolute
-                    after:bottom-0
-                    after:left-0
-                    after:h-0.5
-                    after:w-full
-                    after:origin-left
-                    after:scale-x-0
-                    after:bg-[#2E7657]
-                    after:transition-transform
-                    after:duration-300
+                  data-[state=active]:after:scale-x-100
+                "
+              >
+                <span className="mr-2 text-[10px] opacity-50">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
 
-                    data-[state=active]:after:scale-x-100
-                  "
-                >
-                  <span className="mr-2 text-[10px] opacity-50">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-
-                  {app.shortLabel}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </div>
+                {app.shortLabel}
+              </TabsTrigger>
+            ))}
+          </TabsList>
         </Tabs>
 
         {/* APPLICATION DISPLAY */}
