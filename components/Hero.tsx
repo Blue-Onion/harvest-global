@@ -146,7 +146,7 @@ const Hero = () => {
     </span>
   </h1>
 
-  <h1 className="tracking-wider text-white text-5xl leading-[0.9] sm:text-6xl md:text-7xl">
+  <h1 className="tracking-wider text-white text-5xl leading-[0.9] md:text-6xl lg:text-7xl">
     <span className="highlight-tag font-extrabold">
       for Earth Observation
     </span>
