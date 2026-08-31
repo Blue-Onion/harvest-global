@@ -184,7 +184,7 @@ export default function Technology() {
   return (
     <section
       id="technology"
-      className="flex min-h-screen  w-full flex-col justify-center bg-[#FFF6EF] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
+      className="flex min-h-screen overflow-x-hidden w-full flex-col justify-center bg-[#FFF6EF] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
     >
       <div className="container mx-auto overflow-x-hidden  w-full ">
         {/* Header */}
