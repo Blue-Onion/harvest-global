@@ -258,25 +258,24 @@ export default function Applications() {
       );
     });
   };
-
   return (
     <section
       id="applications"
-      className="w-full bg-[#F7FAF8] px-5 py-24 text-[#173B32] "
+      className="w-full bg-[#F7FAF8] px-5 py-24 text-black"
     >
       <div className="mx-auto max-w-6xl">
         {/* HEADER */}
         <Reveal variant="group" className="m" duration={1}>
           <h2
             data-reveal="heading"
-            className="text-3xl font-bold leading-[1.1] tracking-tight text-[#123C2B] sm:text-5xl md:text-6xl"
+            className="text-3xl font-bold leading-[1.1] tracking-tight text-black sm:text-5xl md:text-6xl"
           >
             {data.applications.title.map((line, i) => (
               <span key={i}>
                 {i > 0 && <br className="hidden sm:inline" />}
 
                 {i === data.applications.title.length - 1 ? (
-                  <span className="text-[#2E7657]">{line}</span>
+                  <span className="text-black">{line}</span>
                 ) : (
                   line
                 )}
@@ -286,7 +285,7 @@ export default function Applications() {
 
           <p
             data-reveal="text"
-            className="mt-6 text-base leading-relaxed text-[#60766E] sm:text-lg"
+            className="mt-6 text-base leading-relaxed text-black sm:text-lg"
           >
             {data.applications.description}
           </p>
@@ -298,47 +297,35 @@ export default function Applications() {
           onValueChange={handleTabChange}
           className="mt-4 w-full"
         >
-          <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-md border-b border-[#D5E3DC] bg-transparent p-0">
-            {applications.map((app, i) => (
+          <TabsList
+            variant="line"
+            className="w-full justify-start gap-1 rounded-md border-b border-black/15 bg-transparent p-0"
+          >
+            {applications.map((app) => (
               <TabsTrigger
                 key={app.id}
                 value={app.id}
                 disabled={isAnimating}
                 className="
-                  relative h-auto shrink-0
-                  rounded-md
-                  border-0
-                  bg-transparent
-                  px-5 py-4
-                  font-mono text-xs uppercase
-                  tracking-[0.16em]
-                  text-[#60766E]
-                  shadow-none
+          relative
+          shrink-0
+          rounded-md
+          font-semibold
+          bg-transparent
+          px-5
+          py-4
+          text-xs
+          uppercase
+          tracking-[0.16em]
+          text-black
+          shadow-none
+          transition-none
 
-                  transition-colors duration-200
-
-                  hover:text-[#235738]
-
-                  data-[state=active]:bg-transparent
-                  data-[state=active]:text-[#235738]
-                  data-[state=active]:shadow-none
-
-                  after:absolute
-                  after:bottom-0
-                  after:left-0
-                  after:h-0.5
-                  after:w-full
-                  after:origin-left
-                  after:scale-x-0
-                  after:bg-[#2E7657]
-                  after:transition-transform
-                  after:duration-300
-
-                  data-[state=active]:after:scale-x-100
-                "
+          data-active:bg-transparent
+          data-active:text-[#2E7657]
+          data-active:shadow-none
+        "
               >
-      
-
                 {app.shortLabel}
               </TabsTrigger>
             ))}
@@ -346,10 +333,9 @@ export default function Applications() {
         </Tabs>
 
         {/* APPLICATION DISPLAY */}
-        <div className="mt-8 grid overflow-hidden rounded-md border border-[#D5E3DC] bg-[#E7F1EB] md:grid-cols-2">
+        <div className="mt-8 grid overflow-hidden rounded-md border border-black/15 bg-[#95b4a2] md:grid-cols-2">
           {/* IMAGE */}
-          <div className="relative min-h-[320px] overflow-hidden md:min-h-[560px]">
-            {/* Base layer = OUTGOING image */}
+          <div className="relative h-auto">
             <Image
               key={`base-${currentApp.id}`}
               src={currentApp.image}
@@ -360,7 +346,6 @@ export default function Applications() {
               className="object-cover"
             />
 
-            {/* Wipe layer = INCOMING image, revealed top -> bottom */}
             <div
               ref={imageNextRef}
               className="absolute inset-0 z-10 overflow-hidden"
@@ -379,16 +364,12 @@ export default function Applications() {
               />
             </div>
 
-            {/* Green overlay */}
-            <div className="pointer-events-none absolute inset-0 z-20 bg-[#123C2B]/10" />
-
-            {/* Number */}
-        
+            <div className="pointer-events-none absolute inset-0 z-20 bg-black/10" />
           </div>
 
           {/* CONTENT */}
           <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
-            {/* Current (outgoing) text */}
+            {/* Current */}
             <div
               ref={textCurrentRef}
               className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
@@ -396,7 +377,7 @@ export default function Applications() {
               <ApplicationText app={currentApp} />
             </div>
 
-            {/* Next (incoming) text */}
+            {/* Next */}
             <div
               ref={textNextRef}
               className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
@@ -408,17 +389,15 @@ export default function Applications() {
       </div>
     </section>
   );
-}
 
-function ApplicationText({ app }: { app: App }) {
-  return (
-    <>
+  function ApplicationText({ app }: { app: App }) {
+    return (
       <div>
-        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-[#123C2B] sm:text-5xl">
+        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-black sm:text-5xl">
           {app.label}
         </h3>
 
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-[#60766E] md:text-lg">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-black md:text-lg">
           {app.description}
         </p>
 
@@ -426,15 +405,13 @@ function ApplicationText({ app }: { app: App }) {
           {app.items.map((item, i) => (
             <li
               key={`${app.id}-${i}`}
-              className="ml-4 list-disc pl-1 text-sm font-medium text-[#173B32] marker:text-[#2E7657]"
+              className="ml-4 list-disc pl-1 text-sm font-medium text-black marker:text-black"
             >
               {item}
             </li>
           ))}
         </ul>
       </div>
-
-
-    </>
-  );
+    );
+  }
 }
