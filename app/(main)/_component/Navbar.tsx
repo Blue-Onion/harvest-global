@@ -12,8 +12,10 @@ gsap.registerPlugin(useGSAP);
 function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "Team", href: "/team" },
+    { title: "About Us", href: "/about-us" },
     { title: "Media", href: "/credentials" },
+    { title: "Insights", href: "/Insights" },
+
   ];
 
   const underlineRefs = useRef<(HTMLSpanElement | null)[]>([]);

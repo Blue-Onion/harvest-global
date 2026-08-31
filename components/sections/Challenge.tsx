@@ -78,7 +78,7 @@ const Challenge = () => {
         <div className="grid gap-5 md:grid-cols-2">
           {challenges.map((challenge, index) => (
             <Reveal key={challenge.number} delay={index * 0.08}>
-              <article className="group overflow-hidden rounded-md3xl border border-[#D5E3DC] bg-[#E7F1EB]">
+              <article className="group overflow-hidden rounded-md  border border-[#D5E3DC] bg-[#E7F1EB]">
                 {/* Image */}
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img
@@ -109,12 +109,7 @@ const Challenge = () => {
                   </p>
 
                   {/* Bottom accent */}
-                  <div className="mt-8 flex items-center gap-3">
-                    <span className="h-px w-10 bg-[#2E7657]" />
-                    <span className="text-xs font-medium uppercase tracking-[0.16em] text-[#2E7657]">
-                      Earth Intelligence
-                    </span>
-                  </div>
+                 
                 </div>
               </article>
             </Reveal>

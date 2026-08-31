@@ -8,7 +8,7 @@ import Footer from "@/components/footer/Footer";
 import FinalCta from "@/components/sections/FinalCta";
 import Navbar from "@/components/Navbar";
 import HeroReveal from "@/components/ui/HeroReveal";
-import Connect from "@/components/sections/Connect";
+
 import Challenge from "@/components/sections/Challenge";
 import ParternerdLogo from "@/components/sections/ParternerdLogo";
 
@@ -18,8 +18,8 @@ export default function Home() {
       <Navbar/>
       <Hero />
       <HeroReveal/>
-      <About />
       <ParternerdLogo/>
+      <About />
       <Challenge/>
       <Technology />
       <Applications />

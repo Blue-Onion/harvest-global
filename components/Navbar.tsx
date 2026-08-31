@@ -13,8 +13,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "Team", href: "/team" },
+    { title: "About Us", href: "/about-us" },
     { title: "Media", href: "/credentials" },
+    { title: "Insights", href: "/Insights" },
 
   ];
 
@@ -272,7 +273,7 @@ function Navbar() {
           backdropFilter: "blur(var(--nav-blur, 0px))",
           WebkitBackdropFilter: "blur(var(--nav-blur, 0px))",
         }}
-        className="inset-x-0 top-4 container mx-auto fixed z-50 rounded-md2xl border border-transparent px-4 text-white"
+        className="inset-x-0 top-4 container mx-auto fixed z-50 rounded-md  border border-transparent px-4 text-white"
       >
         <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
           <div className="flex items-center gap-6 font-bold text-base">
