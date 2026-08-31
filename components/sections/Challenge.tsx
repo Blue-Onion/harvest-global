@@ -35,7 +35,7 @@ const Challenge = () => {
   return (
     <section
       id="challenge"
-      className="relative overflow-hidden bg-[#FBEBDF] px-6 py-24 text-black md:px-10 lg:px-16"
+      className="relative w-full overflow-hidden bg-[#FBEBDF] px-5 py-24 text-black "
     >
 
       <div className="pointer-events-none absolute inset-0 z-0">

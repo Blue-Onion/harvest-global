@@ -398,28 +398,34 @@ return (
     </div>
   </section>
 );
-  function ApplicationText({ app }: { app: App }) {
-    return (
+function ApplicationText({ app }: { app: App }) {
+  return (
+    <div className="flex h-full flex-col">
+      {/* Main content */}
       <div>
-        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-black sm:text-5xl">
+        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-black md:text-5xl">
           {app.label}
         </h3>
 
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-black md:text-lg">
+        <p className="mt-6 max-w-xl text-base  leading-relaxed text-black md:text-2xl">
           {app.description}
         </p>
+      </div>
 
-        <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+      {/* Footer */}
+      <div className="mt-auto border-t border-[#2E7657]/20 pt-5">
+        <ul className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
           {app.items.map((item, i) => (
             <li
               key={`${app.id}-${i}`}
-              className="ml-4 list-disc pl-1 text-sm font-medium text-black marker:text-black"
+              className="text-sm font-medium list-disc italic text-black/70"
             >
               {item}
             </li>
           ))}
         </ul>
       </div>
-    );
-  }
+    </div>
+  );
+}
 }
