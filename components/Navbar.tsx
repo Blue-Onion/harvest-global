@@ -301,7 +301,7 @@ function Navbar() {
 
 >
         <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
-          <div className="flex items-center gap-6 font-bold text-base">
+          <div className="flex items-center gap-6 font-bold text-white">
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link, i) => (
