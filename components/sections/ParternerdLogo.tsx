@@ -117,7 +117,7 @@ function LogoCard({
         partner-logo
         flex h-24 w-44 shrink-0
         items-center justify-center
-        rounded-2xl
+        rounded-md2xl
         border border-[#D5E3DC]
         bg-white
         px-6

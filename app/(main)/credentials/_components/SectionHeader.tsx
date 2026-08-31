@@ -16,12 +16,12 @@ export default function SectionHeader({
   className,
 }: SectionHeaderProps) {
   const dotColor =
-    accent === "orange" ? "bg-orange-500" : "bg-emerald-500";
+    accent === "orange" ? "bg-[#E46A2A]" : "bg-[#E46A2A]";
 
   return (
     <div className={cn("max-w-3xl", className)}>
       <div className="flex items-center gap-3">
-        <span className={cn("inline-block h-1.5 w-1.5 rounded-full", dotColor)} />
+        <span className={cn("inline-block h-1.5 w-1.5 rounded-md", dotColor)} />
         <p className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
           {eyebrow}
         </p>

@@ -269,15 +269,15 @@ function Navbar() {
             >
               <span
                 ref={lineTopRef}
-                className="w-6 h-0.5 bg-white rounded-full origin-center"
+                className="w-6 h-0.5 bg-white rounded-md origin-center"
               />
               <span
                 ref={lineMiddleRef}
-                className="w-4 h-0.5 bg-white rounded-full origin-center"
+                className="w-4 h-0.5 bg-white rounded-md origin-center"
               />
               <span
                 ref={lineBottomRef}
-                className="w-6 h-0.5 bg-white rounded-full origin-center"
+                className="w-6 h-0.5 bg-white rounded-md origin-center"
               />
             </button>
           </div>

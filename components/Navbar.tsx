@@ -272,7 +272,7 @@ function Navbar() {
           backdropFilter: "blur(var(--nav-blur, 0px))",
           WebkitBackdropFilter: "blur(var(--nav-blur, 0px))",
         }}
-        className="inset-x-0 top-4 container mx-auto fixed z-50 rounded-2xl border border-transparent px-4 text-white"
+        className="inset-x-0 top-4 container mx-auto fixed z-50 rounded-md2xl border border-transparent px-4 text-white"
       >
         <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
           <div className="flex items-center gap-6 font-bold text-base">
@@ -306,15 +306,15 @@ function Navbar() {
             >
               <span
                 ref={lineTopRef}
-                className="w-6 h-0.5 bg-white rounded-full origin-center"
+                className="w-6 h-0.5 bg-white rounded-md origin-center"
               />
               <span
                 ref={lineMiddleRef}
-                className="w-4 h-0.5 bg-white rounded-full origin-center"
+                className="w-4 h-0.5 bg-white rounded-md origin-center"
               />
               <span
                 ref={lineBottomRef}
-                className="w-6 h-0.5 bg-white rounded-full origin-center"
+                className="w-6 h-0.5 bg-white rounded-md origin-center"
               />
             </button>
           </div>

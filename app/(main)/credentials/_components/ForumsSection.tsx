@@ -6,15 +6,13 @@ import { useInView } from "@/lib/useInView";
 import { cn } from "@/lib/utils";
 import { data } from "@/data";
 import SectionHeader from "./SectionHeader";
-import StarBackground from "@/components/ui/Starbackground";
 
 export default function ForumsSection() {
   const { forums, sections } = data.credentials;
   const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28">
-      <StarBackground />
+    <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
         <SectionHeader
           eyebrow={sections.forums.eyebrow}
@@ -33,7 +31,7 @@ export default function ForumsSection() {
           {forums.map((item) => (
             <article
               key={item.id}
-              className="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50"
+              className="group relative flex flex-col overflow-hidden rounded-md border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50"
             >
               {item.image && (
                 <div className="relative aspect-[16/10] overflow-hidden">
@@ -44,11 +42,11 @@ export default function ForumsSection() {
                     className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
                     sizes="(min-width: 640px) 50vw, 100vw"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-black/20" />
-                  <div className="absolute inset-0 bg-emerald-950/10 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-[#123C2B]/20" />
+                  <div className="absolute inset-0 bg-[#B94D1F]/10 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-0" />
 
                   {item.year && (
-                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300/90 backdrop-blur-sm">
+                    <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#123C2B]/40 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#E46A2A]/90 backdrop-blur-sm">
                       <CalendarDays size={12} />
                       {item.year}
                     </span>
@@ -58,7 +56,7 @@ export default function ForumsSection() {
 
               <div className="flex flex-1 flex-col p-6 sm:p-7">
                 {!item.image && item.year && (
-                  <span className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-400/90">
+                  <span className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#E46A2A]/90">
                     <CalendarDays size={12} />
                     {item.year}
                   </span>

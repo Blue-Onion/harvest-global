@@ -193,7 +193,7 @@ export default function Applications() {
           onValueChange={handleTabChange}
           className="mt-14 w-full"
         >
-          <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-none border-b border-[#D5E3DC] bg-transparent p-0">
+          <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-md border-b border-[#D5E3DC] bg-transparent p-0">
             {applications.map((app, i) => (
               <TabsTrigger
                 key={app.id}
@@ -201,7 +201,7 @@ export default function Applications() {
                 disabled={isAnimating}
                 className="
                   relative h-auto shrink-0
-                  rounded-none
+                  rounded-md
                   border-0
                   bg-transparent
                   px-5 py-4
@@ -243,7 +243,7 @@ export default function Applications() {
         </Tabs>
 
         {/* APPLICATION DISPLAY */}
-        <div className="mt-8 grid overflow-hidden rounded-[28px] border border-[#D5E3DC] bg-[#E7F1EB] md:grid-cols-2">
+        <div className="mt-8 grid overflow-hidden rounded-md border border-[#D5E3DC] bg-[#E7F1EB] md:grid-cols-2">
 
           {/* IMAGE */}
           <div className="relative min-h-[320px] overflow-hidden md:min-h-[560px]">
@@ -282,7 +282,7 @@ export default function Applications() {
             <div className="pointer-events-none absolute inset-0 z-20 bg-[#123C2B]/10" />
 
             {/* Number */}
-            <div className="absolute left-6 top-6 z-30 rounded-full bg-[#123C2B] px-4 py-2 font-mono text-xs tracking-[0.2em] text-[#F7FAF8]">
+            <div className="absolute left-6 top-6 z-30 rounded-md bg-[#123C2B] px-4 py-2 font-mono text-xs tracking-[0.2em] text-[#F7FAF8]">
               {String(activeIndex + 1).padStart(2, "0")} /{" "}
               {String(applications.length).padStart(2, "0")}
             </div>
@@ -327,7 +327,7 @@ function ApplicationText({
             {app.shortLabel}
           </span>
 
-          <span className="rounded-full border border-[#2E7657]/20 bg-[#F7FAF8] px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-[#60766E]">
+          <span className="rounded-md border border-[#2E7657]/20 bg-[#F7FAF8] px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-[#60766E]">
             {app.tag}
           </span>
         </div>

@@ -6,7 +6,6 @@ import { useInView } from "@/lib/useInView";
 import { cn } from "@/lib/utils";
 import { data } from "@/data";
 import SectionHeader from "./SectionHeader";
-import StarBackground from "@/components/ui/Starbackground";
 
 
 export default function AffiliationsSection() {
@@ -14,8 +13,7 @@ export default function AffiliationsSection() {
   const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28">
-      <StarBackground />
+    <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
         <SectionHeader
           eyebrow={sections.affiliations.eyebrow}
@@ -34,9 +32,9 @@ export default function AffiliationsSection() {
           {affiliations.map((item) => (
             <article
               key={item.id}
-              className="group relative flex flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-emerald-500/20 hover:bg-neutral-900/50"
+              className="group relative flex flex-col overflow-hidden rounded-md border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-[#E46A2A]/30 hover:bg-neutral-900/50"
             >
-              <div className="absolute top-0 inset-x-0 z-10 h-px bg-linear-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute top-0 inset-x-0 z-10 h-px bg-linear-to-r from-transparent via-[#E46A2A]/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               {item.image && (
                 <div className="relative aspect-[16/10] overflow-hidden">
@@ -47,15 +45,15 @@ export default function AffiliationsSection() {
                     className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
                     sizes="(min-width: 640px) 50vw, 100vw"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-black/20" />
-                  <div className="absolute inset-0 bg-emerald-950/10 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-[#123C2B]/20" />
+                  <div className="absolute inset-0 bg-[#B94D1F]/10 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-0" />
 
                   <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 p-5">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 bg-black/40 text-emerald-300/90 backdrop-blur-sm">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/15 bg-[#123C2B]/40 text-[#E46A2A]/90 backdrop-blur-sm">
                       <Landmark size={18} />
                     </span>
                     {item.year && (
-                      <span className="rounded-full border border-white/10 bg-black/40 px-2.5 py-1 font-mono text-[10px] tracking-[0.2em] text-white/70 backdrop-blur-sm">
+                      <span className="rounded-md border border-white/10 bg-[#123C2B]/40 px-2.5 py-1 font-mono text-[10px] tracking-[0.2em] text-white/70 backdrop-blur-sm">
                         {item.year}
                       </span>
                     )}
@@ -66,7 +64,7 @@ export default function AffiliationsSection() {
               <div className="flex flex-1 flex-col p-6 sm:p-7">
                 {!item.image && (
                   <div className="flex items-center justify-between gap-3">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-emerald-400/90">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/10 bg-white/5 text-[#E46A2A]/90">
                       <Landmark size={18} />
                     </span>
                     {item.year && (
@@ -86,7 +84,7 @@ export default function AffiliationsSection() {
                 </p>
 
                 <div className="mt-6 flex items-center gap-2 border-t border-white/6 pt-4">
-                  <span className="h-1 w-1 rounded-full bg-emerald-500/50" />
+                  <span className="h-1 w-1 rounded-md bg-[#E46A2A]/50" />
                   <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-neutral-600">
                     {item.type}
                   </span>

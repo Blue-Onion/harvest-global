@@ -67,7 +67,7 @@ export default function TeamPage() {
             h-150
             w-200
             -translate-x-1/2
-            rounded-full
+            rounded-md
             bg-[#2E7657]/10
             blur-[120px]
           "
@@ -82,7 +82,7 @@ export default function TeamPage() {
             top-[30%]
             h-100
             w-100
-            rounded-full
+            rounded-md
             bg-[#E46A2A]/5
             blur-[140px]
           "
@@ -97,7 +97,7 @@ export default function TeamPage() {
                   inline-block
                   h-1.5
                   w-1.5
-                  rounded-full
+                  rounded-md
                   bg-[#E46A2A]
                 "
               />

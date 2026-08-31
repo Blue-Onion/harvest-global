@@ -78,7 +78,7 @@ const Challenge = () => {
         <div className="grid gap-5 md:grid-cols-2">
           {challenges.map((challenge, index) => (
             <Reveal key={challenge.number} delay={index * 0.08}>
-              <article className="group overflow-hidden rounded-3xl border border-[#D5E3DC] bg-[#E7F1EB]">
+              <article className="group overflow-hidden rounded-md3xl border border-[#D5E3DC] bg-[#E7F1EB]">
                 {/* Image */}
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img
@@ -93,7 +93,7 @@ const Challenge = () => {
                   <div className="absolute inset-0 bg-[#123C2B]/10" />
 
                   {/* Number */}
-                  <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#123C2B] text-sm font-medium text-[#F7FAF8]">
+                  <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-md bg-[#123C2B] text-sm font-medium text-[#F7FAF8]">
                     {challenge.number}
                   </div>
                 </div>

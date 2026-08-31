@@ -153,9 +153,7 @@ export default function About() {
 
               <div className="mt-5 space-y-3 text-sm leading-relaxed text-neutral-200 sm:text-base md:text-lg max-w-3xl">
                 <p>{paragraph1}</p>
-                <p className="text-xs text-neutral-400 sm:text-sm">
-                  {paragraph2}
-                </p>
+                
               </div>
 
               <div className="mt-8 border-t border-white/15 pt-6 w-full max-w-3xl">

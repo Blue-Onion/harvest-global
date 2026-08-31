@@ -95,7 +95,7 @@ function TechCardView({ card }: { card: TechCard }) {
   return (
     <article
       className={cn(
-        "group relative overflow-hidden rounded-[24px]",
+        "group relative overflow-hidden rounded-md",
         "border border-[#E46A2A]/20",
         "bg-[#FBEDE5]",
         "p-7 md:p-9",
@@ -105,7 +105,7 @@ function TechCardView({ card }: { card: TechCard }) {
     >
       {/* Image */}
       {card.visual === "image" && card.image && (
-        <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-[16px]">
+        <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-md">
           <img
             src={card.image}
             alt={card.title}
@@ -120,7 +120,7 @@ function TechCardView({ card }: { card: TechCard }) {
       {/* Grid Visual */}
       {card.visual === "grid" && (
         <div
-          className="mb-8 aspect-[16/9] rounded-[16px] opacity-50"
+          className="mb-8 aspect-[16/9] rounded-md opacity-50"
           style={{
             backgroundImage:
               "linear-gradient(#B94D1F1A 1px, transparent 1px), linear-gradient(90deg, #B94D1F1A 1px, transparent 1px)",
@@ -161,7 +161,7 @@ function TechCardView({ card }: { card: TechCard }) {
               {card.items.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-[#E46A2A]/20 bg-[#FFF6EF] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[#B94D1F]/80"
+                  className="rounded-md border border-[#E46A2A]/20 bg-[#FFF6EF] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[#B94D1F]/80"
                 >
                   {item}
                 </span>

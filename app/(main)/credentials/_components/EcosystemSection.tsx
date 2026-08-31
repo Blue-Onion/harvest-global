@@ -5,15 +5,13 @@ import { useInView } from "@/lib/useInView";
 import { cn } from "@/lib/utils";
 import { data } from "@/data";
 import SectionHeader from "./SectionHeader";
-import StarBackground from "@/components/ui/Starbackground";
 
 export default function EcosystemSection() {
   const { ecosystem, sections } = data.credentials;
   const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-white/10 bg-black py-20 text-white md:py-28">
-      <StarBackground />
+    <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
         <SectionHeader
           eyebrow={sections.ecosystem.eyebrow}
@@ -38,13 +36,13 @@ export default function EcosystemSection() {
                 className="relative grid grid-cols-1 gap-4 pl-12 sm:grid-cols-[140px_1fr] sm:pl-16 sm:gap-10"
               >
                 <div className="absolute left-4 top-1 -translate-x-1/2 sm:left-6">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full border border-orange-500/40 bg-black">
-                    <span className="h-2 w-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.8)]" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#E46A2A]/40 bg-[#123C2B]">
+                    <span className="h-2 w-2 rounded-md bg-[#E46A2A] shadow-[0_0_8px_rgba(228,106,42,0.8)]" />
                   </div>
                 </div>
 
                 <div className="sm:pt-1">
-                  <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-orange-400/90">
+                  <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-[#E46A2A]/90">
                     {item.phase}
                   </p>
                   {item.status && (
@@ -54,7 +52,7 @@ export default function EcosystemSection() {
                   )}
                 </div>
 
-                <div className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50 sm:flex-row">
+                <div className="group flex flex-col overflow-hidden rounded-md border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50 sm:flex-row">
                   {item.image && (
                     <div className="relative aspect-[16/9] overflow-hidden sm:aspect-auto sm:w-44 sm:shrink-0">
                       <Image

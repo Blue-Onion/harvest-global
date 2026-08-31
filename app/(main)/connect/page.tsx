@@ -24,10 +24,9 @@ const ConnectPage = () => {
           <div className="relative z-10 flex flex-col justify-between text-white">
             {/* Main Text */}
             <div className="space-y-10">
-              <h3 className="text-left text-2xl tracking-wider md:text-4xl">
-                Have a challenge worth solving, an idea worth exploring, or a
-                frontier worth building?
-              </h3>
+              <p className="text-left text-2xl font-semibold md:text-4xl">
+   Build 
+              </p>
 
               <h4 className="text-left text-2xl tracking-wider md:text-4xl">
                 Let’s build what comes next.
@@ -41,14 +40,14 @@ const ConnectPage = () => {
                   <p className="text-sm">How to connect</p>
 
                   <div className="mt-12 text-sm text-white/60">
-                    <p>harvestglobal@hgsystems.in</p>
+                    <p>support@hgsystems.in</p>
                   </div>
                 </div>
 
                 <div className="flex gap-3">
                   <a
                     href="https://www.linkedin.com/in/harvest-global-3bba22220/?skipRedirect=true"
-                    className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                    className="group flex h-12 w-12 items-center justify-center rounded-md bg-white/10 transition-all hover:scale-105 hover:bg-white"
                   >
                     <Image
                       height={20}
@@ -61,7 +60,7 @@ const ConnectPage = () => {
 
                   <a
                     href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
-                    className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                    className="group flex h-12 w-12 items-center justify-center rounded-md bg-white/10 transition-all hover:scale-105 hover:bg-white"
                   >
                     <Image
                       height={20}
@@ -74,7 +73,7 @@ const ConnectPage = () => {
 
                   <a
                     href="https://x.com/HarvestG_Ssp"
-                    className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-all hover:scale-105 hover:bg-white"
+                    className="group flex h-12 w-12 items-center justify-center rounded-md bg-white/10 transition-all hover:scale-105 hover:bg-white"
                   >
                     <Image height={20} width={20} src="/svg/X.svg"    className="invert transition-all group-hover:invert-0" alt="X" />
                   </a>
@@ -108,7 +107,7 @@ const ConnectPage = () => {
 
               <button
                 type="submit"
-                className="mt-7 w-fit cursor-pointer rounded-full bg-white px-7 py-4 text-xs uppercase tracking-wide text-black transition-all hover:scale-105"
+                className="mt-7 w-fit cursor-pointer rounded-md bg-white px-7 py-4 text-xs uppercase tracking-wide text-black transition-all hover:scale-105"
               >
                 Submit message
               </button>

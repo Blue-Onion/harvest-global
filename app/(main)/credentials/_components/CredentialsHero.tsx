@@ -2,7 +2,6 @@
 
 import { useInView } from "@/lib/useInView";
 import { cn } from "@/lib/utils";
-import StarBackground from "@/components/ui/Starbackground";
 import { data } from "@/data";
 
 export default function CredentialsHero() {
@@ -11,8 +10,7 @@ export default function CredentialsHero() {
 
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 pb-24 text-white md:pt-52 md:pb-32">
-      <StarBackground />
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-150 w-200 rounded-full bg-emerald-600/4 blur-[120px]" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-150 w-200 rounded-md bg-[#E46A2A]/4 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
         <div
@@ -23,7 +21,7 @@ export default function CredentialsHero() {
           )}
         >
           <div className="flex items-center gap-3">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="inline-block h-1.5 w-1.5 rounded-md bg-[#E46A2A]" />
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
               {eyebrow}
             </p>

@@ -29,7 +29,7 @@ const TeamCard = ({
         max-w-[420px]
         flex-col
         overflow-hidden
-        rounded-[2rem]
+        rounded-md
         border
         border-[#235738]/15
         bg-[#E7F1EB]
@@ -53,7 +53,7 @@ const TeamCard = ({
           top-0
           h-16
           w-16
-          rounded-tl-[2rem]
+          rounded-md-[2rem]
           border-l-2
           border-t-2
           border-[#E46A2A]/70
@@ -68,7 +68,7 @@ const TeamCard = ({
           right-0
           h-16
           w-16
-          rounded-br-[2rem]
+          rounded-md-[2rem]
           border-b-2
           border-r-2
           border-[#235738]/40
@@ -95,7 +95,7 @@ const TeamCard = ({
           w-52
           shrink-0
           overflow-hidden
-          rounded-full
+          rounded-md
           border
           border-[#235738]/20
           bg-[#235738]/10
@@ -105,7 +105,7 @@ const TeamCard = ({
           group-hover:scale-[1.03]
         "
       >
-        <div className="relative h-full w-full overflow-hidden rounded-full">
+        <div className="relative h-full w-full overflow-hidden rounded-md">
           <Image
             src={image}
             alt={name}
@@ -116,7 +116,7 @@ const TeamCard = ({
         </div>
 
         {/* Image accent */}
-        <div className="absolute bottom-3 right-3 h-3 w-3 rounded-full border-2 border-[#E7F1EB] bg-[#E46A2A]" />
+        <div className="absolute bottom-3 right-3 h-3 w-3 rounded-md border-2 border-[#E7F1EB] bg-[#E46A2A]" />
       </div>
 
       {/* Name */}
@@ -136,7 +136,7 @@ const TeamCard = ({
 
       {/* Role */}
       <div className="mt-2 flex items-center justify-center gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#E46A2A]" />
+        <span className="h-1.5 w-1.5 rounded-md bg-[#E46A2A]" />
 
         <p className="text-center text-sm font-semibold uppercase tracking-[0.08em] text-[#235738]">
           {role}
@@ -182,7 +182,7 @@ const TeamCard = ({
               w-10
               items-center
               justify-center
-              rounded-full
+              rounded-md
               border
               border-[#235738]/20
               bg-white/50
