@@ -6,6 +6,7 @@ import gsap from "gsap";
 import Reveal from "@/components/ui/reveal/Reveal";
 import { data } from "@/data";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TopographicBackground from "../ui/Topography";
 
 const applications = [
   {
@@ -258,138 +259,145 @@ export default function Applications() {
       );
     });
   };
-  return (
-    <section
-      id="applications"
-      className="w-full bg-[#F7FAF8] px-5 py-24 text-black"
-    >
-      <div className="mx-auto max-w-6xl">
-        {/* HEADER */}
-        <Reveal variant="group" className="m" duration={1}>
-          <h2
-            data-reveal="heading"
-            className="text-3xl font-bold leading-[1.1] tracking-tight text-black sm:text-5xl md:text-6xl"
-          >
-            {data.applications.title.map((line, i) => (
-              <span key={i}>
-                {i > 0 && <br className="hidden sm:inline" />}
+return (
+  <section
+    id="applications"
+    className="relative w-full overflow-hidden bg-[#F7FAF8] px-5 py-24 text-black"
+  >
 
-                {i === data.applications.title.length - 1 ? (
-                  <span className="text-black">{line}</span>
-                ) : (
-                  line
-                )}
-              </span>
-            ))}
-          </h2>
+    <div className="pointer-events-none absolute inset-0 z-0">
+      <TopographicBackground
 
-          <p
-            data-reveal="text"
-            className="mt-6 text-base leading-relaxed text-black sm:text-lg"
-          >
-            {data.applications.description}
-          </p>
-        </Reveal>
+      />
+    </div>
 
-        {/* TABS */}
-        <Tabs
-          value={active.id}
-          onValueChange={handleTabChange}
-          className="mt-4 w-full"
+    {/* Content */}
+    <div className="relative z-10 mx-auto max-w-6xl">
+      {/* HEADER */}
+      <Reveal variant="group" className="m" duration={1}>
+        <h2
+          data-reveal="heading"
+          className="text-3xl font-bold leading-[1.1] tracking-tight text-black sm:text-5xl md:text-6xl"
         >
-          <TabsList
-            variant="line"
-            className="w-full justify-start gap-1 rounded-md border-b border-black/15 bg-transparent p-0"
+          {data.applications.title.map((line, i) => (
+            <span key={i}>
+              {i > 0 && <br className="hidden sm:inline" />}
+
+              {i === data.applications.title.length - 1 ? (
+                <span className="text-black">{line}</span>
+              ) : (
+                line
+              )}
+            </span>
+          ))}
+        </h2>
+
+        <p
+          data-reveal="text"
+          className="mt-6 text-base leading-relaxed text-black sm:text-lg"
+        >
+          {data.applications.description}
+        </p>
+      </Reveal>
+
+      {/* TABS */}
+      <Tabs
+        value={active.id}
+        onValueChange={handleTabChange}
+        className="mt-4 w-full"
+      >
+        <TabsList
+          variant="line"
+          className="w-full justify-start gap-1 rounded-md border-b border-black/15 bg-transparent p-0"
+        >
+          {applications.map((app) => (
+            <TabsTrigger
+              key={app.id}
+              value={app.id}
+              disabled={isAnimating}
+              className="
+                relative
+                shrink-0
+                rounded-md
+                bg-transparent
+                px-5
+                py-4
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.16em]
+                text-black
+                shadow-none
+                transition-none
+
+                data-active:bg-transparent
+                data-active:text-[#2E7657]
+                data-active:shadow-none
+              "
+            >
+              {app.shortLabel}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+
+      {/* APPLICATION DISPLAY */}
+      <div className="mt-8 grid overflow-hidden rounded-md border border-black/15 bg-[#95b4a2] md:grid-cols-2">
+        {/* IMAGE */}
+        <div className="relative h-auto">
+          <Image
+            key={`base-${currentApp.id}`}
+            src={currentApp.image}
+            alt={currentApp.alt}
+            fill
+            draggable={false}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
+
+          <div
+            ref={imageNextRef}
+            className="absolute inset-0 z-10 overflow-hidden"
+            style={{
+              clipPath: "inset(0 0 100% 0)",
+            }}
           >
-            {applications.map((app) => (
-              <TabsTrigger
-                key={app.id}
-                value={app.id}
-                disabled={isAnimating}
-                className="
-          relative
-          shrink-0
-          rounded-md
-          font-semibold
-          bg-transparent
-          px-5
-          py-4
-          text-xs
-          uppercase
-          tracking-[0.16em]
-          text-black
-          shadow-none
-          transition-none
-
-          data-active:bg-transparent
-          data-active:text-[#2E7657]
-          data-active:shadow-none
-        "
-              >
-                {app.shortLabel}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-
-        {/* APPLICATION DISPLAY */}
-        <div className="mt-8 grid overflow-hidden rounded-md border border-black/15 bg-[#95b4a2] md:grid-cols-2">
-          {/* IMAGE */}
-          <div className="relative h-auto">
             <Image
-              key={`base-${currentApp.id}`}
-              src={currentApp.image}
-              alt={currentApp.alt}
+              key={`next-${active.id}`}
+              src={active.image}
+              alt={active.alt}
               fill
               draggable={false}
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
             />
-
-            <div
-              ref={imageNextRef}
-              className="absolute inset-0 z-10 overflow-hidden"
-              style={{
-                clipPath: "inset(0 0 100% 0)",
-              }}
-            >
-              <Image
-                key={`next-${active.id}`}
-                src={active.image}
-                alt={active.alt}
-                fill
-                draggable={false}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-
-            <div className="pointer-events-none absolute inset-0 z-20 bg-black/10" />
           </div>
 
-          {/* CONTENT */}
-          <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
-            {/* Current */}
-            <div
-              ref={textCurrentRef}
-              className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
-            >
-              <ApplicationText app={currentApp} />
-            </div>
+          <div className="pointer-events-none absolute inset-0 z-20 bg-black/10" />
+        </div>
 
-            {/* Next */}
-            <div
-              ref={textNextRef}
-              className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
-            >
-              <ApplicationText app={active} />
-            </div>
+        {/* CONTENT */}
+        <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
+          {/* Current */}
+          <div
+            ref={textCurrentRef}
+            className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
+          >
+            <ApplicationText app={currentApp} />
+          </div>
+
+          {/* Next */}
+          <div
+            ref={textNextRef}
+            className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
+          >
+            <ApplicationText app={active} />
           </div>
         </div>
       </div>
-    </section>
-  );
-
+    </div>
+  </section>
+);
   function ApplicationText({ app }: { app: App }) {
     return (
       <div>

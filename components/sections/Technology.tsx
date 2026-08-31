@@ -2,6 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import TopographicBackground from "../ui/Topography";
 
 type TechCard = {
   number: string;
@@ -179,16 +180,21 @@ function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
     </div>
   );
 }
-
 export default function Technology() {
   return (
     <section
       id="technology"
-      className="flex min-h-screen overflow-x-hidden w-full flex-col justify-center bg-[#FFF6EF] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
+      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#FFF6EF] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
     >
-      <div className="container mx-auto w-full ">
+      {/* Topographic Background */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <TopographicBackground />
+      </div>
+
+      {/* Content */}
+      <div className="container relative z-10 mx-auto w-full">
         {/* Header */}
-        <div className="">
+        <div>
           <h2 className="mt-3 font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-black md:text-5xl lg:text-6xl">
             Technology
           </h2>
@@ -203,7 +209,11 @@ export default function Technology() {
           {/* Desktop Flow */}
           <div className="hidden md:grid md:grid-cols-3 md:gap-x-16 md:gap-y-16">
             {cards.map((card, index) => (
-              <TechFlowNode key={card.number} card={card} index={index} />
+              <TechFlowNode
+                key={card.number}
+                card={card}
+                index={index}
+              />
             ))}
           </div>
 
@@ -222,9 +232,6 @@ export default function Technology() {
             ))}
           </div>
         </div>
-
-
-       
       </div>
     </section>
   );
