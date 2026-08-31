@@ -35,7 +35,7 @@ const Challenge = () => {
   return (
     <section
       id="challenge"
-      className="relative overflow-hidden bg-[#F7FAF8] px-6 py-24 text-black md:px-10 lg:px-16"
+      className="relative overflow-hidden bg-[#FFF6EF] px-6 py-24 text-black md:px-10 lg:px-16"
     >
 
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -80,7 +80,7 @@ const Challenge = () => {
                   key={challenge.number}
                   className="bg-white p-6 md:p-8"
                 >
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-[#2E7657]">
+                  <span className="font-mono text-[10px] tracking-[0.2em] text-[#E46A2A]">
                     {challenge.number}
                   </span>
 
