@@ -91,7 +91,7 @@ function UnifiedGeoStack() {
                   key={layer.number}
                   className="pl-5 md:basis-[80%] lg:basis-[65%]"
                 >
-                  <article className="group relative flex min-h-[480px] flex-col justify-between overflow-hidden rounded-2xl border border-[#B94D1F]/15 bg-white p-7 shadow-sm transition-all duration-500 hover:border-[#E46A2A]/40 hover:shadow-xl md:p-10">
+                  <article className="group bg relative flex min-h-[480px] flex-col justify-between overflow-hidden rounded-2xl border border-[#B94D1F]/15  p-7 shadow-sm bg-white transition-all duration-500 hover:border-[#E46A2A]/40 hover:shadow-xl md:p-10">
                     {/* Large layer number */}
                     <div className="pointer-events-none absolute -right-5 -top-12 select-none text-[180px] font-semibold leading-none tracking-tighter text-[#E46A2A]/[0.06] transition-transform duration-700 group-hover:translate-x-2 group-hover:text-[#E46A2A]/[0.1] md:text-[220px]">
                       {layer.number}
@@ -101,36 +101,21 @@ function UnifiedGeoStack() {
                     <div className="relative z-10">
                       
 
-                      <h3 className="text-5xl font-medium tracking-tight text-[#17251E] md:text-6xl">
+                      <h3 className="text-4xl font-bold tracking-tight text-[#17251E] md:text-6xl">
                         {layer.title}
                       </h3>
 
-                      <p className="mt-5 max-w-xl text-xl leading-8 text-[#17251E]/90 md:text-2xl">
+
+                    </div>
+                      <p className="mt-5 max-w-xl text-xl leading-8 text-[#17251E]/90 md:text-3xl">
                         {layer.description}
                       </p>
-
                       <p className="mt-6 max-w-2xl text-sm leading-6 text-[#17251E]/80 md:text-base">
                         {layer.detail}
                       </p>
-                    </div>
 
-                    {/* Tags */}
-                    <div className="relative z-10 mt-12 flex flex-wrap items-center gap-2 border-t border-black/5 pt-6">
-                      {layer.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-[#17251E]/[0.07] px-3 py-1.5 text-xs font-medium text-[#17251E]/80"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+            
 
-                      <div className="ml-auto hidden h-10 w-10 items-center justify-center rounded-full bg-[#E46A2A] text-white transition-transform duration-300 group-hover:translate-x-1 md:flex">
-                        →
-                      </div>
-                    </div>
-
-                    {/* Orange accent */}
                     <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#E46A2A] transition-all duration-500 group-hover:w-full" />
                   </article>
                 </CarouselItem>
