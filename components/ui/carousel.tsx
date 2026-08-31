@@ -193,6 +193,7 @@ function CarouselPrevious({
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
+      suppressHydrationWarning
       {...props}
     >
       <ChevronLeftIcon />
@@ -223,6 +224,7 @@ function CarouselNext({
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
+      suppressHydrationWarning
       {...props}
     >
       <ChevronRightIcon />

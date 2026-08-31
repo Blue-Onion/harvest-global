@@ -99,8 +99,8 @@ function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
       <div
         className={cn(
           "relative flex h-[250px] flex-col",
-          "rounded-md border border-[#2E7657]/20",
-          "bg-[#E7F1EB]",
+          "rounded-md border border-[#2E7657]/30",
+          "bg-[#DCEAE2]",
           "p-6",
           "transition-all duration-300",
           "hover:-translate-y-1",
@@ -124,7 +124,7 @@ function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
         <div className="absolute bottom-0 left-6 right-6 h-px bg-[#2E7657]/15" />
 
 
-        <div className="absolute -bottom-[5px] left-1/2 z-20 h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 border-[#E7F1EB] bg-[#2E7657]" />
+        <div className="absolute -bottom-[5px] left-1/2 z-20 h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 border-[#DCEAE2] bg-[#2E7657]" />
       </div>
 
 
@@ -184,7 +184,7 @@ export default function Technology() {
   return (
     <section
       id="technology"
-      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#F7FAF8] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
+      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#E9F2ED] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
     >
       {/* Topographic Background */}
       <div className="pointer-events-none absolute inset-0 z-0">
