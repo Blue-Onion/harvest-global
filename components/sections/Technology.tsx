@@ -186,7 +186,7 @@ export default function Technology() {
       id="technology"
       className="flex min-h-screen overflow-x-hidden w-full flex-col justify-center bg-[#FFF6EF] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
     >
-      <div className="container mx-auto overflow-x-hidden  w-full ">
+      <div className="container mx-auto w-full ">
         {/* Header */}
         <div className="">
           <h2 className="mt-3 font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-black md:text-5xl lg:text-6xl">
