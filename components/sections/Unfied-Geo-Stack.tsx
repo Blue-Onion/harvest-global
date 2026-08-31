@@ -51,7 +51,7 @@ const layers = [
 
 function UnifiedGeoStack() {
   return (
-    <section className="relative overflow-hidden bg-[#F8E0CF] py-24 md:py-32">
+    <section id="unified-geo-stack" className="relative overflow-hidden bg-[#F8E0CF] py-24 md:py-32">
 <div className="pointer-events-none absolute inset-0 z-0 text-[#E46A2A]">
         <TopographicBackground />
       </div>
@@ -69,7 +69,7 @@ function UnifiedGeoStack() {
             <span className="text-[#E46A2A]">Multiple Layers</span>
            
           </p>
-          <p className="mt-7 max-w-2xl text-base leading-7 text-[#17251E]/90 md:text-lg">
+          <p className="mt-7  text-base leading-7 text-[#17251E]/90 md:text-lg">
             The HG Unified GeoAI Stack brings together the infrastructure,
             models and applications required to build scalable Earth
             Intelligence, from core data processing to edge deployment.
@@ -77,7 +77,7 @@ function UnifiedGeoStack() {
         </div>
 
         {/* Carousel */}
-        <div className="relative">
+        <div className="relative mt-7">
           <Carousel
             opts={{
               align: "start",

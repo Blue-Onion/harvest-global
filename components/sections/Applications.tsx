@@ -8,143 +8,233 @@ import { data } from "@/data";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TopographicBackground from "../ui/Topography";
 
-const applications = [
-  {
-    id: "app-1",
-    image:
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
-    label: "Agriculture",
-    shortLabel: "AGRI",
-    alt: "Precision farming, crop monitoring and agricultural intelligence",
-    description:
-      "From Space to Farm - AI-powered intelligence across the agricultural lifecycle.",
-    tag: "AGRICULTURE",
-    coords: "AGRI-STACK // CROP-HEALTH",
-    items: [
-      "Crop Planning",
-      "Crop Monitoring",
-      "Yield Estimation",
-      "NPK Intelligence",
-      "Harvest Monitoring",
-      "Crop Insurance",
-      "Agri-Credit",
-    ],
-  },
-  {
-    id: "app-2",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
-    label: "Climate Intelligence",
-    shortLabel: "CLIMATE",
-    alt: "Climate modelling, environmental monitoring and spatial risk intelligence",
-    description:
-      "Understanding a changing planet - Climate modelling, environmental monitoring and spatial risk intelligence to identify changing patterns and support resilient decision-making.",
-    tag: "CLIMATE INTELLIGENCE",
-    coords: "CLIMATE-RISK // HAZARD-MAP",
-    items: [
-      "Climate Risk",
-      "Climate Modelling",
-      "Environmental Change",
-      "Heat & Drought Intelligence",
-    ],
-  },
-  {
-    id: "app-3",
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-    label: "Disaster Management",
-    shortLabel: "DISASTER",
-    alt: "Floods, landslides, terrain monitoring and early warning",
-    description:
-      "From monitoring disasters to anticipating them - GeoAI-powered monitoring and predictive intelligence for faster disaster preparedness, response and recovery.",
-    tag: "DISASTER MGMT",
-    coords: "DISASTER // EARLY-WARNING",
-    items: [
-      "Flood Intelligence",
-      "Landslide Monitoring",
-      "Terrain Monitoring",
-      "Climate Risk",
-      "Vulnerability Mapping",
-      "Early Warning",
-    ],
-  },
-  {
-    id: "app-4",
-    image:
-      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
-    label: "Urban Planning",
-    shortLabel: "URBAN",
-    alt: "Urban growth, infrastructure, land use and climate vulnerability",
-    description:
-      "Intelligence for cities that are constantly changing - spatial intelligence for understanding urban growth, infrastructure, land use and climate vulnerability.",
-    tag: "URBAN PLANNING",
-    coords: "URBAN-SPATIAL // INFRA-MON",
-    items: [
-      "Urban Growth",
-      "Land Use",
-      "Infrastructure",
-      "Urban Heat",
-      "Mobility",
-      "Climate Resilience",
-    ],
-  },
-  {
-    id: "app-5",
-    image: "/images/urban.jpg",
-    label: "Insurance",
-    shortLabel: "INSURANCE",
-    alt: "Crop insurance, damage assessment and spatial risk analytics",
-    description:
-      "Making risk measurable - GeoAI transforms spatial and environmental data into actionable intelligence for insurance and risk assessment.",
-    tag: "INSURANCE",
-    coords: "PMFBY-ENGINE // RISK-ASSESS",
-    items: [
-      "Crop Insurance",
-      "Damage Assessment",
-      "Risk Analytics",
-      "Yield Estimation",
-      "Farm Credit",
-    ],
-  },
-  {
-    id: "app-6",
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-    label: "Renewable Energy",
-    shortLabel: "ENERGY",
-    alt: "Renewable energy site suitability, solar intelligence and asset monitoring",
-    description:
-      "Intelligence for the energy transition - use Earth Observation and spatial AI to identify opportunities, assess environmental conditions and monitor renewable energy assets.",
-    tag: "RENEWABLE ENERGY",
-    coords: "ENERGY // ASSET-MON",
-    items: [
-      "Site Suitability",
-      "Solar Intelligence",
-      "Land Assessment",
-      "Asset Monitoring",
-      "Climate Risk",
-    ],
-  },
-  {
-    id: "app-7",
-    image:
-      "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
-    label: "Forestry",
-    shortLabel: "FORESTRY",
-    alt: "Forest monitoring, change detection, land-use change and carbon intelligence",
-    description:
-      "Monitoring forests at scale - GeoAI-powered intelligence for understanding forest change, land-use dynamics and environmental conditions.",
-    tag: "FORESTRY",
-    coords: "CANOPY-AI // CARBON-CAPITAL",
-    items: [
-      "Forest Monitoring",
-      "Change Detection",
-      "Land-Use Change",
-      "Carbon Intelligence",
-      "Environmental Risk",
-    ],
-  },
-];
+const applications =  [
+
+    {
+
+      "id": "app-1",
+
+      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
+
+      "label": "Agriculture",
+
+      "shortLabel": "AGRI",
+
+      "alt": "Precision farming, crop monitoring and agricultural intelligence",
+
+      "description": "From Space to Farm - AI-powered intelligence across the agricultural lifecycle.",
+
+      "tag": "AGRICULTURE",
+
+      "coords": "AGRI-STACK // CROP-HEALTH",
+
+      "items": [
+
+        "Crop Planning",
+
+        "Crop Monitoring",
+
+        "Yield Estimation",
+
+        "Crop Insurance"
+
+      ]
+
+    },
+
+    {
+
+      "id": "app-2",
+
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+
+      "label": "Climate Intelligence",
+
+      "shortLabel": "CLIMATE",
+
+      "alt": "Climate modelling, environmental monitoring and spatial risk intelligence",
+
+      "description": "Understanding a changing planet. Climate modelling, environmental monitoring and spatial risk intelligence to identify changing patterns and support resilient decision-making.",
+
+      "tag": "CLIMATE INTELLIGENCE",
+
+      "coords": "CLIMATE-RISK // HAZARD-MAP",
+
+      "items": [
+
+        "Climate Risk",
+
+        "Climate Modelling",
+
+        "Environmental Change",
+
+        "Heat & Drought Intelligence"
+
+      ]
+
+    },
+
+    {
+
+      "id": "app-3",
+
+      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+
+      "label": "Disaster Management",
+
+      "shortLabel": "DISASTER",
+
+      "alt": "Floods, landslides, terrain monitoring and early warning",
+
+      "description": "From monitoring disasters to anticipating them. GeoAI-powered monitoring and predictive intelligence for faster disaster preparedness, response and recovery.",
+
+      "tag": "DISASTER MGMT",
+
+      "coords": "DISASTER // EARLY-WARNING",
+
+      "items": [
+
+        "Flood Intelligence",
+
+        "Landslide Monitoring",
+
+        "Terrain Monitoring",
+
+        "Vulnerability Mapping"
+
+      ]
+
+    },
+
+    {
+
+      "id": "app-4",
+
+      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
+
+      "label": "Urban Planning",
+
+      "shortLabel": "URBAN",
+
+      "alt": "Urban growth, infrastructure, land use and climate vulnerability",
+
+      "description": "Intelligence for cities that are constantly changing. Spatial intelligence for understanding urban growth, infrastructure, land use and climate vulnerability.",
+
+      "tag": "URBAN PLANNING",
+
+      "coords": "URBAN-SPATIAL // INFRA-MON",
+
+      "items": [
+
+        "Urban Growth",
+
+        "Land Use",
+
+        "Infrastructure",
+
+        "Urban Heat"
+
+      ]
+
+    },
+
+    {
+
+      "id": "app-5",
+
+      "image": "/images/urban.jpg",
+
+      "label": "Insurance",
+
+      "shortLabel": "INSURANCE",
+
+      "alt": "Crop insurance, damage assessment and spatial risk analytics",
+
+      "description": "Making risk measurable. GeoAI transforms spatial and environmental data into actionable intelligence for insurance and risk assessment.",
+
+      "tag": "INSURANCE",
+
+      "coords": "PMFBY-ENGINE // RISK-ASSESS",
+
+      "items": [
+
+        "Crop Insurance",
+
+        "Damage Assessment",
+
+        "Risk Analytics",
+
+        "Yield Estimation"
+
+      ]
+
+    },
+
+    {
+
+      "id": "app-6",
+
+      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+
+      "label": "Renewable Energy",
+
+      "shortLabel": "ENERGY",
+
+      "alt": "Renewable energy site suitability, solar intelligence and asset monitoring",
+
+      "description": "Intelligence for the energy transition. Use Earth Observation and spatial AI to identify opportunities, assess environmental conditions and monitor renewable energy assets.",
+
+      "tag": "RENEWABLE ENERGY",
+
+      "coords": "ENERGY // ASSET-MON",
+
+      "items": [
+
+        "Solar Intelligence",
+
+        "Land Assessment",
+
+        "Asset Monitoring",
+
+        "Climate Risk"
+
+      ]
+
+    },
+
+    {
+
+      "id": "app-7",
+
+      "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
+
+      "label": "Forestry",
+
+      "shortLabel": "FORESTRY",
+
+      "alt": "Forest monitoring, change detection, land-use change and carbon intelligence",
+
+      "description": "Monitoring forests at scale. GeoAI-powered intelligence for understanding forest change, land-use dynamics and environmental conditions.",
+
+      "tag": "FORESTRY",
+
+      "coords": "CANOPY-AI // CARBON-CAPITAL",
+
+      "items": [
+
+        "Forest Monitoring",
+
+        "Change Detection",
+
+        "Land-Use Change",
+
+        "Carbon Intelligence"
+
+      ]
+
+    }
+
+  ]
 type App = (typeof applications)[number];
 
 const MOBILE_TAB_COUNT = 4;
