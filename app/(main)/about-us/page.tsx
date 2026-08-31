@@ -12,6 +12,7 @@ const Team = [
     focus: "Technology, digital transformation & strategic execution",
     image: "/images/team/PreetiChaudhary.png",
     linkedin: "https://www.linkedin.com/in/chaudhary-preeti-160738199/",
+    mail: "https://www.linkedin.com/in/chaudhary-preeti-160738199/",
   },
   {
     id: "team-2",
@@ -21,6 +22,8 @@ const Team = [
    image: "/images/team/PawanKumar.png",
     linkedin:
       "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
+    mail:
+      "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
   },
   {
     id: "team-3",
@@ -29,6 +32,8 @@ const Team = [
     focus: "Geospatial sciences, Earth systems & academic AI research",
     image: "/images/team/urban.jpg",
     linkedin:
+      "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
+    mail:
       "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
   },
  

@@ -44,7 +44,7 @@ function FinalCta() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden rounded-md bg-[#FFF6EF] px-5 py-20 text-[#173B32] sm:px-8 md:px-10">
+    <section className="relative w-full overflow-hidden rounded-md bg-[#FBEBDF] px-5 py-20 text-[#173B32] sm:px-8 md:px-10">
       <div
         className="
           relative
@@ -81,7 +81,7 @@ function FinalCta() {
         >
           <p
             data-reveal="eyebrow"
-            className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FBEDE5]/70"
+            className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FFF6EF]"
           >
             LET&apos;S BUILD TOGETHER
           </p>

@@ -99,12 +99,12 @@ function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
       <div
         className={cn(
           "relative flex h-[250px] flex-col",
-          "rounded-md border border-[#E46A2A]/20",
-          "bg-[#FBEDE5]",
+          "rounded-md border border-[#2E7657]/30",
+          "bg-[#DCEAE2]",
           "p-6",
           "transition-all duration-300",
           "hover:-translate-y-1",
-          "hover:border-[#E46A2A]/50",
+          "hover:border-[#2E7657]/50",
         )}
       >
         {/* Title */}
@@ -121,17 +121,17 @@ function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
        
 
 
-        <div className="absolute bottom-0 left-6 right-6 h-px bg-[#E46A2A]/15" />
+        <div className="absolute bottom-0 left-6 right-6 h-px bg-[#2E7657]/15" />
 
 
-        <div className="absolute -bottom-[5px] left-1/2 z-20 h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 border-[#FFF6EF] bg-[#E46A2A]" />
+        <div className="absolute -bottom-[5px] left-1/2 z-20 h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 border-[#DCEAE2] bg-[#2E7657]" />
       </div>
 
 
       {index === 0 && (
         <div className="absolute right-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#E46A2A]/40">
-            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#E46A2A]" />
+          <div className="relative h-px w-full bg-[#2E7657]/40">
+            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#2E7657]" />
           </div>
         </div>
       )}
@@ -139,24 +139,24 @@ function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
       {/* 02 → 03 */}
       {index === 1 && (
         <div className="absolute right-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#E46A2A]/40">
-            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#E46A2A]" />
+          <div className="relative h-px w-full bg-[#2E7657]/40">
+            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#2E7657]" />
           </div>
         </div>
       )}
 
       {/* 03 ↓ 04 */}
       {index === 2 && (
-        <div className="absolute bottom-[-64px] left-1/2 z-10 hidden h-16 w-px bg-[#E46A2A]/40 md:block">
-          <span className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-[#E46A2A]" />
+        <div className="absolute bottom-[-64px] left-1/2 z-10 hidden h-16 w-px bg-[#2E7657]/40 md:block">
+          <span className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-[#2E7657]" />
         </div>
       )}
 
       {/* 04 ← 05 */}
       {index === 3 && (
         <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#E46A2A]/40">
-            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#E46A2A]" />
+          <div className="relative h-px w-full bg-[#2E7657]/40">
+            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#2E7657]" />
           </div>
         </div>
       )}
@@ -164,15 +164,15 @@ function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
       {/* 05 ← 06 */}
       {index === 4&& (
         <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#E46A2A]/40">
-            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#E46A2A]" />
+          <div className="relative h-px w-full bg-[#2E7657]/40">
+            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#2E7657]" />
           </div>
         </div>
       )}
       {index === 5&& (
         <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#E46A2A]/40">
-            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#E46A2A]" />
+          <div className="relative h-px w-full bg-[#2E7657]/40">
+            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#2E7657]" />
           </div>
         </div>
       )}
@@ -184,7 +184,7 @@ export default function Technology() {
   return (
     <section
       id="technology"
-      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#FFF6EF] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
+      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#E9F2ED] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
     >
       {/* Topographic Background */}
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -224,8 +224,8 @@ export default function Technology() {
                 <TechFlowNode card={card} index={index} />
 
                 {index < cards.length - 1 && (
-                  <div className="mx-auto flex h-10 w-px items-center bg-[#E46A2A]/30">
-                    <span className="absolute mt-10 h-2 w-2 rotate-45 border-b border-r border-[#E46A2A]" />
+                  <div className="mx-auto flex h-10 w-px items-center bg-[#2E7657]/30">
+                    <span className="absolute mt-10 h-2 w-2 rotate-45 border-b border-r border-[#2E7657]" />
                   </div>
                 )}
               </div>

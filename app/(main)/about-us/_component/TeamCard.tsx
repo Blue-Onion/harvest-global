@@ -9,6 +9,7 @@ interface TeamMember {
   focus: string;
   image: string;
   linkedin?: string;
+  mail?: string;
 }
 
 interface TeamCardProps {
@@ -16,7 +17,7 @@ interface TeamCardProps {
 }
 
 const TeamCard = ({
-  member: { id, name, role, focus, image, linkedin },
+  member: { id, name, role, focus, image, linkedin,mail },
 }: TeamCardProps) => {
   return (
     <div
@@ -76,15 +77,7 @@ const TeamCard = ({
       />
 
       {/* ID / number */}
-      <div className="absolute right-7 top-7 flex items-center gap-2">
-        <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[#235738]/50">
-          HG
-        </span>
-
-        <span className="font-mono text-[10px] text-[#E46A2A]">
-          {id.replace("team-", "0")}
-        </span>
-      </div>
+      
 
       {/* Image */}
       <div
@@ -162,13 +155,7 @@ const TeamCard = ({
 
       {/* Footer */}
       <div className="mt-auto flex w-full items-end justify-between">
-        {/* Small label */}
-        <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#235738]/40">
-          EARTH
-          <br />
-          INTELLIGENCE
-        </div>
-
+      
         {/* LinkedIn */}
         {linkedin && (
           <Link
@@ -194,6 +181,37 @@ const TeamCard = ({
           >
             <Image
               src="/svg/linkedIn.svg"
+              alt="LinkedIn"
+              width={19}
+              height={19}
+              className="transition-all duration-300 group-hover:opacity-90"
+            />
+          </Link>
+        )}
+        {mail && (
+          <Link
+            href={mail}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${name} LinkedIn`}
+            className="
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-md
+              border
+              border-[#235738]/20
+              bg-white/50
+              transition-all
+              duration-300
+              hover:border-[#E46A2A]
+              hover:bg-[#E46A2A]
+            "
+          >
+            <Image
+              src="/svg/mail.svg"
               alt="LinkedIn"
               width={19}
               height={19}
