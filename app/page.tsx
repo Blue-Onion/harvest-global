@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import About from "@/components/sections/About";
+
 import Technology from "@/components/sections/Technology";
 import Applications from "@/components/sections/Applications";
 import Footer from "@/components/footer/Footer";
@@ -18,7 +18,7 @@ export default function Home() {
       <Hero />
       <HeroReveal/>
       <ParternerdLogo/>
-      <About />
+
       <Challenge/>
       <Technology />
       <UnfiedGeoStack/>
