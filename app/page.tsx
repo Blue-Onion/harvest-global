@@ -22,8 +22,8 @@ export default function Home() {
       <About />
       <Challenge/>
       <Technology />
+      
       <Applications />
-
       <FinalCta />
       <Footer />
     </main>

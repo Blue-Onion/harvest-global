@@ -192,7 +192,7 @@ export default function Technology() {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto w-full">
+      <div className="container  overflow-hidden relative over z-10 mx-auto w-full">
         {/* Header */}
         <div>
           <h2 className="mt-3 font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-black md:text-5xl lg:text-6xl">

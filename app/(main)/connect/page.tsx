@@ -25,7 +25,7 @@ const ConnectPage = () => {
           <div className="relative z-10 flex flex-col justify-between text-white">
             {/* Main Text */}
             <div className="space-y-10">
-              <p className="text-left text-2xl font-semibold md:text-4xl">
+              <p className="text-left text-2xl font-semibold md:text-xl">
                     Earth Intelligence. Built for Impact.
               </p>
 
