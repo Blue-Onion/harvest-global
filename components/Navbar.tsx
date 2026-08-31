@@ -13,8 +13,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "Team", href: "/team" },
+    { title: "About Us", href: "/about-us" },
     { title: "Media", href: "/credentials" },
+    { title: "Insights", href: "/Insights" },
 
   ];
 
@@ -266,16 +267,41 @@ function Navbar() {
 
   return (
     <>
-      <header
-        ref={navRef}
-        style={{
-          backdropFilter: "blur(var(--nav-blur, 0px))",
-          WebkitBackdropFilter: "blur(var(--nav-blur, 0px))",
-        }}
-        className="inset-x-0 top-4 container mx-auto fixed z-50 rounded-md2xl border border-transparent px-4 text-white"
-      >
+     <header
+
+  ref={navRef}
+
+  style={{
+
+    backdropFilter: "blur(var(--nav-blur, 14px))",
+
+    WebkitBackdropFilter: "blur(var(--nav-blur, 14px))",
+
+  }}
+
+  className="
+
+    fixed inset-x-0 top-4 z-50
+
+    mx-auto container
+
+    rounded-md
+
+    border border-black/10
+
+    bg-[#F7FAF8]/85
+
+    px-4
+
+    text-[#173B32]
+
+    shadow-[0_8px_30px_rgba(18,60,43,0.06)]
+
+  "
+
+>
         <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
-          <div className="flex items-center gap-6 font-bold text-base">
+          <div className="flex items-center gap-6 font-bold text-white">
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link, i) => (

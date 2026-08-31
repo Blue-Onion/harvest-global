@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 const partnerLogos = Array.from(
-  { length: 11 },
+  { length: 10 },
   (_, i) => `/images/partnered-logo/${i + 1}.png`,
 );
 
@@ -117,7 +117,7 @@ function LogoCard({
         partner-logo
         flex h-24 w-44 shrink-0
         items-center justify-center
-        rounded-md2xl
+        rounded-md
         border border-[#D5E3DC]
         bg-white
         px-6

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import TopographicBackground from "../ui/Topography";
 
 type TechCard = {
   number: string;
@@ -91,133 +92,145 @@ const technology = {
   },
 };
 
-function TechCardView({ card }: { card: TechCard }) {
+function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
   return (
-    <article
-      className={cn(
-        "group relative overflow-hidden rounded-md",
-        "border border-[#E46A2A]/20",
-        "bg-[#FBEDE5]",
-        "p-7 md:p-9",
-        "transition-colors duration-300",
-        "hover:border-[#E46A2A]/40",
-      )}
-    >
-      {/* Image */}
-      {card.visual === "image" && card.image && (
-        <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-md">
-          <img
-            src={card.image}
-            alt={card.title}
-            draggable={false}
-            className="h-full w-full object-cover"
-          />
-
-          <div className="absolute inset-0 bg-[#B94D1F]/15" />
-        </div>
-      )}
-
-      {/* Grid Visual */}
-      {card.visual === "grid" && (
-        <div
-          className="mb-8 aspect-[16/9] rounded-md opacity-50"
-          style={{
-            backgroundImage:
-              "linear-gradient(#B94D1F1A 1px, transparent 1px), linear-gradient(90deg, #B94D1F1A 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-      )}
-
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-xs tracking-[0.2em] text-[#B94D1F]/60">
-          {card.number}
-        </span>
-
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#E46A2A]">
-          Technology
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="mt-7">
-        <h3 className="font-display text-2xl font-normal tracking-[0.01em] text-[#173B32] md:text-3xl">
+    <div className="group relative flex min-w-0 flex-col">
+      {/* Node */}
+      <div
+        className={cn(
+          "relative flex h-[250px] flex-col",
+          "rounded-md border border-[#E46A2A]/20",
+          "bg-[#FBEDE5]",
+          "p-6",
+          "transition-all duration-300",
+          "hover:-translate-y-1",
+          "hover:border-[#E46A2A]/50",
+        )}
+      >
+        {/* Title */}
+        <h3 className="mt-6 min-h-[52px]  md:text-lg lg:text-2xl  font-bold leading-tight tracking-[0.01em] text-black">
           {card.title}
         </h3>
 
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#60766E] md:text-base">
+        {/* Description */}
+        <p className="mt-3 line-clamp-4 text-xs leading-relaxed text-black">
           {card.description}
         </p>
 
-        {/* Items */}
-        {card.items && card.items.length > 0 && (
-          <div className="mt-7 border-t border-[#E46A2A]/15 pt-5">
-            <p className="mb-3 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[#B94D1F]/60">
-              Capabilities
-            </p>
+        {/* Capabilities */}
+       
 
-            <div className="flex flex-wrap gap-2">
-              {card.items.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-md border border-[#E46A2A]/20 bg-[#FFF6EF] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[#B94D1F]/80"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {/* Coordinates */}
-        {card.coords && (
-          <p className="mt-6 font-mono text-[10px] tracking-[0.18em] text-[#60766E]/60">
-            {card.coords}
-          </p>
-        )}
+        <div className="absolute bottom-0 left-6 right-6 h-px bg-[#E46A2A]/15" />
+
+
+        <div className="absolute -bottom-[5px] left-1/2 z-20 h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 border-[#FFF6EF] bg-[#E46A2A]" />
       </div>
 
-      {/* Orange Accent */}
-      <div className="mt-8 h-px w-10 bg-[#E46A2A] transition-all duration-300 group-hover:w-20" />
-    </article>
+
+      {index === 0 && (
+        <div className="absolute right-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
+          <div className="relative h-px w-full bg-[#E46A2A]/40">
+            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#E46A2A]" />
+          </div>
+        </div>
+      )}
+
+      {/* 02 → 03 */}
+      {index === 1 && (
+        <div className="absolute right-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
+          <div className="relative h-px w-full bg-[#E46A2A]/40">
+            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#E46A2A]" />
+          </div>
+        </div>
+      )}
+
+      {/* 03 ↓ 04 */}
+      {index === 2 && (
+        <div className="absolute bottom-[-64px] left-1/2 z-10 hidden h-16 w-px bg-[#E46A2A]/40 md:block">
+          <span className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-[#E46A2A]" />
+        </div>
+      )}
+
+      {/* 04 ← 05 */}
+      {index === 3 && (
+        <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
+          <div className="relative h-px w-full bg-[#E46A2A]/40">
+            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#E46A2A]" />
+          </div>
+        </div>
+      )}
+
+      {/* 05 ← 06 */}
+      {index === 4&& (
+        <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
+          <div className="relative h-px w-full bg-[#E46A2A]/40">
+            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#E46A2A]" />
+          </div>
+        </div>
+      )}
+      {index === 5&& (
+        <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
+          <div className="relative h-px w-full bg-[#E46A2A]/40">
+            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#E46A2A]" />
+          </div>
+        </div>
+      )}
+
+    </div>
   );
 }
-
 export default function Technology() {
   return (
     <section
       id="technology"
-      className="w-full bg-[#FFF6EF] px-5 py-24 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
+      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#FFF6EF] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
     >
-      <div className="mx-auto max-w-7xl">
-        {/* Section Header */}
-        <div className="max-w-4xl">
-          <p className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-[#E46A2A]">
-            {technology.eyebrow}
-          </p>
+      {/* Topographic Background */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <TopographicBackground />
+      </div>
 
-          <h2 className="mt-4 font-display text-4xl font-normal leading-[1.1] tracking-[0.01em] text-[#173B32] md:text-6xl">
+      {/* Content */}
+      <div className="container  overflow-hidden relative over z-10 mx-auto w-full">
+        {/* Header */}
+        <div>
+          <h2 className="mt-3 font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-black md:text-5xl lg:text-6xl">
             Technology
           </h2>
 
-          <p className="mt-4 text-sm font-medium uppercase tracking-[0.12em] text-[#60766E]">
-            THE HG APPROACH
-          </p>
-
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-[#60766E]">
+          <p className="mt-5 text-sm leading-relaxed text-black md:text-base">
             {technology.description}
           </p>
         </div>
 
-        {/* Unified GeoAI Stack intro */}
-       
+        {/* Flow */}
+        <div className="mt-12">
+          {/* Desktop Flow */}
+          <div className="hidden md:grid md:grid-cols-3 md:gap-x-16 md:gap-y-16">
+            {cards.map((card, index) => (
+              <TechFlowNode
+                key={card.number}
+                card={card}
+                index={index}
+              />
+            ))}
+          </div>
 
-        {/* Cards */}
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {cards.map((card) => (
-            <TechCardView key={card.number} card={card} />
-          ))}
+          {/* Mobile Flow */}
+          <div className="flex flex-col md:hidden">
+            {cards.map((card, index) => (
+              <div key={card.number} className="relative">
+                <TechFlowNode card={card} index={index} />
+
+                {index < cards.length - 1 && (
+                  <div className="mx-auto flex h-10 w-px items-center bg-[#E46A2A]/30">
+                    <span className="absolute mt-10 h-2 w-2 rotate-45 border-b border-r border-[#E46A2A]" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

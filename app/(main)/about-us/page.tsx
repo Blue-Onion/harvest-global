@@ -2,6 +2,7 @@
 
 import Reveal from "@/components/ui/reveal/Reveal";
 import TeamCard from "./_component/TeamCard";
+import React from "react";
 
 const Team = [
   {
@@ -30,15 +31,7 @@ const Team = [
     linkedin:
       "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
   },
-  {
-    id: "team-4",
-    name: "Dr. Abhijit K. Chattoraj",
-    role: "Chief Insurance Business Advisor",
-    focus: "Insurance, risk management, AgriStack & PMFBY",
-    image: "/images/team/AbhijitChattoraj.png",
-    linkedin:
-      "https://www.linkedin.com/in/professor-dr-abhijit-k-chattoraj-chartered-insurer-20b915a1/",
-  },
+ 
 ];
 
 export default function TeamPage() {
@@ -52,9 +45,9 @@ export default function TeamPage() {
           border-[#E7F1EB]/10
           bg-[#123C2B]
           pb-24
-          pt-40
+          pt-32
           md:pb-32
-          md:pt-42
+          md:pt-32
         "
       >
         {/* Ambient Harvest Green glow */}
@@ -122,14 +115,14 @@ export default function TeamPage() {
               data-reveal="heading"
               className="
                 mt-6
-                max-w-5xl
+                max-w-7xl
                 text-5xl
                 font-bold
                 leading-[0.95]
                 tracking-tight
                 text-[#E7F1EB]
                 sm:text-7xl
-                md:text-8xl
+                md:text-6xl
               "
             >
               A Multidisciplinary Team for a{" "}
@@ -155,26 +148,37 @@ export default function TeamPage() {
               Earth Observation and GeoAI. Our multidisciplinary team brings
               together expertise across AI, geospatial science, Earth
               Observation, climate, aerospace, insurance and large-scale
-              technology deployment. From research and foundation models to
-              infrastructure and commercial deployment, HG works across the
-              complete lifecycle:
-              <span className="mx-2 font-medium text-[#E7F1EB]">
-                Research
-              </span>
-              <span className="text-[#E46A2A]">→</span>
-              <span className="mx-2 font-medium text-[#E7F1EB]">
-                Platform
-              </span>
-              <span className="text-[#E46A2A]">→</span>
-              <span className="mx-2 font-medium text-[#E7F1EB]">
-                Deployment
-              </span>
-              <span className="text-[#E46A2A]">→</span>
-              <span className="mx-2 font-medium text-[#E7F1EB]">
-                Commercialisation
-              </span>
-              .
+              technology deployment.
             </p>
+            <p
+              data-reveal="text"
+              className="
+                mt-8
+
+                text-base
+                leading-relaxed
+                text-[#E7F1EB]/65
+                sm:text-lg
+              "
+            >
+              From research and foundation models to infrastructure and
+              commercial deployment, HG works across the complete lifecycle:
+            </p>
+
+            <div className="mt-4 flex w-full items-center justify-center gap-4">
+              {["Research", "Platform", "Deployment", "Commercialisation"].map(
+                (item, index) => (
+                  <React.Fragment key={item}>
+                    <span className="mx-2 font-medium text-[#E7F1EB]">
+                      {item}
+                    </span>
+                    {index < 3 && (
+                      <span className="text-[#E46A2A]">→</span>
+                    )}
+                  </React.Fragment>
+                )
+              )}
+            </div>
           </Reveal>
 
           {/* Team */}
@@ -188,7 +192,7 @@ export default function TeamPage() {
               grid-cols-1
               justify-items-center
               gap-8
-              md:grid-cols-2
+              md:grid-cols-3
             "
             stagger={0.15}
           >

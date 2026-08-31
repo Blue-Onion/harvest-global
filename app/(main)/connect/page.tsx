@@ -4,7 +4,10 @@ import Image from "next/image";
 
 const ConnectPage = () => {
   return (
-    <section id="connect" className="relative bg-black mx-auto h-screen overflow-hidden">
+    <section
+      id="connect"
+      className="relative bg-black mx-auto h-screen overflow-hidden"
+    >
       {/* Background */}
       <Image
         src="/images/connect.png"
@@ -14,9 +17,7 @@ const ConnectPage = () => {
         className="object-cover"
       />
 
-
       <div className="absolute inset-0 bg-black/40" />
-
 
       <div className="relative z-10 container mx-auto mt-35 space-y-20 px-4 py-20">
         <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
@@ -24,12 +25,12 @@ const ConnectPage = () => {
           <div className="relative z-10 flex flex-col justify-between text-white">
             {/* Main Text */}
             <div className="space-y-10">
-              <p className="text-left text-2xl font-semibold md:text-4xl">
-   Build 
+              <p className="text-left text-2xl font-semibold md:text-xl">
+                    Earth Intelligence. Built for Impact.
               </p>
 
               <h4 className="text-left text-2xl tracking-wider md:text-4xl">
-                Let’s build what comes next.
+                Let’s Connect
               </h4>
             </div>
 
@@ -37,8 +38,6 @@ const ConnectPage = () => {
             <div className="connect-block mt-20 flex flex-col">
               <div className="flex flex-col gap-10">
                 <div>
-                  <p className="text-sm">How to connect</p>
-
                   <div className="mt-12 text-sm text-white/60">
                     <p>support@hgsystems.in</p>
                   </div>
@@ -67,7 +66,7 @@ const ConnectPage = () => {
                       width={20}
                       src="/svg/insta.svg"
                       alt="Instagram"
-                         className="invert transition-all group-hover:invert-0"
+                      className="invert transition-all group-hover:invert-0"
                     />
                   </a>
 
@@ -75,7 +74,13 @@ const ConnectPage = () => {
                     href="https://x.com/HarvestG_Ssp"
                     className="group flex h-12 w-12 items-center justify-center rounded-md bg-white/10 transition-all hover:scale-105 hover:bg-white"
                   >
-                    <Image height={20} width={20} src="/svg/X.svg"    className="invert transition-all group-hover:invert-0" alt="X" />
+                    <Image
+                      height={20}
+                      width={20}
+                      src="/svg/X.svg"
+                      className="invert transition-all group-hover:invert-0"
+                      alt="X"
+                    />
                   </a>
                 </div>
               </div>
@@ -83,7 +88,7 @@ const ConnectPage = () => {
           </div>
 
           {/* RIGHT — FORM */}
-          <div className="form connect-block text-white">
+          <div className="form connect-block bg-white/15 p-5 rounded-md text-white">
             <p className="mb-8 text-sm">Fill in our form:</p>
 
             <form className="flex flex-col">

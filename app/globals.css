@@ -12,6 +12,10 @@ h3 {
 }
 @custom-variant dark (&:is(.dark *));
 @theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -53,7 +57,7 @@ h3 {
 }
 
 :root {
-  --font-body: var(--font-display);
+  --font-body: var(--font-manrope);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

@@ -1,22 +1,152 @@
 "use client";
 
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import Reveal from "@/components/ui/reveal/Reveal";
 import { data } from "@/data";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TopographicBackground from "../ui/Topography";
 
-const applications = data.applications.items;
+const applications = [
+  {
+    id: "app-1",
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
+    label: "Agriculture",
+    shortLabel: "AGRI",
+    alt: "Precision farming, crop monitoring and agricultural intelligence",
+    description:
+      "From Space to Farm - AI-powered intelligence across the agricultural lifecycle.",
+    tag: "AGRICULTURE",
+    coords: "AGRI-STACK // CROP-HEALTH",
+    items: [
+      "Crop Planning",
+      "Crop Monitoring",
+      "Yield Estimation",
+      "NPK Intelligence",
+      "Harvest Monitoring",
+      "Crop Insurance",
+      "Agri-Credit",
+    ],
+  },
+  {
+    id: "app-2",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+    label: "Climate Intelligence",
+    shortLabel: "CLIMATE",
+    alt: "Climate modelling, environmental monitoring and spatial risk intelligence",
+    description:
+      "Understanding a changing planet - Climate modelling, environmental monitoring and spatial risk intelligence to identify changing patterns and support resilient decision-making.",
+    tag: "CLIMATE INTELLIGENCE",
+    coords: "CLIMATE-RISK // HAZARD-MAP",
+    items: [
+      "Climate Risk",
+      "Climate Modelling",
+      "Environmental Change",
+      "Heat & Drought Intelligence",
+    ],
+  },
+  {
+    id: "app-3",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+    label: "Disaster Management",
+    shortLabel: "DISASTER",
+    alt: "Floods, landslides, terrain monitoring and early warning",
+    description:
+      "From monitoring disasters to anticipating them - GeoAI-powered monitoring and predictive intelligence for faster disaster preparedness, response and recovery.",
+    tag: "DISASTER MGMT",
+    coords: "DISASTER // EARLY-WARNING",
+    items: [
+      "Flood Intelligence",
+      "Landslide Monitoring",
+      "Terrain Monitoring",
+      "Climate Risk",
+      "Vulnerability Mapping",
+      "Early Warning",
+    ],
+  },
+  {
+    id: "app-4",
+    image:
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
+    label: "Urban Planning",
+    shortLabel: "URBAN",
+    alt: "Urban growth, infrastructure, land use and climate vulnerability",
+    description:
+      "Intelligence for cities that are constantly changing - spatial intelligence for understanding urban growth, infrastructure, land use and climate vulnerability.",
+    tag: "URBAN PLANNING",
+    coords: "URBAN-SPATIAL // INFRA-MON",
+    items: [
+      "Urban Growth",
+      "Land Use",
+      "Infrastructure",
+      "Urban Heat",
+      "Mobility",
+      "Climate Resilience",
+    ],
+  },
+  {
+    id: "app-5",
+    image: "/images/urban.jpg",
+    label: "Insurance",
+    shortLabel: "INSURANCE",
+    alt: "Crop insurance, damage assessment and spatial risk analytics",
+    description:
+      "Making risk measurable - GeoAI transforms spatial and environmental data into actionable intelligence for insurance and risk assessment.",
+    tag: "INSURANCE",
+    coords: "PMFBY-ENGINE // RISK-ASSESS",
+    items: [
+      "Crop Insurance",
+      "Damage Assessment",
+      "Risk Analytics",
+      "Yield Estimation",
+      "Farm Credit",
+    ],
+  },
+  {
+    id: "app-6",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+    label: "Renewable Energy",
+    shortLabel: "ENERGY",
+    alt: "Renewable energy site suitability, solar intelligence and asset monitoring",
+    description:
+      "Intelligence for the energy transition - use Earth Observation and spatial AI to identify opportunities, assess environmental conditions and monitor renewable energy assets.",
+    tag: "RENEWABLE ENERGY",
+    coords: "ENERGY // ASSET-MON",
+    items: [
+      "Site Suitability",
+      "Solar Intelligence",
+      "Land Assessment",
+      "Asset Monitoring",
+      "Climate Risk",
+    ],
+  },
+  {
+    id: "app-7",
+    image:
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
+    label: "Forestry",
+    shortLabel: "FORESTRY",
+    alt: "Forest monitoring, change detection, land-use change and carbon intelligence",
+    description:
+      "Monitoring forests at scale - GeoAI-powered intelligence for understanding forest change, land-use dynamics and environmental conditions.",
+    tag: "FORESTRY",
+    coords: "CANOPY-AI // CARBON-CAPITAL",
+    items: [
+      "Forest Monitoring",
+      "Change Detection",
+      "Land-Use Change",
+      "Carbon Intelligence",
+      "Environmental Risk",
+    ],
+  },
+];
 type App = (typeof applications)[number];
 
-// Number of tabs visible at once in the mobile sliding window.
-// The 7-tab array is walked like a viewport; exactly this many tabs are
-// shown on small screens while the rest stay clipped by the track.
 const MOBILE_TAB_COUNT = 4;
 
 export default function Applications() {
@@ -30,7 +160,7 @@ export default function Applications() {
   const [mobileStartIndex, setMobileStartIndex] = useState(0);
   const mobileEndIndex = Math.min(
     mobileStartIndex + MOBILE_TAB_COUNT - 1,
-    applications.length - 1
+    applications.length - 1,
   );
 
   const imageNextRef = useRef<HTMLDivElement>(null);
@@ -44,23 +174,14 @@ export default function Applications() {
   const handleTabChange = (value: string) => {
     const nextIndex = applications.findIndex((app) => app.id === value);
 
-    if (
-      nextIndex === -1 ||
-      nextIndex === activeIndex ||
-      isAnimating
-    ) {
+    if (nextIndex === -1 || nextIndex === activeIndex || isAnimating) {
       return;
     }
 
     // Keep the mobile window pinned to the active tab, clamped to the
     // array boundaries (window always contains the active tab, 4 wide).
-    const maxWindowStart = Math.max(
-      0,
-      applications.length - MOBILE_TAB_COUNT
-    );
-    setMobileStartIndex(
-      Math.min(Math.max(nextIndex, 0), maxWindowStart)
-    );
+    const maxWindowStart = Math.max(0, applications.length - MOBILE_TAB_COUNT);
+    setMobileStartIndex(Math.min(Math.max(nextIndex, 0), maxWindowStart));
 
     const imageNext = imageNextRef.current;
     const currentText = textCurrentRef.current;
@@ -126,10 +247,6 @@ export default function Applications() {
         0,
       );
 
-      /*
-       * NEW TEXT
-       * Comes from the right.
-       */
       tl.to(
         nextText,
         {
@@ -142,210 +259,167 @@ export default function Applications() {
       );
     });
   };
+return (
+  <section
+    id="applications"
+    className="relative w-full overflow-hidden bg-[#F7FAF8] px-5 py-24 text-black"
+  >
 
-  return (
-    <section
-      id="applications"
-      className="w-full bg-[#F7FAF8] px-5 py-24 text-[#173B32] sm:px-8 md:px-10 md:py-32"
-    >
-      <div className="mx-auto max-w-6xl">
+    <div className="pointer-events-none absolute inset-0 z-0">
+      <TopographicBackground
 
-        {/* HEADER */}
-        <Reveal
-          variant="group"
-          className="max-w-3xl"
-          duration={1}
+      />
+    </div>
+
+    {/* Content */}
+    <div className="relative z-10 mx-auto max-w-6xl">
+      {/* HEADER */}
+      <Reveal variant="group" className="m" duration={1}>
+        <h2
+          data-reveal="heading"
+          className="text-3xl font-bold leading-[1.1] tracking-tight text-black sm:text-5xl md:text-6xl"
         >
- 
+          {data.applications.title.map((line, i) => (
+            <span key={i}>
+              {i > 0 && <br className="hidden sm:inline" />}
 
-          <h2
-            data-reveal="heading"
-            className="text-3xl font-bold leading-[1.1] tracking-tight text-[#123C2B] sm:text-5xl md:text-6xl"
-          >
-            {data.applications.title.map((line, i) => (
-              <span key={i}>
-                {i > 0 && (
-                  <br className="hidden sm:inline" />
-                )}
+              {i === data.applications.title.length - 1 ? (
+                <span className="text-black">{line}</span>
+              ) : (
+                line
+              )}
+            </span>
+          ))}
+        </h2>
 
-                {i === data.applications.title.length - 1 ? (
-                  <span className="text-[#2E7657]">
-                    {line}
-                  </span>
-                ) : (
-                  line
-                )}
-              </span>
-            ))}
-          </h2>
-
-          <p
-            data-reveal="text"
-            className="mt-6 max-w-2xl text-base leading-relaxed text-[#60766E] sm:text-lg"
-          >
-            {data.applications.description}
-          </p>
-        </Reveal>
-
-        {/* TABS */}
-        <Tabs
-          value={active.id}
-          onValueChange={handleTabChange}
-          className="mt-14 w-full"
+        <p
+          data-reveal="text"
+          className="mt-6 text-base leading-relaxed text-black sm:text-lg"
         >
-          <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-md border-b border-[#D5E3DC] bg-transparent p-0">
-            {applications.map((app, i) => (
-              <TabsTrigger
-                key={app.id}
-                value={app.id}
-                disabled={isAnimating}
-                className="
-                  relative h-auto shrink-0
-                  rounded-md
-                  border-0
-                  bg-transparent
-                  px-5 py-4
-                  font-mono text-xs uppercase
-                  tracking-[0.16em]
-                  text-[#60766E]
-                  shadow-none
+          {data.applications.description}
+        </p>
+      </Reveal>
 
-                  transition-colors duration-200
+      {/* TABS */}
+      <Tabs
+        value={active.id}
+        onValueChange={handleTabChange}
+        className="mt-4 w-full"
+      >
+        <TabsList
+          variant="line"
+          className="w-full justify-start gap-1 rounded-md border-b border-black/15 bg-transparent p-0"
+        >
+          {applications.map((app) => (
+            <TabsTrigger
+              key={app.id}
+              value={app.id}
+              disabled={isAnimating}
+              className="
+                relative
+                shrink-0
+                rounded-md
+                bg-transparent
+                px-5
+                py-4
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.16em]
+                text-black
+                shadow-none
+                transition-none
 
-                  hover:text-[#235738]
+                data-active:bg-transparent
+                data-active:text-[#2E7657]
+                data-active:shadow-none
+              "
+            >
+              {app.shortLabel}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
 
-                  data-[state=active]:bg-transparent
-                  data-[state=active]:text-[#235738]
-                  data-[state=active]:shadow-none
+      {/* APPLICATION DISPLAY */}
+      <div className="mt-8 grid overflow-hidden rounded-md border border-black/15 bg-[#95b4a2] md:grid-cols-2">
+        {/* IMAGE */}
+        <div className="relative h-auto">
+          <Image
+            key={`base-${currentApp.id}`}
+            src={currentApp.image}
+            alt={currentApp.alt}
+            fill
+            draggable={false}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
 
-                  after:absolute
-                  after:bottom-0
-                  after:left-0
-                  after:h-0.5
-                  after:w-full
-                  after:origin-left
-                  after:scale-x-0
-                  after:bg-[#2E7657]
-                  after:transition-transform
-                  after:duration-300
-
-                  data-[state=active]:after:scale-x-100
-                "
-              >
-                <span className="mr-2 text-[10px] opacity-50">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                {app.shortLabel}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-
-        {/* APPLICATION DISPLAY */}
-        <div className="mt-8 grid overflow-hidden rounded-md border border-[#D5E3DC] bg-[#E7F1EB] md:grid-cols-2">
-
-          {/* IMAGE */}
-          <div className="relative min-h-[320px] overflow-hidden md:min-h-[560px]">
-
-            {/* Base layer = OUTGOING image */}
+          <div
+            ref={imageNextRef}
+            className="absolute inset-0 z-10 overflow-hidden"
+            style={{
+              clipPath: "inset(0 0 100% 0)",
+            }}
+          >
             <Image
-              key={`base-${currentApp.id}`}
-              src={currentApp.image}
-              alt={currentApp.alt}
+              key={`next-${active.id}`}
+              src={active.image}
+              alt={active.alt}
               fill
               draggable={false}
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
             />
-
-            {/* Wipe layer = INCOMING image, revealed top -> bottom */}
-            <div
-              ref={imageNextRef}
-              className="absolute inset-0 z-10 overflow-hidden"
-              style={{
-                clipPath: "inset(0 0 100% 0)",
-              }}
-            >
-              <Image
-                key={`next-${active.id}`}
-                src={active.image}
-                alt={active.alt}
-                fill
-                draggable={false}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-
-            {/* Green overlay */}
-            <div className="pointer-events-none absolute inset-0 z-20 bg-[#123C2B]/10" />
-
-            {/* Number */}
-            <div className="absolute left-6 top-6 z-30 rounded-md bg-[#123C2B] px-4 py-2 font-mono text-xs tracking-[0.2em] text-[#F7FAF8]">
-              {String(activeIndex + 1).padStart(2, "0")} /{" "}
-              {String(applications.length).padStart(2, "0")}
-            </div>
           </div>
 
-          {/* CONTENT */}
-          <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
+          <div className="pointer-events-none absolute inset-0 z-20 bg-black/10" />
+        </div>
 
-            {/* Current (outgoing) text */}
-            <div
-              ref={textCurrentRef}
-              className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
-            >
-              <ApplicationText app={currentApp} />
-            </div>
+        {/* CONTENT */}
+        <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
+          {/* Current */}
+          <div
+            ref={textCurrentRef}
+            className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
+          >
+            <ApplicationText app={currentApp} />
+          </div>
 
-            {/* Next (incoming) text */}
-            <div
-              ref={textNextRef}
-              className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
-            >
-              <ApplicationText app={active} />
-            </div>
-
+          {/* Next */}
+          <div
+            ref={textNextRef}
+            className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
+          >
+            <ApplicationText app={active} />
           </div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function ApplicationText({
-  app,
-}: {
-  app: App;
-}) {
-  return (
-    <>
+    </div>
+  </section>
+);
+  function ApplicationText({ app }: { app: App }) {
+    return (
       <div>
-        <div className="flex items-center justify-between gap-4">
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#2E7657]">
-            {app.shortLabel}
-          </span>
-
-          <span className="rounded-md border border-[#2E7657]/20 bg-[#F7FAF8] px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-[#60766E]">
-            {app.tag}
-          </span>
-        </div>
-
-        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-[#123C2B] sm:text-5xl">
+        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-black sm:text-5xl">
           {app.label}
         </h3>
 
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-[#60766E] md:text-lg">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-black md:text-lg">
           {app.description}
         </p>
-      </div>
 
-      <div className="border-t border-[#D5E3DC] pt-5">
-        <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-[#60766E]/70 sm:text-[10px]">
-          {app.coords}
-        </span>
+        <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+          {app.items.map((item, i) => (
+            <li
+              key={`${app.id}-${i}`}
+              className="ml-4 list-disc pl-1 text-sm font-medium text-black marker:text-black"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
-    </>
-  );
+    );
+  }
 }
