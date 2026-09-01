@@ -58,7 +58,7 @@ const animateTo = (index: number) => {
       tl.to(smallTitle, { opacity: 0, y: -10, duration: 0.25, ease: "power2.out" }, 0);
 
       // Content ready in sync with card expand — no delay, no wait
-      tl.to(content, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.4);
+      tl.to(content, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.45);
       tl.to(title, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
       tl.to(desc, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
 
