@@ -352,7 +352,7 @@ export default function Applications() {
 return (
   <section
     id="applications"
-    className="relative w-full overflow-hidden bg-[#E9F2ED] px-5 py-12 text-black"
+    className="relative w-full overflow-hidden h-screen bg-[#E9F2ED] px-5 py-24 text-black"
   >
 
     <div className="pointer-events-none absolute inset-0 z-0">

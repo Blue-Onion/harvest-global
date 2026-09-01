@@ -51,8 +51,11 @@ const layers = [
 
 function UnifiedGeoStack() {
   return (
-    <section id="unified-geo-stack" className="relative overflow-hidden bg-[#F8E0CF] py-24 md:py-32">
-<div className="pointer-events-none absolute inset-0 z-0 text-[#E46A2A]">
+    <section
+      id="unified-geo-stack"
+      className="relative overflow-hidden bg-[#F8E0CF] py-24 "
+    >
+      <div className="pointer-events-none absolute inset-0 z-0 text-[#E46A2A]">
         <TopographicBackground />
       </div>
       <div className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-[#E46A2A]/10 blur-3xl" />
@@ -67,7 +70,6 @@ function UnifiedGeoStack() {
           <p className="mt-7 max-w-2xl text-base leading-7 text-[#17251E]/90 md:text-lg">
             One Stack of Earth and{" "}
             <span className="text-[#E46A2A]">Multiple Layers</span>
-           
           </p>
           <p className="mt-7  text-base leading-7 text-[#17251E]/90 md:text-lg">
             The HG Unified GeoAI Stack brings together the infrastructure,
@@ -99,22 +101,16 @@ function UnifiedGeoStack() {
 
                     {/* Card content */}
                     <div className="relative z-10">
-                      
-
                       <h3 className="text-4xl font-bold tracking-tight text-[#17251E] md:text-6xl">
                         {layer.title}
                       </h3>
-
-
                     </div>
-                      <p className="mt-5 max-w-xl text-xl leading-8 text-[#17251E]/90 md:text-3xl">
-                        {layer.description}
-                      </p>
-                      <p className="mt-6 max-w-2xl text-sm leading-6 text-[#17251E]/80 md:text-base">
-                        {layer.detail}
-                      </p>
-
-            
+                    <p className="mt-5 max-w-xl text-xl leading-8 text-[#17251E]/90 md:text-3xl">
+                      {layer.description}
+                    </p>
+                    <p className="mt-6 max-w-2xl text-sm leading-6 text-[#17251E]/80 md:text-base">
+                      {layer.detail}
+                    </p>
 
                     <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#E46A2A] transition-all duration-500 group-hover:w-full" />
                   </article>
@@ -130,9 +126,7 @@ function UnifiedGeoStack() {
                   <div
                     key={layer.number}
                     className={`h-1 w-8 rounded-full md:w-12 ${
-                      index === 0
-                        ? "bg-[#E46A2A]"
-                        : "bg-[#17251E]/10"
+                      index === 0 ? "bg-[#E46A2A]" : "bg-[#17251E]/10"
                     }`}
                   />
                 ))}

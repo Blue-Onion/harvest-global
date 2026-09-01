@@ -1,235 +1,325 @@
 "use client";
 
-import React from "react";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 import TopographicBackground from "../ui/Topography";
 
-type TechCard = {
+interface TechnologyCard {
   number: string;
   title: string;
   description: string;
   items: string[];
-  accent: "neutral" | "orange" | "emerald";
-  visual: "image" | "grid" | "none";
-  image?: string;
-  coords?: string;
-};
+  theme: "green" | "orange";
+  icon: string;
+}
 
-const cards: TechCard[] = [
+const cards: TechnologyCard[] = [
   {
     number: "01",
     title: "Earth Data",
     description:
       "Satellite, weather, ground and geospatial datasets brought together to create a unified foundation for Earth and Weather Intelligence.",
-    items: ["Earth Observation", "Weather Data", "Ground & Geospatial Data"],
-    accent: "neutral",
-    visual: "grid",
-    coords: "EARTH-DATA // INPUT",
+    items: ["Satellite", "Weather", "Ground Data"],
+    theme: "green",
+    icon: "⌁",
   },
   {
     number: "02",
     title: "Unified GeoAI Stack",
     description:
       "An integrated GeoAI technology stack connecting data, compute, models and intelligence workflows into a unified platform for Earth and Weather Intelligence.",
-    items: ["Data Integration", "GeoAI Infrastructure", "AI Workflows"],
-    accent: "emerald",
-    visual: "grid",
-    coords: "GEOAI-STACK // UNIFIED",
+    items: ["Data", "Compute", "Models"],
+    theme: "orange",
+    icon: "▤",
   },
   {
     number: "03",
     title: "Foundation Models / AI",
     description:
       "Foundation and fine-tuned GeoAI models designed to understand, analyse and generate intelligence from complex Earth and environmental datasets.",
-    items: ["GeoFM", "Foundation Models", "Domain AI"],
-    accent: "orange",
-    visual: "grid",
-    coords: "FOUNDATION-AI // GEOFM",
+    items: ["Foundation Models", "AI", "Analytics"],
+    theme: "green",
+    icon: "☁",
   },
   {
     number: "04",
     title: "Sovereign Private AI Cloud",
     description:
       "Secure and scalable AI infrastructure providing sovereign control over data, compute and models for government and enterprise workloads.",
-    items: ["Private AI Cloud", "GPU Compute", "Data Sovereignty"],
-    accent: "emerald",
-    visual: "image",
-    image: "/images/aboutbg.png",
-    coords: "PRIVATE-AI-CLOUD // SOVEREIGN",
+    items: ["Private Cloud", "Security", "Compute"],
+    theme: "green",
+    icon: "⚙",
   },
   {
     number: "05",
     title: "Earth Intelligence",
     description:
       "Transforming Earth observations and AI capabilities into actionable intelligence for monitoring, prediction and informed decision-making.",
-    items: ["Prediction", "Monitoring", "Decision Intelligence"],
-    accent: "orange",
-    visual: "image",
-    image: "/images/urban.jpg",
-    coords: "EARTH-INTELLIGENCE // INSIGHT",
+    items: ["Prediction", "Monitoring", "Decision"],
+    theme: "orange",
+    icon: "▥",
   },
   {
     number: "06",
     title: "Government + Industry Applications",
     description:
       "Deploying Earth Intelligence into real-world applications across government and industry, enabling faster, smarter and more informed decisions.",
-    items: ["Government", "Enterprise", "Critical Infrastructure"],
-    accent: "emerald",
-    visual: "grid",
-    coords: "APPLICATIONS // GOVERNMENT-INDUSTRY",
+    items: ["Government", "Industry", "Applications"],
+    theme: "green",
+    icon: "♧",
   },
 ];
-const technology = {
-  eyebrow: "TECHNOLOGY",
-  title: ["From Earth Data to", "Earth Intelligence"],
-  description:
-    "Our Unified GeoAI Stack combines data infrastructure, foundation models, GeoAnalytics, AI compute and edge intelligence to move from observation to prediction and decision support.",
-  stackIntro: {
-    eyebrow: "UNIFIED GEOAI STACK",
-    title: "One Stack. Multiple Layers of Earth Intelligence.",
-    description:
-      "The HG Unified GeoAI Stack brings together the infrastructure, models and applications required to build scalable Earth Intelligence, from core data processing to edge deployment.",
-  },
-};
 
-function TechFlowNode({ card, index }: { card: TechCard; index: number }) {
+function TechCard({
+  card,
+  side,
+}: {
+  card: TechnologyCard;
+  side: "left" | "right";
+}) {
+  const orange = card.theme === "orange";
+
   return (
-    <div className="group relative flex min-w-0 flex-col">
-      {/* Node */}
+    <div
+      className={`
+        group relative flex h-[145px] items-center gap-4
+        rounded-2xl border px-4 py-3
+        transition-all duration-500
+        hover:-translate-y-1 hover:shadow-lg
+        ${
+          orange
+            ? "border-[#E46A2A]/10 bg-[#FBEDE5]"
+            : "border-[#235738]/10 bg-[#E7F1EB]"
+        }
+      `}
+    >
+      {/* Icon */}
       <div
-        className={cn(
-          "relative flex h-[250px] flex-col",
-          "rounded-md border border-[#2E7657]/30",
-          "bg-[#DCEAE2]",
-          "p-6",
-          "transition-all duration-300",
-          "hover:-translate-y-1",
-          "hover:border-[#2E7657]/50",
-        )}
+        className={`
+          flex h-12 w-12 shrink-0 items-center justify-center
+          rounded-full text-xl
+          ${
+            orange
+              ? "bg-[#F8C98F] text-[#B94D1F]"
+              : "bg-[#BDE6CE] text-[#235738]"
+          }
+        `}
       >
-        {/* Title */}
-        <h3 className="mt-6 min-h-[52px]  md:text-lg lg:text-2xl  font-bold leading-tight tracking-[0.01em] text-black">
-          {card.title}
-        </h3>
-
-        {/* Description */}
-        <p className="mt-3 line-clamp-4 text-xs leading-relaxed text-black">
-          {card.description}
-        </p>
-
-        {/* Capabilities */}
-       
-
-
-        <div className="absolute bottom-0 left-6 right-6 h-px bg-[#2E7657]/15" />
-
-
-        <div className="absolute -bottom-[5px] left-1/2 z-20 h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 border-[#DCEAE2] bg-[#2E7657]" />
+        {card.icon}
       </div>
 
-
-      {index === 0 && (
-        <div className="absolute right-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#2E7657]/40">
-            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#2E7657]" />
-          </div>
+      {/* Content */}
+      <div className="min-w-0 pr-8">
+        <div className="flex items-center gap-2">
+          <h3 className="text-base font-bold leading-tight text-[#10251B]">
+            {card.title}
+          </h3>
         </div>
-      )}
 
-      {/* 02 → 03 */}
-      {index === 1 && (
-        <div className="absolute right-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#2E7657]/40">
-            <span className="absolute right-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border-r border-t border-[#2E7657]" />
-          </div>
-        </div>
-      )}
+        <p className="mt-1.5 line-clamp-3 text-[11px] leading-[1.35] text-black/60">
+          {card.description}
+        </p>
+      </div>
 
-      {/* 03 ↓ 04 */}
-      {index === 2 && (
-        <div className="absolute bottom-[-64px] left-1/2 z-10 hidden h-16 w-px bg-[#2E7657]/40 md:block">
-          <span className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-[#2E7657]" />
-        </div>
-      )}
+      {/* Arrow */}
+      <div
+        className={`
+          absolute right-3 top-1/2 flex h-8 w-8
+          -translate-y-1/2 items-center justify-center
+          rounded-full bg-white text-sm shadow-sm
+          ${orange ? "text-[#B94D1F]" : "text-[#235738]"}
+        `}
+      >
+        →
+      </div>
 
-      {/* 04 ← 05 */}
-      {index === 3 && (
-        <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#2E7657]/40">
-            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#2E7657]" />
-          </div>
-        </div>
-      )}
+      {/* Connector */}
+      <div
+        className={`
+          absolute top-1/2 hidden h-px w-[65px] lg:block
+          ${side === "left" ? "-right-[65px]" : "-left-[65px]"}
+          ${orange ? "bg-[#E46A2A]/60" : "bg-[#235738]/50"}
+        `}
+      />
 
-      {/* 05 ← 06 */}
-      {index === 4&& (
-        <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#2E7657]/40">
-            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#2E7657]" />
-          </div>
-        </div>
-      )}
-      {index === 5&& (
-        <div className="absolute left-[-64px] top-1/2 hidden w-16 -translate-y-1/2 md:block">
-          <div className="relative h-px w-full bg-[#2E7657]/40">
-            <span className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rotate-[225deg] border-r border-t border-[#2E7657]" />
-          </div>
-        </div>
-      )}
-
+      {/* Node */}
+      <div
+        className={`
+          absolute top-1/2 hidden h-2.5 w-2.5
+          -translate-y-1/2 rounded-full
+          border-2 border-white lg:block
+          ${side === "left" ? "-right-[70px]" : "-left-[70px]"}
+          ${orange ? "bg-[#E46A2A]" : "bg-[#235738]"}
+        `}
+      />
     </div>
   );
 }
+
 export default function Technology() {
   return (
     <section
       id="technology"
-      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#E9F2ED] px-5 py-16 text-[#173B32] sm:px-8 md:px-12 lg:px-16"
+      className="
+
+    relative h-screen w-full overflow-hidden
+
+    bg-[url('/images/urban.jpg')]
+
+    bg-cover bg-center bg-no-repeat
+
+  "
     >
-      {/* Topographic Background */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <TopographicBackground />
-      </div>
+      {/* SVG Clip Path */}
 
-      {/* Content */}
-      <div className="container  overflow-hidden relative over z-10 mx-auto w-full">
-        {/* Header */}
-        <div>
-          <h2 className="mt-3 font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-black md:text-5xl lg:text-6xl">
-            Technology
-          </h2>
+      <svg className="absolute h-0 w-0" aria-hidden="true">
+        <defs>
+          <clipPath id="technologyClip" clipPathUnits="objectBoundingBox">
+            <path
+              d="
 
-          <p className="mt-5 text-sm leading-relaxed text-black md:text-base">
-            {technology.description}
-          </p>
+            M 0,0
+
+            L 0.94,0
+
+            C 0.97,0 0.985,0.015 0.99,0.04
+
+            C 0.995,0.065 1,0.08 1,0.11
+
+            L 1,0.84
+
+            C 1,0.87 0.99,0.89 0.975,0.91
+
+            C 0.96,0.93 0.94,0.94 0.93,0.96
+
+            C 0.92,0.98 0.90,1 0.87,1
+
+            L 0.08,1
+
+            C 0.05,1 0.035,0.985 0.025,0.96
+
+            C 0.015,0.94 0.008,0.92 0,0.89
+
+            Z
+
+          "
+            />
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* White Content Layer */}
+
+      <div
+        className="
+
+      relative z-10 h-full w-full
+
+      bg-white px-5 py-20 text-black
+
+      sm:px-8 md:px-12 lg:px-16
+
+    "
+        style={{
+          clipPath: "url(#technologyClip)",
+        }}
+      >
+        {/* Topographic Background */}
+
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-25">
+          <TopographicBackground />
         </div>
+        <div className="container relative z-10 mx-auto flex h-full flex-col">
+          {/* ================= HEADER ================= */}
+          <div className="mb-8 flex shrink-0 items-end justify-between">
+            <div>
+              <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E46A2A]">
+                Our Technology
+              </p>
 
-        {/* Flow */}
-        <div className="mt-12">
-          {/* Desktop Flow */}
-          <div className="hidden md:grid md:grid-cols-3 md:gap-x-16 md:gap-y-16">
-            {cards.map((card, index) => (
-              <TechFlowNode
-                key={card.number}
-                card={card}
-                index={index}
-              />
-            ))}
+              <h2 className="text-5xl font-semibold tracking-[-0.05em] text-[#10251B] lg:text-6xl">
+                Technology
+              </h2>
+
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black/60 lg:text-base">
+                Our Unified GeoAI Stack combines data infrastructure, foundation
+                models, GeoAnalytics, AI compute and edge intelligence to move
+                from observation to prediction and decision support.
+              </p>
+            </div>
+
+            <div className="hidden border-l border-[#235738]/30 pl-6 lg:block">
+              <p className="text-xs font-medium uppercase leading-[1.6] tracking-[0.2em] text-[#235738]/70">
+                From
+                <br />
+                Observation
+                <br />
+                To Impact
+              </p>
+
+              <div className="mt-2 h-0.5 w-8 bg-[#E46A2A]" />
+            </div>
           </div>
 
-          {/* Mobile Flow */}
-          <div className="flex flex-col md:hidden">
-            {cards.map((card, index) => (
-              <div key={card.number} className="relative">
-                <TechFlowNode card={card} index={index} />
+          {/* ================= MAIN TECHNOLOGY MAP ================= */}
+          <div
+            className="
+            relative flex min-h-0 flex-1
+            items-center
+            lg:grid lg:grid-cols-[1fr_420px_1fr]
+            lg:gap-0
+          "
+          >
+            {/* LEFT */}
+            <div className="relative z-20 flex flex-col gap-4">
+              {cards.slice(0, 3).map((card) => (
+                <TechCard key={card.number} card={card} side="left" />
+              ))}
+            </div>
 
-                {index < cards.length - 1 && (
-                  <div className="mx-auto flex h-10 w-px items-center bg-[#2E7657]/30">
-                    <span className="absolute mt-10 h-2 w-2 rotate-45 border-b border-r border-[#2E7657]" />
-                  </div>
-                )}
+            {/* ================= EARTH ================= */}
+            <div className="relative flex h-full items-center justify-center">
+              {/* Outer orbit */}
+              <div
+                className="
+                absolute aspect-square
+                w-[400px] rounded-full
+                border border-dashed
+                border-[#235738]/30
+              "
+              />
+
+              {/* Inner orbit */}
+              <div
+                className="
+                absolute aspect-square
+                w-[365px] rounded-full
+                border border-[#235738]/10
+              "
+              />
+
+              {/* BIG EARTH */}
+              <div className="relative z-10 w-[350px] shrink-0">
+                <div className="relative aspect-square overflow-hidden rounded-full">
+                  <Image
+                    src="/images/earth.png"
+                    alt="Earth"
+                    fill
+                    priority
+                    className="object-contain"
+                  />
+
+                  {/* subtle green tint */}
+                  <div className="pointer-events-none absolute inset-0 rounded-full bg-[#235738]/5 mix-blend-multiply" />
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* RIGHT */}
+            <div className="relative z-20 flex flex-col gap-4">
+              {cards.slice(3, 6).map((card) => (
+                <TechCard key={card.number} card={card} side="right" />
+              ))}
+            </div>
           </div>
         </div>
       </div>
