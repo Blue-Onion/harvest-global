@@ -35,7 +35,7 @@ const Challenge = () => {
   return (
     <section
       id="challenge"
-      className="relative w-full overflow-hidden bg-[#FBEBDF] px-5 py-24 text-black "
+      className="relative w-full overflow-hidden h-screen bg-[#FBEBDF] px-5 py-24 text-black "
     >
 
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -53,7 +53,7 @@ const Challenge = () => {
                 THE CHALLENGE
               </h2>
 
-              <div className="mt-6 max-w-4xl space-y-4">
+              <div className="mt-6  space-y-4">
                 <p
                   data-reveal="text"
                   className="text-base leading-relaxed md:text-lg"

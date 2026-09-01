@@ -1,151 +1,176 @@
 "use client";
 
-import React from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import TopographicBackground from "../ui/Topography";
+import Image from "next/image";
+import AccordionGallery from "../ui/AccordinGallery";
 
-const layers = [
+interface TechCardProps {
+  title: string;
+  image: string;
+  desc: string;
+}
+
+export function TechCard({ title, image, desc }: TechCardProps) {
+  return (
+    <article
+      className="
+        group relative
+        flex h-[435px]
+        w-[230px]
+        shrink-0
+        flex-col
+        overflow-hidden
+        rounded-xl
+        bg-[#0D1D20]
+        text-white
+        shadow-[0_10px_30px_rgba(0,0,0,0.12)]
+        transition-all duration-500
+        hover:-translate-y-1
+      "
+    >
+      {/* Content */}
+      <div className="flex flex-1 flex-col p-5">
+        {/* Title */}
+        <h3
+          className="
+            max-w-[200px]
+            text-xl
+            font-medium
+            leading-[1.15]
+            tracking-tight
+          "
+        >
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p
+          className="
+            mt-4
+            max-w-[205px]
+            text-[13px]
+            leading-[1.45]
+            text-white/65
+          "
+        >
+          {desc}
+        </p>
+      </div>
+
+      {/* Image */}
+      <div className="relative h-[145px] w-full shrink-0 overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="
+            object-cover
+            transition-transform
+            duration-700
+            ease-out
+            group-hover:scale-105
+          "
+        />
+
+        {/* Subtle image overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1D20]/30 to-transparent" />
+      </div>
+    </article>
+  );
+}
+const techStack = [
   {
-    number: "01",
-    label: "Layer 1",
-    title: "AI IaaS",
-    description: "GPU-powered infrastructure for enterprise-grade GeoAI.",
-    detail:
-      "High-performance compute, data infrastructure and ground-segment integration designed for large-scale Earth Observation workloads.",
-    tags: ["GPU Compute", "Data Infrastructure", "Ground Segment"],
+    title: "Earth Data",
+    image: "/images/tech/1.png",
+    svgLink: "/svg/earth-data.svg",
+    desc: "Satellite, weather, ground and geospatial datasets brought together to create a unified foundation for Earth and Weather Intelligence.",
   },
   {
-    number: "02",
-    label: "Layer 2",
-    title: "AI PaaS",
-    description: "Foundation and fine-tuned GeoAI models.",
-    detail:
-      "GeoFM models and domain-specific AI for agriculture, forestry, hydrology, land-use and land-cover mapping, change detection and other Earth applications.",
-    tags: ["GeoFM", "Foundation Models", "Domain AI"],
+    title: "Unified GeoAI Stack",
+    image: "/images/tech/2.png",
+    svgLink: "/svg/geoai-stack.svg",
+    desc: "An integrated GeoAI technology stack connecting data, compute, models and intelligence workflows into a unified platform for Earth and Weather Intelligence.",
   },
   {
-    number: "03",
-    label: "Layer 3",
-    title: "AI SaaS",
-    description: "Intelligence delivered through applications.",
-    detail:
-      "GeoAnalytics and decision-support solutions across agriculture, crop insurance, climate resilience, water security and infrastructure.",
-    tags: ["GeoAnalytics", "Decision Support", "Earth Intelligence"],
+    title: "Foundation Models / AI",
+    image: "/images/tech/3.png",
+    svgLink: "/svg/foundation-models.svg",
+    desc: "Foundation and fine-tuned GeoAI models designed to understand, analyse and generate intelligence from complex Earth and environmental datasets.",
   },
   {
-    number: "04",
-    label: "Layer 4",
-    title: "EDGE AI",
-    description: "Intelligence closer to where data is generated.",
-    detail:
-      "On-demand Earth Observation AI at satellites, ground stations and edge nodes, reducing dependence on cloud latency.",
-    tags: ["Satellites", "Ground Stations", "Edge Nodes"],
+    title: "Sovereign Private AI Cloud",
+    image: "/images/tech/4.png",
+    svgLink: "/svg/private-ai-cloud.svg",
+    desc: "Secure and scalable AI infrastructure providing sovereign control over data, compute and models for government and enterprise workloads.",
+  },
+  {
+    title: "Earth Intelligence",
+    image: "/images/tech/5.png",
+    svgLink: "/svg/earth-intelligence.svg",
+    desc: "Transforming Earth observations and AI capabilities into actionable intelligence for monitoring, prediction and informed decision-making.",
+  },
+  {
+    title: "Government + Industry Applications",
+    image: "/images/tech/6.png",
+    svgLink: "/svg/government-industry.svg",
+    desc: "Deploying Earth Intelligence into real-world applications across government and industry, enabling faster, smarter and more informed decisions.",
   },
 ];
 
 function UnifiedGeoStack() {
   return (
-    <section id="unified-geo-stack" className="relative overflow-hidden bg-[#F8E0CF] py-24 md:py-32">
-<div className="pointer-events-none absolute inset-0 z-0 text-[#E46A2A]">
-        <TopographicBackground />
-      </div>
-      <div className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-[#E46A2A]/10 blur-3xl" />
-
-      <div className="relative mx-auto max-w-7xl px-6 md:px-10">
+    <section
+      id="unified-geo-stack"
+      className="relative min-h-screen overflow-hidden bg-[url('/images/site-bg/bg1.png')] bg-cover bg-center py-28"
+    >
+      <div className="container relative mx-auto px-5">
         {/* Header */}
-        <div>
-          <h2 className="text-4xl font-medium tracking-tight text-[#17251E] md:text-6xl lg:text-7xl">
-            Unified GeoAI Stack
-          </h2>
+        <div className="header">
+          <div className="flex flex-col justify-between gap-10 lg:flex-row">
+            {/* Left */}
+            <div>
+              <h2 className="w-full max-w-2xl text-4xl font-bold tracking-tight text-black md:text-6xl lg:text-7xl">
+                TECHNOLOGY
+              </h2>
 
-          <p className="mt-7 max-w-2xl text-base leading-7 text-[#17251E]/90 md:text-lg">
-            One Stack of Earth and{" "}
-            <span className="text-[#E46A2A]">Multiple Layers</span>
-           
-          </p>
-          <p className="mt-7  text-base leading-7 text-[#17251E]/90 md:text-lg">
-            The HG Unified GeoAI Stack brings together the infrastructure,
-            models and applications required to build scalable Earth
-            Intelligence, from core data processing to edge deployment.
-          </p>
+              <p className="mt-7 max-w-4xl text-base leading-7 text-black md:text-lg">
+                Our{" "}
+                <span className="font-semibold text-[#E46A2A]">
+                  Unified GeoAI Stack
+                </span>{" "}
+                combines data infrastructure, foundation models, GeoAnalytics,
+                AI compute and edge intelligence to move from observation to
+                prediction and decision support.
+              </p>
+            </div>
+
+            {/* Right */}
+            <div className=" hidden lg:flex flex-col gap-3">
+              <h3 className="text-lg font-semibold uppercase tracking-widest text-green-900">
+                <span className="block">Earth</span>
+                <span className="block">Intelligence</span>
+                <span className="block">at scale</span>
+              </h3>
+
+              <p className="text-md font-normal uppercase text-black/55">
+                <span className="block">better data.</span>
+                <span className="block">clearer insights</span>
+                <span className="block">a more resilient</span>
+                <span className="block">tomorrow</span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Carousel */}
-        <div className="relative mt-7">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-5">
-              {layers.map((layer) => (
-                <CarouselItem
-                  key={layer.number}
-                  className="pl-5 md:basis-[80%] lg:basis-[65%]"
-                >
-                  <article className="group bg relative flex min-h-[480px] flex-col justify-between overflow-hidden rounded-2xl border border-[#B94D1F]/15  p-7 shadow-sm bg-white transition-all duration-500 hover:border-[#E46A2A]/40 hover:shadow-xl md:p-10">
-                    {/* Large layer number */}
-                    <div className="pointer-events-none absolute -right-5 -top-12 select-none text-[180px] font-semibold leading-none tracking-tighter text-[#E46A2A]/[0.06] transition-transform duration-700 group-hover:translate-x-2 group-hover:text-[#E46A2A]/[0.1] md:text-[220px]">
-                      {layer.number}
-                    </div>
-
-                    {/* Card content */}
-                    <div className="relative z-10">
-                      
-
-                      <h3 className="text-4xl font-bold tracking-tight text-[#17251E] md:text-6xl">
-                        {layer.title}
-                      </h3>
-
-
-                    </div>
-                      <p className="mt-5 max-w-xl text-xl leading-8 text-[#17251E]/90 md:text-3xl">
-                        {layer.description}
-                      </p>
-                      <p className="mt-6 max-w-2xl text-sm leading-6 text-[#17251E]/80 md:text-base">
-                        {layer.detail}
-                      </p>
-
-            
-
-                    <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#E46A2A] transition-all duration-500 group-hover:w-full" />
-                  </article>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {/* Controls */}
-            <div className="mt-8 flex items-center justify-between">
-              {/* Progress indicators */}
-              <div className="flex items-center gap-2">
-                {layers.map((layer, index) => (
-                  <div
-                    key={layer.number}
-                    className={`h-1 w-8 rounded-full md:w-12 ${
-                      index === 0
-                        ? "bg-[#E46A2A]"
-                        : "bg-[#17251E]/10"
-                    }`}
-                  />
-                ))}
-              </div>
-
-              {/* Navigation */}
-              <div className="flex gap-2">
-                <CarouselPrevious className="static translate-y-0 border-[#17251E]/10 bg-white text-[#17251E] hover:bg-[#E46A2A] hover:text-white" />
-
-                <CarouselNext className="static translate-y-0 border-[#17251E]/10 bg-white text-[#17251E] hover:bg-[#E46A2A] hover:text-white" />
-              </div>
-            </div>
-          </Carousel>
+        {/* Cards */}
+        <div className="content mt-16">
+          <div className="">
+            <AccordionGallery
+                height={435}
+              items={techStack}
+              
+            />
+          </div>
+    
         </div>
       </div>
     </section>
