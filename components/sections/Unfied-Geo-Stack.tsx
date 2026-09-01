@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import AccordionGallery from "../ui/AccordinGallery";
 
 interface TechCardProps {
   title: string;
@@ -8,11 +9,7 @@ interface TechCardProps {
   desc: string;
 }
 
-export function TechCard({
-  title,
-  image,
-  desc,
-}: TechCardProps) {
+export function TechCard({ title, image, desc }: TechCardProps) {
   return (
     <article
       className="
@@ -147,7 +144,7 @@ function UnifiedGeoStack() {
             </div>
 
             {/* Right */}
-            <div className="flex flex-col gap-3">
+            <div className=" hidden lg:flex flex-col gap-3">
               <h3 className="text-lg font-semibold uppercase tracking-widest text-green-900">
                 <span className="block">Earth</span>
                 <span className="block">Intelligence</span>
@@ -166,85 +163,14 @@ function UnifiedGeoStack() {
 
         {/* Cards */}
         <div className="content mt-16">
-          {/* <div className=""> */}
-          {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-            {techStack.map((tech) => (
-              <TechCard
-                key={tech.title}
-                title={tech.title}
-                image={tech.image}
-
-                desc={tech.desc}
-              />
-            ))}
+          <div className="">
             <AccordionGallery
-  items={techStack}
-  defaultIndex={0}
-  height={430}
-  gap={6}
-  radius={6}
-  expandRatio={0.45}
-  duration={0.65}
-  parallax={0.4}
-  tilt={5}
-  trigger="hover"
-  grayscale={true}
-/>
-          </div> */}
-          <div className="relative mt-16">
-  <div className="flex items-center gap-0 overflow-x-auto pb-4 scrollbar-hide">
-    {techStack.map((tech, index) => (
-      <div
-        key={tech.title}
-        className="relative flex shrink-0 items-center"
-      >
-        <TechCard
-          title={tech.title}
-          image={tech.image}
-          desc={tech.desc}
-        />
-
-        {/* Connector Arrow */}
-        {index !== techStack.length - 1 && (
-          <div
-            className="
-              relative z-20
-              flex h-10 w-10
-              shrink-0
-              -mx-1
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-white/40
-              bg-[#0D1D20]
-              text-white
-              shadow-lg
-            "
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="h-5 w-5"
-            >
-              <path
-                d="M5 12h14"
-                strokeLinecap="round"
-              />
-              <path
-                d="m13 6 6 6-6 6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+                height={435}
+              items={techStack}
+              
+            />
           </div>
-        )}
-      </div>
-    ))}
-  </div>
-</div>
+    
         </div>
       </div>
     </section>

@@ -1,659 +1,367 @@
 "use client";
 
-import {
-  useRef,
-  useEffect,
-  useState,
-  useCallback,
-  CSSProperties,
-  KeyboardEvent,
-  MouseEvent,
-} from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-export interface AccordionGalleryItem {
+interface AccordionItem {
   image: string;
-  label?: string;
-  desc?: string;
-  link?: string;
-  alt?: string;
+  title: string;
+  desc: string;
 }
 
-export interface AccordionGalleryProps {
-  items?: AccordionGalleryItem[];
-  defaultIndex?: number;
-  accentColor?: string;
-  overlayColor?: string;
-  textColor?: string;
+interface AccordionGalleryProps {
+  items: AccordionItem[];
   height?: number;
-  gap?: number;
-  radius?: number;
-  expandRatio?: number;
-  orientation?: "horizontal" | "vertical";
-  duration?: number;
-  ease?: string;
-  parallax?: number;
-  tilt?: number;
-  stagger?: number;
-  trigger?: "hover" | "click";
-  showLabels?: boolean;
-  grayscale?: boolean;
-  className?: string;
 }
 
-const DEFAULT_ITEMS: AccordionGalleryItem[] = [
-  {
-    image: "https://picsum.photos/id/1015/900/1200",
-    label: "Canyon",
-    desc: "Earth observation data and geospatial intelligence for understanding changing landscapes.",
-  },
-  {
-    image: "https://picsum.photos/id/1018/900/1200",
-    label: "Ridgeline",
-    desc: "Advanced GeoAI models transform complex Earth datasets into actionable intelligence.",
-  },
-  {
-    image: "https://picsum.photos/id/1039/900/1200",
-    label: "Falls",
-    desc: "Foundation models designed to understand, analyse and predict patterns across our planet.",
-  },
-  {
-    image: "https://picsum.photos/id/1043/900/1200",
-    label: "Harbour",
-    desc: "Secure private AI infrastructure for sovereign and enterprise-scale intelligence.",
-  },
-  {
-    image: "https://picsum.photos/id/1044/900/1200",
-    label: "Skyline",
-    desc: "Earth intelligence delivered through applications across government and industry.",
-  },
-];
+export default function AccordionGallery({
+  items,
+  height = 435,
+}: AccordionGalleryProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const activeIndex = useRef(0);
 
-const AccordionGallery = ({
-  items = DEFAULT_ITEMS,
-  defaultIndex = 2,
-  accentColor = "#E46A2A",
-  overlayColor = "#060010",
-  textColor = "#ffffff",
-  height = 460,
-  gap = 10,
-  radius = 16,
-  expandRatio = 0.52,
-  orientation = "horizontal",
-  duration = 0.6,
-  ease = "power3.out",
-  parallax = 0.5,
-  tilt = 8,
-  stagger = 0.06,
-  trigger = "hover",
-  showLabels = true,
-  grayscale = true,
-  className = "",
-}: AccordionGalleryProps) => {
-  const rootRef = useRef<HTMLDivElement>(null);
+const animateTo = (index: number) => {
+  const container = containerRef.current;
+  if (!container || !items.length) return;
 
-  const panelRefs = useRef<(HTMLElement | null)[]>([]);
-  const mediaRefs = useRef<(HTMLElement | null)[]>([]);
-  const barRefs = useRef<(HTMLElement | null)[]>([]);
-  const textRefs = useRef<(HTMLElement | null)[]>([]);
-  const descRefs = useRef<(HTMLElement | null)[]>([]);
+  activeIndex.current = index;
 
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const firstRunRef = useRef(true);
-  const mediaSizeRef = useRef(320);
-
-  const vertical = orientation === "vertical";
-  const count = items.length;
-
-  const [active, setActive] = useState(
-    Math.min(Math.max(defaultIndex, 0), count - 1)
+  const cards = Array.from(
+    container.querySelectorAll<HTMLElement>(".accordion-card")
   );
 
-  const prefersReduced =
-    typeof window !== "undefined" && window.matchMedia
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false;
+  const tl = gsap.timeline();
 
-  const overlayBg = `
-    linear-gradient(
-      180deg,
-      transparent 35%,
-      color-mix(in srgb, ${overlayColor} 85%, transparent) 100%
-    ),
-    color-mix(
-      in srgb,
-      ${overlayColor} calc(var(--ag-dim, 0.35) * 100%),
-      transparent
-    )
-  `;
+  cards.forEach((card, i) => {
+    const image = card.querySelector<HTMLElement>(".card-image");
+    const smallTitle = card.querySelector<HTMLElement>(".collapsed-title");
+    const content = card.querySelector<HTMLElement>(".expanded-content");
+    const title = card.querySelector<HTMLElement>(".card-title");
+    const desc = card.querySelector<HTMLElement>(".card-desc");
+    const arrow = card.querySelector<HTMLElement>(".card-arrow");
 
-  const applyLayout = useCallback(
-    (animate: boolean) => {
-      const panels = panelRefs.current;
+    if (!image || !smallTitle || !content || !title || !desc) return;
 
-      if (!panels.length) return;
+    const isActive = i === index;
 
-      const r = Math.min(Math.max(expandRatio, 0.2), 0.9);
+    gsap.killTweensOf([card, image, smallTitle, content, title, desc, arrow]);
 
-      const grow =
-        count > 1
-          ? (r * (count - 1)) / (1 - r)
-          : 1;
+    if (isActive) {
+      // EXPAND CARD
+      tl.to(card, { flexGrow: 4.5, duration: 0.65, ease: "power3.out" }, 0);
 
-      const mediaSize = mediaSizeRef.current;
+      // Full colour image
+      tl.to(image, { filter: "grayscale(0%)", scale: 1, duration: 0.7, ease: "power3.out" }, 0);
 
-      tlRef.current?.kill();
+      // Hide collapsed title
+      tl.to(smallTitle, { opacity: 0, y: -10, duration: 0.25, ease: "power2.out" }, 0);
 
-      const dur =
-        animate && !prefersReduced
-          ? duration
-          : 0;
+      // Content ready in sync with card expand — no delay, no wait
+      tl.to(content, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.4);
+      tl.to(title, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
+      tl.to(desc, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
 
-      const tl = gsap.timeline();
+      if (arrow) {
+        tl.to(arrow, { opacity: 1, x: 0, rotate: 0, duration: 0.35, ease: "power3.out" }, 0);
+      }
+    } else {
+      // COLLAPSE CARD
+      tl.to(card, { flexGrow: 1, duration: 0.6, ease: "power3.inOut" }, 0);
 
-      panels.forEach((panel, i) => {
-        if (!panel) return;
+      tl.to(image, { filter: "grayscale(100%)", scale: 1.08, duration: 0.6, ease: "power3.inOut" }, 0);
 
-        const isActive = i === active;
+      tl.to(smallTitle, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0.1);
 
-        const media = mediaRefs.current[i];
-        const bar = barRefs.current[i];
-        const text = textRefs.current[i];
-        const desc = descRefs.current[i];
+      tl.to(content, { opacity: 0, duration: 0.2, ease: "power2.in" }, 0);
+      tl.to(title, { opacity: 0, y: 15, duration: 0.25, ease: "power2.in" }, 0);
+      tl.to(desc, { opacity: 0, y: 15, duration: 0.2, ease: "power2.in" }, 0);
 
-        const rot = isActive
-          ? 0
-          : i < active
-            ? tilt
-            : -tilt;
+      if (arrow) {
+        tl.to(arrow, { opacity: 0, x: -8, rotate: -45, duration: 0.2, ease: "power2.in" }, 0);
+      }
+    }
+  });
+};
 
-        const rotProp = vertical
-          ? { rotateX: -rot }
-          : { rotateY: rot };
+  // First card open by default
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const container = containerRef.current;
 
-        /* Card expansion */
-        tl.to(
-          panel,
-          {
-            flexGrow: isActive ? grow : 1,
-            ...rotProp,
-            duration: dur,
-            ease,
-          },
-          0
-        );
+      if (!container) return;
 
-        /* Image */
-        if (media) {
-          const drift = Math.max(
-            -1.5,
-            Math.min(1.5, active - i)
-          );
+      const cards = Array.from(
+        container.querySelectorAll<HTMLElement>(".accordion-card")
+      );
 
-          const shift =
-            drift *
-            parallax *
-            mediaSize *
-            0.06;
+      cards.forEach((card, i) => {
+        const image = card.querySelector<HTMLElement>(".card-image");
+        const smallTitle =
+          card.querySelector<HTMLElement>(".collapsed-title");
+        const content =
+          card.querySelector<HTMLElement>(".expanded-content");
+        const title = card.querySelector<HTMLElement>(".card-title");
+        const desc = card.querySelector<HTMLElement>(".card-desc");
+        const arrow = card.querySelector<HTMLElement>(".card-arrow");
 
-          const gray = grayscale
-            ? isActive
-              ? 0
-              : 1
-            : 0;
+        if (!image || !smallTitle || !content || !title || !desc) return;
 
-          tl.to(
-            media,
-            {
-              xPercent: -50,
-              yPercent: -50,
-              x: vertical
-                ? 0
-                : isActive
-                  ? 0
-                  : shift,
-              y: vertical
-                ? isActive
-                  ? 0
-                  : shift
-                : 0,
+        if (i === 0) {
+          gsap.set(card, {
+            flexGrow: 4.5,
+          });
 
-              "--ag-gray": gray,
-              "--ag-dim": isActive
-                ? 0
-                : 0.35,
+          gsap.set(image, {
+            filter: "grayscale(0%)",
+            scale: 1,
+          });
 
-              duration: dur,
-              ease,
-            },
-            0
-          );
-        }
+          gsap.set(smallTitle, {
+            opacity: 0,
+            y: -10,
+          });
 
-        /* Label */
-        if (showLabels && bar && text) {
-          if (isActive) {
-            tl.to(
-              [bar, text],
-              {
-                opacity: 1,
-                x: 0,
-                duration: dur,
-                ease,
-                stagger: prefersReduced
-                  ? 0
-                  : stagger,
-              },
-              0.1
-            );
-          } else {
-            tl.to(
-              [bar, text],
-              {
-                opacity: 0,
-                x: -14,
-                duration: dur * 0.6,
-                ease,
-              },
-              0
-            );
+          gsap.set(content, {
+            opacity: 1,
+          });
+
+          gsap.set(title, {
+            opacity: 1,
+            y: 0,
+          });
+
+          gsap.set(desc, {
+            opacity: 1,
+            y: 0,
+          });
+
+          if (arrow) {
+            gsap.set(arrow, {
+              opacity: 1,
+              x: 0,
+              rotate: 0,
+            });
           }
-        }
+        } else {
+          gsap.set(card, {
+            flexGrow: 1,
+          });
 
-        /* Description */
-        if (desc) {
-          if (isActive) {
-            tl.to(
-              desc,
-              {
-                opacity: 1,
-                y: 0,
-                maxHeight: 120,
-                duration: dur * 0.8,
-                ease,
-              },
-              dur * 0.35
-            );
-          } else {
-            tl.to(
-              desc,
-              {
-                opacity: 0,
-                y: 12,
-                maxHeight: 0,
-                duration: dur * 0.45,
-                ease,
-              },
-              0
-            );
+          gsap.set(image, {
+            filter: "grayscale(100%)",
+            scale: 1.08,
+          });
+
+          gsap.set(smallTitle, {
+            opacity: 1,
+            y: 0,
+          });
+
+          gsap.set(content, {
+            opacity: 0,
+          });
+
+          gsap.set(title, {
+            opacity: 0,
+            y: 15,
+          });
+
+          gsap.set(desc, {
+            opacity: 0,
+            y: 15,
+          });
+
+          if (arrow) {
+            gsap.set(arrow, {
+              opacity: 0,
+              x: -8,
+              rotate: -45,
+            });
           }
         }
       });
+    }, containerRef);
 
-      tlRef.current = tl;
-    },
-    [
-      active,
-      count,
-      expandRatio,
-      duration,
-      ease,
-      vertical,
-      tilt,
-      parallax,
-      grayscale,
-      showLabels,
-      stagger,
-      prefersReduced,
-    ]
-  );
-
-  /* Measure container */
-  useEffect(() => {
-    const el = rootRef.current;
-
-    if (!el) return;
-
-    const measure = () => {
-      const rect = el.getBoundingClientRect();
-
-      const total = vertical
-        ? rect.height
-        : rect.width;
-
-      const usable = Math.max(
-        total - gap * (count - 1),
-        120
-      );
-
-      const size = Math.max(
-        140,
-        usable *
-          Math.min(
-            Math.max(expandRatio, 0.2),
-            0.9
-          ) *
-          1.22
-      );
-
-      mediaSizeRef.current = size;
-
-      el.style.setProperty(
-        "--ag-media-size",
-        `${size}px`
-      );
-
-      applyLayout(!firstRunRef.current);
-    };
-
-    measure();
-
-    const ro = new ResizeObserver(measure);
-
-    ro.observe(el);
-
-    return () => ro.disconnect();
-  }, [
-    applyLayout,
-    gap,
-    count,
-    expandRatio,
-    vertical,
-  ]);
-
-  /* Update active card */
-  useEffect(() => {
-    applyLayout(!firstRunRef.current);
-
-    firstRunRef.current = false;
-  }, [applyLayout]);
-
-  /* Cleanup */
-  useEffect(() => {
-    return () => {
-      tlRef.current?.kill();
-    };
+    return () => ctx.revert();
   }, []);
-
-  const handleEnter = (i: number) => {
-    if (trigger === "hover") {
-      setActive(i);
-    }
-  };
-
-  const handleClick = (
-    i: number,
-    e: MouseEvent
-  ) => {
-    if (i !== active) {
-      e.preventDefault();
-      setActive(i);
-    }
-  };
-
-  const handleKeyDown = (
-    i: number,
-    e: KeyboardEvent
-  ) => {
-    if (
-      e.key === "ArrowRight" ||
-      e.key === "ArrowDown"
-    ) {
-      e.preventDefault();
-
-      setActive(
-        (i + 1) % count
-      );
-    }
-
-    if (
-      e.key === "ArrowLeft" ||
-      e.key === "ArrowUp"
-    ) {
-      e.preventDefault();
-
-      setActive(
-        (i - 1 + count) % count
-      );
-    }
-  };
 
   return (
     <div
-      ref={rootRef}
-      className={`
-        flex
-        ${
-          vertical
-            ? "flex-col"
-            : "flex-row"
-        }
-        w-full
-        max-w-full
-        [perspective:1400px]
-
-        max-[520px]:!flex-col
-        max-[520px]:[perspective:none]
-
-        ${className}
-      `}
-      style={{
-        gap: `${gap}px`,
-        height: vertical
-          ? `${Math.round(height * 1.6)}px`
-          : `${height}px`,
-      }}
-      role="list"
-      aria-label="Image accordion gallery"
+      ref={containerRef}
+      className="flex w-full gap-2 overflow-hidden"
+      style={{ height }}
+      onMouseLeave={() => animateTo(0)}
     >
-      {items.map((item, i) => {
-        const isActive = i === active;
+      {items.map((item, index) => (
+        <article
+          key={item.title}
+          className="
+            accordion-card
+            group
+            relative
+            min-w-0
+            flex-1
+            cursor-pointer
+            overflow-hidden
+            rounded-md
+            bg-[#0D1D20]
+          "
+          onMouseEnter={() => animateTo(index)}
+        >
+          {/* IMAGE */}
+          <div className="absolute inset-0 overflow-hidden">
+            <img
+              src={item.image}
+              alt={item.title}
+              className="
+                card-image
+                absolute
+                inset-0
+                h-full
+                w-full
+                scale-[1.08]
+                object-cover
+                grayscale
+              "
+            />
 
-        const Tag = (
-          item.link
-            ? "a"
-            : "div"
-        ) as "a";
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black/20" />
 
-        return (
-          <Tag
-            key={i}
-            ref={(el: HTMLElement | null) => {
-              panelRefs.current[i] = el;
-            }}
+            {/* Bottom gradient */}
+            <div
+              className="
+                absolute
+                inset-x-0
+                bottom-0
+                h-[65%]
+                bg-gradient-to-t
+                from-black/90
+                via-black/45
+                to-transparent
+              "
+            />
+          </div>
+
+          {/* COLLAPSED TITLE */}
+          <div
             className="
-              group
-              relative
-              block
-              min-w-0
-              min-h-0
-              flex-[1_1_0]
-              cursor-pointer
-              overflow-hidden
-              bg-[#0D1D20]
-              no-underline
-              outline-none
-
-              [transform-style:preserve-3d]
-              [transform-origin:center]
-
-              [box-shadow:0_10px_30px_-18px_rgba(0,0,0,0.8)]
-
-              focus-visible:[box-shadow:0_0_0_2px_var(--ag-accent),0_10px_30px_-18px_rgba(0,0,0,0.8)]
-
-              max-[520px]:min-h-[84px]
-              max-[520px]:!transform-none
+              collapsed-title
+              absolute
+              bottom-5
+              left-5
+              z-10
+              opacity-100
             "
-            style={
-              {
-                borderRadius: `${radius}px`,
-                "--ag-accent": accentColor,
-                willChange:
-                  "flex-grow, transform",
-              } as CSSProperties
-            }
-            href={
-              item.link || undefined
-            }
-            onClick={(e) =>
-              handleClick(i, e)
-            }
-            onMouseEnter={() =>
-              handleEnter(i)
-            }
-            onFocus={() =>
-              setActive(i)
-            }
-            onKeyDown={(e) =>
-              handleKeyDown(i, e)
-            }
-            role="listitem"
-            tabIndex={0}
-            aria-current={
-              isActive
-                ? "true"
-                : undefined
-            }
-            aria-label={item.label}
           >
-            {/* Image */}
-            <span className="absolute inset-0 overflow-hidden [border-radius:inherit]">
-              <span
-                ref={(
-                  el: HTMLElement | null
-                ) => {
-                  mediaRefs.current[i] =
-                    el;
-                }}
-                className="
-                  absolute
-                  top-1/2
-                  left-1/2
-                  [filter:grayscale(var(--ag-gray,1))]
-                "
-                style={{
-                  width: vertical
-                    ? "100%"
-                    : "var(--ag-media-size, 320px)",
-                  height: vertical
-                    ? "var(--ag-media-size, 320px)"
-                    : "100%",
-                  willChange:
-                    "transform, filter",
-                }}
-              >
-                <img
-                  src={item.image}
-                  alt={
-                    item.alt ||
-                    item.label ||
-                    ""
-                  }
-                  draggable={false}
-                  className="
-                    block
-                    h-full
-                    w-full
-                    select-none
-                    object-cover
-                    [-webkit-user-drag:none]
-                  "
-                />
-              </span>
-
-              {/* Overlay */}
-              <span
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    overlayBg,
-                }}
-                aria-hidden="true"
-              />
+            <span
+              className="
+                block
+                text-xs
+                font-medium
+                uppercase
+                tracking-[0.15em]
+                text-white/90
+                [writing-mode:vertical-rl]
+                rotate-180
+              "
+            >
+              {item.title}
             </span>
+          </div>
 
-            {/* Content */}
-        {showLabels && (
-  <span
-    className="
-      pointer-events-none
-      absolute
-      bottom-6
-      left-6
-      right-6
-      z-[2]
-      flex
-      flex-col
-      gap-3
-    "
-    aria-hidden="true"
-  >
-    {/* Label */}
-    <span className="flex items-center gap-3">
-      <span
-        ref={(el: HTMLElement | null) => {
-          barRefs.current[i] = el;
-        }}
-        className="
-          h-[28px]
-          w-[3px]
-          flex-none
-          rounded-full
-          opacity-0
-        "
-        style={{
-          background: accentColor,
-          boxShadow: `0 0 12px ${accentColor}`,
-        }}
-      />
+          {/* EXPANDED CONTENT */}
+          <div
+            className="
+              expanded-content
+              absolute
+              inset-x-7
+              bottom-7
+              z-20
+              opacity-0
+            "
+          >
+            {/* TITLE FIRST */}
+            <h3
+              className="
+                card-title
+                max-w-[650px]
+                translate-y-[15px]
+                text-3xl
+                font-semibold
+                leading-[0.95]
+                tracking-tight
+                text-white
+                opacity-0
+                md:text-4xl
+                lg:text-5xl
+              "
+            >
+              {item.title}
+            </h3>
 
-      <span
-        ref={(el: HTMLElement | null) => {
-          textRefs.current[i] = el;
-        }}
-        className="
-          block
-          text-xl
-          font-semibold
-          tracking-tight
-          opacity-0
-          [text-shadow:0_2px_14px_rgba(0,0,0,0.55)]
-        "
-        style={{
-          color: textColor,
-        }}
-      >
-        {item.label}
-      </span>
-    </span>
+            {/* DESCRIPTION BELOW TITLE */}
+            <p
+              className="
+                card-desc
+                mt-5
+                max-w-[520px]
+                translate-y-[15px]
+                text-sm
+                leading-6
+                text-white/75
+                opacity-0
+                md:text-base
+              "
+            >
+              {item.desc}
+            </p>
+          </div>
 
-    {/* Description */}
-    <span
-      ref={(el: HTMLElement | null) => {
-        descRefs.current[i] = el;
-      }}
-      className="
-        block
-        max-w-[380px]
-        overflow-hidden
-        text-sm
-        leading-6
-        text-white/80
-        opacity-0
-      "
-      style={{
-        maxHeight: 0,
-      }}
-    >
-      {item.desc}
-    </span>
-  </span>
-)}
-          </Tag>
-        );
-      })}
+          {/* ARROW */}
+          <div
+            className="
+              card-arrow
+              absolute
+              right-5
+              top-5
+              z-30
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-white/30
+              bg-black/20
+              text-white
+              opacity-0
+              backdrop-blur-sm
+            "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              className="h-4 w-4"
+            >
+              <path
+                d="M5 12h14"
+                strokeLinecap="round"
+              />
+
+              <path
+                d="m13 6 6 6-6 6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </article>
+      ))}
     </div>
   );
-};
-
-export default AccordionGallery;
+}
