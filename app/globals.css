@@ -5,11 +5,7 @@ body {
   font-family: var(--font-manrope), sans-serif;
 }
 
-h1,
-h2,
-h3 {
-  font-weight: 800;
-}
+
 @custom-variant dark (&:is(.dark *));
 @theme inline {
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;

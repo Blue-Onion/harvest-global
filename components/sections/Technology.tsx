@@ -163,58 +163,19 @@ export default function Technology() {
 
     relative h-screen w-full overflow-hidden
 
-    bg-[url('/images/urban.jpg')]
+    bg-[url('/images/site-bg/bg1.png')]
 
     bg-cover bg-center bg-no-repeat
 
   "
     >
-      {/* SVG Clip Path */}
+    
 
-      <svg className="absolute h-0 w-0" aria-hidden="true">
-        <defs>
-          <clipPath id="technologyClip" clipPathUnits="objectBoundingBox">
-            <path
-              d="
 
-            M 0,0
-
-            L 0.94,0
-
-            C 0.97,0 0.985,0.015 0.99,0.04
-
-            C 0.995,0.065 1,0.08 1,0.11
-
-            L 1,0.84
-
-            C 1,0.87 0.99,0.89 0.975,0.91
-
-            C 0.96,0.93 0.94,0.94 0.93,0.96
-
-            C 0.92,0.98 0.90,1 0.87,1
-
-            L 0.08,1
-
-            C 0.05,1 0.035,0.985 0.025,0.96
-
-            C 0.015,0.94 0.008,0.92 0,0.89
-
-            Z
-
-          "
-            />
-          </clipPath>
-        </defs>
-      </svg>
-
-      {/* White Content Layer */}
 
       <div
         className="
-
-      relative z-10 h-full w-full
-
-      bg-white px-5 py-20 text-black
+px-5 py-24 text-black
 
       sm:px-8 md:px-12 lg:px-16
 
@@ -229,12 +190,8 @@ export default function Technology() {
           <TopographicBackground />
         </div>
         <div className="container relative z-10 mx-auto flex h-full flex-col">
-          {/* ================= HEADER ================= */}
           <div className="mb-8 flex shrink-0 items-end justify-between">
             <div>
-              <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#E46A2A]">
-                Our Technology
-              </p>
 
               <h2 className="text-5xl font-semibold tracking-[-0.05em] text-[#10251B] lg:text-6xl">
                 Technology
@@ -319,6 +276,7 @@ export default function Technology() {
               {cards.slice(3, 6).map((card) => (
                 <TechCard key={card.number} card={card} side="right" />
               ))}
+              
             </div>
           </div>
         </div>
