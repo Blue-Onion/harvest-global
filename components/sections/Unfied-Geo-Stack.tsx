@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import TopographicBackground from "../ui/Topography";
 
 interface TechnologyCard {
   number: string;
@@ -15,57 +14,39 @@ interface TechnologyCard {
 const cards: TechnologyCard[] = [
   {
     number: "01",
-    title: "Earth Data",
+    title: "AI IaaS",
     description:
-      "Satellite, weather, ground and geospatial datasets brought together to create a unified foundation for Earth and Weather Intelligence.",
-    items: ["Satellite", "Weather", "Ground Data"],
+      "GPU-powered infrastructure for enterprise-grade GeoAI. High-performance compute, data infrastructure and ground-segment integration designed for large-scale Earth Observation workloads.",
+    items: ["GPU Infrastructure", "Data Infrastructure", "Ground Segment"],
     theme: "green",
     icon: "⌁",
   },
   {
     number: "02",
-    title: "Unified GeoAI Stack",
+    title: "AI PaaS",
     description:
-      "An integrated GeoAI technology stack connecting data, compute, models and intelligence workflows into a unified platform for Earth and Weather Intelligence.",
-    items: ["Data", "Compute", "Models"],
+      "Foundation and fine-tuned GeoAI models. GeoFM models and domain-specific AI for agriculture, forestry, hydrology, land-use and land-cover mapping, change detection and other Earth applications.",
+    items: ["GeoFM Models", "Domain AI", "Earth Applications"],
     theme: "orange",
     icon: "▤",
   },
   {
     number: "03",
-    title: "Foundation Models / AI",
+    title: "AI SaaS",
     description:
-      "Foundation and fine-tuned GeoAI models designed to understand, analyse and generate intelligence from complex Earth and environmental datasets.",
-    items: ["Foundation Models", "AI", "Analytics"],
+      "Intelligence delivered through applications. GeoAnalytics and decision-support solutions across agriculture, crop insurance, climate resilience, water security and infrastructure.",
+    items: ["GeoAnalytics", "Decision Support", "Industry Solutions"],
     theme: "green",
     icon: "☁",
   },
   {
     number: "04",
-    title: "Sovereign Private AI Cloud",
+    title: "EDGE AI",
     description:
-      "Secure and scalable AI infrastructure providing sovereign control over data, compute and models for government and enterprise workloads.",
-    items: ["Private Cloud", "Security", "Compute"],
-    theme: "green",
-    icon: "⚙",
-  },
-  {
-    number: "05",
-    title: "Earth Intelligence",
-    description:
-      "Transforming Earth observations and AI capabilities into actionable intelligence for monitoring, prediction and informed decision-making.",
-    items: ["Prediction", "Monitoring", "Decision"],
+      "Intelligence closer to where data is generated. On-demand Earth Observation AI at satellites, ground stations and edge nodes, reducing dependence on cloud latency.",
+    items: ["Satellites", "Ground Stations", "Edge Nodes"],
     theme: "orange",
-    icon: "▥",
-  },
-  {
-    number: "06",
-    title: "Government + Industry Applications",
-    description:
-      "Deploying Earth Intelligence into real-world applications across government and industry, enabling faster, smarter and more informed decisions.",
-    items: ["Government", "Industry", "Applications"],
-    theme: "green",
-    icon: "♧",
+    icon: "⚙",
   },
 ];
 
@@ -81,10 +62,11 @@ function TechCard({
   return (
     <div
       className={`
-        group relative flex h-[145px] items-center gap-4
-        rounded-2xl border px-4 py-3
+        group relative flex min-h-[150px] w-full
+        items-center gap-4 rounded-2xl border
+        px-5 py-4
         transition-all duration-500
-        hover:-translate-y-1 hover:shadow-lg
+        hover:-translate-y-1 hover:shadow-xl
         ${
           orange
             ? "border-[#E46A2A]/10 bg-[#FBEDE5]"
@@ -97,6 +79,8 @@ function TechCard({
         className={`
           flex h-12 w-12 shrink-0 items-center justify-center
           rounded-full text-xl
+          transition-transform duration-500
+          group-hover:scale-110
           ${
             orange
               ? "bg-[#F8C98F] text-[#B94D1F]"
@@ -108,14 +92,12 @@ function TechCard({
       </div>
 
       {/* Content */}
-      <div className="min-w-0 pr-8">
-        <div className="flex items-center gap-2">
-          <h3 className="text-base font-bold leading-tight text-[#10251B]">
-            {card.title}
-          </h3>
-        </div>
+      <div className="min-w-0 flex-1 pr-8">
+        <h3 className="text-lg font-bold leading-tight tracking-tight text-[#10251B]">
+          {card.title}
+        </h3>
 
-        <p className="mt-1.5 line-clamp-3 text-[11px] leading-[1.35] text-black/60">
+        <p className="mt-2 text-xs leading-[1.45] text-black/60">
           {card.description}
         </p>
       </div>
@@ -123,31 +105,40 @@ function TechCard({
       {/* Arrow */}
       <div
         className={`
-          absolute right-3 top-1/2 flex h-8 w-8
-          -translate-y-1/2 items-center justify-center
-          rounded-full bg-white text-sm shadow-sm
+          absolute right-4 top-1/2
+          flex h-8 w-8 -translate-y-1/2
+          items-center justify-center
+          rounded-full bg-white
+          text-sm shadow-sm
+          transition-transform duration-500
+          group-hover:translate-x-1
           ${orange ? "text-[#B94D1F]" : "text-[#235738]"}
         `}
       >
         →
       </div>
 
-      {/* Connector */}
+      {/* ======================================
+          CONNECTOR TO EARTH
+      ====================================== */}
+
       <div
         className={`
-          absolute top-1/2 hidden h-px w-[65px] lg:block
-          ${side === "left" ? "-right-[65px]" : "-left-[65px]"}
-          ${orange ? "bg-[#E46A2A]/60" : "bg-[#235738]/50"}
+          pointer-events-none absolute top-1/2
+          hidden h-px lg:block
+          ${side === "left" ? "-right-[80px] w-[80px]" : "-left-[80px] w-[80px]"}
+          ${orange ? "bg-[#E46A2A]/50" : "bg-[#235738]/40"}
         `}
       />
 
-      {/* Node */}
+      {/* Connector node */}
       <div
         className={`
-          absolute top-1/2 hidden h-2.5 w-2.5
+          pointer-events-none absolute top-1/2
+          hidden h-2.5 w-2.5
           -translate-y-1/2 rounded-full
           border-2 border-white lg:block
-          ${side === "left" ? "-right-[70px]" : "-left-[70px]"}
+          ${side === "left" ? "-right-[84px]" : "-left-[84px]"}
           ${orange ? "bg-[#E46A2A]" : "bg-[#235738]"}
         `}
       />
@@ -158,104 +149,214 @@ function TechCard({
 export default function UnifiedGeoStack() {
   return (
     <section
-      id="technology"
+      id="unified-geo-stack"
       className="
-
-    relative h-screen w-full overflow-hidden
-
-    bg-[url('/images/site-bg/bg1.png')]
-
-    bg-cover bg-center bg-no-repeat
-
-  "
+        relative min-h-screen w-full overflow-hidden
+        bg-[url('/images/site-bg/bg1.png')]
+        bg-cover bg-center bg-no-repeat
+      "
     >
-    
+      <div className="px-5 py-20 sm:px-8 md:px-12 lg:px-16 lg:py-24">
+        <div className="container relative z-10 mx-auto">
+          {/* =========================================
+              HEADER
+          ========================================= */}
 
+          <div className="mb-12 max-w-4xl">
+            <h2
+              className="
+                text-5xl font-semibold
+                tracking-[-0.05em]
+                text-[#10251B]
+                lg:text-6xl
+              "
+            >
+              Unified GeoAI Stack
+            </h2>
 
+            <h4
+              className="
+                mt-4 text-lg font-semibold
+                tracking-[-0.03em]
+                text-[#10251B]
+                lg:text-xl
+              "
+            >
+              One Stack. Multiple Layers of Earth Intelligence.
+            </h4>
 
-      <div
-        className="
-px-5 py-24 text-black
-
-      sm:px-8 md:px-12 lg:px-16
-
-    "
-        style={{
-          clipPath: "url(#technologyClip)",
-        }}
-      >
-        {/* Topographic Background */}
-
-        <div className="pointer-events-none absolute inset-0 z-0 opacity-25">
-          <TopographicBackground />
-        </div>
-        <div className="container relative z-10 mx-auto flex h-full flex-col">
-          <div className="mb-8 flex shrink-0 items-end justify-between">
-            <div>
-
-              <h2 className="text-5xl font-semibold tracking-[-0.05em] text-[#10251B] lg:text-6xl">
-                Technology
-              </h2>
-
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black/60 lg:text-base">
-                Our Unified GeoAI Stack combines data infrastructure, foundation
-                models, GeoAnalytics, AI compute and edge intelligence to move
-                from observation to prediction and decision support.
-              </p>
-            </div>
-
-            <div className="hidden border-l border-[#235738]/30 pl-6 lg:block">
-              <p className="text-xs font-medium uppercase leading-[1.6] tracking-[0.2em] text-[#235738]/70">
-                From
-                <br />
-                Observation
-                <br />
-                To Impact
-              </p>
-
-              <div className="mt-2 h-0.5 w-8 bg-[#E46A2A]" />
-            </div>
+            <p
+              className="
+                mt-4 max-w-3xl
+                text-sm leading-relaxed
+                text-black/60
+                lg:text-base
+              "
+            >
+              The HG Unified GeoAI Stack brings together the infrastructure,
+              models and applications required to build scalable Earth
+              Intelligence, from core data processing to edge deployment.
+            </p>
           </div>
 
-          {/* ================= MAIN TECHNOLOGY MAP ================= */}
+          {/* =========================================
+              TECHNOLOGY MAP
+          ========================================= */}
+
           <div
             className="
-            relative flex min-h-0 flex-1
-            items-center
-            lg:grid lg:grid-cols-[1fr_420px_1fr]
-            lg:gap-0
-          "
+              relative mx-auto
+              lg:grid
+              lg:grid-cols-[minmax(280px,1fr)_420px_minmax(280px,1fr)]
+              lg:items-center
+            "
           >
-            {/* LEFT */}
-            <div className="relative z-20 flex flex-col gap-4">
-              {cards.slice(0, 3).map((card) => (
-                <TechCard key={card.number} card={card} side="left" />
+            {/* =====================================
+                LEFT CARDS
+            ===================================== */}
+
+            <div className="relative z-20 flex flex-col gap-6">
+              {cards.slice(0, 2).map((card) => (
+                <TechCard
+                  key={card.number}
+                  card={card}
+                  side="left"
+                />
               ))}
             </div>
 
-            {/* ================= EARTH ================= */}
-            <div className="relative flex h-full items-center justify-center">
-              {/* Outer orbit */}
+            {/* =====================================
+                EARTH CENTER
+            ===================================== */}
+
+            <div
+              className="
+                relative z-10
+                flex h-[440px]
+                items-center justify-center
+              "
+            >
+              {/* ---------------------------------
+                  CONNECTOR SVG
+              ---------------------------------- */}
+
+              <svg
+                className="
+                  pointer-events-none
+                  absolute inset-0
+                  z-0 h-full w-full
+                  overflow-visible
+                "
+                viewBox="0 0 420 440"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Left upper connector */}
+                <path
+                  d="M0 95 C70 95 80 165 125 165"
+                  stroke="#235738"
+                  strokeOpacity="0.35"
+                  strokeWidth="1"
+                />
+
+                {/* Left lower connector */}
+                <path
+                  d="M0 345 C70 345 80 275 125 275"
+                  stroke="#E46A2A"
+                  strokeOpacity="0.45"
+                  strokeWidth="1"
+                />
+
+                {/* Right upper connector */}
+                <path
+                  d="M420 95 C350 95 340 165 295 165"
+                  stroke="#235738"
+                  strokeOpacity="0.35"
+                  strokeWidth="1"
+                />
+
+                {/* Right lower connector */}
+                <path
+                  d="M420 345 C350 345 340 275 295 275"
+                  stroke="#E46A2A"
+                  strokeOpacity="0.45"
+                  strokeWidth="1"
+                />
+
+                {/* Left nodes */}
+                <circle
+                  cx="125"
+                  cy="165"
+                  r="3"
+                  fill="#235738"
+                />
+
+                <circle
+                  cx="125"
+                  cy="275"
+                  r="3"
+                  fill="#E46A2A"
+                />
+
+                {/* Right nodes */}
+                <circle
+                  cx="295"
+                  cy="165"
+                  r="3"
+                  fill="#235738"
+                />
+
+                <circle
+                  cx="295"
+                  cy="275"
+                  r="3"
+                  fill="#E46A2A"
+                />
+              </svg>
+
+              {/* ---------------------------------
+                  OUTER ORBIT
+              ---------------------------------- */}
+
               <div
                 className="
-                absolute aspect-square
-                w-[400px] rounded-full
-                border border-dashed
-                border-[#235738]/30
-              "
+                  absolute
+                  aspect-square
+                  w-[390px]
+                  rounded-full
+                  border
+                  border-dashed
+                  border-[#235738]/25
+                "
               />
 
-              {/* Inner orbit */}
+              {/* ---------------------------------
+                  INNER ORBIT
+              ---------------------------------- */}
+
               <div
                 className="
-                absolute aspect-square
-                w-[365px] rounded-full
-                border border-[#235738]/10
-              "
+                  absolute
+                  aspect-square
+                  w-[350px]
+                  rounded-full
+                  border
+                  border-[#235738]/10
+                "
               />
 
-              {/* BIG EARTH */}
-              <div className="relative z-10 w-[350px] shrink-0">
+              {/* ---------------------------------
+                  EARTH
+              ---------------------------------- */}
+
+              <div
+                className="
+                  relative z-10
+                  w-[310px]
+                  shrink-0
+                  lg:w-[330px]
+                "
+              >
                 <div className="relative aspect-square overflow-hidden rounded-full">
                   <Image
                     src="/images/earth.png"
@@ -265,18 +366,31 @@ px-5 py-24 text-black
                     className="object-contain"
                   />
 
-                  {/* subtle green tint */}
-                  <div className="pointer-events-none absolute inset-0 rounded-full bg-[#235738]/5 mix-blend-multiply" />
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute inset-0
+                      rounded-full
+                      bg-[#235738]/5
+                      mix-blend-multiply
+                    "
+                  />
                 </div>
               </div>
             </div>
 
-            {/* RIGHT */}
-            <div className="relative z-20 flex flex-col gap-4">
-              {cards.slice(3, 6).map((card) => (
-                <TechCard key={card.number} card={card} side="right" />
+            {/* =====================================
+                RIGHT CARDS
+            ===================================== */}
+
+            <div className="relative z-20 flex flex-col gap-6">
+              {cards.slice(2, 4).map((card) => (
+                <TechCard
+                  key={card.number}
+                  card={card}
+                  side="right"
+                />
               ))}
-              
             </div>
           </div>
         </div>

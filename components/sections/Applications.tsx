@@ -8,233 +8,224 @@ import { data } from "@/data";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TopographicBackground from "../ui/Topography";
 
-const applications =  [
+const applicationsData = {
+  agriculture: {
+    title: "Agriculture",
+    desc: "AI-powered intelligence across the agricultural lifecycle.",
+    image: "/images/application/Agriculture/agriculture.png",
+
+    subtopic: [
+      {
+        title: "Crop Planning",
+        desc: "Intelligence to support better crop planning and resource allocation.",
+        img: "/images/application/Agriculture/sub/1.png",
+      },
+      {
+        title: "Crop Monitoring",
+        desc: "Monitor crop health and growth throughout the agricultural lifecycle.",
+        img: "/images/application/Agriculture/sub/2.png",
+      },
+      {
+        title: "Yield Estimation",
+        desc: "Estimate crop yields using Earth Observation and GeoAI.",
+        img: "/images/application/Agriculture/sub/3.png",
+      },
+      {
+        title: "Crop Insurance",
+        desc: "Enable data-driven crop risk assessment and insurance intelligence.",
+        img: "/images/application/Agriculture/sub/4.png",
+      },
+    ],
+  },
+
+  climateIntelligence: {
+    title: "Climate Intelligence",
+    desc: "Climate modelling, environmental monitoring and spatial risk intelligence to identify changing patterns and support resilient decision-making.",
+    image: "/images/application/climate/climate.png",
+
+    subtopic: [
+      {
+        title: "Climate Risk",
+        desc: "Identify and assess climate-related risks across regions and assets.",
+        img: "/images/application/climate/sub/1.png",
+      },
+      {
+        title: "Climate Modelling",
+        desc: "Use spatial intelligence and AI to understand evolving climate patterns.",
+        img: "/images/application/climate/sub/2.png",
+      },
+      {
+        title: "Environmental Change",
+        desc: "Monitor environmental changes and their impact across landscapes.",
+        img: "/images/application/climate/sub/3.png",
+      },
+      {
+        title: "Heat & Drought Intelligence",
+        desc: "Identify heat and drought patterns to support proactive resilience planning.",
+        img: "/images/application/climate/sub/4.png",
+      },
+    ],
+  },
+
+  disasterManagement: {
+    title: "Disaster Management",
+    desc: "GeoAI-powered monitoring and predictive intelligence for faster disaster preparedness, response and recovery.",
+    image: "/images/application/disaster/disaster.png",
+
+    subtopic: [
+      {
+        title: "Flood Intelligence",
+        desc: "Monitor flood conditions and identify areas at risk.",
+        img: "/images/application/disaster/sub/1.png",
+      },
+      {
+        title: "Landslide Monitoring",
+        desc: "Detect and monitor landslide-prone areas using Earth Observation.",
+        img: "/images/application/disaster/sub/2.png",
+      },
+      {
+        title: "Vulnerability Mapping",
+        desc: "Map vulnerable populations, infrastructure and regions to improve preparedness.",
+        img: "/images/application/disaster/sub/3.png",
+      },
+      {
+        title: "Early Warning",
+        desc: "Deliver predictive intelligence to support faster disaster warnings and response.",
+        img: "/images/application/disaster/sub/4.png",
+      },
+    ],
+  },
+
+  urbanPlanning: {
+    title: "Urban Planning",
+    desc: "Spatial intelligence for understanding urban growth, infrastructure, land use and climate vulnerability.",
+    image: "/images/application/urban-plan/Urban.png",
+
+    subtopic: [
+      {
+        title: "Urban Growth",
+        desc: "Monitor and analyse the expansion and transformation of cities.",
+        img: "/images/application/urban-plan/sub/1.png",
+      },
+      {
+        title: "Land Use",
+        desc: "Understand changing land-use patterns across urban environments.",
+        img: "/images/application/urban-plan/sub/2.png",
+      },
+      {
+        title: "Infrastructure",
+        desc: "Map and monitor critical urban infrastructure and development.",
+        img: "/images/application/urban-plan/sub/3.png",
+      },
+      {
+        title: "Climate Resilience",
+        desc: "Assess urban climate vulnerability and support resilient city planning.",
+        img: "/images/application/urban-plan/sub/4.png",
+      },
+    ],
+  },
+
+  insurance: {
+    title: "Insurance",
+    desc: "GeoAI transforms spatial and environmental data into actionable intelligence for insurance and risk assessment.",
+    image: "/images/application/insurance/insurance.png",
+
+    subtopic: [
+      {
+        title: "Crop Insurance",
+        desc: "Assess agricultural risk and crop conditions using Earth Observation intelligence.",
+        img: "/images/application/insurance/sub/1.png",
+      },
+      {
+        title: "Damage Assessment",
+        desc: "Rapidly assess damage after climate and natural hazard events.",
+        img: "/images/application/insurance/sub/2.png",
+      },
+      {
+        title: "Risk Analytics",
+        desc: "Transform spatial and environmental data into measurable risk intelligence.",
+        img: "/images/application/insurance/sub/3.png",
+      },
+      {
+        title: "Yield Estimation",
+        desc: "Estimate agricultural yields to improve underwriting and risk assessment.",
+        img: "/images/application/insurance/sub/4.png",
+      },
+    ],
+  },
+
+  renewableEnergy: {
+    title: "Renewable Energy",
+    desc: "Use Earth Observation and spatial AI to identify opportunities, assess environmental conditions and monitor renewable energy assets.",
+    image: "/images/application/renewable/Renewable.png",
+
+    subtopic: [
+      {
+        title: "Site Suitability",
+        desc: "Identify optimal locations for renewable energy development.",
+        img: "/images/application/renewable/sub/1.png",
+      },
+      {
+        title: "Solar Intelligence",
+        desc: "Analyse solar potential and environmental conditions for solar deployment.",
+        img: "/images/application/renewable/sub/2.png",
+      },
+      {
+        title: "Land Assessment",
+        desc: "Assess land characteristics and constraints for renewable energy projects.",
+        img: "/images/application/renewable/sub/3.png",
+      },
+      {
+        title: "Asset Monitoring",
+        desc: "Monitor renewable energy assets and surrounding environmental conditions.",
+        img: "/images/application/renewable/sub/4.png",
+      },
+    ],
+  },
+
+  forestry: {
+    title: "Forestry",
+    desc: "GeoAI-powered intelligence for understanding forest change, land-use dynamics and environmental conditions.",
+    image: "/images/application/forest/forestry.png",
+
+    subtopic: [
+      {
+        title: "Forest Monitoring",
+        desc: "Track forest cover, health and deforestation trends.",
+        img: "/images/application/forest/sub/1.png",
+      },
+      {
+        title: "Change Detection",
+        desc: "Detect changes across forest landscapes with high-resolution insights.",
+        img: "/images/application/forest/sub/2.png",
+      },
+      {
+        title: "Land-Use Change",
+        desc: "Analyse land-use dynamics and encroachment across forest regions.",
+        img: "/images/application/forest/sub/3.png",
+      },
+      {
+        title: "Carbon Intelligence",
+        desc: "Enable carbon accounting and support climate action through forest intelligence.",
+        img: "/images/application/forest/sub/4.png",
+      },
+    ],
+  },
+} as const;
+
+// Flatten the keyed object into the array shape the tab UI needs.
+const applications = Object.entries(applicationsData).map(([id, app]) => ({
+  id,
+  shortLabel: app.title,
+  label: app.title,
+  alt: app.title,
+  description: app.desc,
+  image: app.image,
+  subtopic: app.subtopic,
+  // Footer bullet list — using subtopic titles. Swap for something else if needed.
+  items: app.subtopic.map((s) => s.title),
+}));
 
-    {
-
-      "id": "app-1",
-
-      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop",
-
-      "label": "Agriculture",
-
-      "shortLabel": "AGRI",
-
-      "alt": "Precision farming, crop monitoring and agricultural intelligence",
-
-      "description": "From Space to Farm - AI-powered intelligence across the agricultural lifecycle.",
-
-      "tag": "AGRICULTURE",
-
-      "coords": "AGRI-STACK // CROP-HEALTH",
-
-      "items": [
-
-        "Crop Planning",
-
-        "Crop Monitoring",
-
-        "Yield Estimation",
-
-        "Crop Insurance"
-
-      ]
-
-    },
-
-    {
-
-      "id": "app-2",
-
-      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
-
-      "label": "Climate Intelligence",
-
-      "shortLabel": "CLIMATE",
-
-      "alt": "Climate modelling, environmental monitoring and spatial risk intelligence",
-
-      "description": "Understanding a changing planet. Climate modelling, environmental monitoring and spatial risk intelligence to identify changing patterns and support resilient decision-making.",
-
-      "tag": "CLIMATE INTELLIGENCE",
-
-      "coords": "CLIMATE-RISK // HAZARD-MAP",
-
-      "items": [
-
-        "Climate Risk",
-
-        "Climate Modelling",
-
-        "Environmental Change",
-
-        "Heat & Drought Intelligence"
-
-      ]
-
-    },
-
-    {
-
-      "id": "app-3",
-
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-
-      "label": "Disaster Management",
-
-      "shortLabel": "DISASTER",
-
-      "alt": "Floods, landslides, terrain monitoring and early warning",
-
-      "description": "From monitoring disasters to anticipating them. GeoAI-powered monitoring and predictive intelligence for faster disaster preparedness, response and recovery.",
-
-      "tag": "DISASTER MGMT",
-
-      "coords": "DISASTER // EARLY-WARNING",
-
-      "items": [
-
-        "Flood Intelligence",
-
-        "Landslide Monitoring",
-
-        "Terrain Monitoring",
-
-        "Vulnerability Mapping"
-
-      ]
-
-    },
-
-    {
-
-      "id": "app-4",
-
-      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
-
-      "label": "Urban Planning",
-
-      "shortLabel": "URBAN",
-
-      "alt": "Urban growth, infrastructure, land use and climate vulnerability",
-
-      "description": "Intelligence for cities that are constantly changing. Spatial intelligence for understanding urban growth, infrastructure, land use and climate vulnerability.",
-
-      "tag": "URBAN PLANNING",
-
-      "coords": "URBAN-SPATIAL // INFRA-MON",
-
-      "items": [
-
-        "Urban Growth",
-
-        "Land Use",
-
-        "Infrastructure",
-
-        "Urban Heat"
-
-      ]
-
-    },
-
-    {
-
-      "id": "app-5",
-
-      "image": "/images/urban.jpg",
-
-      "label": "Insurance",
-
-      "shortLabel": "INSURANCE",
-
-      "alt": "Crop insurance, damage assessment and spatial risk analytics",
-
-      "description": "Making risk measurable. GeoAI transforms spatial and environmental data into actionable intelligence for insurance and risk assessment.",
-
-      "tag": "INSURANCE",
-
-      "coords": "PMFBY-ENGINE // RISK-ASSESS",
-
-      "items": [
-
-        "Crop Insurance",
-
-        "Damage Assessment",
-
-        "Risk Analytics",
-
-        "Yield Estimation"
-
-      ]
-
-    },
-
-    {
-
-      "id": "app-6",
-
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-
-      "label": "Renewable Energy",
-
-      "shortLabel": "ENERGY",
-
-      "alt": "Renewable energy site suitability, solar intelligence and asset monitoring",
-
-      "description": "Intelligence for the energy transition. Use Earth Observation and spatial AI to identify opportunities, assess environmental conditions and monitor renewable energy assets.",
-
-      "tag": "RENEWABLE ENERGY",
-
-      "coords": "ENERGY // ASSET-MON",
-
-      "items": [
-
-        "Solar Intelligence",
-
-        "Land Assessment",
-
-        "Asset Monitoring",
-
-        "Climate Risk"
-
-      ]
-
-    },
-
-    {
-
-      "id": "app-7",
-
-      "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
-
-      "label": "Forestry",
-
-      "shortLabel": "FORESTRY",
-
-      "alt": "Forest monitoring, change detection, land-use change and carbon intelligence",
-
-      "description": "Monitoring forests at scale. GeoAI-powered intelligence for understanding forest change, land-use dynamics and environmental conditions.",
-
-      "tag": "FORESTRY",
-
-      "coords": "CANOPY-AI // CARBON-CAPITAL",
-
-      "items": [
-
-        "Forest Monitoring",
-
-        "Change Detection",
-
-        "Land-Use Change",
-
-        "Carbon Intelligence"
-
-      ]
-
-    }
-
-  ]
 type App = (typeof applications)[number];
 
 const MOBILE_TAB_COUNT = 4;
@@ -349,173 +340,241 @@ export default function Applications() {
       );
     });
   };
-return (
-  <section
-    id="applications"
-    className="relative w-full overflow-hidden h-screen bg-[#E9F2ED] px-5 py-24 text-black"
-  >
 
-    <div className="pointer-events-none absolute inset-0 z-0">
-      <TopographicBackground
+  return (
+    <section
+      id="applications"
+      className="relative w-full min-h-screen bg-[url('/images/site-bg/bg2.png')] bg-cover bg-center bg-no-repeat overflow-hidden h-screen  px-5 py-24 text-white"
+    >
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <TopographicBackground />
+      </div>
 
-      />
-    </div>
+      {/* Content */}
+      <div className="relative z-10 mx-auto container">
+        {/* HEADER */}
+        <div className="header">
+          <div className="flex flex-col justify-between gap-10 lg:flex-row">
+            {/* Left */}
+            <div>
+              <h2 className="w-full max-w-2xl text-4xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+                APPLICATION
+              </h2>
 
-    {/* Content */}
-    <div className="relative z-10 mx-auto max-w-6xl">
-      {/* HEADER */}
-      <Reveal variant="group" className="m" duration={1}>
-        <h2
-          data-reveal="heading"
-          className="text-3xl font-bold leading-[1.1] tracking-tight text-black sm:text-5xl md:text-6xl"
+              <p className="mt-7 max-w-3xl text-base leading-7 text-white md:text-lg">
+                Earth Intelligence across critical sectors - transforming Earth
+                Observation, spatial data and AI into actionable intelligence.
+              </p>
+            </div>
+
+            <div className=" hidden lg:flex flex-col gap-3">
+              <h3 className="text-lg font-semibold uppercase tracking-widest text-white">
+                <span className="block">real</span>
+                <span className="block">Insights</span>
+                <span className="block">Real impact</span>
+                <span className="block">Accross Sector</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        {/* TABS */}
+        <Tabs
+          value={active.id}
+          onValueChange={handleTabChange}
+          className=" py-3 w-full"
         >
-          {data.applications.title.map((line, i) => (
-            <span key={i}>
-              {i > 0 && <br className="hidden sm:inline" />}
+          <TabsList
+            variant="line"
+            className="
+      w-full
+      justify-start
+      gap-1
 
-              {i === data.applications.title.length - 1 ? (
-                <span className="text-black">{line}</span>
-              ) : (
-                line
-              )}
-            </span>
-          ))}
-        </h2>
+      rounded-md
+      border
+      border-[#2E7657]/25
+      bg-[#0B2922]
 
-        <p
-          data-reveal="text"
-          className="mt-6 text-base leading-relaxed text-black sm:text-lg"
-        >
-          {data.applications.description}
-        </p>
-      </Reveal>
 
-      {/* TABS */}
-      <Tabs
-        value={active.id}
-        onValueChange={handleTabChange}
-        className="mt-4 w-full"
-      >
-        <TabsList
-          variant="line"
-          className="w-full justify-start gap-1 rounded-md border-b border-black/15 bg-transparent p-0"
-        >
-          {applications.map((app) => (
-            <TabsTrigger
-              key={app.id}
-              value={app.id}
-              disabled={isAnimating}
-              className="
-                relative
-                shrink-0
-                rounded-md
-                bg-transparent
-                px-5
-                py-4
-                text-xs
-                font-semibold
-                uppercase
-                tracking-[0.16em]
-                text-black
-                shadow-none
-                transition-none
-
-                data-active:bg-transparent
-                data-active:text-[#2E7657]
-                data-active:shadow-none
-              "
-            >
-              {app.shortLabel}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
-
-      {/* APPLICATION DISPLAY */}
-      <div className="mt-8 grid overflow-hidden rounded-md border border-black/15 bg-[#95b4a2] md:grid-cols-2">
-        {/* IMAGE */}
-        <div className="relative h-auto">
-          <Image
-            key={`base-${currentApp.id}`}
-            src={currentApp.image}
-            alt={currentApp.alt}
-            fill
-            draggable={false}
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
-          />
-
-          <div
-            ref={imageNextRef}
-            className="absolute inset-0 z-10 overflow-hidden"
-            style={{
-              clipPath: "inset(0 0 100% 0)",
-            }}
+    "
           >
+            {applications.map((app) => (
+              <TabsTrigger
+                key={app.id}
+                value={app.id}
+                disabled={isAnimating}
+                className="
+          relative
+          shrink-0
+          rounded-md
+          border
+          h-full
+          border-transparent
+          bg-transparent
+          px-6
+          py-4
+          text-xs
+          font-semibold
+          uppercase
+          tracking-[0.16em]
+          text-white/75
+          shadow-none
+          transition-all
+          duration-300
+
+          hover:bg-[#123C2B]
+          hover:text-white
+
+          data-active:border-[#2E7657]/60
+          data-active:bg-[#235738]
+          data-active:text-white
+          data-active:shadow-none
+        "
+              >
+                {app.shortLabel}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+
+        {/* APPLICATION DISPLAY */}
+        <div
+          className="
+    grid
+    overflow-hidden
+    rounded-md
+    border
+    border-[#2E7657]/25
+    bg-gradient-to-br
+    from-[#061C19]
+    via-[#0B2922]
+    to-[#123C2B]
+    md:grid-cols-2
+  "
+        >
+          {/* IMAGE */}
+          {/* IMAGE */}
+          <div className="relative min-h-[400px] md:min-h-[560px]">
             <Image
-              key={`next-${active.id}`}
-              src={active.image}
-              alt={active.alt}
+              key={`base-${currentApp.id}`}
+              src={currentApp.image}
+              alt={currentApp.alt}
               fill
               draggable={false}
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
             />
+
+            <div
+              ref={imageNextRef}
+              className="absolute inset-0 z-10 overflow-hidden"
+              style={{
+                clipPath: "inset(0 0 100% 0)",
+              }}
+            >
+              <Image
+                key={`next-${active.id}`}
+                src={active.image}
+                alt={active.alt}
+                fill
+                draggable={false}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+
+
           </div>
 
-          <div className="pointer-events-none absolute inset-0 z-20 bg-black/10" />
-        </div>
+          {/* CONTENT */}
+          <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
+            {/* Current */}
+            <div
+              ref={textCurrentRef}
+              className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
+            >
+              <ApplicationText app={currentApp} />
+            </div>
 
-        {/* CONTENT */}
-        <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
-          {/* Current */}
-          <div
-            ref={textCurrentRef}
-            className="absolute inset-0 flex flex-col justify-between p-7 sm:p-10 md:p-12"
-          >
-            <ApplicationText app={currentApp} />
-          </div>
-
-          {/* Next */}
-          <div
-            ref={textNextRef}
-            className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
-          >
-            <ApplicationText app={active} />
+            {/* Next */}
+            <div
+              ref={textNextRef}
+              className="absolute inset-0 flex flex-col justify-between p-7 opacity-0 sm:p-10 md:p-12"
+            >
+              <ApplicationText app={active} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+}
+
 function ApplicationText({ app }: { app: App }) {
   return (
     <div className="flex h-full flex-col">
       {/* Main content */}
       <div>
-        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-black md:text-5xl">
+        <h3 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-5xl">
           {app.label}
         </h3>
 
-        <p className="mt-6 max-w-xl text-base  leading-relaxed text-black md:text-2xl">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
           {app.description}
         </p>
       </div>
 
-      {/* Footer */}
-      <div className="mt-auto border-t border-[#2E7657]/20 pt-5">
-        <ul className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
-          {app.items.map((item, i) => (
+      {/* Subtopics */}
+      <div className="mt-auto border-t border-[#2E7657]/20 pt-6">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {app.subtopic.map((sub, i) => (
             <li
               key={`${app.id}-${i}`}
-              className="text-sm font-medium list-disc italic text-black/70"
+              className="
+                group
+                flex
+                min-h-[76px]
+                items-center
+                gap-4
+                rounded-lg
+                bg-[#061C19]/40
+                p-3
+                transition-all
+                duration-300
+                hover:bg-[#123C2B]/60
+              "
             >
-              {item}
+              {/* Thumbnail */}
+              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md border border-[#2E7657]/30">
+                <Image
+                  src={sub.img}
+                  alt={sub.title}
+                  fill
+                  sizes="56px"
+                  className="
+                    object-cover
+                    transition-transform
+                    duration-500
+                    group-hover:scale-110
+                  "
+                />
+              </div>
+
+              {/* Text */}
+              <div className="min-w-0">
+                <h4 className="text-sm font-semibold text-white">
+                  {sub.title}
+                </h4>
+
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-white/60">
+                  {sub.desc}
+                </p>
+              </div>
             </li>
           ))}
         </ul>
       </div>
     </div>
   );
-}
 }
