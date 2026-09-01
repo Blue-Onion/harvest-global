@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 
-import Technology from "@/components/sections/Technology";
+
 import Applications from "@/components/sections/Applications";
 import Footer from "@/components/footer/Footer";
 import FinalCta from "@/components/sections/FinalCta";
@@ -9,7 +9,9 @@ import HeroReveal from "@/components/ui/HeroReveal";
 
 import Challenge from "@/components/sections/Challenge";
 import ParternerdLogo from "@/components/sections/ParternerdLogo";
-import UnfiedGeoStack from "@/components/sections/Unfied-Geo-Stack";
+import Technology from "@/components/sections/Technology";
+import UnifiedGeoStack from "@/components/sections/Unfied-Geo-Stack";
+
 
 export default function Home() {
   return (
@@ -21,7 +23,7 @@ export default function Home() {
 
       <Challenge/>
       <Technology />
-      <UnfiedGeoStack/>
+      <UnifiedGeoStack/>
       <Applications />
       <FinalCta />
       <Footer />

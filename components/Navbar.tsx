@@ -13,7 +13,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "About Us", href: "/about-us" },
+    { title: "About", href: "/about-us" },
+    { title: "Technology", href: "/#technology" },
     { title: "Media", href: "/credentials" },
     { title: "Insights", href: "/Insights" },
 
