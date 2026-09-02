@@ -21,17 +21,11 @@ export default function Home() {
       <HeroReveal />
       <ParternerdLogo />
 
-     {/* Stacking stack: Vision covered by Technology */}
-<div className="relative">
-  <section className="sticky top-0 z-10 h-screen">
-    <Vision />
-  </section>
-  <section className="sticky top-0 z-20 h-screen">
-    <Challenge/>
-  </section>
-</div>
+      <Vision />
 
-    <Technology />
+      <Challenge />
+
+      <Technology />
       <UnifiedGeoStack />
       <Applications />
       <FinalCta />
