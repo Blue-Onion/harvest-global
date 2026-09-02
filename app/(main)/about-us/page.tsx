@@ -1,9 +1,8 @@
 "use client";
 
-import Reveal from "@/components/ui/reveal/Reveal";
-import TopographicBackground from "@/components/ui/Topography";
-import TeamCard from "./_component/TeamCard";
 import React from "react";
+import Reveal from "@/components/ui/reveal/Reveal";
+import TeamCard from "./_component/TeamCard";
 
 const Team = [
   {
@@ -12,213 +11,197 @@ const Team = [
     role: "Founder & CEO",
     focus: "Technology, digital transformation & strategic execution",
     image: "/images/team/PreetiChaudhary.png",
-    linkedin: "https://www.linkedin.com/in/chaudhary-preeti-160738199/",
-    mail: "https://www.linkedin.com/in/chaudhary-preeti-160738199/",
+    linkedin:
+      "https://www.linkedin.com/in/chaudhary-preeti-160738199/",
+    mail: "",
   },
   {
     id: "team-2",
     name: "AVM Pawan Kumar",
     role: "Senior Consultant",
-    focus: "Aerospace, defence space & geospatial intelligence",
-   image: "/images/team/PawanKumar.png",
+    focus: "Aerospace, defence, space & geospatial intelligence",
+    image: "/images/team/PawanKumar.png",
     linkedin:
       "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
-    mail:
-      "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
+    mail: "",
   },
   {
     id: "team-3",
     name: "Ritika Verma",
-    role: " Program Management Office",
-    focus: "",
+    role: "Program Management Office",
+    focus: "Strategy, partnerships & business growth",
     image: "/images/team/ritikaVerma.png",
     linkedin:
       "https://www.linkedin.com/in/ritika-verma-2329631ab/",
-    mail:
-      "https://www.linkedin.com/in/ritika-verma-2329631ab/",
+    mail: "",
   },
- 
+];
+
+const icon = [
+  {
+    title: "Research",
+    icon: "",
+  },
+  {
+    title: "Platform",
+    icon: "",
+  },
+  {
+    title: "Deployment",
+    icon: "",
+  },
+  {
+    title: "Commercialisation",
+    icon: "",
+  },
 ];
 
 export default function TeamPage() {
   return (
-    <main className="bg-[#123C2B] text-[#E7F1EB]">
-      <section
+    <section
+      className="
+        relative
+        min-h-screen
+        overflow-hidden
+        bg-[url('/images/site-bg/bg7.png')]
+        bg-cover
+        bg-center
+        text-black
+        pb-24
+        pt-32
+        md:pb-32
+        md:pt-32
+      "
+    >
+      {/* Ambient orange glow */}
+      <div
         className="
-          relative
-          overflow-hidden
-          border-t
-          border-[#E7F1EB]/10
-          bg-[#123C2B]
-          pb-24
-          pt-32
-          md:pb-32
-          md:pt-32
+          pointer-events-none
+          absolute
+          right-[-10%]
+          top-[30%]
+          h-[400px]
+          w-[400px]
+          rounded-full
+          bg-[#E46A2A]/5
+          blur-[140px]
         "
-      >
-        {/* Topographic Background */}
-        <div className="pointer-events-none absolute inset-0 z-0 text-[#E7F1EB]">
-          <TopographicBackground />
-        </div>
+      />
 
-        {/* Ambient Harvest Green glow */}
-        
-        <div
-          className="
-            pointer-events-none
-            absolute
-            -top-40
-            left-1/2
-            h-150
-            w-200
-            -translate-x-1/2
-            rounded-md
-            bg-[#2E7657]/10
-            blur-[120px]
-          "
-        />
+      <div className="container relative z-10 mx-auto">
+        <Reveal variant="group" duration={1}>
+          {/* Eyebrow */}
+          <div className="flex items-center gap-3">
+            <span className="inline-block h-1.5 w-1.5 rounded-md bg-[#E46A2A]" />
 
-        {/* Subtle orange accent */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            right-[-10%]
-            top-[30%]
-            h-100
-            w-100
-            rounded-md
-            bg-[#E46A2A]/5
-            blur-[140px]
-          "
-        />
-
-        <div className="relative z-10 mx-auto container">
-          <Reveal variant="group" duration={1}>
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3">
-              <span
-                className="
-                  inline-block
-                  h-1.5
-                  w-1.5
-                  rounded-md
-                  bg-[#E46A2A]
-                "
-              />
-
-              <p
-                data-reveal="eyebrow"
-                className="
-                  font-mono
-                  text-xs
-                  font-semibold
-                  uppercase
-                  tracking-[0.25em]
-                  text-[#E7F1EB]/60
-                "
-              >
-                ABOUT US
-              </p>
-            </div>
-
-            {/* Heading */}
-            <h1
-              data-reveal="heading"
-              className="
-                mt-6
-                max-w-7xl
-                text-5xl
-                font-bold
-                leading-[0.95]
-                tracking-tight
-                text-[#E7F1EB]
-                sm:text-7xl
-                md:text-6xl
-              "
-            >
-              A Multidisciplinary Team for a{" "}
-              <span className="text-[#E46A2A]">
-                Multidimensional Planet
-              </span>
-            </h1>
-
-            {/* Description */}
             <p
-              data-reveal="text"
+              data-reveal="eyebrow"
               className="
-                mt-8
-
-                text-base
-                leading-relaxed
-                text-[#E7F1EB]/65
-                sm:text-lg
+                font-mono
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                text-black/60
               "
             >
-              Harvest Global SSP Pvt Ltd (HG Systems) is building
-              enterprise-grade infrastructure and intelligence systems for
-              Earth Observation and GeoAI. Our multidisciplinary team brings
-              together expertise across AI, geospatial science, Earth
-              Observation, climate, aerospace, insurance and large-scale
-              technology deployment.
+              ABOUT US
             </p>
-            <p
-              data-reveal="text"
-              className="
-                mt-8
+          </div>
 
-                text-base
-                leading-relaxed
-                text-[#E7F1EB]/65
-                sm:text-lg
-              "
-            >
-              From research and foundation models to infrastructure and
-              commercial deployment, HG works across the complete lifecycle:
-            </p>
-
-            <div className="mt-4 flex w-full items-center justify-center gap-4">
-              {["Research", "Platform", "Deployment", "Commercialisation"].map(
-                (item, index) => (
-                  <React.Fragment key={item}>
-                    <span className="mx-2 font-medium text-[#E7F1EB]">
-                      {item}
-                    </span>
-                    {index < 3 && (
-                      <span className="text-[#E46A2A]">→</span>
-                    )}
-                  </React.Fragment>
-                )
-              )}
-            </div>
-          </Reveal>
-
-          {/* Team */}
-          <Reveal
-            variant="stagger"
-            itemSelector=".team-card"
+          {/* Heading */}
+          <h1
+            data-reveal="heading"
             className="
-              mt-20
-              grid
-              w-full
-              grid-cols-1
-              justify-items-center
-              gap-8
-              md:grid-cols-3
+              mt-6
+              max-w-7xl
+              text-5xl
+              font-bold
+              leading-[0.95]
+              tracking-tight
+              text-black
+              sm:text-7xl
+              md:text-6xl
             "
-            stagger={0.15}
           >
-            {Team.map((member) => (
-              <div
-                key={member.id}
-                className="team-card flex w-full justify-center"
-              >
-                <TeamCard member={member} />
-              </div>
+            A Multidisciplinary Team for a{" "}
+            <span className="text-[#E46A2A]">
+              Multidimensional Planet
+            </span>
+          </h1>
+
+          {/* Description */}
+          <p
+            data-reveal="text"
+            className="
+              mt-8
+              max-w-5xl
+              text-base
+              leading-relaxed
+              text-black/80
+              sm:text-lg
+            "
+          >
+            Harvest Global SSP Pvt Ltd (HG Systems) is building
+            enterprise-grade infrastructure and intelligence systems for
+            Earth Observation and GeoAI. Our multidisciplinary team brings
+            together expertise across AI, geospatial science, Earth
+            Observation, climate, aerospace, insurance and large-scale
+            technology deployment.
+          </p>
+
+          <p
+            data-reveal="text"
+            className="
+              mt-6
+              max-w-5xl
+              text-base
+              leading-relaxed
+              text-black/65
+              sm:text-lg
+            "
+          >
+            From research and foundation models to infrastructure and
+            commercial deployment, HG works across the complete lifecycle:
+          </p>
+
+          {/* Lifecycle */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            {icon.map((item, index) => (
+              <React.Fragment key={item.title}>
+                <span className="font-medium text-black/80">
+                  {item.title}
+                </span>
+
+                {index < icon.length - 1 && (
+                  <span className="text-[#E46A2A]">→</span>
+                )}
+              </React.Fragment>
             ))}
-          </Reveal>
+          </div>
+        </Reveal>
+
+        {/* Team */}
+        <div
+          className="
+            mt-20
+            grid
+            w-full
+            grid-cols-1
+            gap-7
+            lg:grid-cols-2
+          "
+        >
+          {Team.map((member) => (
+            <div
+              key={member.id}
+              className="team-card w-full"
+            >
+              <TeamCard member={member} />
+            </div>
+          ))}
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

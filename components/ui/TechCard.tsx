@@ -15,14 +15,15 @@ interface TechCardProps {
 export default function TechCard({
   title,
   image,
+
   desc,
 }: TechCardProps) {
   const cardRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
+
   const imageRef = useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -30,10 +31,10 @@ export default function TechCard({
       const content = contentRef.current;
       const title = titleRef.current;
       const desc = descRef.current;
-      const image = imageRef.current;
-      const arrow = arrowRef.current;
 
-      if (!card || !content || !title || !desc || !image || !arrow) return;
+      const image = imageRef.current;
+
+      if (!card || !content || !title || !desc  || !image) return;
 
       const enter = () => {
         gsap.killTweensOf([
@@ -41,8 +42,8 @@ export default function TechCard({
           content,
           title,
           desc,
+
           image,
-          arrow,
         ]);
 
         gsap.to(card, {
@@ -71,13 +72,7 @@ export default function TechCard({
           ease: "power2.out",
         });
 
-        gsap.to(arrow, {
-          x: 5,
-          rotate: 0,
-          scale: 1.1,
-          duration: 0.45,
-          ease: "back.out(1.7)",
-        });
+  
 
         gsap.to(image, {
           height: "170px",
@@ -87,14 +82,7 @@ export default function TechCard({
       };
 
       const leave = () => {
-        gsap.killTweensOf([
-          card,
-          content,
-          title,
-          desc,
-          image,
-          arrow,
-        ]);
+       
 
         gsap.to(card, {
           flex: 1,
@@ -121,13 +109,7 @@ export default function TechCard({
           ease: "power2.in",
         });
 
-        gsap.to(arrow, {
-          x: 0,
-          rotate: -45,
-          scale: 1,
-          duration: 0.35,
-          ease: "power2.out",
-        });
+  
 
         gsap.to(image, {
           height: "145px",
@@ -135,11 +117,6 @@ export default function TechCard({
           ease: "power3.inOut",
         });
       };
-
-      // Initial arrow state
-      gsap.set(arrow, {
-        rotate: -45,
-      });
 
       card.addEventListener("mouseenter", enter);
       card.addEventListener("mouseleave", leave);
@@ -167,46 +144,14 @@ export default function TechCard({
         ref={contentRef}
         className="relative z-10 flex flex-1 flex-col p-5"
       >
-        {/* Arrow */}
-        <div
-          ref={arrowRef}
-          className="
-            absolute right-5 top-5
-            flex h-9 w-9
-            items-center justify-center
-            rounded-full
-            border border-white/20
-            bg-white/5
-            text-white
-            backdrop-blur-sm
-          "
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            className="h-4 w-4"
-          >
-            <path
-              d="M5 19L19 5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M9 5H19V15"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
+
+       
 
         {/* Title */}
         <h3
           ref={titleRef}
           className="
             max-w-[260px]
-            pr-10
             text-lg font-medium
             leading-tight tracking-tight
           "
