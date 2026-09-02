@@ -90,15 +90,14 @@ const TeamCard = ({
           overflow-hidden
           rounded-md
           border
-          border-[#235738]/20
-          bg-[#235738]/10
+   
           p-1
           transition-transform
           duration-500
           group-hover:scale-[1.03]
         "
       >
-        <div className="relative h-full w-full overflow-hidden rounded-md">
+        <div className="relative h-full w-full overflow-hidden rounded-full">
           <Image
             src={image}
             alt={name}
