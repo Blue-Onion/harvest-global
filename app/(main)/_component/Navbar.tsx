@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(useGSAP);
 
@@ -238,7 +239,13 @@ function Navbar() {
 
   return (
     <>
-      <header ref={navRef} className="inset-x-0 top-4 container mx-auto absolute z-50 py-4  text-white">
+      <header
+        ref={navRef}
+        className={cn(
+          "inset-x-0 top-4 container mx-auto absolute z-50 py-4",
+          pathname === "/about-us" ? "text-black" : "text-white"
+        )}
+      >
         <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
           <div className="flex items-center gap-6 font-bold text-base">
             {/* Desktop Links */}
@@ -257,7 +264,10 @@ function Navbar() {
                       underlineRefs.current[i] = el;
                     }}
                     style={{ transform: pathname === link.href ? "scaleX(1)" : "scaleX(0)" }}
-                    className="absolute bottom-0 left-0 h-px w-full origin-left bg-white"
+                    className={cn(
+                      "absolute bottom-0 left-0 h-px w-full origin-left",
+                      pathname === "/about-us" ? "bg-black" : "bg-white"
+                    )}
                   />
                 </Link>
               ))}
@@ -271,15 +281,15 @@ function Navbar() {
             >
               <span
                 ref={lineTopRef}
-                className="w-6 h-0.5 bg-white rounded-md origin-center"
+                className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" ? "bg-black" : "bg-white")}
               />
               <span
                 ref={lineMiddleRef}
-                className="w-4 h-0.5 bg-white rounded-md origin-center"
+                className={cn("w-4 h-0.5 rounded-md origin-center", pathname === "/about-us" ? "bg-black" : "bg-white")}
               />
               <span
                 ref={lineBottomRef}
-                className="w-6 h-0.5 bg-white rounded-md origin-center"
+                className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" ? "bg-black" : "bg-white")}
               />
             </button>
           </div>
