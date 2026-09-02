@@ -3,8 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import Reveal from "@/components/ui/reveal/Reveal";
-import { data } from "@/data";
+
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TopographicBackground from "../ui/Topography";
 

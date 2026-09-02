@@ -122,6 +122,7 @@ function Technology() {
       id="technology"
       className="relative min-h-screen overflow-hidden bg-[url('/images/site-bg/bg1.png')] bg-cover bg-center py-28"
     >
+      
       <div className="container relative mx-auto px-5">
         {/* Header */}
         <div className="header">
