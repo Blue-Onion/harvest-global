@@ -438,7 +438,7 @@ export default function Applications() {
             md:grid-cols-2
           "
         >
-          <div className="relative min-h-[300px] sm:min-h-[400px] md:min-h-[560px]">
+          <div className="relative min-h-[300px] sm:min-h-[400px] md:min-h-[500px]">
             <Image
               key={`base-${currentApp.id}`}
               src={currentApp.image}
@@ -469,7 +469,7 @@ export default function Applications() {
           </div>
 
           {/* CONTENT */}
-          <div className="relative flex min-h-[520px] flex-col justify-between overflow-hidden p-7 sm:min-h-[560px] sm:p-10 md:min-h-[560px] md:p-12">
+          <div className="relative flex flex-col justify-between overflow-hidden p-7 ] sm:p-10  md:p-12">
             {/* Current */}
             <div
               ref={textCurrentRef}
