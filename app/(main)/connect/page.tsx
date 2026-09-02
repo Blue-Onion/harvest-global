@@ -24,14 +24,23 @@ const ConnectPage = () => {
           {/* LEFT */}
           <div className="relative z-10 flex flex-col justify-between text-white">
             {/* Main Text */}
-            <div className="space-y-10">
-              <p className="text-left text-2xl font-semibold md:text-xl">
-                    Earth Intelligence. Built for Impact.
+            <div className="space-y-8">
+              <p className="text-left text-xl tracking-widest">
+                CONNECT WITH HGSYSTEMS
               </p>
-
-              <h4 className="text-left text-2xl tracking-wider md:text-4xl">
-                Let’s Connect
-              </h4>
+              <p className="text-left text-2xl   font-extrabold md:text-5xl">
+                Intelligence starts with a
+                <span className="ml-2 text-green-700">conversation.</span>
+              </p>
+              <div className="">
+                <h4 className="text-left text-xl ">
+                  Have an idea, requirement or partnership to discuss?
+                </h4>
+                <h4 className="text-left font-bold text-4xl ">
+                  Let’s
+                  <span className="ml-2 text-orange-600">Connect!</span>
+                </h4>
+              </div>
             </div>
 
             {/* Socials */}
@@ -43,14 +52,14 @@ const ConnectPage = () => {
                   </div>
                 </div>
 
-             <div className="mt-10 flex items-center gap-4">
-  {/* LinkedIn */}
-  <a
-    href="https://www.linkedin.com/company/harvest-global-ssp-ltd/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="LinkedIn"
-    className="
+                <div className="mt-10 flex items-center gap-4">
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/company/harvest-global-ssp-ltd/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="
       group flex h-10 w-10 items-center justify-center
       rounded-full
       border border-[#235738]/20
@@ -58,27 +67,27 @@ const ConnectPage = () => {
       hover:border-[#E46A2A]
       hover:bg-[#E46A2A]
     "
-  >
-    <Image
-      src="/svg/linkedIn.svg"
-      alt="LinkedIn"
-      width={18}
-      height={18}
-      className="
+                  >
+                    <Image
+                      src="/svg/linkedIn.svg"
+                      alt="LinkedIn"
+                      width={18}
+                      height={18}
+                      className="
         invert
         transition-all duration-300
         group-hover:invert-0
       "
-    />
-  </a>
+                    />
+                  </a>
 
-  {/* Instagram */}
-  <a
-    href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Instagram"
-    className="
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="
       group flex h-10 w-10 items-center justify-center
       rounded-full
       border border-[#235738]/20
@@ -86,27 +95,27 @@ const ConnectPage = () => {
       hover:border-[#E46A2A]
       hover:bg-[#E46A2A]
     "
-  >
-    <Image
-      src="/svg/insta.svg"
-      alt="Instagram"
-      width={18}
-      height={18}
-      className="
+                  >
+                    <Image
+                      src="/svg/insta.svg"
+                      alt="Instagram"
+                      width={18}
+                      height={18}
+                      className="
         invert
         transition-all duration-300
         group-hover:invert-0
       "
-    />
-  </a>
+                    />
+                  </a>
 
-  {/* X */}
-  <a
-    href="https://x.com/HarvestG_Ssp"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="X"
-    className="
+                  {/* X */}
+                  <a
+                    href="https://x.com/HarvestG_Ssp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X"
+                    className="
       group flex h-10 w-10 items-center justify-center
       rounded-full
       border border-[#235738]/20
@@ -114,20 +123,20 @@ const ConnectPage = () => {
       hover:border-[#E46A2A]
       hover:bg-[#E46A2A]
     "
-  >
-    <Image
-      src="/svg/X.svg"
-      alt="X"
-      width={18}
-      height={18}
-      className="
+                  >
+                    <Image
+                      src="/svg/X.svg"
+                      alt="X"
+                      width={18}
+                      height={18}
+                      className="
         invert
         transition-all duration-300
         group-hover:invert-0
       "
-    />
-  </a>
-</div>
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
