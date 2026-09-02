@@ -16,11 +16,9 @@ export default function RecognitionCard({ item }: RecognitionCardProps) {
             src={item.image}
             alt={item.title}
             fill
-            className="object-cover object-top opacity-80 transition-transform duration-700 group-hover:scale-105"
+            className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-[#123C2B]/20" />
-          <div className="absolute inset-0 bg-[#B94D1F]/10 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-0" />
 
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 sm:p-5">
             <span className="inline-flex items-center gap-2 text-[10px] font-mono font-semibold uppercase tracking-[0.25em] text-[#E46A2A]/90">

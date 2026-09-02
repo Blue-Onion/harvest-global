@@ -7,12 +7,47 @@ import { data } from "@/data";
 import SectionHeader from "./SectionHeader";
 
 export default function EcosystemSection() {
+  const ecosystemItems = [
+    {
+      id: "ecosystem-1",
+      image: "/images/ecosystem/1.png",
+      title:
+        "Represented Earth Observation at India Japan Space Delegation, Tokyo",
+    },
+    {
+      id: "ecosystem-2",
+      image: "/images/ecosystem/2.png",
+      title: "Strategic Discussions with Japan Space and SpaceTech Segment",
+    },
+    {
+      id: "ecosystem-3",
+      image: "/images/ecosystem/3.png",
+      title: "At SpaceTide and CIC, Tokyo",
+    },
+    {
+      id: "ecosystem-4",
+      image: "/images/ecosystem/4.png",
+      title: "Strategic Alliance with IIRS/Assam Space ASSAC/ASSAM",
+    },
+    {
+      id: "ecosystem-5",
+      image: "/images/ecosystem/5.png",
+      title:
+        "Represented Earth Observation Industry at INSPACE AND VC - IIMA Ventures",
+    },
+    {
+      id: "ecosystem-6",
+      image: "/images/ecosystem/6.png",
+      title:
+        "Strategic Alliance with NSRCs/RRSCs/State Space Application Centers",
+    },
+  ];
   const { ecosystem, sections } = data.credentials;
   const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
+    <section className="relative w-full min-h-screen overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
+      <div className="relative z-10 container mx-auto">
         <SectionHeader
           eyebrow={sections.ecosystem.eyebrow}
           title={sections.ecosystem.title}
@@ -24,65 +59,41 @@ export default function EcosystemSection() {
           ref={ref}
           className={cn(
             "relative mt-14 transition-all duration-700",
-            inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
           )}
         >
           <div className="absolute top-1 bottom-1 left-4 w-px bg-white/10 sm:left-6" />
 
-          <div className="space-y-10">
-            {ecosystem.map((item, i) => (
-              <div
-                key={item.id}
-                className="relative grid grid-cols-1 gap-4 pl-12 sm:grid-cols-[140px_1fr] sm:pl-16 sm:gap-10"
-              >
-                <div className="absolute left-4 top-1 -translate-x-1/2 sm:left-6">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#E46A2A]/40 bg-[#123C2B]">
-                    <span className="h-2 w-2 rounded-md bg-[#E46A2A] shadow-[0_0_8px_rgba(228,106,42,0.8)]" />
-                  </div>
-                </div>
+<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {ecosystemItems.map((item) => (
+    <div
+      key={item.id}
+      className="
+        overflow-hidden
+        rounded-md
+        border border-white/10
+        bg-[#071B14]
+      "
+    >
+      {/* Image */}
+      <div className="relative aspect-[16/9] overflow-hidden">
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover"
+        />
+      </div>
 
-                <div className="sm:pt-1">
-                  <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-[#E46A2A]/90">
-                    {item.phase}
-                  </p>
-                  {item.status && (
-                    <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-neutral-600">
-                      Status — {item.status}
-                    </p>
-                  )}
-                </div>
-
-                <div className="group flex flex-col overflow-hidden rounded-md border border-white/10 bg-neutral-950/70 transition-all duration-500 hover:border-white/20 hover:bg-neutral-900/50 sm:flex-row">
-                  {item.image && (
-                    <div className="relative aspect-[16/9] overflow-hidden sm:aspect-auto sm:w-44 sm:shrink-0">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
-                        sizes="(min-width: 640px) 176px, 100vw"
-                      />
-                      <div className="absolute inset-0 bg-linear-to-r from-neutral-950/40 to-transparent sm:bg-linear-to-l sm:from-neutral-950/60 sm:to-transparent" />
-                    </div>
-                  )}
-
-                  <div className="flex flex-1 flex-col p-6 sm:p-7">
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-lg font-bold tracking-tight text-neutral-600">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="text-lg font-bold tracking-tight text-white leading-snug sm:text-xl">
-                        {item.title}
-                      </h3>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-neutral-500">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Title */}
+      <div className="px-6 py-5">
+        <h3 className="text-xl font-semibold leading-snug text-white">
+          {item.title}
+        </h3>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </div>
     </section>

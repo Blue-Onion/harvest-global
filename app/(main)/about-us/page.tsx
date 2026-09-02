@@ -13,7 +13,7 @@ const Team = [
     image: "/images/team/PreetiChaudhary.png",
     linkedin:
       "https://www.linkedin.com/in/chaudhary-preeti-160738199/",
-    mail: "",
+    mail: "https://www.linkedin.com/in/ritika-verma-2329631ab/",
   },
   {
     id: "team-2",
@@ -23,7 +23,7 @@ const Team = [
     image: "/images/team/PawanKumar.png",
     linkedin:
       "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
-    mail: "",
+    mail: "https://www.linkedin.com/in/ritika-verma-2329631ab/",
   },
   {
     id: "team-3",
@@ -33,7 +33,7 @@ const Team = [
     image: "/images/team/ritikaVerma.png",
     linkedin:
       "https://www.linkedin.com/in/ritika-verma-2329631ab/",
-    mail: "",
+    mail: "https://www.linkedin.com/in/ritika-verma-2329631ab/",
   },
 ];
 
@@ -138,16 +138,12 @@ export default function TeamPage() {
               max-w-5xl
               text-base
               leading-relaxed
-              text-black/80
+              text-black
               sm:text-lg
             "
           >
-            Harvest Global SSP Pvt Ltd (HG Systems) is building
-            enterprise-grade infrastructure and intelligence systems for
-            Earth Observation and GeoAI. Our multidisciplinary team brings
-            together expertise across AI, geospatial science, Earth
-            Observation, climate, aerospace, insurance and large-scale
-            technology deployment.
+           Harvest Global SSP Pvt Ltd (HG Systems) pioneering Earth Intelligence integrates satellite imagery, climate and weather data, ground observations and geospatial intelligence into an enterprise-grade GeoAI stack, enabling governments and industries to move from fragmented data to predictive, actionable intelligence.
+
           </p>
 
           <p
@@ -157,12 +153,27 @@ export default function TeamPage() {
               max-w-5xl
               text-base
               leading-relaxed
-              text-black/65
+              text-black
               sm:text-lg
             "
           >
-            From research and foundation models to infrastructure and
-            commercial deployment, HG works across the complete lifecycle:
+        We build Geofoundational AI models and sovereign cloud infrastructure empowering governments, insurance providers, and global enterprises to address climate resilience, agriculture risk, and spatial governance.
+
+          </p>
+          <p
+            data-reveal="text"
+            className="
+              mt-6
+              max-w-5xl
+              text-base
+              leading-relaxed
+              text-black
+              sm:text-lg
+            "
+          >
+         Our multidisciplinary team brings together expertise across AI, geospatial science, Earth Observation, climate, aerospace, insurance and large-scale technology deployment.
+From research and foundation models to infrastructure and commercial deployment, HG works across the complete lifecycle:
+
           </p>
 
           {/* Lifecycle */}
