@@ -38,7 +38,7 @@ const ConnectPage = () => {
                 </h4>
                 <h4 className="text-left font-bold text-4xl ">
                   Let’s
-                  <span className="ml-2 text-orange-600">Connect!</span>
+                  <span className="ml-2 text-green-700">Connect!</span>
                 </h4>
               </div>
             </div>
