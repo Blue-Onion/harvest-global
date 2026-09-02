@@ -1,6 +1,5 @@
 import Hero from "@/components/Hero";
 
-
 import Applications from "@/components/sections/Applications";
 import Footer from "@/components/footer/Footer";
 import FinalCta from "@/components/sections/FinalCta";
@@ -11,24 +10,32 @@ import Challenge from "@/components/sections/Challenge";
 import ParternerdLogo from "@/components/sections/ParternerdLogo";
 import Technology from "@/components/sections/Technology";
 import UnifiedGeoStack from "@/components/sections/Unfied-Geo-Stack";
-
+import Vision from "@/components/sections/Vision";
 
 export default function Home() {
   return (
-    <main className="text-white bg-black">
-      <Navbar/>
-      <Hero />
-      <HeroReveal/>
-      <ParternerdLogo/>
+    <main className="bg-black  text-white">
+      <Navbar />
 
-      <Challenge/>
-      <Technology />
-      <UnifiedGeoStack/>
+      <Hero />
+      <HeroReveal />
+      <ParternerdLogo />
+
+     {/* Stacking stack: Vision covered by Technology */}
+<div className="relative">
+  <section className="sticky top-0 z-10 h-screen">
+    <Vision />
+  </section>
+  <section className="sticky top-0 z-20 h-screen">
+    <Challenge/>
+  </section>
+</div>
+
+    <Technology />
+      <UnifiedGeoStack />
       <Applications />
       <FinalCta />
       <Footer />
     </main>
   );
 }
-
-

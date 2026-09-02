@@ -261,24 +261,25 @@ export default function UnifiedGeoStack() {
                   lg:w-[430px]
                 "
               >
-                <div className="relative aspect-square overflow-hidden rounded-full shadow-[0_0_80px_rgba(52,211,153,0.15)]">
-                  <Image
-                    src="/images/earth.png" // Ensure this matches your public folder path
-                    alt="Earth"
-                    fill
-                    priority
-                    className="object-contain"
-                  />
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute inset-0
-                      rounded-full
-                      bg-emerald-900/10
-                      mix-blend-multiply
-                    "
-                  />
-                </div>
+               <div className="relative aspect-square overflow-hidden rounded-full shadow-[0_0_80px_rgba(52,211,153,0.15)]">
+  <Image
+    src="/images/earth.png"
+    alt="Earth"
+    fill
+    priority
+    className="object-contain"
+  />
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 z-[1] rounded-full bg-black/40" />
+
+  {/* Text overlay */}
+  <div className="absolute inset-0 z-10 flex items-center justify-center">
+    <span className="max-w-xs px-6 pt-10 text-center text-4xl font-semibold uppercase text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+      A Smarter, Safer, More Resilient Planet
+    </span>
+  </div>
+</div>
               </div>
             </div>
 
