@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/ui/reveal/Reveal";
+import TopographicBackground from "@/components/ui/Topography";
 import TeamCard from "./_component/TeamCard";
 import React from "react";
 
@@ -27,14 +28,14 @@ const Team = [
   },
   {
     id: "team-3",
-    name: "Dr. Manmeet Singh",
-    role: "GeoAI Advisor",
-    focus: "Geospatial sciences, Earth systems & academic AI research",
-    image: "/images/team/urban.jpg",
+    name: "Ritika Verma",
+    role: " Program Management Office",
+    focus: "",
+    image: "/images/team/ritikaVerma.png",
     linkedin:
-      "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
+      "https://www.linkedin.com/in/ritika-verma-2329631ab/",
     mail:
-      "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
+      "https://www.linkedin.com/in/ritika-verma-2329631ab/",
   },
  
 ];
@@ -55,7 +56,13 @@ export default function TeamPage() {
           md:pt-32
         "
       >
+        {/* Topographic Background */}
+        <div className="pointer-events-none absolute inset-0 z-0 text-[#E7F1EB]">
+          <TopographicBackground />
+        </div>
+
         {/* Ambient Harvest Green glow */}
+        
         <div
           className="
             pointer-events-none

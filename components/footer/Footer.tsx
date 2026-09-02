@@ -15,7 +15,7 @@ export default function Footer() {
       id="contact"
       className="relative overflow-hidden bg-[#E7F1EB] text-[#123C2B]"
     >
-      <div className="container mx-auto px-6 pt-20 sm:px-8 md:pt-24 lg:px-10">
+      <div className="container mx-auto px-6 pt-20 sm:px-8 md:py-24 lg:px-10">
         {/* Main columns */}
         <div className="grid grid-cols-1  gap-14 md:grid-cols-3 md:gap-16 lg:gap-24">
           {/* =========================
@@ -35,8 +35,6 @@ export default function Footer() {
                 <span className="block text-lg font-semibold tracking-tight text-[#123C2B]">
                   Harvest Global
                 </span>
-
-                
               </div>
             </Link>
 
@@ -46,41 +44,56 @@ export default function Footer() {
             </p>
 
             {/* Social links */}
-        <div className="mt-10 flex items-center gap-4">
-  {/* LinkedIn */}
-  <a
-    href="#"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="LinkedIn"
-    className="group flex h-10 w-10 items-center justify-center rounded-full border border-[#235738]/20 transition-all duration-300 hover:border-[#E46A2A] hover:bg-[#E46A2A]"
-  >
-    <Image
-      src="/svg/linkedIn.svg"
-      alt="LinkedIn"
-      width={18}
-      height={18}
-      className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
-    />
-  </a>
+            <div className="mt-10 flex items-center gap-4">
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/company/harvest-global-ssp-ltd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-[#235738]/20 transition-all duration-300 hover:border-[#E46A2A] hover:bg-[#E46A2A]"
+              >
+                <Image
+                  src="/svg/linkedIn.svg"
+                  alt="LinkedIn"
+                  width={18}
+                  height={18}
+                  className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+                />
+              </a>
 
-  {/* Instagram */}
-  <a
-    href="#"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Instagram"
-    className="group flex h-10 w-10 items-center justify-center rounded-full border border-[#235738]/20 transition-all duration-300 hover:border-[#E46A2A] hover:bg-[#E46A2A]"
-  >
-    <Image
-      src="/svg/insta.svg"
-      alt="Instagram"
-      width={18}
-      height={18}
-      className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
-    />
-  </a>
-</div>
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-[#235738]/20 transition-all duration-300 hover:border-[#E46A2A] hover:bg-[#E46A2A]"
+              >
+                <Image
+                  src="/svg/insta.svg"
+                  alt="Instagram"
+                  width={18}
+                  height={18}
+                  className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+                />
+              </a>
+              <a
+                href="https://x.com/HarvestG_Ssp"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-[#235738]/20 transition-all duration-300 hover:border-[#E46A2A] hover:bg-[#E46A2A]"
+              >
+                <Image
+                  src="/svg/X.svg"
+                  alt="X"
+                  width={18}
+                  height={18}
+                  className="transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+                />
+              </a>
+            </div>
           </div>
 
           {/* =========================
@@ -146,46 +159,10 @@ export default function Footer() {
                   Haryana, India
                 </p>
               </div>
-
-              {/* Website */}
-              <div>
-                <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#235738]/40">
-                  Website
-                </p>
-
-                <a
-                  href="https://harvest-global.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[#123C2B]/75 transition-colors duration-300 hover:text-[#E46A2A]"
-                >
-                  harvest-global.com ↗
-                </a>
-              </div>
             </div>
           </div>
         </div>
- 
       </div>
-       <div className="flex items-center justify-center overflow-hidden pt-20">
-  <span
-    className="
-      bg-[url('/images/scroll-expansion.png')]
-      bg-cover
-      bg-center
-      bg-clip-text
-      text-[clamp(6rem,16vw,16rem)]
-      font-extrabold
-      leading-[0.8]
-      tracking-[-0.07em]
-      text-transparent
-      select-none
-      whitespace-nowrap
-    "
-  >
-    Harvest Global
-  </span>
-</div>
     </footer>
   );
 }

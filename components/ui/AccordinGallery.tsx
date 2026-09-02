@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 interface AccordionItem {
@@ -20,194 +20,129 @@ export default function AccordionGallery({
 }: AccordionGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const activeIndex = useRef(0);
-
-const animateTo = (index: number) => {
-  const container = containerRef.current;
-  if (!container || !items.length) return;
-
-  activeIndex.current = index;
-
-  const cards = Array.from(
-    container.querySelectorAll<HTMLElement>(".accordion-card")
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < 768
   );
 
-  const tl = gsap.timeline();
-
-  cards.forEach((card, i) => {
-    const image = card.querySelector<HTMLElement>(".card-image");
-    const smallTitle = card.querySelector<HTMLElement>(".collapsed-title");
-    const content = card.querySelector<HTMLElement>(".expanded-content");
-    const title = card.querySelector<HTMLElement>(".card-title");
-    const desc = card.querySelector<HTMLElement>(".card-desc");
-    const arrow = card.querySelector<HTMLElement>(".card-arrow");
-
-    if (!image || !smallTitle || !content || !title || !desc) return;
-
-    const isActive = i === index;
-
-    gsap.killTweensOf([card, image, smallTitle, content, title, desc, arrow]);
-
-    if (isActive) {
-      // EXPAND CARD
-      tl.to(card, { flexGrow: 4.5, duration: 0.65, ease: "power3.out" }, 0);
-
-      // Full colour image
-      tl.to(image, { filter: "grayscale(0%)", scale: 1, duration: 0.7, ease: "power3.out" }, 0);
-
-      // Hide collapsed title
-      tl.to(smallTitle, { opacity: 0, y: -10, duration: 0.25, ease: "power2.out" }, 0);
-
-      // Content ready in sync with card expand — no delay, no wait
-      tl.to(content, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.45);
-      tl.to(title, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
-      tl.to(desc, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
-
-      if (arrow) {
-        tl.to(arrow, { opacity: 1, x: 0, rotate: 0, duration: 0.35, ease: "power3.out" }, 0);
-      }
-    } else {
-      // COLLAPSE CARD
-      tl.to(card, { flexGrow: 1, duration: 0.6, ease: "power3.inOut" }, 0);
-
-      tl.to(image, { filter: "grayscale(100%)", scale: 1.08, duration: 0.6, ease: "power3.inOut" }, 0);
-
-      tl.to(smallTitle, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0.1);
-
-      tl.to(content, { opacity: 0, duration: 0.2, ease: "power2.in" }, 0);
-      tl.to(title, { opacity: 0, y: 15, duration: 0.25, ease: "power2.in" }, 0);
-      tl.to(desc, { opacity: 0, y: 15, duration: 0.2, ease: "power2.in" }, 0);
-
-      if (arrow) {
-        tl.to(arrow, { opacity: 0, x: -8, rotate: -45, duration: 0.2, ease: "power2.in" }, 0);
-      }
-    }
-  });
-};
-
-  // First card open by default
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const container = containerRef.current;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-      if (!container) return;
+  const animateTo = (index: number) => {
+    const container = containerRef.current;
+    if (!container || !items.length) return;
 
-      const cards = Array.from(
-        container.querySelectorAll<HTMLElement>(".accordion-card")
-      );
+    activeIndex.current = index;
 
-      cards.forEach((card, i) => {
-        const image = card.querySelector<HTMLElement>(".card-image");
-        const smallTitle =
-          card.querySelector<HTMLElement>(".collapsed-title");
-        const content =
-          card.querySelector<HTMLElement>(".expanded-content");
-        const title = card.querySelector<HTMLElement>(".card-title");
-        const desc = card.querySelector<HTMLElement>(".card-desc");
-        const arrow = card.querySelector<HTMLElement>(".card-arrow");
+    const cards = Array.from(
+      container.querySelectorAll<HTMLElement>(".accordion-card")
+    );
 
-        if (!image || !smallTitle || !content || !title || !desc) return;
+    const tl = gsap.timeline();
 
-        if (i === 0) {
-          gsap.set(card, {
-            flexGrow: 4.5,
-          });
+    cards.forEach((card, i) => {
+      const image = card.querySelector<HTMLElement>(".card-image");
+      const smallTitle = card.querySelector<HTMLElement>(".collapsed-title");
+      const content = card.querySelector<HTMLElement>(".expanded-content");
+      const title = card.querySelector<HTMLElement>(".card-title");
+      const desc = card.querySelector<HTMLElement>(".card-desc");
+      const arrow = card.querySelector<HTMLElement>(".card-arrow");
 
-          gsap.set(image, {
-            filter: "grayscale(0%)",
-            scale: 1,
-          });
+      if (!image || !smallTitle || !content || !title || !desc) return;
 
-          gsap.set(smallTitle, {
-            opacity: 0,
-            y: -10,
-          });
+      const isActive = i === index;
 
-          gsap.set(content, {
-            opacity: 1,
-          });
+      gsap.killTweensOf([card, image, smallTitle, content, title, desc, arrow]);
 
-          gsap.set(title, {
-            opacity: 1,
-            y: 0,
-          });
-
-          gsap.set(desc, {
-            opacity: 1,
-            y: 0,
-          });
-
+      if (isMobile) {
+        if (isActive) {
+          tl.to(card, { height: 380, duration: 0.5, ease: "power3.out" }, 0);
+          tl.to(image, { filter: "grayscale(0%)", scale: 1, duration: 0.5, ease: "power3.out" }, 0);
+          tl.to(smallTitle, { opacity: 0, y: -10, duration: 0.2 }, 0);
+          tl.to(content, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.2);
+          tl.to(title, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+          tl.to(desc, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+          if (arrow) tl.to(arrow, { opacity: 1, x: 0, rotate: 0, duration: 0.3 }, 0);
+        } else {
+          tl.to(card, { height: 72, duration: 0.5, ease: "power3.out" }, 0);
+          tl.to(image, { filter: "grayscale(100%)", scale: 1.08, duration: 0.5 }, 0);
+          tl.to(smallTitle, { opacity: 1, y: 0, duration: 0.3 }, 0.1);
+          tl.to(content, { opacity: 0, duration: 0.2 }, 0);
+          tl.to(title, { opacity: 0, y: 15, duration: 0.2 }, 0);
+          tl.to(desc, { opacity: 0, y: 15, duration: 0.2 }, 0);
+          if (arrow) tl.to(arrow, { opacity: 0, x: -8, rotate: -45, duration: 0.2 }, 0);
+        }
+      } else {
+        if (isActive) {
+          tl.to(card, { flexGrow: 4.5, duration: 0.65, ease: "power3.out" }, 0);
+          tl.to(image, { filter: "grayscale(0%)", scale: 1, duration: 0.7, ease: "power3.out" }, 0);
+          tl.to(smallTitle, { opacity: 0, y: -10, duration: 0.25, ease: "power2.out" }, 0);
+          tl.to(content, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.45);
+          tl.to(title, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
+          tl.to(desc, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0);
           if (arrow) {
-            gsap.set(arrow, {
-              opacity: 1,
-              x: 0,
-              rotate: 0,
-            });
+            tl.to(arrow, { opacity: 1, x: 0, rotate: 0, duration: 0.35, ease: "power3.out" }, 0);
           }
         } else {
-          gsap.set(card, {
-            flexGrow: 1,
-          });
-
-          gsap.set(image, {
-            filter: "grayscale(100%)",
-            scale: 1.08,
-          });
-
-          gsap.set(smallTitle, {
-            opacity: 1,
-            y: 0,
-          });
-
-          gsap.set(content, {
-            opacity: 0,
-          });
-
-          gsap.set(title, {
-            opacity: 0,
-            y: 15,
-          });
-
-          gsap.set(desc, {
-            opacity: 0,
-            y: 15,
-          });
-
+          tl.to(card, { flexGrow: 1, duration: 0.6, ease: "power3.inOut" }, 0);
+          tl.to(image, { filter: "grayscale(100%)", scale: 1.08, duration: 0.6, ease: "power3.inOut" }, 0);
+          tl.to(smallTitle, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0.1);
+          tl.to(content, { opacity: 0, duration: 0.2, ease: "power2.in" }, 0);
+          tl.to(title, { opacity: 0, y: 15, duration: 0.25, ease: "power2.in" }, 0);
+          tl.to(desc, { opacity: 0, y: 15, duration: 0.2, ease: "power2.in" }, 0);
           if (arrow) {
-            gsap.set(arrow, {
-              opacity: 0,
-              x: -8,
-              rotate: -45,
-            });
+            tl.to(arrow, { opacity: 0, x: -8, rotate: -45, duration: 0.2, ease: "power2.in" }, 0);
           }
         }
-      });
+      }
+    });
+  };
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      animateTo(0);
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <div
       ref={containerRef}
-      className="flex w-full gap-2 overflow-hidden"
-      style={{ height }}
-      onMouseLeave={() => animateTo(0)}
+      className={`flex w-full overflow-hidden ${
+        isMobile ? "flex-col gap-2" : "flex-row gap-2"
+      }`}
+      style={{ height: isMobile ? "auto" : height }}
+      onMouseLeave={() => {
+        if (!isMobile) animateTo(0);
+      }}
     >
       {items.map((item, index) => (
         <article
           key={item.title}
-          className="
+          className={`
             accordion-card
             group
             relative
             min-w-0
-            flex-1
             cursor-pointer
             overflow-hidden
             rounded-md
             bg-[#0D1D20]
-          "
-          onMouseEnter={() => animateTo(index)}
+            ${isMobile ? "flex-none" : "flex-1"}
+          `}
+          style={{ height: isMobile ? (index === 0 ? 380 : 72) : "100%" }}
+          onMouseEnter={() => {
+            if (!isMobile) animateTo(index);
+          }}
+          onClick={() => {
+            if (isMobile) animateTo(index);
+          }}
         >
           {/* IMAGE */}
           <div className="absolute inset-0 overflow-hidden">
@@ -225,11 +160,7 @@ const animateTo = (index: number) => {
                 grayscale
               "
             />
-
-            {/* Dark overlay */}
             <div className="absolute inset-0 bg-black/20" />
-
-            {/* Bottom gradient */}
             <div
               className="
                 absolute
@@ -246,26 +177,32 @@ const animateTo = (index: number) => {
 
           {/* COLLAPSED TITLE */}
           <div
-            className="
+            className={`
               collapsed-title
               absolute
-              bottom-5
-              left-5
               z-10
               opacity-100
-            "
+              ${
+                isMobile
+                  ? "bottom-4 left-5 flex items-center"
+                  : "bottom-5 left-5"
+              }
+            `}
           >
             <span
-              className="
+              className={`
                 block
                 text-xs
                 font-medium
                 uppercase
                 tracking-[0.15em]
                 text-white/90
-                [writing-mode:vertical-rl]
-                rotate-180
-              "
+                ${
+                  isMobile
+                    ? "text-sm tracking-widest"
+                    : "[writing-mode:vertical-rl] rotate-180"
+                }
+              `}
             >
               {item.title}
             </span>
@@ -276,19 +213,20 @@ const animateTo = (index: number) => {
             className="
               expanded-content
               absolute
-              inset-x-7
-              bottom-7
+              inset-x-6
+              bottom-6
               z-20
               opacity-0
+              md:inset-x-7
+              md:bottom-7
             "
           >
-            {/* TITLE FIRST */}
             <h3
               className="
                 card-title
                 max-w-[650px]
                 translate-y-[15px]
-                text-3xl
+                text-2xl
                 font-semibold
                 leading-[0.95]
                 tracking-tight
@@ -301,18 +239,19 @@ const animateTo = (index: number) => {
               {item.title}
             </h3>
 
-            {/* DESCRIPTION BELOW TITLE */}
             <p
               className="
                 card-desc
-                mt-5
+                mt-3
                 max-w-[520px]
                 translate-y-[15px]
-                text-sm
-                leading-6
+                text-xs
+                leading-relaxed
                 text-white/75
                 opacity-0
+                md:mt-5
                 md:text-base
+                md:leading-6
               "
             >
               {item.desc}
@@ -328,17 +267,19 @@ const animateTo = (index: number) => {
               top-5
               z-30
               flex
-              h-9
-              w-9
+              h-8
+              w-8
               items-center
               justify-center
               rounded-full
               border
               border-white/30
-              bg-black/20
+              bg-black/25
               text-white
               opacity-0
               backdrop-blur-sm
+              md:h-9
+              md:w-9
             "
           >
             <svg
@@ -348,16 +289,8 @@ const animateTo = (index: number) => {
               strokeWidth="1.8"
               className="h-4 w-4"
             >
-              <path
-                d="M5 12h14"
-                strokeLinecap="round"
-              />
-
-              <path
-                d="m13 6 6 6-6 6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              <path d="M5 12h14" strokeLinecap="round" />
+              <path d="m13 6 6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
         </article>

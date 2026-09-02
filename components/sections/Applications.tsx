@@ -221,13 +221,10 @@ const applications = Object.entries(applicationsData).map(([id, app]) => ({
   description: app.desc,
   image: app.image,
   subtopic: app.subtopic,
-  // Footer bullet list — using subtopic titles. Swap for something else if needed.
   items: app.subtopic.map((s) => s.title),
 }));
 
 type App = (typeof applications)[number];
-
-const MOBILE_TAB_COUNT = 4;
 
 export default function Applications() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -236,17 +233,9 @@ export default function Applications() {
   // While set, the base layer shows the old app and the wipe layer shows the new one.
   const [prevApp, setPrevApp] = useState<App | null>(null);
 
-  // First index of the 4-tab mobile window over the 7-item array.
-  const [mobileStartIndex, setMobileStartIndex] = useState(0);
-  const mobileEndIndex = Math.min(
-    mobileStartIndex + MOBILE_TAB_COUNT - 1,
-    applications.length - 1,
-  );
-
   const imageNextRef = useRef<HTMLDivElement>(null);
   const textCurrentRef = useRef<HTMLDivElement>(null);
   const textNextRef = useRef<HTMLDivElement>(null);
-  const tabsTrackRef = useRef<HTMLDivElement>(null);
 
   const active = applications[activeIndex];
   const currentApp = prevApp ?? active;
@@ -257,11 +246,6 @@ export default function Applications() {
     if (nextIndex === -1 || nextIndex === activeIndex || isAnimating) {
       return;
     }
-
-    // Keep the mobile window pinned to the active tab, clamped to the
-    // array boundaries (window always contains the active tab, 4 wide).
-    const maxWindowStart = Math.max(0, applications.length - MOBILE_TAB_COUNT);
-    setMobileStartIndex(Math.min(Math.max(nextIndex, 0), maxWindowStart));
 
     const imageNext = imageNextRef.current;
     const currentText = textCurrentRef.current;
@@ -343,7 +327,7 @@ export default function Applications() {
   return (
     <section
       id="applications"
-      className="relative w-full min-h-screen bg-[url('/images/site-bg/bg2.png')] bg-cover bg-center bg-no-repeat overflow-hidden h-screen  px-5 py-24 text-white"
+      className="relative w-full min-h-screen bg-[url('/images/site-bg/bg2.png')] bg-cover bg-center bg-no-repeat px-5 py-24 text-white md:h-screen md:overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         <TopographicBackground />
@@ -386,17 +370,20 @@ export default function Applications() {
           <TabsList
             variant="line"
             className="
-      w-full
-      justify-start
-      gap-1
-
-      rounded-md
-      border
-      border-[#2E7657]/25
-      bg-[#0B2922]
-
-
-    "
+              flex
+              w-full
+              flex-nowrap
+              justify-start
+              gap-1
+              overflow-x-auto
+              rounded-md
+              border
+              border-[#2E7657]/25
+              backdrop-blur-2xl
+              [-ms-overflow-style:none]
+              [scrollbar-width:none]
+              [&::-webkit-scrollbar]:hidden
+            "
           >
             {applications.map((app) => (
               <TabsTrigger
@@ -404,32 +391,31 @@ export default function Applications() {
                 value={app.id}
                 disabled={isAnimating}
                 className="
-          relative
-          shrink-0
-          rounded-md
-          border
-          h-full
-          border-transparent
-          bg-transparent
-          px-6
-          py-4
-          text-xs
-          font-semibold
-          uppercase
-          tracking-[0.16em]
-          text-white/75
-          shadow-none
-          transition-all
-          duration-300
-
-          hover:bg-[#123C2B]
-          hover:text-white
-
-          data-active:border-[#2E7657]/60
-          data-active:bg-[#235738]
-          data-active:text-white
-          data-active:shadow-none
-        "
+                  relative
+                  shrink-0
+                  whitespace-nowrap
+                  rounded-md
+                  border
+                  h-full
+                  border-transparent
+                  bg-transparent
+                  px-6
+                  py-4
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-[0.16em]
+                  text-white/75
+                  shadow-none
+                  transition-all
+                  duration-300
+                  hover:bg-[#123C2B]
+                  hover:text-white
+                  data-active:border-[#2E7657]/60
+                  data-active:bg-[#235738]
+                  data-active:text-white
+                  data-active:shadow-none
+                "
               >
                 {app.shortLabel}
               </TabsTrigger>
@@ -440,21 +426,19 @@ export default function Applications() {
         {/* APPLICATION DISPLAY */}
         <div
           className="
-    grid
-    overflow-hidden
-    rounded-md
-    border
-    border-[#2E7657]/25
-    bg-gradient-to-br
-    from-[#061C19]
-    via-[#0B2922]
-    to-[#123C2B]
-    md:grid-cols-2
-  "
+            grid
+            overflow-hidden
+            rounded-md
+            border
+            border-[#2E7657]/25
+            bg-gradient-to-br
+            from-[#061C19]
+            via-[#0B2922]
+            to-[#123C2B]
+            md:grid-cols-2
+          "
         >
-          {/* IMAGE */}
-          {/* IMAGE */}
-          <div className="relative min-h-[400px] md:min-h-[560px]">
+          <div className="relative min-h-[300px] sm:min-h-[400px] md:min-h-[560px]">
             <Image
               key={`base-${currentApp.id}`}
               src={currentApp.image}
@@ -482,12 +466,10 @@ export default function Applications() {
                 className="object-cover"
               />
             </div>
-
-
           </div>
 
           {/* CONTENT */}
-          <div className="relative flex min-h-[400px] flex-col justify-between overflow-hidden p-7 sm:p-10 md:min-h-[560px] md:p-12">
+          <div className="relative flex min-h-[520px] flex-col justify-between overflow-hidden p-7 sm:min-h-[560px] sm:p-10 md:min-h-[560px] md:p-12">
             {/* Current */}
             <div
               ref={textCurrentRef}
