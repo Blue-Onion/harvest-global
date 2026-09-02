@@ -103,7 +103,7 @@ const TeamCard = ({
                 aria-label={`${name}'s LinkedIn`}
               >
                 <Image
-                  src="/svg/linkedin.svg"
+                  src="/svg/linkedIn.svg"
                   alt="LinkedIn"
                   width={24}
                   height={24}
