@@ -290,11 +290,11 @@ function Navbar() {
 
     border border-black/10
 
-    bg-[#F7FAF8]/85
+
 
     px-4
 
-    text-[#173B32]
+
 
     shadow-[0_8px_30px_rgba(18,60,43,0.06)]
 

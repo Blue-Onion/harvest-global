@@ -393,7 +393,7 @@ export default function Applications() {
       rounded-md
       border
       border-[#2E7657]/25
-      bg-[#0B2922]
+      backdrop-blur-2xl
 
 
     "
@@ -452,8 +452,7 @@ export default function Applications() {
     md:grid-cols-2
   "
         >
-          {/* IMAGE */}
-          {/* IMAGE */}
+        
           <div className="relative min-h-[400px] md:min-h-[560px]">
             <Image
               key={`base-${currentApp.id}`}
