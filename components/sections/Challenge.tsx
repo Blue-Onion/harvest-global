@@ -1,96 +1,71 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
+import {
+  Layers3,
+  BrainCircuit,
+  Server,
+  ShieldCheck,
+} from "lucide-react";
 
 import Reveal from "@/components/ui/reveal/Reveal";
-import TopographicBackground from "../ui/Topography";
-
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const challenges = [
   {
     title: "Fragmented Earth Data",
-    description:
-      "Satellite, weather, ground and geospatial datasets remain disconnected.",
-    tag: "DATA",
-    image: "/images/challenges/01.jpg",
+    icon: Layers3,
+    desc: "Satellite, weather, ground and geospatial datasets remain disconnected.",
   },
   {
     title: "Limited Predictive Intelligence",
-    description:
-      "Observation often stops at monitoring, leaving critical decisions reactive.",
-    tag: "INTELLIGENCE",
-    image: "/images/challenges/02.jpg",
+    icon: BrainCircuit,
+    desc: "Observation often stops at monitoring, leaving critical decisions reactive.",
   },
   {
     title: "Infrastructure Constraints",
-    description:
-      "Conventional cloud environments can create challenges around scale, latency, security and data governance.",
-    tag: "INFRASTRUCTURE",
-    image: "/images/challenges/03.jpg",
+    icon: Server,
+    desc: " Conventional cloud environments can create challenges around scale, latency, security and data governance.",
   },
   {
     title: "Data & Technology Sovereignty",
-    description:
-      "Critical Earth intelligence requires greater control over data, compute and AI capabilities.",
-    tag: "SOVEREIGNTY",
-    image: "/images/challenges/04.jpg",
+    icon: ShieldCheck,
+    desc: " Critical Earth intelligence requires greater control over data, compute and AI capabilities",
   },
 ];
 
 const Challenge = () => {
-  const autoplay = React.useRef(
-    Autoplay({
-      delay: 3500,
-      stopOnInteraction: false,
-      stopOnMouseEnter: true,
-    }),
-  );
-
   return (
     <section
       id="challenge"
       className="
-        relative h-screen w-full overflow-hidden
-
-        px-5 py-26 
-        text-white
-        md:px-8
+        relative min-h-screen w-full overflow-hidden
+        px-5 py-24 text-white
+        md:px-8 md:py-28
       "
     >
-      {/* Background image */}
+      {/* Background */}
       <div
         className="
           pointer-events-none absolute inset-0
           bg-[url('/images/site-bg/bg6.png')]
           bg-cover bg-center
-
         "
       />
 
-      {/* Topographic background */}
+      {/* Overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-[#031812]/40" />
 
-      <div className="relative z-10 mx-auto container">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         <Reveal variant="group" duration={1}>
-          {/* Header */}
-          <div className="flex flex-col justify-between gap-10 lg:flex-row">
-            <div className="max-w-4xl">
-              {/* Eyebrow */}
 
+          {/* Header */}
+          <div className="mb-14 flex flex-col justify-between gap-10 lg:flex-row">
+            <div className="max-w-4xl">
               <h2
                 className="
                   text-4xl font-bold tracking-tight
                   text-[#E7F1EB]
-                  md:text-6xl
-                  lg:text-7xl
+                  md:text-6xl lg:text-7xl
                 "
               >
                 Challenges
@@ -114,16 +89,6 @@ const Challenge = () => {
             {/* Right heading */}
             <div className="hidden lg:block">
               <div className="border-r border-[#2E7657]/60 pr-6 text-right">
-                <span
-                  className="
-                    font-mono text-[10px]
-                    uppercase tracking-[0.25em]
-                    text-[#E46A2A]
-                  "
-                >
-                  Earth Intelligence
-                </span>
-
                 <div
                   className="
                     mt-4 text-lg font-semibold
@@ -134,133 +99,129 @@ const Challenge = () => {
                 >
                   <span className="block">Real Insights</span>
                   <span className="block">Real Impact</span>
-                  <span className="block text-[#E46A2A]">Across Sectors</span>
+                  <span className="block text-[#E46A2A]">
+                    Across Sectors
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Carousel */}
-          <div className="relative mt-12">
-            {/* Challenge Cards */}
-            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {challenges.map((challenge) => (
+          {/* Compact Challenges */}
+          <div
+            className="
+              relative mx-auto max-w-4xl
+              overflow-hidden
+              rounded-md
+              border border-[#E7F1EB]/15
+              bg-linear-to-b from-[#08291E]/50 to-[#08291E]/70
+              backdrop-blur-sm
+            "
+          >
+            {/* Connector */}
+            <div
+              className="
+                absolute left-[52px] top-8 bottom-8
+                hidden w-px
+                bg-gradient-to-b
+                from-transparent
+                via-[#8BEA55]/40
+                to-transparent
+                md:block
+              "
+            />
+
+            {challenges.map((challenge) => {
+              const Icon = challenge.icon;
+
+              return (
                 <article
                   key={challenge.title}
                   className="
-        group relative
-        flex h-[430px]
-        flex-col
-        overflow-hidden
-        rounded-md
-        border border-[#E7F1EB]/10
-        bg-[#123C2B]/80
-        backdrop-blur-sm
-        transition-all duration-500
-        hover:-translate-y-1
-        hover:border-[#E46A2A]/50
-      "
+                    group relative
+                    flex h-[92px]
+                    items-center
+                    border-b border-[#E7F1EB]/10
+                    px-5
+                    transition-colors duration-300
+                    last:border-b-0
+                    hover:bg-[#123C2B]/40
+                    md:h-[100px]
+                    md:px-6
+                  "
                 >
-                  {/* Image */}
-                  <div className="relative h-[190px] shrink-0 overflow-hidden">
-                    <Image
-                      src={challenge.image}
-                      alt={challenge.title}
-                      fill
-                      className="
-            object-cover
-            grayscale
-            opacity-70
-            transition-all duration-700
-            group-hover:scale-105
-            group-hover:grayscale-0
-            group-hover:opacity-90
-          "
-                    />
-
-                    {/* Image overlay */}
-                    <div
-                      className="
-            absolute inset-0
-            bg-gradient-to-t
-            from-[#123C2B]
-            via-[#123C2B]/20
-            to-transparent
-          "
-                    />
-
-                    {/* Tag */}
-                    <div className="absolute left-5 top-5">
-                      <span
-                        className="
-              rounded-full
-              border border-white/15
-              bg-[#123C2B]/60
-              px-3 py-1
-              font-mono text-[9px]
-              uppercase
-              tracking-[0.2em]
-              text-[#E7F1EB]/80
-              backdrop-blur-md
-            "
-                      >
-                        {challenge.tag}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-1 flex-col p-6">
-                    {/* Accent */}
-                    <span
-                      className="
-            mb-5
-            h-[2px] w-8
-            bg-[#E46A2A]
-            transition-all duration-500
-            group-hover:w-14
-          "
-                    />
-
-                    <h3
-                      className="
-            text-xl font-semibold
-            leading-tight
-            tracking-tight
-            text-[#E7F1EB]
-            md:text-2xl
-          "
-                    >
-                      {challenge.title}
-                    </h3>
-
-                    <p
-                      className="
-            mt-4
-            text-sm leading-relaxed
-            text-[#E7F1EB]/60
-          "
-                    >
-                      {challenge.description}
-                    </p>
-
-             
-                  </div>
-
-                  {/* Bottom hover line */}
+                  {/* Icon */}
                   <div
                     className="
-          absolute bottom-0 left-0
-          h-[2px] w-0
-          bg-[#E46A2A]
-          transition-all duration-500
-          group-hover:w-full
-        "
+                      relative z-10
+                      flex h-12 w-12 shrink-0
+                      items-center justify-center
+                      rounded-full
+                      border border-[#8BEA55]/40
+                      bg-[#08291E]
+                      transition-all duration-300
+                      group-hover:border-[#8BEA55]
+                      group-hover:shadow-[0_0_24px_rgba(139,234,85,0.15)]
+                    "
+                  >
+                    <Icon
+                      strokeWidth={1.5}
+                      className="
+                        h-5 w-5
+                        text-[#8BEA55]
+                        transition-transform duration-300
+                        group-hover:scale-110
+                      "
+                    />
+                  </div>
+
+                  {/* Connector dot */}
+                  <div
+                    className="
+                      absolute left-[48px]
+                      hidden h-2 w-2
+                      rounded-full
+                      bg-[#8BEA55]
+                      shadow-[0_0_12px_rgba(139,234,85,0.7)]
+                      md:block
+                    "
+                  />
+
+                  {/* Title */}
+                  <div className="flex flex-col  gap-6 ml-5">
+                  <h3
+                    className="
+
+ font-bold
+                      tracking-tight
+                      text-[#E7F1EB]
+                      text-2xl
+                      transition-colors duration-300
+                      group-hover:text-white
+               
+                    "
+                  >
+                    {challenge.title}
+                  </h3>
+
+                 <p className="font-light ">
+                  {challenge.desc}
+                 </p>
+                 </div>
+                  <div
+                    className="
+                      absolute bottom-0 left-0
+                      h-px w-0
+                      bg-[#8BEA55]
+                      transition-all duration-500
+                      group-hover:w-full
+                    "
                   />
                 </article>
-              ))}
-            </div>
+              );
+            })}
           </div>
+
         </Reveal>
       </div>
     </section>
