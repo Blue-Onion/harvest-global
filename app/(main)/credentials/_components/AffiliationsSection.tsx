@@ -14,7 +14,7 @@ export default function AffiliationsSection() {
 
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
+      <div className="relative z-10 container mx-auto">
         <SectionHeader
           eyebrow={sections.affiliations.eyebrow}
           title={sections.affiliations.title}
@@ -42,11 +42,9 @@ export default function AffiliationsSection() {
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(min-width: 640px) 50vw, 100vw"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/30 to-[#123C2B]/20" />
-                  <div className="absolute inset-0 bg-[#B94D1F]/10 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-0" />
 
                   <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 p-5">
                     <span className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/15 bg-[#123C2B]/40 text-[#E46A2A]/90 backdrop-blur-sm">

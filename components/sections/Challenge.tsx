@@ -188,7 +188,7 @@ const Challenge = () => {
                   />
 
                   {/* Title */}
-                  <div className="flex flex-col  gap-6 ml-5">
+                  <div className="flex flex-col  gap-1 ml-5">
                   <h3
                     className="
 

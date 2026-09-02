@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 interface TeamMember {
   id: string;
@@ -16,7 +17,7 @@ interface TeamCardProps {
 }
 
 const TeamCard = ({
-  member: { name, role, focus, image },
+  member: { name, role, focus, image, linkedin, mail },
 }: TeamCardProps) => {
   return (
     <div
@@ -37,9 +38,21 @@ const TeamCard = ({
       "
     >
       {/* Orange accent */}
-      <div className="absolute left-8 top-8 h-[3px] w-[60px] rounded-full bg-[#e78332] md:left-10 md:top-8" />
+      <div
+        className="
+          absolute
+          left-8
+          top-8
+          h-[3px]
+          w-[60px]
+          rounded-full
+          bg-[#e78332]
+          md:left-10
+          md:top-8
+        "
+      />
 
-      <div className="flex items-center gap-8 pt-5 md:gap-3">
+      <div className="flex items-center gap-8 pt-5 md:gap-6">
         {/* Image */}
         <div
           className="
@@ -56,48 +69,67 @@ const TeamCard = ({
             src={image}
             alt={name}
             fill
-            sizes="230px"
+            sizes="130px"
             className="object-cover"
           />
         </div>
 
         {/* Content */}
         <div className="flex-1">
-          <h2
-            className="
-
-              font-semibold
-              leading-tight
-              tracking-[-0.02em]
-              text-[#171717]
-            "
-          >
+          <h2 className="font-semibold leading-tight tracking-[-0.02em] text-[#171717]">
             {name}
           </h2>
 
-          <p
-            className="
-              mt-3
-              text-[21px]
-              font-medium
-              leading-tight
-              text-[#4c8b68]
-            "
-          >
+          <p className="mt-3 text-[21px] font-medium leading-tight text-[#4c8b68]">
             {role}
           </p>
 
-          <p
-            className="
-              mt-7
-              max-w-[390px]
-              text-[20px]
-              leading-[1.7]
-              text-[#626262]
-            "
-          >
+          <p className="mt-7 max-w-[390px] text-[20px] leading-[1.7] text-[#626262]">
             {focus}
           </p>
+
+          {/* Social / Contact Icons */}
+          <div className="mt-6  w-full flex items-center justify-end gap-4">
+            {linkedin && (
+              <Link
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  transition-opacity
+                  duration-200
+                  hover:opacity-60
+                "
+                aria-label={`${name}'s LinkedIn`}
+              >
+                <Image
+                  src="/svg/linkedin.svg"
+                  alt="LinkedIn"
+                  width={24}
+                  height={24}
+                />
+              </Link>
+            )}
+
+            {mail && (
+              <Link
+                href={`mailto:${mail}`}
+                className="
+                  transition-opacity
+                  duration-200
+                  hover:opacity-60
+                "
+                aria-label={`Email ${name}`}
+              >
+                <Image
+                  src="/svg/mail.svg"
+                  alt="Email"
+                  width={24}
+                  height={24}
+                />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

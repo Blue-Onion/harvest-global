@@ -4,10 +4,11 @@ import Link from "next/link";
 export default function Footer() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "Challenge", href: "/#challenge" },
+    { title: "About", href: "/about-us" },
     { title: "Technology", href: "/#technology" },
-    { title: "Unified Geo-Stack", href: "/#unified-geo-stack" },
-    { title: "Applications", href: "/#applications" },
+    { title: "Media", href: "/media" },
+    { title: "Insights", href: "/insights" },
+    { title: "Connect", href: "/connect" },
   ];
 
   return (
@@ -39,8 +40,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-6 max-w-xs text-sm leading-6 text-[#235738]/65">
-              Building strategic partnerships with leading research institutions
-              and technology partners.
+            Building a Sovereign Intelligence Layer for a Resilient and Sustainable Future
             </p>
 
             {/* Social links */}
@@ -154,8 +154,7 @@ export default function Footer() {
                 </p>
 
                 <p className="max-w-xs text-sm leading-6 text-[#123C2B]/70">
-                  Gurgaon,
-                  <br />
+                  NASSCOM/HARTRON, Udyog Vihar Phase 1, Gurgaon,
                   Haryana, India
                 </p>
               </div>
