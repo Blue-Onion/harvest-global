@@ -23,9 +23,7 @@ export default function AccordionGallery({
 
   // Mobile = phones only
   // Tablet + desktop = horizontal accordion
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== "undefined" && window.innerWidth < 1024
-  );
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
