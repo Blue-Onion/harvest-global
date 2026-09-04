@@ -50,9 +50,7 @@ export default function Footer() {
           Harvest Global
         </span>
 
-        <span className="mt-0.5 block text-sm text-[#235738]/55">
-          Foundational Intelligence
-        </span>
+     
       </div>
     </Link>
 
@@ -80,18 +78,7 @@ export default function Footer() {
       </a>
 
       {/* Phone */}
-      <a
-        href="tel:+911234567890"
-        className="flex items-center gap-4 text-[15px] text-[#123C2B]/75 transition-colors hover:text-[#E46A2A]"
-      >
-        <Phone
-          size={19}
-          strokeWidth={1.5}
-          className="shrink-0 text-[#E46A2A]"
-        />
-
-        <span>+91 12345 67890</span>
-      </a>
+    
 
       {/* Location */}
       <div className="flex items-start gap-4 text-[15px] leading-6 text-[#123C2B]/75">

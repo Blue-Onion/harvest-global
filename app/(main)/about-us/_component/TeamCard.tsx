@@ -113,16 +113,17 @@ const TeamCard = ({
               <Link
                 href={`mailto:${mail}`}
                 className="
-                mt-1
+mb-0.2
 
                 "
                 aria-label={`Email ${name}`}
               >
                 <Image
-                  src="/svg/gmailColour.svg"
+                  src="/svg/mailcolour.svg"
                   alt="Email"
-                  width={24}
-                  height={24}
+                  width={36}
+                  height={36}
+
                 />
               </Link>
             )}

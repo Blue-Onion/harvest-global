@@ -47,7 +47,7 @@ export default function RecognitionSection() {
   );
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
+    <section className="relative w-full overflow-hidden border-t py-20 text-white md:py-28">
       <div className="container mx-auto px-5 py-20">
         <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl md:text-7xl">
           Credentials and Recoginzation

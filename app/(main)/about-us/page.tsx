@@ -97,6 +97,7 @@ export default function TeamPage() {
           h-[400px]
           w-[400px]
           rounded-full
+
           bg-[#E46A2A]/5
           blur-[140px]
         "
@@ -134,7 +135,8 @@ export default function TeamPage() {
               leading-[0.95]
               tracking-tight
               text-black
-text-4xl
+text-3xl
+
               lg:text-7xl
             "
           >
@@ -195,9 +197,9 @@ text-4xl
             the complete lifecycle:
           </p>
 
-{/* Lifecycle */}
+
 <div className="mt-8 w-full lg:mt-10">
-  {/* Mobile + Tablet */}
+
   <div className="mx-auto flex w-full max-w-[760px] flex-col lg:hidden">
     {lifecycle.map((item, index) => {
       const Icon = item.icon;
@@ -241,19 +243,6 @@ text-4xl
 
             {/* Text */}
             <div>
-              <p
-                className="
-                  text-[10px]
-                  font-medium
-                  uppercase
-                  tracking-[0.2em]
-                  text-black/45
-                  md:text-xs
-                "
-              >
-                Step {String(index + 1).padStart(2, "0")}
-              </p>
-
               <p
                 className="
                   mt-1
@@ -330,9 +319,7 @@ text-4xl
           </div>
 
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-black/45">
-              Step {String(index + 1).padStart(2, "0")}
-            </p>
+           
 
             <p className="mt-1 text-lg font-bold text-black">
               {item.title}
