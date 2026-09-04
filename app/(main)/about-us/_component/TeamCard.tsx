@@ -37,23 +37,7 @@ const TeamCard = ({
         md:py-11
       "
     >
-      {/* Orange accent */}
-      <div
-        className="
-          absolute
-          left-8
-          top-8
-          h-[3px]
-          w-[60px]
-          rounded-full
-          bg-[#e78332]
-          md:left-10
-          md:top-8
-        "
-      />
-
       <div className="flex items-center gap-4 pt-5 md:gap-6">
-        {/* Image */}
         <div
           className="
             relative
@@ -76,7 +60,7 @@ const TeamCard = ({
 
         {/* Content */}
         <div className="flex flex-col gap-3 w-full">
-          <h2 className="font-semibold leading-tight tracking-[-0.02em] text-[#171717]">
+          <h2 className="font-bold leading-tight text-[21px] tracking-[-0.02em] text-[#171717]">
             {name}
           </h2>
 

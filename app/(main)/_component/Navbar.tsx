@@ -242,7 +242,7 @@ function Navbar() {
       <header
         ref={navRef}
         className={cn(
-          "inset-x-0 top-4   px-5 container mx-auto absolute z-50 py-4",
+          "inset-x-0 top-4 px-5 container mx-auto absolute z-50 py-4",
           pathname === "/about-us" ? "text-black" : "text-white"
         )}
       >
@@ -281,15 +281,15 @@ function Navbar() {
             >
               <span
                 ref={lineTopRef}
-                className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" ? "bg-black" : "bg-white")}
+                className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
               />
               <span
                 ref={lineMiddleRef}
-                className={cn("w-4 h-0.5 rounded-md origin-center", pathname === "/about-us" ? "bg-black" : "bg-white")}
+                className={cn("w-4 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
               />
               <span
                 ref={lineBottomRef}
-                className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" ? "bg-black" : "bg-white")}
+                className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
               />
             </button>
           </div>

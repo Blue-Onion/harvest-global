@@ -2,13 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 function Navbar() {
   const navLinks = [
@@ -131,34 +130,6 @@ function Navbar() {
         { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
       );
 
-      // Backdrop blur + tint once the user starts scrolling.
-      const nav = navRef.current;
-      if (nav) {
-        gsap.set(nav, {
-          "--nav-blur": "0px",
-          backgroundColor: "rgba(0,0,0,0)",
-          borderColor: "rgba(255,255,255,0)",
-        });
-
-        ScrollTrigger.create({
-          start: 80,
-          end: "max",
-          onToggle: (self) => {
-            gsap.to(nav, {
-              "--nav-blur": self.isActive ? "12px" : "0px",
-              backgroundColor: self.isActive
-                ? "rgba(8,8,8,0.55)"
-                : "rgba(0,0,0,0)",
-              borderColor: self.isActive
-                ? "rgba(255,255,255,0.1)"
-                : "rgba(255,255,255,0)",
-              duration: 0.35,
-              ease: "power2.out",
-            });
-          },
-        });
-      }
-
       if (marqueeRef.current) {
         marqueeTween.current = gsap.to(marqueeRef.current, {
           xPercent: -50,
@@ -267,108 +238,117 @@ function Navbar() {
 
   return (
     <>
-     <header
-
+    <header
   ref={navRef}
-
   style={{
-
-    backdropFilter: "blur(var(--nav-blur, 14px))",
-
-    WebkitBackdropFilter: "blur(var(--nav-blur, 14px))",
-
+    backdropFilter: "blur(14px)",
+    WebkitBackdropFilter: "blur(14px)",
   }}
-
   className="
-
     fixed inset-x-0 top-4 z-50
-
-    mx-auto container
-
     rounded-md
-
-    border border-black/10
-
-
-
+    container mx-auto
+    bg-black/60
+    border border-white/10
     px-5
-
-
-
-    shadow-[0_8px_30px_rgba(18,60,43,0.06)]
-
+    shadow-[0_12px_40px_rgba(0,0,0,0.55)]
   "
-
 >
-        <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
-          <div className="flex items-center gap-6 font-bold text-white">
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-6">
-              {navLinks.map((link, i) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="group relative py-1 transition-opacity hover:opacity-90"
-                  onMouseEnter={() => handleEnter(i)}
-                  onMouseLeave={() => handleLeave(i)}
-                >
-                  {link.title}
-                  <span
-                    ref={(el) => {
-                      underlineRefs.current[i] = el;
-                    }}
-                    style={{ transform: pathname === link.href ? "scaleX(1)" : "scaleX(0)" }}
-                    className="absolute bottom-0 left-0 h-px w-full origin-left bg-white"
-                  />
-                </Link>
-              ))}
-            </div>
+  <nav className="flex md:grid w-full md:grid-cols-3 items-center justify-between min-h-[64px]">
 
-            {/* Hamburger Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close Menu" : "Open Menu"}
-              className="flex md:hidden flex-col justify-center items-start w-8 h-8 gap-1.5 focus:outline-none z-50 cursor-pointer pointer-events-auto"
-            >
-              <span
-                ref={lineTopRef}
-                className="w-6 h-0.5 bg-white rounded-md origin-center"
-              />
-              <span
-                ref={lineMiddleRef}
-                className="w-4 h-0.5 bg-white rounded-md origin-center"
-              />
-              <span
-                ref={lineBottomRef}
-                className="w-6 h-0.5 bg-white rounded-md origin-center"
-              />
-            </button>
-          </div>
+    {/* LEFT — Logo */}
+    <div className="flex items-center justify-start">
+      <Link href="/">
+        <img
+          data-title="harvest-nav"
+          src="/svg/logo.svg"
+          alt="Harvest Global"
+          className="w-36 md:w-56"
+        />
+      </Link>
+    </div>
 
-          <div className="flex items-center justify-center">
-            <img
-              data-title="harvest-nav"
-              src="/svg/logo.svg"
-              alt="Harvest Global"
-              className="w-44 md:w-56"
-            />
-          </div>
+    {/* CENTER — Navigation */}
+    <div className="hidden md:flex items-center justify-center gap-6 font-bold text-white">
+      {navLinks.map((link, i) => (
+        <Link
+          key={link.title}
+          href={link.href}
+          className="group relative py-1 transition-opacity hover:opacity-90"
+          onMouseEnter={() => handleEnter(i)}
+          onMouseLeave={() => handleLeave(i)}
+        >
+          {link.title}
 
-          <div className="flex items-center justify-end gap-6">
-       
+          <span
+            ref={(el) => {
+              underlineRefs.current[i] = el;
+            }}
+            style={{
+              transform:
+                pathname === link.href ? "scaleX(1)" : "scaleX(0)",
+            }}
+            className="
+              absolute bottom-0 left-0
+              h-px w-full
+              origin-left
+              bg-white
+            "
+          />
+        </Link>
+      ))}
+    </div>
 
-            <Link href="/connect" className="hidden md:block no-underline">
-              <div
-                ref={buttonRef}
-                className="button button--stroke"
-              >
-                <span className="button__label">Connect</span>
-                <div ref={flairRef} className="button__flair"></div>
-              </div>
-            </Link>
-          </div>
-        </nav>
-      </header>
+    {/* RIGHT — Connect / Hamburger */}
+    <div className="flex items-center justify-end">
+
+      {/* Desktop Connect */}
+      <Link href="/connect" className="hidden md:block no-underline">
+        <div
+          ref={buttonRef}
+          className="button button--stroke"
+        >
+          <span className="button__label">Connect</span>
+          <div
+            ref={flairRef}
+            className="button__flair"
+          />
+        </div>
+      </Link>
+
+      {/* Mobile Hamburger */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close Menu" : "Open Menu"}
+        className="
+          flex md:hidden
+          flex-col justify-center items-end
+          w-8 h-8 gap-1.5
+          focus:outline-none
+          z-50
+          cursor-pointer
+        "
+      >
+        <span
+          ref={lineTopRef}
+          className="w-6 h-0.5 bg-white rounded-md origin-center"
+        />
+
+        <span
+          ref={lineMiddleRef}
+          className="w-4 h-0.5 bg-white rounded-md origin-center"
+        />
+
+        <span
+          ref={lineBottomRef}
+          className="w-6 h-0.5 bg-white rounded-md origin-center"
+        />
+      </button>
+
+    </div>
+
+  </nav>
+</header>
 
       {/* Mobile Menu Overlay */}
       <div
