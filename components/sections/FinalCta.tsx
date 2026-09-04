@@ -88,7 +88,7 @@ function FinalCta() {
 
           <h3
             data-reveal="heading"
-            className="max-w-3xl text-2xl font-bold leading-[0.9] tracking-tight text-[#FFF6EF] sm:text-3xl md:text-4xl lg:text-6xl"
+            className="max-w-3xl text-2xl font-bold leading-[1.5] tracking-tight text-[#FFF6EF] sm:text-3xl md:text-4xl lg:text-6xl"
           >
             {title}
           </h3>
