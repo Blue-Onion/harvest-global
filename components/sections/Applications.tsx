@@ -1,5 +1,6 @@
 "use client";
 
+import ApplicationExpanded from "../ui/ApplicationExpanded";
 import ApplicationTabs from "../ui/ApplicationTabs";
 import TopographicBackground from "../ui/Topography";
 
@@ -262,7 +263,7 @@ export default function Applications() {
         </div>
         <div className="lg:hidden">
 
-        <ApplicationTabs applications={applications} />
+        <ApplicationExpanded applications={applications}  />
         </div>
       </div>
     </section>

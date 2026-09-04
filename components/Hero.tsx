@@ -111,21 +111,34 @@ const Hero = () => {
       id="hero"
       className="relative isolate h-screen w mx-auto containerflex-col"
     >
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
+<div className="absolute inset-0 -z-10 overflow-hidden">
+  <video
+    ref={videoRef}
+    autoPlay
+    muted
+    playsInline
+    className="h-full w-full scale-[1.08] object-cover object-center md:object-left"
+  >
+    <source src="/videos/earth-hori.mp4" type="video/mp4" />
+  </video>
 
-          playsInline
-          className="h-full w-full ro scale-[1.08] object-cover"
-        >
-          <source
-            src="/videos/earth-hori.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div>
+  {/* Mobile Earth glow — from left edge */}
+  <div
+    className="
+      pointer-events-none
+      absolute
+      -left-[90%]
+      top-1/2
+      h-[85vh]
+      w-[85vh]
+      -translate-y-1/2
+      rounded-full
+      bg-[radial-gradient(circle,rgba(30,130,255,0.45)_0%,rgba(20,90,180,0.2)_35%,transparent_70%)]
+      blur-2xl
+      md:hidden
+    "
+  />
+</div>
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <img
