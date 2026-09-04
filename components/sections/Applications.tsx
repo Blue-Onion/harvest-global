@@ -256,9 +256,14 @@ export default function Applications() {
             </div>
           </div>
         </div>
+        <div className="hidden lg:block">
 
-        {/* TABS + DISPLAY */}
         <ApplicationTabs applications={applications} />
+        </div>
+        <div className="lg:hidden">
+
+        <ApplicationTabs applications={applications} />
+        </div>
       </div>
     </section>
   );
