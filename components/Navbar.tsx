@@ -291,7 +291,7 @@ function Navbar() {
 
 
 
-    px-4
+    px-5
 
 
 

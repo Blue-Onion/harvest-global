@@ -120,7 +120,7 @@ export default function UnifiedGeoStack() {
         lg:py-28
       "
     >
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-0">
+      <div className="container relative z-10 mx-auto px-5">
 
         {/* =========================================
             HEADER

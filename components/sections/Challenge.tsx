@@ -34,9 +34,9 @@ const Challenge = () => {
       id="challenge"
       className="
         relative min-h-screen w-full overflow-hidden
-        px-4 py-20 text-white
-        sm:px-6 sm:py-24
-        md:px-8 md:py-28
+        px-5 py-20 text-white
+        sm:py-24
+        md:py-28
       "
     >
       {/* Background */}

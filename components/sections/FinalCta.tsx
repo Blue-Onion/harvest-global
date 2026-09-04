@@ -44,7 +44,7 @@ function FinalCta() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden rounded-md bg-[#FBEBDF] px-5 py-20 text-[#173B32] sm:px-8 md:px-10">
+    <section className="relative w-full overflow-hidden rounded-md bg-[#FBEBDF] px-5 py-20 text-[#173B32]">
       <div
         className="
           relative

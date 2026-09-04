@@ -3,7 +3,14 @@
 import React from "react";
 import Reveal from "@/components/ui/reveal/Reveal";
 import TeamCard from "./_component/TeamCard";
-
+import {
+  FlaskConical,
+  Layers3,
+  Rocket,
+  BriefcaseBusiness,
+  ArrowRight,
+  ArrowDown,
+} from "lucide-react";
 const Team = [
   {
     id: "team-1",
@@ -12,7 +19,7 @@ const Team = [
     focus: "Technology, digital transformation & strategic execution",
     image: "/images/team/PreetiChaudhary.png",
     linkedin: "https://www.linkedin.com/in/chaudhary-preeti-160738199/",
-    mail: "https://www.linkedin.com/in/ritika-verma-2329631ab/",
+    mail: "preeti.chaudhary@hgsystems.in",
   },
   {
     id: "team-2",
@@ -22,35 +29,44 @@ const Team = [
     image: "/images/team/PawanKumar.png",
     linkedin:
       "https://www.linkedin.com/in/air-vice-marshal-pawan-kumar-retd-408577249/",
-    mail: "https://www.linkedin.com/in/ritika-verma-2329631ab/",
+    mail: "pawan.kumar@hgsystems.in",
   },
   {
     id: "team-3",
     name: "Ritika Verma",
     role: "Program Management Office",
     focus: "Strategy, partnerships & business growth",
-    image: "/images/team/ritikaVerma.png",
+    image: "/images/team/ritika.jpeg",
     linkedin: "https://www.linkedin.com/in/ritika-verma-2329631ab/",
-    mail: "https://www.linkedin.com/in/ritika-verma-2329631ab/",
+    mail: "ritika.verma@hgsystems.in",
+  },
+  {
+    id: "team-4",
+    name: "Abhishek Yadav",
+    role: "Finance Associate",
+    focus: "Valuation, Research, and Financial Analysis",
+    image: "/images/team/abhishek.png",
+    linkedin: "https://www.linkedin.com/in/abhishek-yadav-193717283/",
+    mail: "abhishek.yadav@hgsystems.in",
   },
 ];
 
-const icon = [
+const lifecycle = [
   {
     title: "Research",
-    icon: "",
+    icon: FlaskConical,
   },
   {
     title: "Platform",
-    icon: "",
+    icon: Layers3,
   },
   {
     title: "Deployment",
-    icon: "",
+    icon: Rocket,
   },
   {
     title: "Commercialisation",
-    icon: "",
+    icon: BriefcaseBusiness,
   },
 ];
 
@@ -86,7 +102,7 @@ export default function TeamPage() {
         "
       />
 
-      <div className="container relative z-10 mx-auto">
+      <div className="container relative z-10 mx-auto px-5">
         <Reveal variant="group" duration={1}>
           {/* Eyebrow */}
           <div className="flex items-center gap-3">
@@ -179,18 +195,169 @@ text-4xl
             the complete lifecycle:
           </p>
 
-          {/* Lifecycle */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-            {icon.map((item, index) => (
-              <React.Fragment key={item.title}>
-                <span className="font-medium text-black/80">{item.title}</span>
+{/* Lifecycle */}
+<div className="mt-8 w-full lg:mt-10">
+  {/* Mobile + Tablet */}
+  <div className="mx-auto flex w-full max-w-[760px] flex-col lg:hidden">
+    {lifecycle.map((item, index) => {
+      const Icon = item.icon;
 
-                {index < icon.length - 1 && (
-                  <span className="text-[#E46A2A]">→</span>
-                )}
-              </React.Fragment>
-            ))}
+      return (
+        <React.Fragment key={item.title}>
+          <div
+            className="
+              grid
+              grid-cols-[140px_1fr]
+              items-center
+              gap-6
+              md:grid-cols-[150px_1fr]
+              md:gap-7
+            "
+          >
+            {/* Icon */}
+            <div
+              className="
+                flex
+                h-16
+                w-16
+                shrink-0
+                items-center
+                justify-center
+                justify-self-center
+                rounded-2xl
+                border
+                border-[#E46A2A]/25
+                bg-[#E46A2A]/10
+                text-[#E46A2A]
+                md:h-[72px]
+                md:w-[72px]
+              "
+            >
+              <Icon
+                className="h-7 w-7 md:h-8 md:w-8"
+                strokeWidth={1.7}
+              />
+            </div>
+
+            {/* Text */}
+            <div>
+              <p
+                className="
+                  text-[10px]
+                  font-medium
+                  uppercase
+                  tracking-[0.2em]
+                  text-black/45
+                  md:text-xs
+                "
+              >
+                Step {String(index + 1).padStart(2, "0")}
+              </p>
+
+              <p
+                className="
+                  mt-1
+                  text-2xl
+                  font-bold
+                  leading-tight
+                  text-black
+                  md:text-3xl
+                "
+              >
+                {item.title}
+              </p>
+            </div>
           </div>
+
+          {index < lifecycle.length - 1 && (
+            <div
+              className="
+                flex
+                h-10
+                w-[140px]
+                items-center
+                justify-center
+                md:w-[150px]
+              "
+            >
+              <ArrowDown
+                className="h-6 w-6 text-[#E46A2A]"
+                strokeWidth={1.5}
+              />
+            </div>
+          )}
+        </React.Fragment>
+      );
+    })}
+  </div>
+
+  {/* Desktop */}
+  <div
+    className="
+      hidden
+      lg:grid
+      lg:grid-cols-4
+      lg:gap-8
+    "
+  >
+    {lifecycle.map((item, index) => {
+      const Icon = item.icon;
+
+      return (
+        <div
+          key={item.title}
+          className="relative flex items-center gap-4"
+        >
+          <div
+            className="
+              flex
+              h-16
+              w-16
+              shrink-0
+              items-center
+              justify-center
+              rounded-2xl
+              border
+              border-[#E46A2A]/25
+              bg-[#E46A2A]/10
+              text-[#E46A2A]
+            "
+          >
+            <Icon
+              className="h-7 w-7"
+              strokeWidth={1.7}
+            />
+          </div>
+
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-black/45">
+              Step {String(index + 1).padStart(2, "0")}
+            </p>
+
+            <p className="mt-1 text-lg font-bold text-black">
+              {item.title}
+            </p>
+          </div>
+
+          {index < lifecycle.length - 1 && (
+            <ArrowRight
+              className="
+                absolute
+                -right-6
+                top-1/2
+                h-5
+                w-5
+                -translate-y-1/2
+                text-[#E46A2A]
+              "
+              strokeWidth={1.5}
+            />
+          )}
+        </div>
+      );
+    })}
+  </div>
+</div>
         </Reveal>
 
         {/* Team */}

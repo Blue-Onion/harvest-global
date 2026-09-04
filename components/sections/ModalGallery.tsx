@@ -61,7 +61,7 @@ export default function ModalGallery() {
       id="gallery"
       className="relative w-full border-t border-white/10 bg-black text-white"
     >
-      <div className="relative z-10 mx-auto max-w-6xl px-5 py-20 sm:px-8 md:px-10 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 py-20 md:py-28">
         <Reveal variant="group" className="max-w-3xl" duration={1}>
           <div className="flex items-center gap-3">
             <span className="inline-block h-1.5 w-1.5 rounded-md bg-orange-500" />

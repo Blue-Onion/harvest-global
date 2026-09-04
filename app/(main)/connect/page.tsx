@@ -19,7 +19,7 @@ const ConnectPage = () => {
 
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 container mx-auto mt-35 space-y-20 px-4 py-20">
+      <div className="relative z-10 container mx-auto mt-35 space-y-20 px-5 py-20">
         <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
           {/* LEFT */}
           <div className="relative z-10 flex flex-col justify-between text-white">

@@ -48,12 +48,12 @@ export default function RecognitionSection() {
 
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
-      <div className="container mx-auto py-20">
+      <div className="container mx-auto px-5 py-20">
         <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl md:text-7xl">
           Credentials and Recoginzation
         </h1>
       </div>
-      <div ref={scroller} className="relative z-10 container mx-auto">
+      <div ref={scroller} className="relative z-10 container mx-auto px-5">
         <div className="recognition-head">
           <SectionHeader
             eyebrow={sections.recognition.eyebrow}
