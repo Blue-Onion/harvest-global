@@ -7,6 +7,7 @@ const Vision = () => {
       className="
         relative min-h-screen w-full overflow-hidden
         bg-[#020914]
+
         bg-[url('/images/site-bg/bg-10.png')]
         bg-cover bg-center bg-no-repeat
       "
@@ -18,77 +19,41 @@ const Vision = () => {
       <div
         className="
           relative z-10 mx-auto flex min-h-screen w-full
-          max-w-[1600px] items-center
-          px-6 py-28
-          sm:px-10
-          md:px-16
-          lg:px-20
-          xl:px-24
+container items-center
+          px-5 py-28
         "
       >
         <div
           className="
             w-full 
             text-left
-     max-w-3xl
+
+   space-y-14
           "
         >
-          {/* Eyebrow */}
-          <div className="mb-7 flex items-center gap-4 sm:mb-9 sm:gap-5">
-            <p
-              className="
-                text-[10px] font-medium uppercase
-                tracking-[0.35em] text-white/60
-                sm:text-xs
-              "
-            >
-              Vision HG
-            </p>
-
-            <span className="h-px w-12 bg-[#4b8ff5] sm:w-14" />
-          </div>
-
-          {/* Heading */}
           <h2
             className="
-            text-2xl
-            lg:text-5xl
-        md:text-4xl
-        font-bold
+                text-4xl md:text-5xl  lg:text-7xl font-bold uppercase
+
+              "
+          >
+            Vision HG
+          </h2>
+          <p
+            className="
+            text-xl md:text-2xl  font-semibold
             "
           >
-            Real time
-
-
-            Earth and Weather
-
-
-            Intelligence{" "}
-            <span className="text-[#4b8ff5]">at scale</span>
-
-<br/>
-            <span className="text-white/70">
-              from core and edge with
-            </span>
-
-
-            <span className="text-white/70">
-              strategic investments in
-            </span>
-
-
-<br/>
-            <span className="text-[#d99a45]">
-              sovereign enterprise AI DCs
-            </span>
-
-            <span className="text-[#d99a45]">
-              and Ground Segment
-            </span>{" "}
-            <span className="text-[#d99a45]">
-              infrastructure.
-            </span>
-          </h2>
+            Real time Earth and Weather Intelligence{" "}
+            <span className="text-green-800">at scale</span>
+            <br />
+            <span className="text-white/70">from core and edge with</span>
+            <span className="text-white/70">strategic investments in</span>
+            <br />
+            <span className="text-[#d99a45]">sovereign enterprise AI DCs</span>
+            <span className="text-[#d99a45]">and Ground Segment</span>{" "}
+            <span className="text-[#d99a45]">infrastructure.</span>
+          </p>
 
           {/* Small divider */}
           <div className="my-7 h-px w-12 bg-[#35d6a1] sm:my-9 sm:w-14" />
@@ -96,19 +61,16 @@ const Vision = () => {
           {/* Description */}
           <p
             className="
-              max-w-[560px]
+max-w-4xl
               text-lg
               md:text-2xl
-              text-white/70
+
             "
           >
-            Harvest Global SSP Pvt Ltd (HG Systems) builds
-            enterprise-grade GeoAI infrastructure, foundation
-            models and sovereign AI environments for governments,
-            industries and research institutions.
+            Harvest Global SSP Pvt Ltd (HG Systems) builds enterprise-grade
+            GeoAI infrastructure, foundation models and sovereign AI
+            environments for governments, industries and research institutions.
           </p>
-
-
         </div>
       </div>
 
@@ -119,9 +81,7 @@ const Vision = () => {
           -translate-y-1/2
           lg:block
         "
-      >
-
-      </div>
+      ></div>
 
       {/* Bottom-right statement — desktop */}
       <div
@@ -129,9 +89,7 @@ const Vision = () => {
           absolute bottom-12 right-10 z-20
           hidden lg:block
         "
-      >
-
-      </div>
+      ></div>
     </section>
   );
 };

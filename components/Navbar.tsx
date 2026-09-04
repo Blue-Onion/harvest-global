@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 
 gsap.registerPlugin(useGSAP);
@@ -244,15 +245,12 @@ function Navbar() {
     backdropFilter: "blur(14px)",
     WebkitBackdropFilter: "blur(14px)",
   }}
-  className="
-    fixed inset-x-0 top-4 z-50
-    rounded-md
-    container mx-auto
-    bg-black/60
-    border border-white/10
-    px-5
-    shadow-[0_12px_40px_rgba(0,0,0,0.55)]
-  "
+  className={cn(
+    "fixed inset-x-0 top-4 z-50 rounded-md container mx-auto px-5",
+    pathname === "/about-us"
+      ? "bg-white/60 border border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
+      : "bg-black/60 border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.55)]"
+  )}
 >
   <nav className="flex md:grid w-full md:grid-cols-3 items-center justify-between min-h-[64px]">
 
@@ -269,7 +267,7 @@ function Navbar() {
     </div>
 
     {/* CENTER — Navigation */}
-    <div className="hidden md:flex items-center justify-center gap-6 font-bold text-white">
+    <div className={cn("hidden md:flex items-center justify-center gap-6 font-bold", pathname === "/about-us" ? "text-black" : "text-white")}>
       {navLinks.map((link, i) => (
         <Link
           key={link.title}
@@ -288,12 +286,10 @@ function Navbar() {
               transform:
                 pathname === link.href ? "scaleX(1)" : "scaleX(0)",
             }}
-            className="
-              absolute bottom-0 left-0
-              h-px w-full
-              origin-left
-              bg-white
-            "
+            className={cn(
+              "absolute bottom-0 left-0 h-px w-full origin-left",
+              pathname === "/about-us" ? "bg-black" : "bg-white"
+            )}
           />
         </Link>
       ))}
@@ -306,7 +302,7 @@ function Navbar() {
       <Link href="/connect" className="hidden md:block no-underline">
         <div
           ref={buttonRef}
-          className="button button--stroke"
+          className={cn("button button--stroke", pathname === "/about-us" && "button--dark")}
         >
           <span className="button__label">Connect</span>
           <div
@@ -331,17 +327,15 @@ function Navbar() {
       >
         <span
           ref={lineTopRef}
-          className="w-6 h-0.5 bg-white rounded-md origin-center"
+          className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
         />
-
         <span
           ref={lineMiddleRef}
-          className="w-4 h-0.5 bg-white rounded-md origin-center"
+          className={cn("w-4 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
         />
-
         <span
           ref={lineBottomRef}
-          className="w-6 h-0.5 bg-white rounded-md origin-center"
+          className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
         />
       </button>
 
