@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 const partnerLogos = Array.from(
-  { length: 9 },
+  { length: 8 },
   (_, i) => `/images/partnered-logo/${i + 1}.png`,
 );
 
@@ -59,7 +59,7 @@ export default function ParternerdLogo() {
   return (
     <section className="w-full overflow-hidden bg-white   text-[#173B32] py-10">
       {/* Header */}
-      <div className="mx-auto mb-12 max-w-7xl px-5 text-center sm:px-8 md:px-10">
+      <div className="mx-auto mb-12 max-w-7xl px-5 text-center">
    
 
         <h2 className="mt-3 font-bold text-3xl uppercase tracking-tight text-[#123C2B] md:text-5xl">

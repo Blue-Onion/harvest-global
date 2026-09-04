@@ -13,7 +13,7 @@ export default function ForumsSection() {
 
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 bg-[#123C2B] py-20 text-white md:py-28">
-      <div className="relative z-10 container mx-auto">
+      <div className="relative z-10 container mx-auto px-5">
         <SectionHeader
           eyebrow={sections.forums.eyebrow}
           title={sections.forums.title}

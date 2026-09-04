@@ -6,7 +6,7 @@ import RecognitionSection from "./_components/RecognitionSection";
 
 export default function CredentialsPage() {
   return (
-    <main className="text-white">
+    <main className="text-white bg-[url('/images/site-bg/bg4.png')]">
       <RecognitionSection />
       <ForumsSection />
       <EcosystemSection />

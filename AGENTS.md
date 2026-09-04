@@ -19,21 +19,21 @@ Marketing site for HG Systems: Next.js 16 (App Router) + React 19 + Tailwind v4 
 
 ## Architecture
 - Home (`app/page.tsx`) composes shared components under `components/` (Navbar, Hero, `sections/`, `footer/`, `ui/`).
-- Sub-pages live in the `app/(main)/` route group — `/connect`, `/credentials`, `/team`. Its layout renders a **separate** navbar from `app/(main)/_component/Navbar.tsx` (note singular `_component`, unlike `_components` used elsewhere). `components/Navbar.tsx` is the home-page navbar. These are two distinct implementations — don't merge them without explicit direction.
-- Sub-page sections live in `app/(main)/<route>/_components/`. Page-level section composition happens in the page files, not in layouts.
+- Sub-pages live in the `app/(main)/` route group — `/about-us`, `/connect`, `/credentials`. Its layout renders a **separate** navbar from `app/(main)/_component/Navbar.tsx` (note singular `_component`). `components/Navbar.tsx` is the home-page navbar. These are two distinct implementations — don't merge them without explicit direction.
+- Sub-page sections live in `app/(main)/<route>/_components/` (plural). The `about-us` route uses `_component` (singular) for its `TeamCard.tsx`. Page-level section composition happens in the page files, not in layouts.
 - Path alias `@/*` → repo root.
 
 ## Content lives in `data/`, not components
 - All copy is in `data/data.json`, read through a strictly-typed `SiteData` in `data/index.ts`. Shape drift or an unknown stage `accent` fails the build on purpose. Edit copy in `data.json`; keep components presentation-only.
+- `data/images.ts` holds image-path constants separately.
 
 ## Design & motion
-- Tailwind v4 is config-less (CSS-first in `app/globals.css`; no `tailwind.config`). Fonts via `next/font`: `--font-display` (Audiowide), `--font-body` (Inter) in `app/layout.tsx`.
+- Tailwind v4 is config-less (CSS-first in `app/globals.css`; no `tailwind.config`). Font: Manrope via `next/font/google` with CSS variable `--font-manrope` set in `app/layout.tsx`.
 - Motion stack: GSAP + `@gsap/react` (`useGSAP`), Lenis (wrapped globally by `components/SmoothScroll`), framer-motion, ogl. Scroll-choreography primitives live in `components/ui/` (`ScrollExpand`, `ScrollStack`, `HeroReveal`, `Starbackground`, `AnimateButton`).
 - Respect `prefers-reduced-motion`: reveals must never leave content hidden (`lib/useInView.ts` models the pattern).
 
 ## Planning docs
-- `plans/` holds design source-of-truth notes per section — e.g. `scroll-expand-flow.md` (About→Technology scroll choreography), `plan.md` (Technology section). `production-cleanup.md` is refactor history; several items are already implemented — verify current state before assuming.
-- Read the relevant `plans/` doc before reworking a section.
+- `plans/` holds source design files (`.pptx`, `.docx`). Check current file state before assuming what's implemented.
 
 ## Images
-- `next/image` remotePatterns allow only `images.unsplash.com`; other assets are local under `public/`. Raw `<img>` still appears in a few components (accepted for now).
+- `next/image` remotePatterns allow `images.unsplash.com` and `cdn.pixabay.com`; other assets are local under `public/`. Raw `<img>` still appears in several components (accepted for now).

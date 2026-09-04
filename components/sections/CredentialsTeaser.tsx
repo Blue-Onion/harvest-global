@@ -21,7 +21,7 @@ export default function CredentialsTeaser() {
       <StarBackground />
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-150 w-200 rounded-md bg-emerald-600/4 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-10">
+      <div className="relative z-10 mx-auto max-w-6xl px-5">
         <Reveal variant="group" className="max-w-3xl" duration={1}>
           <div className="flex items-center gap-3">
             <span className="inline-block h-1.5 w-1.5 rounded-md bg-emerald-500" />

@@ -15,7 +15,7 @@ const Vision = () => {
         className="
           relative z-20 mx-auto flex min-h-screen
           max-w-5xl flex-col items-center justify-center
-          px-8 py-24 text-center
+          px-5 py-24 text-center
         "
       >
         {/* Eyebrow */}

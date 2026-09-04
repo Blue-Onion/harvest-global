@@ -52,7 +52,7 @@ const TeamCard = ({
         "
       />
 
-      <div className="flex items-center gap-8 pt-5 md:gap-6">
+      <div className="flex items-center gap-4 pt-5 md:gap-6">
         {/* Image */}
         <div
           className="
@@ -75,7 +75,7 @@ const TeamCard = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1">
+        <div className="flex flex-col gap-3 w-full">
           <h2 className="font-semibold leading-tight tracking-[-0.02em] text-[#171717]">
             {name}
           </h2>
@@ -84,26 +84,24 @@ const TeamCard = ({
             {role}
           </p>
 
-          <p className="mt-7 max-w-[390px] text-[20px] leading-[1.7] text-[#626262]">
+          <p className="max-w-[390px] text-[18px] leading-[1.7] text-[#626262]">
             {focus}
           </p>
 
           {/* Social / Contact Icons */}
-          <div className="mt-6  w-full flex items-center justify-end gap-4">
+          <div className="mt-6   w-full flex items-center justify-end gap-4">
             {linkedin && (
               <Link
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                  transition-opacity
-                  duration-200
-                  hover:opacity-60
+            
                 "
                 aria-label={`${name}'s LinkedIn`}
               >
                 <Image
-                  src="/svg/linkedIn.svg"
+                  src="/svg/linkedInColour.svg"
                   alt="LinkedIn"
                   width={24}
                   height={24}
@@ -115,17 +113,17 @@ const TeamCard = ({
               <Link
                 href={`mailto:${mail}`}
                 className="
-                  transition-opacity
-                  duration-200
-                  hover:opacity-60
+mb-0.2
+
                 "
                 aria-label={`Email ${name}`}
               >
                 <Image
-                  src="/svg/mail.svg"
+                  src="/svg/mailcolour.svg"
                   alt="Email"
-                  width={24}
-                  height={24}
+                  width={36}
+                  height={36}
+
                 />
               </Link>
             )}

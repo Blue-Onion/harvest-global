@@ -16,7 +16,6 @@ function Navbar() {
     { title: "About", href: "/about-us" },
     { title: "Technology", href: "/#technology" },
     { title: "Media", href: "/credentials" },
-    { title: "Insights", href: "/Insights" },
 
   ];
 
@@ -292,7 +291,7 @@ function Navbar() {
 
 
 
-    px-4
+    px-5
 
 
 

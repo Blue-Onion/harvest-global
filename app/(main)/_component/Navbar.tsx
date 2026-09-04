@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(useGSAP);
@@ -13,9 +12,10 @@ gsap.registerPlugin(useGSAP);
 function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "About Us", href: "/about-us" },
+    { title: "About", href: "/about-us" },
+    { title: "Technology", href: "/#technology" },
     { title: "Media", href: "/credentials" },
-    { title: "Insights", href: "/Insights" },
+
 
   ];
 
@@ -242,7 +242,7 @@ function Navbar() {
       <header
         ref={navRef}
         className={cn(
-          "inset-x-0 top-4 container mx-auto absolute z-50 py-4",
+          "inset-x-0 top-4   px-5 container mx-auto absolute z-50 py-4",
           pathname === "/about-us" ? "text-black" : "text-white"
         )}
       >
