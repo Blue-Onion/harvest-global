@@ -42,26 +42,19 @@ export default function CredentialsPage() {
     <main className="bg-[url('/images/site-bg/bg5.png')] bg-center bg-cover bg-no-repeat">
       {/* HERO */}
       <section className="container relative mx-auto px-5 pb-16 pt-32 lg:px-0">
-
-
-        <h1 className="mt-3 text-5xl leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className="mt-3 text-5xl leading-[1.4] tracking-tight sm:text-6xl lg:text-7xl">
           Credentials & recognition
-
         </h1>
-<p>
-     Recognised.
-
-          Engaged. Building.
-</p>
-        <p className="mt-8 max-w-xl text-base leading-7 text-white/60 sm:text-lg">
-          HG&apos;s work spans national and international forums across
-          Earth Observation, SpaceTech, AI and climate technology.
+        <p className="text-xl font-semibold">Recognised. Engaged. Building.</p>
+        <p className="mt-8 text-base leading-7 text-white/60 sm:text-lg">
+          HG&apos;s work spans national and international forums across Earth
+          Observation, SpaceTech, AI and climate technology.
         </p>
       </section>
 
       {/* RECOGNITIONS GRID */}
       <section className="px-6 pb-28 sm:px-10 lg:px-16">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {recognitions.map((item) => {
             const Icon = item.icon;
             const isOrange = item.accent === "orange";

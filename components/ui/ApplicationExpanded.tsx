@@ -107,13 +107,7 @@ export default function ApplicationExpanded({
 
               {/* Content */}
               <div className="relative z-10 flex w-full items-center gap-3 px-4 md:px-5">
-                <span
-                  className={`text-sm font-bold ${
-                    isOpen ? "text-white" : "text-white/50"
-                  }`}
-                >
-                  {number}
-                </span>
+                
 
                 <Icon
                   className={`h-5 w-5 shrink-0 ${
