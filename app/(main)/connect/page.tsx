@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -6,7 +7,7 @@ const ConnectPage = () => {
   return (
     <section
       id="connect"
-      className="relative bg-black mx-auto h-screen overflow-hidden"
+      className="relative bg-black mx-auto min-h-screen overflow-hidden"
     >
       {/* Background */}
       <Image
@@ -19,40 +20,54 @@ const ConnectPage = () => {
 
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 container mx-auto mt-35 space-y-20 px-5 py-20">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
+      <div
+        className="
+          relative z-10 container mx-auto
+          mt-30
+          space-y-4 md:space-y-20
+          px-5 py-20
+        "
+      >
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
           {/* LEFT */}
           <div className="relative z-10 flex flex-col justify-between text-white">
             {/* Main Text */}
-            <div className="space-y-8">
+            <div className="space-y-5 md:space-y-8">
               <p className="text-left text-xl tracking-widest">
                 CONNECT WITH HGSYSTEMS
               </p>
-              <p className="text-left text-2xl   font-extrabold md:text-5xl">
+
+              <p className="text-left text-2xl font-extrabold md:text-5xl">
                 Intelligence starts with a
-                <span className="ml-2 text-green-700">conversation.</span>
+                <span className="ml-2 text-green-700">
+                  conversation.
+                </span>
               </p>
-              <div className="">
-                <h4 className="text-left text-xl ">
+
+              <div>
+                <h4 className="text-left text-xl">
                   Have an idea, requirement or partnership to discuss?
                 </h4>
-                <h4 className="text-left font-bold text-4xl ">
+
+                <h4 className="text-left font-bold text-4xl">
                   Let’s
-                  <span className="ml-2 text-green-700">Connect!</span>
+                  <span className="ml-2 text-green-700">
+                    Connect!
+                  </span>
                 </h4>
               </div>
             </div>
 
             {/* Socials */}
-            <div className="connect-block mt-20 flex flex-col">
-              <div className="flex flex-col gap-10">
+            <div className="connect-block mt-10 flex flex-col md:mt-20">
+              <div className="flex flex-col gap-5 md:gap-10">
                 <div>
-                  <div className="mt-12 text-sm text-white/60">
+                  <div className="mt-6 text-sm text-white/60 md:mt-12">
                     <p>support@hgsystems.in</p>
                   </div>
                 </div>
 
-                <div className="mt-10 flex items-center gap-4">
+                <div className="mt-6 flex items-center gap-4 md:mt-10">
                   {/* LinkedIn */}
                   <a
                     href="https://www.linkedin.com/company/harvest-global-ssp-ltd/"
@@ -60,13 +75,13 @@ const ConnectPage = () => {
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
                     className="
-      group flex h-10 w-10 items-center justify-center
-      rounded-full
-      border border-[#235738]/20
-      transition-all duration-300
-      hover:border-[#E46A2A]
-      hover:bg-[#E46A2A]
-    "
+                      group flex h-10 w-10 items-center justify-center
+                      rounded-full
+                      border border-[#235738]/20
+                      transition-all duration-300
+                      hover:border-[#E46A2A]
+                      hover:bg-[#E46A2A]
+                    "
                   >
                     <Image
                       src="/svg/linkedIn.svg"
@@ -74,27 +89,27 @@ const ConnectPage = () => {
                       width={18}
                       height={18}
                       className="
-        invert
-        transition-all duration-300
-        group-hover:invert-0
-      "
+                        invert
+                        transition-all duration-300
+                        group-hover:invert-0
+                      "
                     />
                   </a>
 
                   {/* Instagram */}
                   <a
-                    href="https://www.instagram.com/harvestglobalssp?igsi=cHNrZ2J0MmJ6MnVn&utm_source=q"
+                    href="https://www.instagram.com/harvestglobalssp"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
                     className="
-      group flex h-10 w-10 items-center justify-center
-      rounded-full
-      border border-[#235738]/20
-      transition-all duration-300
-      hover:border-[#E46A2A]
-      hover:bg-[#E46A2A]
-    "
+                      group flex h-10 w-10 items-center justify-center
+                      rounded-full
+                      border border-[#235738]/20
+                      transition-all duration-300
+                      hover:border-[#E46A2A]
+                      hover:bg-[#E46A2A]
+                    "
                   >
                     <Image
                       src="/svg/insta.svg"
@@ -102,10 +117,10 @@ const ConnectPage = () => {
                       width={18}
                       height={18}
                       className="
-        invert
-        transition-all duration-300
-        group-hover:invert-0
-      "
+                        invert
+                        transition-all duration-300
+                        group-hover:invert-0
+                      "
                     />
                   </a>
 
@@ -116,13 +131,13 @@ const ConnectPage = () => {
                     rel="noopener noreferrer"
                     aria-label="X"
                     className="
-      group flex h-10 w-10 items-center justify-center
-      rounded-full
-      border border-[#235738]/20
-      transition-all duration-300
-      hover:border-[#E46A2A]
-      hover:bg-[#E46A2A]
-    "
+                      group flex h-10 w-10 items-center justify-center
+                      rounded-full
+                      border border-[#235738]/20
+                      transition-all duration-300
+                      hover:border-[#E46A2A]
+                      hover:bg-[#E46A2A]
+                    "
                   >
                     <Image
                       src="/svg/X.svg"
@@ -130,10 +145,10 @@ const ConnectPage = () => {
                       width={18}
                       height={18}
                       className="
-        invert
-        transition-all duration-300
-        group-hover:invert-0
-      "
+                        invert
+                        transition-all duration-300
+                        group-hover:invert-0
+                      "
                     />
                   </a>
                 </div>
@@ -142,31 +157,68 @@ const ConnectPage = () => {
           </div>
 
           {/* RIGHT — FORM */}
-          <div className="form connect-block bg-white/15 p-5 rounded-md text-white">
-            <p className="mb-8 text-sm">Fill in our form:</p>
+          <div className="form connect-block rounded-md bg-white/15 p-5 text-white">
+            <p className="mb-8 text-sm">
+              Fill in our form:
+            </p>
 
             <form className="flex flex-col">
               <input
                 type="text"
                 placeholder="Name"
-                className="border-b border-white/30 bg-transparent px-3 py-5 text-white outline-none placeholder:text-white/40 focus:border-white"
+                className="
+                  border-b border-white/30
+                  bg-transparent
+                  px-3 py-5
+                  text-white
+                  outline-none
+                  placeholder:text-white/40
+                  focus:border-white
+                "
               />
 
               <input
                 type="email"
                 placeholder="Email address"
-                className="border-b border-white/30 bg-transparent px-3 py-5 text-white outline-none placeholder:text-white/40"
+                className="
+                  border-b border-white/30
+                  bg-transparent
+                  px-3 py-5
+                  text-white
+                  outline-none
+                  placeholder:text-white/40
+                "
               />
 
               <textarea
                 placeholder="Your message"
                 rows={4}
-                className="resize-none border-b border-white/30 bg-transparent px-3 py-5 text-white outline-none placeholder:text-white/40 focus:border-white"
+                className="
+                  resize-none
+                  border-b border-white/30
+                  bg-transparent
+                  px-3 py-5
+                  text-white
+                  outline-none
+                  placeholder:text-white/40
+                  focus:border-white
+                "
               />
 
               <button
                 type="submit"
-                className="mt-7 w-fit cursor-pointer rounded-md bg-white px-7 py-4 text-xs uppercase tracking-wide text-black transition-all hover:scale-105"
+                className="
+                  mt-7 w-fit cursor-pointer
+                  rounded-md
+                  bg-white
+                  px-7 py-4
+                  text-xs
+                  uppercase
+                  tracking-wide
+                  text-black
+                  transition-all
+                  hover:scale-105
+                "
               >
                 Submit message
               </button>
@@ -179,3 +231,4 @@ const ConnectPage = () => {
 };
 
 export default ConnectPage;
+
