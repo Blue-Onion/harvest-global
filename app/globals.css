@@ -191,6 +191,19 @@ body {
   transition: color 0.15s var(--ease-in-out-quart);
 }
 
+.button--dark {
+  --color-surface-white: #000000;
+  --color-just-black: #ffffff;
+}
+
+.button--dark .button__label {
+  color: #000000;
+}
+
+.button--dark .button__flair:before {
+  background-color: #000000;
+}
+
 .button__flair {
   bottom: 0;
   left: 0;

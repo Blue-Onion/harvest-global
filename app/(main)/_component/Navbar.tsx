@@ -309,7 +309,7 @@ function Navbar() {
             <Link href="/connect" className="hidden md:block no-underline">
               <div
                 ref={buttonRef}
-                className="button button--stroke"
+                className={cn("button button--stroke", pathname === "/about-us" && "button--dark")}
               >
                 <span className="button__label">Connect</span>
                 <div ref={flairRef} className="button__flair"></div>
@@ -343,7 +343,10 @@ function Navbar() {
           })}
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className={cn(
+          "flex flex-col gap-8",
+          pathname === "/about-us" ? "text-black" : "text-white"
+        )}>
           <Link
             href="/connect"
             onClick={() => setIsOpen(false)}
