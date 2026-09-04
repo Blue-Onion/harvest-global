@@ -7,7 +7,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-
 gsap.registerPlugin(useGSAP);
 
 function Navbar() {
@@ -16,7 +15,6 @@ function Navbar() {
     { title: "About", href: "/about-us" },
     { title: "Technology", href: "/#technology" },
     { title: "Media", href: "/credentials" },
-
   ];
 
   const underlineRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -89,7 +87,7 @@ function Navbar() {
             stagger: 0.08,
             ease: "power3.out",
             delay: 0.2,
-          }
+          },
         );
       } else {
         // Animate X back to hamburger
@@ -120,7 +118,7 @@ function Navbar() {
         });
       }
     },
-    { dependencies: [isOpen] }
+    { dependencies: [isOpen] },
   );
 
   const { contextSafe } = useGSAP(
@@ -239,84 +237,84 @@ function Navbar() {
 
   return (
     <>
-    <header
-  ref={navRef}
-  style={{
-    backdropFilter: "blur(14px)",
-    WebkitBackdropFilter: "blur(14px)",
-  }}
-  className={cn(
-    "fixed inset-x-0 top-4 z-50 rounded-md container mx-auto px-5",
-    pathname === "/about-us"
-      ? "bg-white/60 border border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
-      : "bg-black/60 border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.55)]"
-  )}
->
-  <nav className="flex md:grid w-full md:grid-cols-3 items-center justify-between min-h-[64px]">
+      <header
+        ref={navRef}
+        style={{
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+        }}
+        className={cn(
+          "fixed inset-x-0 top-4 z-50 rounded-md container mx-auto px-5",
+          pathname === "/about-us"
+            ? "bg-white/60 border border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
+            : "bg-black/60 border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.55)]",
+        )}
+      >
+        <nav className="flex md:grid w-full md:grid-cols-3 items-center justify-between min-h-[64px]">
+          {/* LEFT — Logo */}
+          
+          <div className="flex items-center justify-start">
+            <Link href="/">
+              <img
+                data-title="harvest-nav"
+                src="/svg/logo.svg"
+                alt="Harvest Global"
+                className="w-36 md:w-56"
+              />
+            </Link>
+          </div>
 
-    {/* LEFT — Logo */}
-    <div className="flex items-center justify-start">
-      <Link href="/">
-        <img
-          data-title="harvest-nav"
-          src="/svg/logo.svg"
-          alt="Harvest Global"
-          className="w-36 md:w-56"
-        />
-      </Link>
-    </div>
-
-    {/* CENTER — Navigation */}
-    <div className={cn("hidden md:flex items-center justify-center gap-6 font-bold", pathname === "/about-us" ? "text-black" : "text-white")}>
-      {navLinks.map((link, i) => (
-        <Link
-          key={link.title}
-          href={link.href}
-          className="group relative py-1 transition-opacity hover:opacity-90"
-          onMouseEnter={() => handleEnter(i)}
-          onMouseLeave={() => handleLeave(i)}
-        >
-          {link.title}
-
-          <span
-            ref={(el) => {
-              underlineRefs.current[i] = el;
-            }}
-            style={{
-              transform:
-                pathname === link.href ? "scaleX(1)" : "scaleX(0)",
-            }}
-            className={cn(
-              "absolute bottom-0 left-0 h-px w-full origin-left",
-              pathname === "/about-us" ? "bg-black" : "bg-white"
-            )}
-          />
-        </Link>
-      ))}
-    </div>
-
-    {/* RIGHT — Connect / Hamburger */}
-    <div className="flex items-center justify-end">
-
-      {/* Desktop Connect */}
-      <Link href="/connect" className="hidden md:block no-underline">
-        <div
-          ref={buttonRef}
-          className={cn("button button--stroke", pathname === "/about-us" && "button--dark")}
-        >
-          <span className="button__label">Connect</span>
+          {/* CENTER — Navigation */}
           <div
-            ref={flairRef}
-            className="button__flair"
-          />
-        </div>
-      </Link>
+            className={cn(
+              "hidden md:flex items-center justify-center gap-6 font-bold",
+              pathname === "/about-us" ? "text-black" : "text-white",
+            )}
+          >
+            {navLinks.map((link, i) => (
+              <Link
+                key={link.title}
+                href={link.href}
+                className="group relative py-1 transition-opacity hover:opacity-90"
+                onMouseEnter={() => handleEnter(i)}
+                onMouseLeave={() => handleLeave(i)}
+              >
+                {link.title}
+<span
+  ref={(el) => {
+    underlineRefs.current[i] = el;
+  }}
+  style={{
+    transform:
+      pathname === link.href ? "scaleX(1)" : "scaleX(0)",
+  }}
+  className="absolute bottom-0 left-0 h-px w-full origin-left bg-[#E46A2A]"
+/>
+              </Link>
+            ))}
+          </div>
 
-      {/* Mobile Hamburger */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close Menu" : "Open Menu"}
-        className="
+          {/* RIGHT — Connect / Hamburger */}
+          <div className="flex items-center justify-end">
+            {/* Desktop Connect */}
+            <Link href="/connect" className="hidden md:block no-underline">
+              <div
+                ref={buttonRef}
+                className={cn(
+                  "button button--stroke",
+                  pathname === "/about-us" && "button--dark",
+                )}
+              >
+                <span className="button__label">Connect</span>
+                <div ref={flairRef} className="button__flair" />
+              </div>
+            </Link>
+
+            {/* Mobile Hamburger */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close Menu" : "Open Menu"}
+              className="
           flex md:hidden
           flex-col justify-center items-end
           w-8 h-8 gap-1.5
@@ -324,25 +322,32 @@ function Navbar() {
           z-50
           cursor-pointer
         "
-      >
-        <span
-          ref={lineTopRef}
-          className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
-        />
-        <span
-          ref={lineMiddleRef}
-          className={cn("w-4 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
-        />
-        <span
-          ref={lineBottomRef}
-          className={cn("w-6 h-0.5 rounded-md origin-center", pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white")}
-        />
-      </button>
-
-    </div>
-
-  </nav>
-</header>
+            >
+              <span
+                ref={lineTopRef}
+                className={cn(
+                  "w-6 h-0.5 rounded-md origin-center",
+                  pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white",
+                )}
+              />
+              <span
+                ref={lineMiddleRef}
+                className={cn(
+                  "w-4 h-0.5 rounded-md origin-center",
+                  pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white",
+                )}
+              />
+              <span
+                ref={lineBottomRef}
+                className={cn(
+                  "w-6 h-0.5 rounded-md origin-center",
+                  pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white",
+                )}
+              />
+            </button>
+          </div>
+        </nav>
+      </header>
 
       {/* Mobile Menu Overlay */}
       <div
@@ -359,7 +364,9 @@ function Navbar() {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`mobile-nav-link text-4xl font-display uppercase tracking-tight transition-colors ${
-                  isActive ? "text-white underline decoration-2 underline-offset-8" : "text-neutral-400 hover:text-white"
+                  isActive
+                    ? "text-white underline decoration-2 underline-offset-8"
+                    : "text-neutral-400 hover:text-white"
                 }`}
               >
                 {link.title}

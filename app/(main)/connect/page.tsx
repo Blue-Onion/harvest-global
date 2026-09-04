@@ -6,11 +6,11 @@ const ConnectPage = () => {
   return (
     <section
       id="connect"
-      className="relative mx-auto min-h-screen overflow-hidden bg-black"
+      className="relative  mx-auto min-h-screen overflow-hidden bg-black"
     >
       {/* Background */}
       <Image
-        src="/images/connect.png"
+        src="/images/site-bg/connect-page.png"
         alt=""
         fill
         priority
@@ -59,7 +59,17 @@ const ConnectPage = () => {
           </div>
 
           {/* RIGHT — FORM */}
-          <div className="connect-block rounded-md bg-white/15 p-5 text-white">
+<div
+  className="
+    connect-block
+    rounded-md
+    border border-white/20
+    bg-[#0E1C20]/90
+    p-5
+    text-white
+    backdrop-blur-md
+  "
+>
             <p className="mb-8 text-sm">Fill in our form:</p>
 
             <form className="flex flex-col">
@@ -111,12 +121,12 @@ const ConnectPage = () => {
                 className="
                   mt-7 w-fit cursor-pointer
                   rounded-md
-                  bg-white
+                  bg-orange-500
                   px-7 py-4
-                  text-xs
+                  text-sm
                   uppercase
                   tracking-wide
-                  text-black
+                  text-white
                   transition-all
                   hover:scale-105
                 "

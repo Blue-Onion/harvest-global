@@ -39,7 +39,21 @@ const recognitions = [
 
 export default function CredentialsPage() {
   return (
-    <main className="bg-[url('/images/site-bg/bg5.png')] bg-center bg-cover bg-no-repeat">
+<main
+  className="
+    relative
+    min-h-screen
+    w-full
+    bg-[url('/images/site-bg/credit.png')]
+    bg-cover
+    bg-top
+    bg-no-repeat
+    px-5
+    py-24
+    text-white
+    lg:bg-[position:initial]
+  "
+>
       {/* HERO */}
       <section className="container relative mx-auto px-5 pb-16 pt-32 lg:px-0">
         <h1 className="mt-3 text-5xl leading-[1.4] tracking-tight sm:text-6xl lg:text-7xl">
