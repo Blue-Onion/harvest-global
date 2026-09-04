@@ -327,7 +327,7 @@ export default function Applications() {
   return (
     <section
       id="applications"
-      className="relative w-full min-h-screen bg-[url('/images/site-bg/bg2.png')] bg-cover bg-center bg-no-repeat px-5 py-24 text-white md:h-screen md:overflow-hidden"
+      className="relative w-full min-h-screen bg-[url('/images/site-bg/bg2.png')] bg-cover bg-center bg-no-repeat px-5 py-24 text-white  md:overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         <TopographicBackground />
@@ -341,7 +341,7 @@ export default function Applications() {
             {/* Left */}
             <div>
               <h2 className="w-full max-w-2xl text-4xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-                APPLICATION
+                APPLICATIONS
               </h2>
 
               <p className="mt-7 max-w-3xl text-base leading-7 text-white md:text-lg">
@@ -544,13 +544,11 @@ function ApplicationText({ app }: { app: App }) {
 
               {/* Text */}
               <div className="min-w-0">
-                <h4 className="text-sm font-semibold text-white">
+                <h4 className="text-lg font-semibold text-white">
                   {sub.title}
                 </h4>
 
-                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-white/60">
-                  {sub.desc}
-                </p>
+                
               </div>
             </li>
           ))}
