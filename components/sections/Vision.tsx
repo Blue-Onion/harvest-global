@@ -11,15 +11,6 @@ const Vision = () => {
         bg-cover bg-center bg-no-repeat
       "
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-[#020914]/20" />
-
-      {/* Rounded frame */}
-     
-
-  
-
-      {/* Main content */}
       <div
         className="
           relative z-20 mx-auto flex min-h-screen
@@ -47,38 +38,24 @@ const Vision = () => {
         {/* Heading */}
         <h2
           className="
-            max-w-5xl
-            text-4xl font-semibold leading-[1.08]
+            max-w-4xl
+            text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.08]
             tracking-[-0.035em] text-white
-            sm:text-5xl
-            md:text-6xl
-            lg:text-[48px]
-            xl:text-[52px]
           "
         >
- Real time
+          Real time
           <br />
-
           Earth and Weather Intelligence
           <br />
-
-          at scale{" "}
-          <span className="text-[#4b8ff5]">
-            from core and edge
-          </span>
+          at scale <span className="text-[#4b8ff5]">from core and edge</span>
           <br />
-
           with strategic investments in
           <br />
-
           <span className="text-[#d99a45]">
             sovereign enterprise AI DCs and
           </span>
           <br />
-
-          <span className="text-[#d99a45]">
-            Ground Segment infrastructure
-          </span>
+          <span className="text-[#d99a45]">Ground Segment infrastructure</span>
         </h2>
 
         {/* Divider */}
@@ -95,17 +72,11 @@ const Vision = () => {
             md:leading-8
           "
         >
-          Harvest Global SSP Pvt Ltd (HG Systems) builds
-          enterprise-grade GeoAI infrastructure, foundation models
-          and sovereign AI environments for governments, industries
-          and research institutions.
+          Harvest Global SSP Pvt Ltd (HG Systems) builds enterprise-grade GeoAI
+          infrastructure, foundation models and sovereign AI environments for
+          governments, industries and research institutions.
         </p>
-
-
-    
       </div>
-
-      
     </section>
   );
 };
