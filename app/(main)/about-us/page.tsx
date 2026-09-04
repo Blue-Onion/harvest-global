@@ -130,14 +130,14 @@ export default function TeamPage() {
             className="
               mt-6
               max-w-7xl
-
+space-y-3
               font-bold
               leading-[0.95]
               tracking-tight
               text-black
 text-3xl
 
-              lg:text-7xl
+              lg:text-6xl
             "
           >
             A Multidisciplinary Team for a{" "}

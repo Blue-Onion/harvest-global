@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 const partnerLogos = Array.from(
-  { length: 9 },
+  { length: 8 },
   (_, i) => `/images/partnered-logo/${i + 1}.png`,
 );
 
