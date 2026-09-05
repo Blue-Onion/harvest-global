@@ -252,7 +252,6 @@ function Navbar() {
       >
         <nav className="flex md:grid w-full md:grid-cols-3 items-center justify-between min-h-[64px]">
           {/* LEFT — Logo */}
-          
           <div className="flex items-center justify-start">
             <Link href="/">
               <img

@@ -30,14 +30,14 @@ const TeamCard = ({
         border
         border-[#e8e5dc]
         bg-[#faf9f4]
-        px-8
-        py-10
+        px-6
+        py-8
         shadow-[0_8px_30px_rgba(0,0,0,0.04)]
         md:px-10
         md:py-11
       "
     >
-      <div className="flex items-center gap-4 pt-5 md:gap-6">
+      <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-center md:gap-6 md:text-left">
         <div
           className="
             relative
@@ -59,29 +59,26 @@ const TeamCard = ({
         </div>
 
         {/* Content */}
-        <div className="flex flex-col gap-3 w-full">
-          <h2 className="font-bold leading-tight text-[21px] tracking-[-0.02em] text-[#171717]">
+        <div className="flex w-full flex-col items-center gap-2 md:items-start md:gap-3">
+          <h2 className="text-[26px] font-bold leading-tight tracking-[-0.02em] text-[#171717] md:text-[28px]">
             {name}
           </h2>
 
-          <p className="mt-3 text-[21px] font-medium leading-tight text-[#4c8b68]">
+          <p className="text-[18px] font-medium leading-tight text-[#4c8b68] md:text-[20px]">
             {role}
           </p>
 
-          <p className="max-w-[390px] text-[18px] leading-[1.7] text-[#626262]">
+          <p className="max-w-[390px] text-[15px] leading-[1.7] text-[#626262] md:text-[16px]">
             {focus}
           </p>
 
           {/* Social / Contact Icons */}
-          <div className="mt-6   w-full flex items-center justify-end gap-4">
+          <div className="mt-4 flex w-full items-center justify-center gap-4 md:justify-end">
             {linkedin && (
               <Link
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="
-            
-                "
                 aria-label={`${name}'s LinkedIn`}
               >
                 <Image
@@ -94,20 +91,12 @@ const TeamCard = ({
             )}
 
             {mail && (
-              <Link
-                href={`mailto:${mail}`}
-                className="
-mb-0.2
-
-                "
-                aria-label={`Email ${name}`}
-              >
+              <Link href={`mailto:${mail}`} aria-label={`Email ${name}`}>
                 <Image
                   src="/svg/mailcolour.svg"
                   alt="Email"
                   width={36}
                   height={36}
-
                 />
               </Link>
             )}
