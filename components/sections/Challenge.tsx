@@ -148,7 +148,8 @@ const Challenge = () => {
                     border-b border-[#E7F1EB]/10
                     px-5 py-5
                     last:border-b-0
-                    transition-colors duration-300
+                    bg-[#0A1612]/85
+
                     hover:bg-[#123C2B]/40
 
                     sm:flex sm:items-center

@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import {
   Server,
   Layers,
@@ -8,6 +11,8 @@ import {
   Cpu,
 } from "lucide-react";
 import { ReactNode } from "react";
+
+gsap.registerPlugin(useGSAP);
 
 interface TechnologyCard {
   number: string;
@@ -52,11 +57,7 @@ const cards: TechnologyCard[] = [
   },
 ];
 
-function TechCard({
-  card,
-}: {
-  card: TechnologyCard;
-}) {
+function TechCard({ card }: { card: TechnologyCard }) {
   const isGreen = card.theme === "green";
 
   return (
@@ -108,6 +109,80 @@ function TechCard({
 }
 
 export default function UnifiedGeoStack() {
+  // Desktop refs
+  const outerRingDesktopRef = useRef<HTMLDivElement | null>(null);
+  const innerRingDesktopRef = useRef<HTMLDivElement | null>(null);
+  const earthDesktopWrapRef = useRef<HTMLDivElement | null>(null);
+  const earthDesktopGlowRef = useRef<HTMLDivElement | null>(null);
+
+  // Mobile refs
+  const outerRingMobileRef = useRef<HTMLDivElement | null>(null);
+  const innerRingMobileRef = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(() => {
+    // Continuous ring rotation — outer one way, inner the other, for parallax "pop"
+    const rotTargets = [
+      { el: outerRingDesktopRef.current, dir: 1, dur: 26 },
+      { el: innerRingDesktopRef.current, dir: -1, dur: 18 },
+      { el: outerRingMobileRef.current, dir: 1, dur: 26 },
+      { el: innerRingMobileRef.current, dir: -1, dur: 18 },
+    ];
+
+    rotTargets.forEach(({ el, dir, dur }) => {
+      if (!el) return;
+      gsap.to(el, {
+        rotate: 360 * dir,
+        duration: dur,
+        repeat: -1,
+        ease: "linear",
+        transformOrigin: "50% 50%",
+      });
+    });
+
+    // Earth hover — desktop only (real hover device)
+    const wrap = earthDesktopWrapRef.current;
+    const glow = earthDesktopGlowRef.current;
+    if (!wrap) return;
+
+    const handleEnter = () => {
+      gsap.to(wrap, {
+        scale: 1.06,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+      if (glow) {
+        gsap.to(glow, {
+          opacity: 1,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      }
+    };
+
+    const handleLeave = () => {
+      gsap.to(wrap, {
+        scale: 1,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+      if (glow) {
+        gsap.to(glow, {
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      }
+    };
+
+    wrap.addEventListener("mouseenter", handleEnter);
+    wrap.addEventListener("mouseleave", handleLeave);
+
+    return () => {
+      wrap.removeEventListener("mouseenter", handleEnter);
+      wrap.removeEventListener("mouseleave", handleLeave);
+    };
+  }, []);
+
   return (
     <section
       id="unified-geo-stack"
@@ -133,13 +208,12 @@ export default function UnifiedGeoStack() {
             <div>
               <h2
                 className="
-                  w-full m
+                  w-full
                   text-4xl font-bold tracking-tight text-white
                   sm:text-5xl
                   md:text-6xl
                   lg:text-7xl
-                    uppercase 
-                    
+                  uppercase
                 "
               >
                 Unified GeoAI Stack
@@ -191,190 +265,191 @@ export default function UnifiedGeoStack() {
 
 
         {/* =====================================================
-            MOBILE
-            Earth first → 4 cards
+            MOBILE / TABLET
+            Header → Earth → 4 Cards
             ===================================================== */}
 
-    {/* =====================================================
-    MOBILE / TABLET
-    Header → Earth → 4 Cards
-    ===================================================== */}
+        <div className="mt-10 flex flex-col lg:hidden">
 
-<div className="mt-10 flex flex-col lg:hidden">
+          {/* Earth */}
+          <div className="relative mx-auto flex w-full items-center justify-center py-2">
 
-  {/* Earth */}
-  <div className="relative mx-auto flex w-full items-center justify-center py-2">
+            {/* Outer orbit — thicker, brighter, glowing, rotating */}
+            <div
+              ref={outerRingMobileRef}
+              className="
+                absolute aspect-square
+                w-[88vw] max-w-[390px]
+                rounded-full
+                border-2 border-dashed
+                border-emerald-400/50
+                shadow-[0_0_35px_rgba(52,211,153,0.25)]
+              "
+            />
 
-    {/* Outer orbit */}
-    <div
-      className="
-        absolute aspect-square
-        w-[88vw] max-w-[390px]
-        rounded-full
-        border border-dashed
-        border-emerald-400/20
-      "
-    />
+            {/* Inner orbit — counter-rotating for parallax pop */}
+            <div
+              ref={innerRingMobileRef}
+              className="
+                absolute aspect-square
+                w-[78vw] max-w-[350px]
+                rounded-full
+                border border-emerald-400/20
+              "
+            />
 
-    {/* Inner orbit */}
-    <div
-      className="
-        absolute aspect-square
-        w-[78vw] max-w-[350px]
-        rounded-full
-        border
-        border-emerald-400/10
-      "
-    />
+            {/* Earth */}
+            <div
+              className="
+                relative z-10
+                aspect-square
+                w-[70vw] max-w-[300px]
+                overflow-hidden
+                rounded-full
+                shadow-[0_0_80px_rgba(52,211,153,0.18)]
+              "
+            >
+              <Image
+                src="/images/earth.png"
+                alt="Earth"
+                fill
+                priority
+                className="object-contain"
+              />
 
-    {/* Earth */}
-    <div
-      className="
-        relative z-10
-        aspect-square
-        w-[70vw] max-w-[300px]
-        overflow-hidden
-        rounded-full
-        shadow-[0_0_80px_rgba(52,211,153,0.18)]
-      "
-    >
-      <Image
-        src="/images/earth.png"
-        alt="Earth"
-        fill
-        priority
-        className="object-contain"
-      />
+              {/* Dark overlay */}
+              <div className="absolute inset-0 rounded-full bg-black/40" />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 rounded-full bg-black/40" />
-
-      {/* Earth text */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center">
-        <span
-          className="
-            max-w-[235px]
-            px-5
-            text-center
-            text-2xl
-            font-semibold
-            uppercase
-            leading-[1.25]
-            tracking-wide
-            text-white
-            drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]
-            sm:text-3xl
-          "
-        >
-          A Smarter, Safer, More Resilient Planet
-        </span>
-      </div>
-    </div>
-  </div>
-
-
-  {/* Cards */}
-  <div className="mt-6 flex flex-col gap-3">
-
-    {cards.map((card) => {
-      const isGreen = card.theme === "green";
-
-      return (
-        <div
-          key={card.number}
-          className="
-            group relative
-            flex w-full
-            items-center
-            rounded-2xl
-            border border-white/10
-            bg-[#0A1612]/85
-            px-4 py-4
-            backdrop-blur-md
-            transition-all duration-300
-            hover:border-white/20
-            hover:bg-[#0A1612]
-          "
-        >
-
-          {/* Icon */}
-          <div
-            className={`
-              flex h-12 w-12 shrink-0
-              items-center justify-center
-              rounded-xl
-              border
-              transition-transform duration-300
-              group-hover:scale-105
-
-              ${
-                isGreen
-                  ? `
-                    border-emerald-500/20
-                    bg-[#235738]/30
-                    text-emerald-400
-                  `
-                  : `
-                    border-orange-500/20
-                    bg-[#E46A2A]/25
-                    text-orange-400
-                  `
-              }
-            `}
-          >
-            {card.icon}
+              {/* Earth text */}
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                <span
+                  className="
+                    max-w-[235px]
+                    px-5
+                    text-center
+                    text-2xl
+                    font-semibold
+                    uppercase
+                    leading-[1.25]
+                    tracking-wide
+                    text-white
+                    drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]
+                    sm:text-3xl
+                  "
+                >
+                  A Smarter, Safer, More Resilient Planet
+                </span>
+              </div>
+            </div>
           </div>
 
 
-          {/* Vertical divider */}
-          <div
-            className={`
-              mx-4 h-12 w-px shrink-0
+          {/* Cards */}
+          <div className="mt-6 flex flex-col gap-3">
 
-              ${
-                isGreen
-                  ? "bg-emerald-400/50"
-                  : "bg-orange-400/60"
-              }
-            `}
-          />
+            {cards.map((card) => {
+              const isGreen = card.theme === "green";
+
+              return (
+                <div
+                  key={card.number}
+                  className="
+                    group relative
+                    flex w-full
+                    items-center
+                    rounded-2xl
+                    border border-white/10
+                    bg-[#0A1612]/85
+                    px-4 py-4
+                    backdrop-blur-md
+                    transition-all duration-300
+                    hover:border-white/20
+                    hover:bg-[#0A1612]
+                  "
+                >
+
+                  {/* Icon */}
+                  <div
+                    className={`
+                      flex h-12 w-12 shrink-0
+                      items-center justify-center
+                      rounded-xl
+                      border
+                      transition-transform duration-300
+                      group-hover:scale-105
+
+                      ${
+                        isGreen
+                          ? `
+                            border-emerald-500/20
+                            bg-[#235738]/30
+                            text-emerald-400
+                          `
+                          : `
+                            border-orange-500/20
+                            bg-[#E46A2A]/25
+                            text-orange-400
+                          `
+                      }
+                    `}
+                  >
+                    {card.icon}
+                  </div>
 
 
-          {/* Content */}
-          <div className="min-w-0 flex-1">
+                  {/* Vertical divider */}
+                  <div
+                    className={`
+                      mx-4 h-12 w-px shrink-0
 
-            <h3
-              className="
-                text-lg
-                font-semibold
-                leading-tight
-                tracking-tight
-                text-white
-              "
-            >
-              {card.title}
-            </h3>
+                      ${
+                        isGreen
+                          ? "bg-emerald-400/50"
+                          : "bg-orange-400/60"
+                      }
+                    `}
+                  />
 
-            <p
-              className="
-                mt-1.5
-                text-sm
-                leading-[1.45]
-                text-gray-400
-              "
-            >
-              {card.description}
-            </p>
+
+                  {/* Content */}
+                  <div className="min-w-0 flex-1">
+
+                    <h3
+                      className="
+                        text-lg
+                        font-semibold
+                        leading-tight
+                        tracking-tight
+                        text-white
+                      "
+                    >
+                      {card.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-1.5
+                        text-sm
+                        leading-[1.45]
+                        text-gray-400
+                      "
+                    >
+                      {card.description}
+                    </p>
+
+                  </div>
+
+                </div>
+              );
+            })}
 
           </div>
-
         </div>
-      );
-    })}
 
-  </div>
-</div>
 
+        {/* =====================================================
+            DESKTOP
+            ===================================================== */}
 
         <div
           className="
@@ -390,10 +465,7 @@ export default function UnifiedGeoStack() {
           {/* Left Cards */}
           <div className="relative z-20 flex flex-col justify-center gap-10">
             {cards.slice(0, 2).map((card) => (
-              <TechCard
-                key={card.number}
-                card={card}
-              />
+              <TechCard key={card.number} card={card} />
             ))}
           </div>
 
@@ -460,36 +532,54 @@ export default function UnifiedGeoStack() {
             </svg>
 
 
-            {/* Outer Orbit */}
-            <div
-              className="
-                absolute aspect-square
-                w-[390px]
-                rounded-full
-                border border-dashed
-                border-emerald-500/20
-              "
-            />
+     {/* Outer Orbit — increased radius */}
+<div
+  ref={outerRingDesktopRef}
+  className="
+    absolute aspect-square
+    w-[430px]
+    rounded-full
+    border-2 border-dashed
+    border-emerald-500/50
+    shadow-[0_0_45px_rgba(52,211,153,0.3)]
+  "
+/>
 
-            {/* Inner Orbit */}
-            <div
-              className="
-                absolute aspect-square
-                w-[350px]
-                rounded-full
-                border
-                border-emerald-500/10
-              "
-            />
+{/* Inner Orbit — increased radius */}
+<div
+  ref={innerRingDesktopRef}
+  className="
+    absolute aspect-square
+    w-[390px]
+    rounded-full
+    border
+    border-emerald-500/20
+  "
+/>
 
             {/* Earth */}
             <div
+              ref={earthDesktopWrapRef}
               className="
                 relative z-10
                 w-[430px]
                 shrink-0
+                cursor-pointer
               "
             >
+              {/* Hover glow ring behind the earth */}
+              <div
+                ref={earthDesktopGlowRef}
+                className="
+                  pointer-events-none
+                  absolute inset-0
+                  rounded-full
+                  opacity-0
+
+                  shadow-[0_0_120px_40px_rgba(52,211,153,0.35)]
+                "
+              />
+
               <div
                 className="
                   relative aspect-square
@@ -531,10 +621,7 @@ export default function UnifiedGeoStack() {
           {/* Right Cards */}
           <div className="relative z-20 flex flex-col justify-center gap-10">
             {cards.slice(2, 4).map((card) => (
-              <TechCard
-                key={card.number}
-                card={card}
-              />
+              <TechCard key={card.number} card={card} />
             ))}
           </div>
 

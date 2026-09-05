@@ -2,13 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 function Navbar() {
   const navLinks = [
@@ -16,7 +15,6 @@ function Navbar() {
     { title: "About", href: "/about-us" },
     { title: "Technology", href: "/#technology" },
     { title: "Media", href: "/credentials" },
-
   ];
 
   const underlineRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -89,7 +87,7 @@ function Navbar() {
             stagger: 0.08,
             ease: "power3.out",
             delay: 0.2,
-          }
+          },
         );
       } else {
         // Animate X back to hamburger
@@ -120,7 +118,7 @@ function Navbar() {
         });
       }
     },
-    { dependencies: [isOpen] }
+    { dependencies: [isOpen] },
   );
 
   const { contextSafe } = useGSAP(
@@ -130,34 +128,6 @@ function Navbar() {
         { y: -24, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
       );
-
-      // Backdrop blur + tint once the user starts scrolling.
-      const nav = navRef.current;
-      if (nav) {
-        gsap.set(nav, {
-          "--nav-blur": "0px",
-          backgroundColor: "rgba(0,0,0,0)",
-          borderColor: "rgba(255,255,255,0)",
-        });
-
-        ScrollTrigger.create({
-          start: 80,
-          end: "max",
-          onToggle: (self) => {
-            gsap.to(nav, {
-              "--nav-blur": self.isActive ? "12px" : "0px",
-              backgroundColor: self.isActive
-                ? "rgba(8,8,8,0.55)"
-                : "rgba(0,0,0,0)",
-              borderColor: self.isActive
-                ? "rgba(255,255,255,0.1)"
-                : "rgba(255,255,255,0)",
-              duration: 0.35,
-              ease: "power2.out",
-            });
-          },
-        });
-      }
 
       if (marqueeRef.current) {
         marqueeTween.current = gsap.to(marqueeRef.current, {
@@ -267,105 +237,113 @@ function Navbar() {
 
   return (
     <>
-     <header
+      <header
+        ref={navRef}
+        style={{
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+        }}
+        className={cn(
+          "fixed inset-x-0 top-4 z-50 rounded-md container mx-auto px-5",
+          pathname === "/about-us"
+            ? "bg-white/60 border border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.10)]"
+            : "bg-black/60 border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.55)]",
+        )}
+      >
+        <nav className="flex md:grid w-full md:grid-cols-3 items-center justify-between min-h-[64px]">
+          {/* LEFT — Logo */}
+          <div className="flex items-center justify-start">
+            <Link href="/">
+              <img
+                data-title="harvest-nav"
+                src="/svg/logo.svg"
+                alt="Harvest Global"
+                className="w-36 md:w-56"
+              />
+            </Link>
+          </div>
 
-  ref={navRef}
-
-  style={{
-
-    backdropFilter: "blur(var(--nav-blur, 14px))",
-
-    WebkitBackdropFilter: "blur(var(--nav-blur, 14px))",
-
+          {/* CENTER — Navigation */}
+          <div
+            className={cn(
+              "hidden md:flex items-center justify-center gap-6 font-bold",
+              pathname === "/about-us" ? "text-black" : "text-white",
+            )}
+          >
+            {navLinks.map((link, i) => (
+              <Link
+                key={link.title}
+                href={link.href}
+                className="group relative py-1 transition-opacity hover:opacity-90"
+                onMouseEnter={() => handleEnter(i)}
+                onMouseLeave={() => handleLeave(i)}
+              >
+                {link.title}
+<span
+  ref={(el) => {
+    underlineRefs.current[i] = el;
   }}
-
-  className="
-
-    fixed inset-x-0 top-4 z-50
-
-    mx-auto container
-
-    rounded-md
-
-    border border-black/10
-
-
-
-    px-5
-
-
-
-    shadow-[0_8px_30px_rgba(18,60,43,0.06)]
-
-  "
-
->
-        <nav className="mx-auto grid w-full  grid-cols-3 items-center ">
-          <div className="flex items-center gap-6 font-bold text-white">
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-6">
-              {navLinks.map((link, i) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="group relative py-1 transition-opacity hover:opacity-90"
-                  onMouseEnter={() => handleEnter(i)}
-                  onMouseLeave={() => handleLeave(i)}
-                >
-                  {link.title}
-                  <span
-                    ref={(el) => {
-                      underlineRefs.current[i] = el;
-                    }}
-                    style={{ transform: pathname === link.href ? "scaleX(1)" : "scaleX(0)" }}
-                    className="absolute bottom-0 left-0 h-px w-full origin-left bg-white"
-                  />
-                </Link>
-              ))}
-            </div>
-
-            {/* Hamburger Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close Menu" : "Open Menu"}
-              className="flex md:hidden flex-col justify-center items-start w-8 h-8 gap-1.5 focus:outline-none z-50 cursor-pointer pointer-events-auto"
-            >
-              <span
-                ref={lineTopRef}
-                className="w-6 h-0.5 bg-white rounded-md origin-center"
-              />
-              <span
-                ref={lineMiddleRef}
-                className="w-4 h-0.5 bg-white rounded-md origin-center"
-              />
-              <span
-                ref={lineBottomRef}
-                className="w-6 h-0.5 bg-white rounded-md origin-center"
-              />
-            </button>
+  style={{
+    transform:
+      pathname === link.href ? "scaleX(1)" : "scaleX(0)",
+  }}
+  className="absolute bottom-0 left-0 h-px w-full origin-left bg-[#E46A2A]"
+/>
+              </Link>
+            ))}
           </div>
 
-          <div className="flex items-center justify-center">
-            <img
-              data-title="harvest-nav"
-              src="/svg/logo.svg"
-              alt="Harvest Global"
-              className="w-44 md:w-56"
-            />
-          </div>
-
-          <div className="flex items-center justify-end gap-6">
-       
-
+          {/* RIGHT — Connect / Hamburger */}
+          <div className="flex items-center justify-end">
+            {/* Desktop Connect */}
             <Link href="/connect" className="hidden md:block no-underline">
               <div
                 ref={buttonRef}
-                className="button button--stroke"
+                className={cn(
+                  "button button--stroke",
+                  pathname === "/about-us" && "button--dark",
+                )}
               >
                 <span className="button__label">Connect</span>
-                <div ref={flairRef} className="button__flair"></div>
+                <div ref={flairRef} className="button__flair" />
               </div>
             </Link>
+
+            {/* Mobile Hamburger */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close Menu" : "Open Menu"}
+              className="
+          flex md:hidden
+          flex-col justify-center items-end
+          w-8 h-8 gap-1.5
+          focus:outline-none
+          z-50
+          cursor-pointer
+        "
+            >
+              <span
+                ref={lineTopRef}
+                className={cn(
+                  "w-6 h-0.5 rounded-md origin-center",
+                  pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white",
+                )}
+              />
+              <span
+                ref={lineMiddleRef}
+                className={cn(
+                  "w-4 h-0.5 rounded-md origin-center",
+                  pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white",
+                )}
+              />
+              <span
+                ref={lineBottomRef}
+                className={cn(
+                  "w-6 h-0.5 rounded-md origin-center",
+                  pathname === "/about-us" && !isOpen ? "bg-black" : "bg-white",
+                )}
+              />
+            </button>
           </div>
         </nav>
       </header>
@@ -385,7 +363,9 @@ function Navbar() {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`mobile-nav-link text-4xl font-display uppercase tracking-tight transition-colors ${
-                  isActive ? "text-white underline decoration-2 underline-offset-8" : "text-neutral-400 hover:text-white"
+                  isActive
+                    ? "text-white underline decoration-2 underline-offset-8"
+                    : "text-neutral-400 hover:text-white"
                 }`}
               >
                 {link.title}

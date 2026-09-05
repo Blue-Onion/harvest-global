@@ -19,7 +19,7 @@ Marketing site for HG Systems: Next.js 16 (App Router) + React 19 + Tailwind v4 
 
 ## Architecture
 - Home (`app/page.tsx`) composes shared components under `components/` (Navbar, Hero, `sections/`, `footer/`, `ui/`).
-- Sub-pages live in the `app/(main)/` route group — `/about-us`, `/connect`, `/credentials`. Its layout renders a **separate** navbar from `app/(main)/_component/Navbar.tsx` (note singular `_component`). `components/Navbar.tsx` is the home-page navbar. These are two distinct implementations — don't merge them without explicit direction.
+- Sub-pages live in the `app/(main)/` route group — `/about-us`, `/connect`, `/credentials`. The single shared `components/Navbar.tsx` renders on every page: home renders it in `app/page.tsx`, sub-pages render it via the `(main)` layout. It switches to dark-on-light styling (`text-black`, `button--dark`) on `/about-us` based on `usePathname`.
 - Sub-page sections live in `app/(main)/<route>/_components/` (plural). The `about-us` route uses `_component` (singular) for its `TeamCard.tsx`. Page-level section composition happens in the page files, not in layouts.
 - Path alias `@/*` → repo root.
 
