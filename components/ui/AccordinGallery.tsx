@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-
+import { ChevronDown, ChevronUp } from "lucide-react";
 interface AccordionItem {
   image: string;
   title: string;
@@ -568,45 +568,70 @@ export default function AccordionGallery({
             </p>
           </div>
 
-          {/* ARROW */}
-          <div
-            className="
-              card-arrow
-              absolute
-              right-5
-              top-5
-              z-30
-              flex
-              h-8
-              w-8
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-white/30
-              bg-black/25
-              text-white
-              opacity-0
-              backdrop-blur-sm
-              md:h-9
-              md:w-9
-            "
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="h-4 w-4"
-            >
-              <path d="M5 12h14" strokeLinecap="round" />
-              <path
-                d="m13 6 6 6-6 6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
+  {/* MOBILE CHEVRON */}
+{isMobile && (
+  <div
+    className="
+      mobile-chevron
+      absolute
+      right-5
+      bottom-4
+      z-30
+      flex
+      items-center
+      justify-center
+      text-white/80
+    "
+  >
+    {index === activeIndex.current ? (
+      <ChevronUp className="h-5 w-5" strokeWidth={1.8} />
+    ) : (
+      <ChevronDown className="h-5 w-5" strokeWidth={1.8} />
+    )}
+  </div>
+)}
+
+{/* DESKTOP ARROW */}
+{!isMobile && (
+  <div
+    className="
+      card-arrow
+      absolute
+      right-5
+      top-5
+      z-30
+      flex
+      h-8
+      w-8
+      items-center
+      justify-center
+      rounded-full
+      border
+      border-white/30
+      bg-black/25
+      text-white
+      opacity-0
+      backdrop-blur-sm
+      md:h-9
+      md:w-9
+    "
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      className="h-4 w-4"
+    >
+      <path d="M5 12h14" strokeLinecap="round" />
+      <path
+        d="m13 6 6 6-6 6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </div>
+)}
         </article>
       ))}
     </div>
