@@ -12,17 +12,13 @@ gsap.registerPlugin(useGSAP);
 function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "About", href: "/about-us" },
+    { title: "Team", href: "/about-us" },
     { title: "Technology", href: "/#technology" },
     { title: "Media", href: "/credentials" },
   ];
 
   const underlineRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const navRef = useRef<HTMLElement | null>(null);
-  const buttonRef = useRef<HTMLDivElement | null>(null);
-  const flairRef = useRef<HTMLDivElement | null>(null);
-  const marqueeRef = useRef<HTMLDivElement | null>(null);
-  const marqueeTween = useRef<gsap.core.Tween | null>(null);
 
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -128,80 +124,6 @@ function Navbar() {
         { y: -24, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
       );
-
-      if (marqueeRef.current) {
-        marqueeTween.current = gsap.to(marqueeRef.current, {
-          xPercent: -50,
-          duration: 3,
-          ease: "none",
-          repeat: -1,
-          paused: true,
-        });
-      }
-
-      // --- magnetic flair effect ---
-      const button = buttonRef.current;
-      const flair = flairRef.current;
-      if (!button || !flair) return;
-
-      const xSet = gsap.quickSetter(flair, "xPercent");
-      const ySet = gsap.quickSetter(flair, "yPercent");
-
-      const getXY = (e: MouseEvent) => {
-        const { left, top, width, height } = button.getBoundingClientRect();
-        const x = ((e.clientX - left) / width) * 100;
-        const y = ((e.clientY - top) / height) * 100;
-        return { x, y };
-      };
-
-      const handleMouseEnter = (e: MouseEvent) => {
-        const { x, y } = getXY(e);
-        xSet(x);
-        ySet(y);
-        gsap.to(flair, { scale: 1, duration: 0.4, ease: "power2.out" });
-        marqueeTween.current?.play();
-      };
-
-      const handleMouseLeave = (e: MouseEvent) => {
-        const { x, y } = getXY(e);
-        gsap.killTweensOf(flair);
-        gsap.to(flair, {
-          xPercent: x > 90 ? x + 20 : x < 10 ? x - 20 : x,
-          yPercent: y > 90 ? y + 20 : y < 10 ? y - 20 : y,
-          scale: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-        marqueeTween.current?.pause();
-        if (marqueeRef.current) {
-          gsap.to(marqueeRef.current, {
-            xPercent: 0,
-            duration: 0.3,
-            ease: "power2.out",
-            onComplete: () => marqueeTween.current?.pause(0),
-          });
-        }
-      };
-
-      const handleMouseMove = (e: MouseEvent) => {
-        const { x, y } = getXY(e);
-        gsap.to(flair, {
-          xPercent: x,
-          yPercent: y,
-          duration: 0.4,
-          ease: "power2",
-        });
-      };
-
-      button.addEventListener("mouseenter", handleMouseEnter);
-      button.addEventListener("mouseleave", handleMouseLeave);
-      button.addEventListener("mousemove", handleMouseMove);
-
-      return () => {
-        button.removeEventListener("mouseenter", handleMouseEnter);
-        button.removeEventListener("mouseleave", handleMouseLeave);
-        button.removeEventListener("mousemove", handleMouseMove);
-      };
     },
     { scope: navRef },
   );
@@ -279,37 +201,39 @@ function Navbar() {
                 onMouseLeave={() => handleLeave(i)}
               >
                 {link.title}
-<span
-  ref={(el) => {
-    underlineRefs.current[i] = el;
-  }}
-  style={{
-    transform:
-      pathname === link.href ? "scaleX(1)" : "scaleX(0)",
-  }}
-  className="absolute bottom-0 left-0 h-px w-full origin-left bg-[#E46A2A]"
-/>
+                <span
+                  ref={(el) => {
+                    underlineRefs.current[i] = el;
+                  }}
+                  style={{
+                    transform:
+                      pathname === link.href ? "scaleX(1)" : "scaleX(0)",
+                  }}
+                  className="absolute bottom-0 left-0 h-px w-full origin-left bg-[#E46A2A]"
+                />
               </Link>
             ))}
           </div>
 
           {/* RIGHT — Connect / Hamburger */}
           <div className="flex items-center justify-end">
-            {/* Desktop Connect */}
-            <Link href="/connect" className="hidden md:block no-underline">
-              <div
-                ref={buttonRef}
-                className={cn(
-                  "button button--stroke",
-                  pathname === "/about-us" && "button--dark",
-                )}
-              >
-                <span className="button__label">Connect</span>
-                <div ref={flairRef} className="button__flair" />
-              </div>
-            </Link>
-
-            {/* Mobile Hamburger */}
+            <div className="flex gap-4">
+              <Link href={"/connect"} className="hidden md:block">
+                <button className="px-3 cursor-pointer font-bold text-white bg-orange-600 py-2 rounded-md">
+                  Large Project
+                </button>
+              </Link>
+              <Link href={"/connect"} className="hidden md:block">
+                <button
+                  className={cn(
+                    "px-3 cursor-pointer font-bold bg-white text-black py-2 rounded-md",
+                    pathname === "/about-us" && " bg-black text-white",
+                  )}
+                >
+                  Connect
+                </button>
+              </Link>
+            </div>
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close Menu" : "Open Menu"}
@@ -352,7 +276,7 @@ function Navbar() {
       <div
         ref={menuRef}
         style={{ clipPath: "circle(0% at 2.5rem 2.5rem)" }}
-        className="fixed inset-0 bg-neutral-950 flex flex-col justify-between px-8 py-28 z-45 md:hidden pointer-events-auto"
+        className="fixed inset-0 bg-neutral-950 flex flex-col justify-between px-8 py-28 z-45 lg:hidden pointer-events-auto"
       >
         <div className="flex flex-col gap-8 mt-12">
           {navLinks.map((link) => {
@@ -373,16 +297,21 @@ function Navbar() {
             );
           })}
         </div>
-
-        <div className="flex flex-col gap-8">
-          <Link
-            href="/connect"
-            onClick={() => setIsOpen(false)}
-            className="no-underline mobile-nav-link self-start"
-          >
-            <div className="button button--stroke">
-              <span className="button__label">Connect</span>
-            </div>
+        <div className="flex w-full flex-col gap-4">
+          <Link href={"/connect"} onClick={() => setIsOpen(false)} className="w-full">
+            <button className="px-3 w-full cursor-pointer font-bold text-white bg-orange-600 py-2 rounded-md">
+              Large Project
+            </button>
+          </Link>
+          <Link href={"/connect"} onClick={() => setIsOpen(false)} className="w-full">
+            <button
+              className={cn(
+                "px-3 w-full cursor-pointer font-bold bg-white text-black py-2 rounded-md",
+                pathname === "/about-us" && " bg-black text-white",
+              )}
+            >
+              Connect
+            </button>
           </Link>
         </div>
       </div>
