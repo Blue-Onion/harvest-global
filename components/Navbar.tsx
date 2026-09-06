@@ -279,27 +279,33 @@ function Navbar() {
                 onMouseLeave={() => handleLeave(i)}
               >
                 {link.title}
-<span
-  ref={(el) => {
-    underlineRefs.current[i] = el;
-  }}
-  style={{
-    transform:
-      pathname === link.href ? "scaleX(1)" : "scaleX(0)",
-  }}
-  className="absolute bottom-0 left-0 h-px w-full origin-left bg-[#E46A2A]"
-/>
+                <span
+                  ref={(el) => {
+                    underlineRefs.current[i] = el;
+                  }}
+                  style={{
+                    transform:
+                      pathname === link.href ? "scaleX(1)" : "scaleX(0)",
+                  }}
+                  className="absolute bottom-0 left-0 h-px w-full origin-left bg-[#E46A2A]"
+                />
               </Link>
             ))}
           </div>
 
           {/* RIGHT — Connect / Hamburger */}
           <div className="flex items-center justify-end">
-            <Link href={"/connect"} className="hidden md:block">
-              <button className={cn("text-base cursor-pointer p-2 hover:bg-orange-600 border-[1px]  rounded-md font-bold transition-all duration-300", pathname === "/about-us" ? "text-black hover:text-white border-black" : "text-white border-white")}>
-                Connect
-              </button>
-            </Link>
+            <div className="flex gap-4">
+              <Link href={"/connect"} className="hidden md:block">
+                <button className="px-3 cursor-pointer font-semibold text-white bg-orange-600 py-2 rounded-md">Large Project</button>
+              </Link>
+              <Link href={"/connect"} className="hidden md:block">
+                <button className={cn(
+                  "px-3 cursor-pointer font-semibold bg-white text-black py-2 rounded-md",
+                  pathname === "/about-us" && " bg-black text-white",
+                )}>Connect</button>
+              </Link>
+            </div>
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close Menu" : "Open Menu"}
