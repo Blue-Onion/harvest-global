@@ -295,21 +295,11 @@ function Navbar() {
 
           {/* RIGHT — Connect / Hamburger */}
           <div className="flex items-center justify-end">
-            {/* Desktop Connect */}
-            <Link href="/connect" className="hidden md:block no-underline">
-              <div
-                ref={buttonRef}
-                className={cn(
-                  "button button--stroke",
-                  pathname === "/about-us" && "button--dark",
-                )}
-              >
-                <span className="button__label">Connect</span>
-                <div ref={flairRef} className="button__flair" />
-              </div>
+            <Link href={"/connect"} className="hidden md:block">
+              <button className={cn("text-base cursor-pointer p-2 hover:bg-orange-600 border-[1px]  rounded-md font-bold transition-all duration-300", pathname === "/about-us" ? "text-black hover:text-white border-black" : "text-white border-white")}>
+                Connect
+              </button>
             </Link>
-
-            {/* Mobile Hamburger */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close Menu" : "Open Menu"}
@@ -380,8 +370,8 @@ function Navbar() {
             onClick={() => setIsOpen(false)}
             className="no-underline mobile-nav-link self-start"
           >
-            <div className="button button--stroke">
-              <span className="button__label">Connect</span>
+            <div className="">
+              <span className="">Connect</span>
             </div>
           </Link>
         </div>

@@ -7,6 +7,7 @@ interface TeamMember {
   name: string;
   role: string;
   focus: string;
+  prev:string;
   image: string;
   linkedin?: string;
   mail?: string;
@@ -15,9 +16,8 @@ interface TeamMember {
 interface TeamCardProps {
   member: TeamMember;
 }
-
 const TeamCard = ({
-  member: { name, role, focus, image, linkedin, mail },
+  member: { name, role, focus, prev, image, linkedin, mail },
 }: TeamCardProps) => {
   return (
     <div
@@ -35,7 +35,7 @@ const TeamCard = ({
         shadow-[0_8px_30px_rgba(0,0,0,0.04)]
         md:px-10
         md:py-11
-      "
+"
     >
       <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-center md:gap-6 md:text-left">
         <div
@@ -47,7 +47,7 @@ const TeamCard = ({
             overflow-hidden
             rounded-full
             bg-[#f0f0eb]
-          "
+"
         >
           <Image
             src={image}
@@ -64,16 +64,22 @@ const TeamCard = ({
             {name}
           </h2>
 
-          <p className="text-[18px] font-medium leading-tight text-[#4c8b68] md:text-[20px]">
+          <p className="text-[18px] font-bold leading-tight text-[#4c8b68] md:text-[20px]">
             {role}
           </p>
 
+
+          {prev && (
+            <p className="text-[13px] font-semibold uppercase  text-[#9a9a9a] md:text-[14px]">
+              {prev}
+            </p>
+          )}
           <p className="max-w-[390px] text-[15px] leading-[1.7] text-[#626262] md:text-[16px]">
             {focus}
           </p>
 
           {/* Social / Contact Icons */}
-          <div className="mt-4 flex w-full items-center justify-center gap-4 md:justify-end">
+          <div className=" flex w-full items-center justify-center gap-2 md:justify-end">
             {linkedin && (
               <Link
                 href={linkedin}
@@ -84,8 +90,8 @@ const TeamCard = ({
                 <Image
                   src="/svg/linkedInColour.svg"
                   alt="LinkedIn"
-                  width={24}
-                  height={24}
+                  width={36}
+                  height={36}
                 />
               </Link>
             )}
@@ -95,8 +101,8 @@ const TeamCard = ({
                 <Image
                   src="/svg/mailcolour.svg"
                   alt="Email"
-                  width={36}
-                  height={36}
+                  width={52}
+                  height={52}
                 />
               </Link>
             )}
