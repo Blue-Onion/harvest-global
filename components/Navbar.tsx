@@ -12,7 +12,7 @@ gsap.registerPlugin(useGSAP);
 function Navbar() {
   const navLinks = [
     { title: "Home", href: "/" },
-    { title: "About", href: "/about-us" },
+    { title: "Team", href: "/about-us" },
     { title: "Technology", href: "/#technology" },
     { title: "Media", href: "/credentials" },
   ];
